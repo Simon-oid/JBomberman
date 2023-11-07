@@ -99,7 +99,7 @@ public class Map extends Observable
         }
     }
 
-    // Implement this method to send updates to observers
+    // ao bella
     public void sendUpdate(PackageData packageData)
     {
         setChanged();
