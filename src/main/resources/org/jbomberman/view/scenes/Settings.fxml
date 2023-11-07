@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.6"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jbomberman.view.Settings">
+    <ButtonBar layoutX="32.0" layoutY="78.0" prefHeight="40.0" prefWidth="200.0"/>
+    <ButtonBar layoutX="32.0" layoutY="186.0" prefHeight="40.0" prefWidth="200.0"/>
+    <Label layoutX="159.0" layoutY="138.0" text="AUDIO"/>
+    <Slider layoutX="224.0" layoutY="140.0"/>
+    <CheckBox layoutX="224.0" layoutY="178.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="14.0"/>
+    <Label layoutX="144.0" layoutY="178.0" text="FULLSCREEN"/>
+    <TextField layoutX="380.0" layoutY="135.0" prefHeight="25.0" prefWidth="31.0" text="50"/>
+</AnchorPane>
