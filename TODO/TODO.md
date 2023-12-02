@@ -641,5 +641,34 @@ FF >>> 22/10/2023
 ===========================================================================
 ***
 
+### 1/12/2023
+
+### TO-DO:
+
+### high priority:
+
+- [ ] fixare il fatto che quando la bomba viene piazzata, non e' piu' possibile piazzare una bomba in quel tile
+- [ ] fai spawnare e muovere i mob
+- [ ] fixa il fatto che lo sprite del player e' disegnato sotto quello della bomba
+
+### low priority:
+
+- [ ] reworka collisioni
+- [ ] reworka il metodo chooseRandomDirecton() di Mob
+- [ ] reworka il metodo che fa finire il livello di ExitTile
+
+### DONE:
+
+- [x] fixato l'handling della bomba
+- [x] fixato il modo in cui il package data viene passato alla gameview
+- [x] reworkato il modo con cui viene disegnata l'esplosione
+    - ora vengono diseganti tanti sprite quanti sono i blocchi attraversati dall'esplosione prima di fermarsi - viene
+      disegnato sempre uno sprite nella posizione 0
+
+***
+
+===========================================================================
+***
+
 
 

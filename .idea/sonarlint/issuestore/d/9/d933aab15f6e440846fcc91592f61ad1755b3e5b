@@ -1,0 +1,27 @@
+
+v	java:S135œ"YReduce the total number of break and continue statements in this loop to use at most one.(óÁ±8ãÒŒ®Â1
+e
+java:S2184¶"BCast one of the operands of this addition operation to a "double".(å€üÿÿÿÿ8äÒŒ®Â1
+e
+java:S2184¶"BCast one of the operands of this addition operation to a "double".(å€üÿÿÿÿ8äÒŒ®Â1
+¶
+java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(ú„ŠÌ8ÓŒ®Â1
+O
+java:S1874"2Remove this use of "Observable"; it is deprecated.(ú„ŠÌ8‘ÓŒ®Â1
+V
+java:S1117d":Rename "player" which hides the field declared at line 35.(Ì¸»!8•ÓŒ®Â1
+P
+java:S1135¹"2Complete the task associated to this TODO comment.(Çé°8šÓŒ®Â1
+H	java:S106Œ"+Replace this use of System.out by a logger.(ÌÚğĞ8ÓŒ®Â1
+M	java:S106"+Replace this use of System.out by a logger.(–™Ë“ùÿÿÿÿ8ÓŒ®Â1
+Y	java:S125"<This block of commented-out lines of code should be removed.(ú‚áö8ı†®Â1
+[
+java:S1854ª"=Remove this useless assignment to local variable "nextTileY".(æ€âë8ÓŒ®Â1
+`
+java:S1854©"=Remove this useless assignment to local variable "nextTileX".(ëÎÅäşÿÿÿÿ8ÓŒ®Â1
+Y	java:S125¢"<This block of commented-out lines of code should be removed.(š€Ê¤8ŸÓŒ®Â1
+Q
+java:S1481©".Remove this unused "nextTileX" local variable.(ëÎÅäşÿÿÿÿ8ŸÓŒ®Â1
+L
+java:S1481ª".Remove this unused "nextTileY" local variable.(æ€âë8ŸÓŒ®Â1
+Y	java:S125¬"<This block of commented-out lines of code should be removed.(öì¯8ŸÓŒ®Â1

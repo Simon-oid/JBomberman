@@ -1,15 +1,14 @@
 package org.jbomberman.model.entita;
 
 
-import javafx.geometry.Rectangle2D;
-import lombok.Getter;
-import lombok.Setter;
-
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import javafx.geometry.Rectangle2D;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -32,7 +31,7 @@ public class Player extends Entity
         super(x, y, width, height, direction);
         this.lives = lives;
         this.score = score;
-        this.speed = 100;
+        this.speed = 200;
         this.bombCount = 5;
         explosionRadius = 2;
         initHitBox();
