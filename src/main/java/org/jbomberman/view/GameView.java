@@ -1,5 +1,7 @@
 package org.jbomberman.view;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -7,10 +9,12 @@ import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.TilePane;
 import javafx.util.Duration;
+import org.jbomberman.model.entita.Type;
 import org.jbomberman.model.listener.*;
 
 public class GameView {
@@ -18,6 +22,7 @@ public class GameView {
   private TilePane tilePane;
   private AnchorPane anchorPane;
   private ImageView player;
+  private Map<Type, Image> mobSprites;
 
   public GameView() {
     player = new ImageView(Entities.PLAYER.getImage());
@@ -37,6 +42,10 @@ public class GameView {
       tilePane.getChildren().add(imageView);
     }
     anchorPane = new AnchorPane(tilePane, player);
+
+    mobSprites = new HashMap<>();
+    mobSprites.put(Type.PUROPEN, Entities.PUROPEN.getImage());
+    mobSprites.put(Type.DENKYUN, Entities.DENKYUN.getImage());
   }
 
   public void loadMap(LoadMapData data) {
@@ -57,6 +66,8 @@ public class GameView {
 
     int initialX = data.oldX();
     int initialY = data.oldY();
+
+    System.out.println(yStep);
 
     TranslateTransition transition = new TranslateTransition(Duration.seconds(delta), player);
 
@@ -165,5 +176,48 @@ public class GameView {
 
       tilePane.getChildren().set(data.tileIndex(), imageView);
     }
+  }
+
+  public void moveMob(MobMovementData data) {
+    int xStep = data.xStep();
+    int yStep = data.yStep();
+    double delta = data.delta();
+
+    int initialX = data.oldX();
+    int initialY = data.oldY();
+
+    Type mobType = data.mobType();
+    Image mobImage = mobSprites.get(mobType);
+
+    ImageView mobImageView = new ImageView(mobImage);
+    mobImageView.setFitWidth(48);
+    mobImageView.setFitHeight(48);
+
+    TranslateTransition transition = new TranslateTransition(Duration.seconds(delta), mobImageView);
+
+    // Set the initial positions as the fromX and fromY properties
+    transition.setFromX(initialX);
+    transition.setFromY(initialY);
+
+    // Set the target positions using setToX and setToY
+    transition.setToX(xStep);
+    transition.setToY(yStep);
+
+    // Remove the old sprite of the mob, if exists
+    removeOldMobSprite(mobType);
+
+    anchorPane.getChildren().add(mobImageView);
+
+    transition.play();
+  }
+
+  private void removeOldMobSprite(Type mobType) {
+    // Remove the old sprite of the mob
+    anchorPane
+        .getChildren()
+        .removeIf(
+            node ->
+                node instanceof ImageView
+                    && ((ImageView) node).getImage() == mobSprites.get(mobType));
   }
 }

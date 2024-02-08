@@ -670,5 +670,30 @@ FF >>> 22/10/2023
 ===========================================================================
 ***
 
+### 4/12/2023
+
+### TO-DO:
+
+### high priority:
+
+- [ ] fai spawnare e muovere i mob
+
+### low priority:
+
+- [ ] reworka collisioni
+- [ ] reworka il metodo chooseRandomDirecton() di Mob
+- [ ] reworka il metodo che fa finire il livello di ExitTile
+- [ ] fixa il fatto che lo sprite del player e' disegnato sotto quello della bomba
+
+### DONE:
+
+- [x] fixata la presenza della bomba sulla mappa
+    - ora viene rimossa dopo l'esplosione
+
+***
+
+===========================================================================
+***
+
 
 

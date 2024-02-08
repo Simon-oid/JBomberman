@@ -1,5 +1,8 @@
 package org.jbomberman.view;
 
+import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,10 +13,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.jbomberman.controller.KeyHandler;
 import org.jbomberman.model.listener.*;
-
-import java.io.IOException;
-import java.util.Observable;
-import java.util.Observer;
 
 @Getter
 @Setter
@@ -103,6 +102,7 @@ public class SceneController implements Observer
                 case BOMB_EXPLOSION -> Platform.runLater(() -> gameRoot.explodeBomb((BombExplosionData) data));
                 case TILE_DESTRUCTION ->
                         Platform.runLater(() -> gameRoot.handleTileDestruction((TileDestructionData) data));
+                case MOB_MOVEMENT -> Platform.runLater(() -> gameRoot.moveMob((MobMovementData) data));
             }
         }
     }

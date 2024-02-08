@@ -1,15 +1,15 @@
 
-Z
-java:S2583M"DChange this condition so that it does not always evaluate to "false"(öáº½
-–
-java:S1186!"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÆËâG
-œ
-java:S1186'"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(”ìö¸úÿÿÿÿ
-H
-java:S1135Z"2Complete the task associated to this TODO comment.(Ú§Œ
+]	java:S125"<This block of commented-out lines of code should be removed.(Ñâçûÿÿÿÿ8›çÕÉØ1
+X	java:S125:"<This block of commented-out lines of code should be removed.(ãà‰Á8Ş®õÉØ1
 O
-java:S3400a"9Remove this method and declare a constant for this value.(§¼Éç
-X
-java:S1172^"=Remove these unused method parameters "updatedX", "updatedY".(ƒÆÀùÿÿÿÿ
-H
-java:S1135`"2Complete the task associated to this TODO comment.(‚ûÁ•
+java:S1135N"2Complete the task associated to this TODO comment.(Ú§Œ8Ş®õÉØ1
+V
+java:S3400T"9Remove this method and declare a constant for this value.(§¼Éç8Ş®õÉØ1
+W
+java:S1172R"5Remove these unused method parameters "newX", "newY".(ü¨ûËúÿÿÿÿ8Ş®õÉØ1
+O
+java:S1135S"2Complete the task associated to this TODO comment.(‚ûÁ•8Ş®õÉØ1
+\
+java:S1144M"?Remove this unused private "chooseRandomValidDirection" method.(ÛÎÛ÷8Ş®õÉØ1
+R
+java:S1144R"0Remove this unused private "isValidMove" method.(ü¨ûËúÿÿÿÿ8Ş®õÉØ1

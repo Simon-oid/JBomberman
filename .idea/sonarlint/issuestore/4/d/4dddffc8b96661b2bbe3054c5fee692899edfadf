@@ -1,7 +1,11 @@
 
-`	java:S1126"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
-f
-java:S3655f"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(„µÂ€
-¯
-java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(ªê¾„
-S	java:S106h"9Replace this use of System.out or System.err by a logger.(ÍÇÖÓúÿÿÿÿ
+g	java:S112W"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ìÇÎÅ1
+m
+java:S3655G"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(„µÂ€8™ìÇÎÅ1
+¶
+java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(¦Ö¬‚8šìÇÎÅ1
+M
+java:S1874"0Remove this use of "Observer"; it is deprecated.(¦Ö¬‚8›ìÇÎÅ1
+L	java:S106I"+Replace this use of System.out by a logger.(ÍÇÖÓúÿÿÿÿ8ŸìÇÎÅ1
+O
+java:S1874]"2Remove this use of "Observable"; it is deprecated.(†Øó¢8¢ìÇÎÅ1

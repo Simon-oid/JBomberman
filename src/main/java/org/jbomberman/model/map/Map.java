@@ -7,14 +7,12 @@ import com.google.gson.JsonParser;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Observable;
+import java.util.*;
 import javafx.geometry.Rectangle2D;
 import lombok.Getter;
 import lombok.Setter;
 import org.jbomberman.controller.KeyHandler;
+import org.jbomberman.controller.MobHandler;
 import org.jbomberman.model.entita.*;
 import org.jbomberman.model.listener.*;
 import org.jbomberman.model.tiles.GrassTile;
@@ -33,6 +31,8 @@ public class Map extends Observable {
   private List<Entity> entities;
 
   private Player player;
+
+  private List<Mob> mobs;
 
   private boolean mobsMovement;
 
@@ -112,19 +112,22 @@ public class Map extends Observable {
 
       this.player = new Player(posx, posy, width, height, lives, direction, score);
 
-      JsonArray mobs = jsonObject.get("mob").getAsJsonArray();
+      JsonArray mobsJson = jsonObject.get("mob").getAsJsonArray();
 
       entities = new ArrayList<>();
-      for (JsonElement mob : mobs) {
+
+      for (JsonElement mob : mobsJson) {
         Type type = Type.valueOf(mob.getAsJsonObject().get("type").getAsString());
+
         posx = mob.getAsJsonObject().get("posx").getAsInt();
         posy = mob.getAsJsonObject().get("posy").getAsInt();
+        System.out.println(posy);
         direction = Direction.valueOf(mob.getAsJsonObject().get("direction").getAsString());
 
-        width = 0;
-        height = 0;
+        int widthh = mob.getAsJsonObject().get("width").getAsInt();
+        int heightt = mob.getAsJsonObject().get("height").getAsInt();
 
-        entities.add(new Mob(posx, posy, width, height, type, direction));
+        entities.add(new Mob(posx, posy, widthh, heightt, type, direction));
       }
 
     } catch (IOException e) {
@@ -151,28 +154,13 @@ public class Map extends Observable {
   }
 
   public void moveEntities() {
-
     mobsMovement = true;
+
     // Start the player's movement using AnimationTimer
     KeyHandler.getInstance().startMovement();
 
-    // Create a thread to move mobs continuously using while loop
-    Thread mobMoveThread =
-        new Thread(
-            () -> {
-              Mob[] mobs = getMobs();
-              while (mobsMovement) {
-                for (Mob mob : mobs) {
-                  mob.move(); // Call the move method of Mob
-                }
-                try {
-                  Thread.sleep(100); // Adjust the sleep duration as needed
-                } catch (InterruptedException e) {
-                  Thread.currentThread().interrupt();
-                }
-              }
-            });
-    mobMoveThread.start();
+    // Start the mob's movement using AnimationTimer
+    MobHandler.getInstance().startMobMovement();
   }
 
   public void movePlayer(int xStep, int yStep, double delta) {
@@ -194,6 +182,73 @@ public class Map extends Observable {
             delta,
             oldX - 8,
             oldY - 64));
+  }
+
+  public void moveMob(Mob mob, int xStep, int yStep, double delta) {
+    int oldX = mob.getX();
+    int oldY = mob.getY();
+
+    // Calculate the new position based on xStep and yStep
+    int newX = oldX + xStep;
+    int newY = oldY + yStep;
+
+    // Create a new hitbox for the new position
+    Rectangle2D newHitBox = new Rectangle2D(newX, newY, mob.getWidth(), mob.getHeight());
+
+    // Check if the new position collides with solid tiles
+    if (collidesWithSolid(newHitBox)) {
+      // If collision occurs, change direction and update hitbox with old coordinates
+      Direction newDirection = chooseRandomValidDirection(mob);
+      if (newDirection != null) {
+        mob.setDirection(newDirection);
+      }
+      mob.updateHitBox(oldX, oldY); // Update hitbox with old coordinates
+      return;
+    }
+
+    // Update the mob's position
+    mob.move(newX, newY);
+
+    // Create package data and send movement information to GameView
+    MobMovementData mobMovementData =
+        new MobMovementData(PackageType.MOB_MOVEMENT, mob.getType(), newX, newY, delta, oldX, oldY);
+    sendUpdate(mobMovementData);
+  }
+
+  private Direction chooseRandomValidDirection(Mob mob) {
+    // Get the current direction of the mob
+    Direction currentDirection = mob.getDirection();
+
+    // Create a list to store valid directions
+    List<Direction> validDirections = new ArrayList<>();
+
+    // Check each direction and add it to the list if it is valid
+    for (Direction direction : Direction.values()) {
+      if (direction != currentDirection && isValidDirection(mob, direction)) {
+        validDirections.add(direction);
+      }
+    }
+
+    // If there are valid directions available, choose a random one
+    if (!validDirections.isEmpty()) {
+      Random random = new Random();
+      return validDirections.get(random.nextInt(validDirections.size()));
+    }
+
+    // If no valid directions are available, return null
+    return null;
+  }
+
+  private boolean isValidDirection(Mob mob, Direction direction) {
+    // Calculate the new position based on the direction
+    int newX = mob.getX() + direction.getX();
+    int newY = mob.getY() + direction.getY();
+
+    // Create a hitbox for the new position
+    Rectangle2D newHitBox = new Rectangle2D(newX, newY, mob.getWidth(), mob.getHeight());
+
+    // Check if the new position collides with solid tiles
+    return !collidesWithSolid(newHitBox);
   }
 
   public void spawnBomb() {
@@ -336,6 +391,8 @@ public class Map extends Observable {
 
       // Replace destroyable tile with a GRASS tile
       numTileMap.set(tileIndex, Tiles.GRASS);
+      tileHitBoxes.set(
+          tileIndex, createTile(tileIndexX, tileIndexY, Tiles.GRASS).getHitBox()); // Update hitbox
     }
   }
 
