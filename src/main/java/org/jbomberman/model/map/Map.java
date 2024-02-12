@@ -8,6 +8,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 import javafx.geometry.Rectangle2D;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,13 +36,17 @@ public class Map extends Observable {
 
   private Player player;
 
-  private List<Mob> mobs;
-
   private boolean mobsMovement;
 
   private List<Rectangle2D> tileHitBoxes;
 
-  private Map() {}
+  private ScheduledExecutorService executorService;
+
+  private Set<Mob> mobsAffectedByExplosion = new HashSet<>();
+
+  private Map() {
+    executorService = Executors.newSingleThreadScheduledExecutor();
+  }
 
   public void loadMap(String path) {
     ArrayList<Tiles> matrix = new ArrayList<>();
@@ -121,7 +129,7 @@ public class Map extends Observable {
 
         posx = mob.getAsJsonObject().get("posx").getAsInt();
         posy = mob.getAsJsonObject().get("posy").getAsInt();
-        System.out.println(posy);
+
         direction = Direction.valueOf(mob.getAsJsonObject().get("direction").getAsString());
 
         int widthh = mob.getAsJsonObject().get("width").getAsInt();
@@ -320,15 +328,42 @@ public class Map extends Observable {
     // Get the explosion ranges for each direction
     int[] ranges = explodeAdjacentTiles(explosionX, explosionY, range);
 
-    System.out.println(explosionX / 48);
-    System.out.println(explosionY / 48);
-    //    System.out.println(
-    //        "right" + ranges[0] + " " + "left" + ranges[1] + " " + "up" + ranges[2] + " " + "down"
-    //            + ranges[3]);
+    // Calculate the explosion hitboxes
+    Rectangle2D[] explosionHitboxes = calculateExplosionHitboxes(explosionX, explosionY, ranges);
+
+    Rectangle2D horizontalExplosionHitbox = explosionHitboxes[0];
+    Rectangle2D verticalExplosionHitbox = explosionHitboxes[1];
+
+    // Reset the set of mobs affected by the explosion
+    mobsAffectedByExplosion.clear();
+
+    // Initialize the collision detection scheduler
+    initCollisionDetectionScheduler(horizontalExplosionHitbox, verticalExplosionHitbox);
 
     BombExplosionData packageData =
         new BombExplosionData(PackageType.BOMB_EXPLOSION, explosionX, explosionY, ranges);
     sendUpdate(packageData);
+  }
+
+  private void initCollisionDetectionScheduler(
+      Rectangle2D horizontalExplosionHitbox, Rectangle2D verticalExplosionHitbox) {
+    // Schedule the task for collision detection at a fixed rate
+    ScheduledFuture<?> collisionDetectionTask =
+        executorService.scheduleAtFixedRate(
+            () -> detectMobExplosionCollision(horizontalExplosionHitbox, verticalExplosionHitbox),
+            0,
+            100,
+            TimeUnit.MILLISECONDS);
+
+    // Schedule a task to cancel collision detection after the two-second interval
+    executorService.schedule(
+        () -> {
+          collisionDetectionTask.cancel(false);
+          // Clear the set of mobs affected by the explosion after the interval
+          mobsAffectedByExplosion.clear();
+        },
+        2,
+        TimeUnit.SECONDS);
   }
 
   private int[] explodeAdjacentTiles(int x, int y, int playerRadius) {
@@ -368,6 +403,7 @@ public class Map extends Observable {
         }
       }
     }
+
     return distances;
   }
 
@@ -412,6 +448,72 @@ public class Map extends Observable {
       return numTileMap.get(index).isDestroyable();
     }
     return false;
+  }
+
+  private Rectangle2D[] calculateExplosionHitboxes(int explosionX, int explosionY, int[] ranges) {
+    // Calculate the dimensions of the horizontal hitbox
+    int horizontalWidth = ((ranges[1] + ranges[0]) * 48) + 48;
+    int horizontalHeight = 48;
+    int horizontalX = explosionX - ranges[0] * 48;
+
+    // Create the horizontal hitbox
+    Rectangle2D horizontalHitbox =
+        new Rectangle2D(horizontalX, explosionY, horizontalWidth, horizontalHeight);
+
+    // Calculate the dimensions of the vertical hitbox
+    int verticalWidth = 48;
+    int verticalHeight = ((ranges[3] + ranges[2]) * 48) + 48;
+    int verticalY = explosionY - ranges[2] * 48;
+
+    // Create the vertical hitbox
+    Rectangle2D verticalHitbox =
+        new Rectangle2D(explosionX, verticalY, verticalWidth, verticalHeight);
+
+    // Return an array containing the horizontal and vertical hitboxes
+    return new Rectangle2D[] {horizontalHitbox, verticalHitbox};
+  }
+
+  private void detectMobExplosionCollision(
+      Rectangle2D horizontalExplosionHitbox, Rectangle2D verticalExplosionHitbox) {
+    System.out.println("Checking collision between mobs and explosion...");
+
+    // Iterate over all entities to check for collision with explosion
+    for (Entity entity : entities) {
+      if (entity instanceof Mob) {
+        Mob mob = (Mob) entity;
+
+        // Check if the mob has already been affected by the explosion
+        if (mobsAffectedByExplosion.contains(mob)) {
+          continue;
+        }
+
+        Rectangle2D mobHitbox = mob.getHitBox();
+
+        // Check if mob's hitbox intersects with width explosion hitbox
+        if (mobHitbox.intersects(horizontalExplosionHitbox)) {
+          System.out.println("Collision detected between mob and width explosion!");
+          handleMobExplosion(mob);
+          mobsAffectedByExplosion.add(mob);
+        }
+
+        // Check if mob's hitbox intersects with height explosion hitbox
+        if (mobHitbox.intersects(verticalExplosionHitbox)) {
+          System.out.println("Collision detected between mob and height explosion!");
+          handleMobExplosion(mob);
+          mobsAffectedByExplosion.add(mob);
+        }
+      }
+    }
+
+    System.out.println("Collision detection complete.");
+  }
+
+  private void handleMobExplosion(Mob mob) {
+    // Handle collision between mob and explosion
+    // For example, remove the mob from the game, update scores, etc.
+    entities.remove(mob);
+    // Notify GameView to remove the mob from the map
+    sendUpdate(new RemoveMobData(PackageType.REMOVE_MOB, mob.getType()));
   }
 
   public Mob[] getMobs() {

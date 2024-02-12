@@ -11,17 +11,17 @@
   "mob": [
     {
       "type": "PUROPEN",
-      "posx": "5",
-      "posy": "5",
+      "posx": "0",
+      "posy": "0",
       "direction": "DOWN",
       "width": "32",
       "height": "32"
     },
     {
       "type": "DENKYUN",
-      "posx": "96",
-      "posy": "48",
-      "direction": "DOWN",
+      "posx": "144",
+      "posy": "144",
+      "direction": "RIGHT",
       "width": "32",
       "height": "32"
     }

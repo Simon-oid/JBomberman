@@ -20,13 +20,14 @@ public class Mob extends Entity {
   public Mob(int x, int y, int width, int height, Type type, Direction direction) {
     super(x, y, width, height, direction);
     this.type = type;
-    this.speed = 200;
+    this.speed = 0;
     initHitBox();
   }
 
   @Override
   protected void initHitBox() {
-    hitBox = new Rectangle2D(x, y, width, height); // 8, 16, 32, 32
+    hitBox = new Rectangle2D(x, y, width, height);
+    System.out.println(hitBox); // 8, 16, 32, 32
   }
 
   @Override

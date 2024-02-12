@@ -1,30 +1,32 @@
 
-v	java:S135Ó"YReduce the total number of break and continue statements in this loop to use at most one.(óÁ±8äĞñÉØ1
+v	java:S135ö"YReduce the total number of break and continue statements in this loop to use at most one.(óÁ±8¬ÒöğÙ1
 e
-java:S2184ª"BCast one of the operands of this addition operation to a "double".(å€üÿÿÿÿ8æĞñÉØ1
+java:S2184²"BCast one of the operands of this addition operation to a "double".(å€üÿÿÿÿ8¯ÒöğÙ1
 e
-java:S2184ª"BCast one of the operands of this addition operation to a "double".(å€üÿÿÿÿ8æĞñÉØ1
+java:S2184²"BCast one of the operands of this addition operation to a "double".(å€üÿÿÿÿ8°ÒöğÙ1
 ¶
-java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(ú„ŠÌ8ÑñÉØ1
+java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(ú„ŠÌ8ŠÓöğÙ1
 O
-java:S1874"2Remove this use of "Observable"; it is deprecated.(ú„ŠÌ8‘ÑñÉØ1
+java:S1874"2Remove this use of "Observable"; it is deprecated.(ú„ŠÌ8‹ÓöğÙ1
 V
-java:S1117d":Rename "player" which hides the field declared at line 33.(Ì¸»!8–ÑñÉØ1
-G	java:S106|"+Replace this use of System.out by a logger.(Ä¦÷‹8˜ÑñÉØ1
+java:S1117l":Rename "player" which hides the field declared at line 37.(Ì¸»!8‘ÓöğÙ1
 P
-java:S1135­"2Complete the task associated to this TODO comment.(Çé°8›ÑñÉØ1
+java:S1135µ"2Complete the task associated to this TODO comment.(Çé°8—ÓöğÙ1
 ;
-java:S2119ê"Save and re-use this "Random".(¼İÅf8Ç¯‰ÊØ1
-H	java:S106Ã"+Replace this use of System.out by a logger.(ÌÚğĞ8ÑñÉØ1
-M	java:S106Ä"+Replace this use of System.out by a logger.(–™Ë“ùÿÿÿÿ8ŸÑñÉØ1
-Y	java:S125Ç"<This block of commented-out lines of code should be removed.(ú‚áö8ŸÑñÉØ1
+java:S2119ò"Save and re-use this "Random".(¼İÅf8šÓöğÙ1
 [
-java:S1854á"=Remove this useless assignment to local variable "nextTileY".(æ€âë8ŸÑñÉØ1
+java:S1854„"=Remove this useless assignment to local variable "nextTileY".(æ€âë8ŸÓöğÙ1
 `
-java:S1854à"=Remove this useless assignment to local variable "nextTileX".(ëÎÅäşÿÿÿÿ8ŸÑñÉØ1
-Y	java:S125Ù"<This block of commented-out lines of code should be removed.(š€Ê¤8ŸÑñÉØ1
+java:S1854ƒ"=Remove this useless assignment to local variable "nextTileX".(ëÎÅäşÿÿÿÿ8ŸÓöğÙ1
+Y	java:S125ü"<This block of commented-out lines of code should be removed.(š€Ê¤8 ÓöğÙ1
 Q
-java:S1481à".Remove this unused "nextTileX" local variable.(ëÎÅäşÿÿÿÿ8 ÑñÉØ1
+java:S1481ƒ".Remove this unused "nextTileX" local variable.(ëÎÅäşÿÿÿÿ8 ÓöğÙ1
 L
-java:S1481á".Remove this unused "nextTileY" local variable.(æ€âë8 ÑñÉØ1
-Y	java:S125ã"<This block of commented-out lines of code should be removed.(öì¯8 ÑñÉØ1
+java:S1481„".Remove this unused "nextTileY" local variable.(æ€âë8 ÓöğÙ1
+Y	java:S125†"<This block of commented-out lines of code should be removed.(öì¯8 ÓöğÙ1
+M	java:S106Ş"+Replace this use of System.out by a logger.(¹©èûÿÿÿÿ8£ÓöğÙ1
+^
+java:S6201â"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8£ÓöğÙ1
+G	java:S106î"+Replace this use of System.out by a logger.(«•ğF8¤ÓöğÙ1
+G	java:S106õ"+Replace this use of System.out by a logger.(²â„]8¤ÓöğÙ1
+H	java:S106ü"+Replace this use of System.out by a logger.(®§º8¤ÓöğÙ1

@@ -190,8 +190,8 @@ public class GameView {
     Image mobImage = mobSprites.get(mobType);
 
     ImageView mobImageView = new ImageView(mobImage);
-    mobImageView.setFitWidth(48);
-    mobImageView.setFitHeight(48);
+    mobImageView.setFitWidth(32); // Set the initial fit width
+    mobImageView.setFitHeight(32); // Set the initial fit height
 
     TranslateTransition transition = new TranslateTransition(Duration.seconds(delta), mobImageView);
 
@@ -203,12 +203,23 @@ public class GameView {
     transition.setToX(xStep);
     transition.setToY(yStep);
 
+    // Adjust the position of the mobImageView to (8, 16)
+    mobImageView.setX(8);
+    mobImageView.setY(8);
+
     // Remove the old sprite of the mob, if exists
     removeOldMobSprite(mobType);
 
     anchorPane.getChildren().add(mobImageView);
 
     transition.play();
+  }
+
+  public void removeMob(RemoveMobData data) {
+    Type mobType = data.mobType();
+
+    // Remove the sprite of the mob from the screen
+    removeOldMobSprite(mobType);
   }
 
   private void removeOldMobSprite(Type mobType) {
