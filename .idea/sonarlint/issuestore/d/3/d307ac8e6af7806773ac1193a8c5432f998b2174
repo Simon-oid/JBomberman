@@ -13,4 +13,3 @@ java:S1659"HDeclare "downPressed" and all following declarations on a separate
 java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(–ÙÇ†ÿÿÿÿÿ
 T
 java:S11359"2Complete the task associated to this TODO comment.(«à¸ùùÿÿÿÿ8ÕÒ…¦Ø1
-X	java:S125C"<This block of commented-out lines of code should be removed.(ÚìÉÙ8ÖÒ…¦Ø1

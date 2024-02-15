@@ -1,15 +1,14 @@
 
-n	java:S117¨"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒ‘–¨8ÉüòˆÖ1
+n	java:S117¬"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒ‘–¨8ˆ¥ûºÚ1
 <
-java:S1640."Convert this Map to an EnumMap.(—À¢¢8ÌüòˆÖ1
-L	java:S106F"+Replace this use of System.out by a logger.(³Ýôßùÿÿÿÿ8‘ýòˆÖ1
+java:S1640."Convert this Map to an EnumMap.(—À¢¢8€Æ»Ú1
 i
-java:S6201€"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(ˆ†ŸP8—ýòˆÖ1
+java:S6201„"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(ˆ†ŸP8´¥ûºÚ1
 o
-java:S6201"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8šýòˆÖ1
+java:S6201¡"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8¶¥ûºÚ1
 o
-java:S6201"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8šýòˆÖ1
+java:S6201¡"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8¶¥ûºÚ1
 o
-java:S6201"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8šýòˆÖ1
+java:S6201¡"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8¶¥ûºÚ1
 i
-java:S6201ç"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(ˆ†ŸP8œê¡ñÙ1
+java:S6201ü"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(ˆ†ŸP8»¥ûºÚ1

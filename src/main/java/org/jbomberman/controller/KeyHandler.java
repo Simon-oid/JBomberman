@@ -58,13 +58,18 @@ public class KeyHandler {
   private void createTimer() {
     animationTimer =
         new AnimationTimer() {
-          private long lastFrame = 0;
+          private long lastFrame = -1;
 
           @Override
           public void handle(long now) {
+
+            if (lastFrame == -1) {
+              lastFrame = now;
+            }
+
             double delta = (now - lastFrame) / 1_000_000_000D;
             if (delta < 1.0 / 30) return;
-            // System.out.println(delta);
+
             lastFrame = now;
 
             int yStep =

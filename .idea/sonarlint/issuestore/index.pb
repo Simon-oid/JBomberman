@@ -57,3 +57,9 @@ t
 Dsrc/main/java/org/jbomberman/model/listener/TileDestructionData.java,1\8\1833e080ded04a3626d830b51c1b2d51ba578ea7
 n
 >src/main/java/org/jbomberman/model/listener/RemoveMobData.java,8\b\8b350cd1fabe4b0dfcf4e4434d08eb327249e3f2
+v
+Fsrc/main/java/org/jbomberman/model/listener/PlayerLivesUpdateData.java,e\f\ef6c76c96a8589558a94459acf961fa69edc741d
+z
+Jsrc/main/java/org/jbomberman/model/listener/PlayerInitialPositionData.java,7\7\77d45322fea94c26f1c19015242284bc2c896d84
+w
+Gsrc/main/java/org/jbomberman/model/listener/MobInitialPositionData.java,0\a\0a88b454c23c3289fc66ef30d6bec04b7b3eb642

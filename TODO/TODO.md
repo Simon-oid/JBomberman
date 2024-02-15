@@ -695,5 +695,80 @@ FF >>> 22/10/2023
 ===========================================================================
 ***
 
+### 4/12/2023 --> 13/02/2024
 
+### TO-DO:
+
+### high priority:
+
+- [ ] fai collidere il player con l'esplosione della bomba
+- [ ] fai collidere il player con i mob
+
+### low priority:
+
+- [ ] reworka collisioni del player
+
+### DONE:
+
+- [x] mob spawns
+- [x] mob movement
+- [x] mob collisions
+- [x] mob collisions with bomb / explosions
+- [x] reworkato il metodo chooseRandomDirection()
+- [x] accorgimenti fatti alla gameview per la gestione dell'uccisione del mob
+- [x] creato record per trasmettere i dati dell'uccisione di un mob
+
+***
+
+===========================================================================
+***
+
+### 13/02/2024
+
+### TO-DO:
+
+### high priority:
+
+- [ ] fai collidere il player con i mob
+
+### low priority:
+
+- [ ] reworka collisioni del player
+
+### DONE:
+
+- [x] fai collidere il player con l'esplosione della bomba
+- [x] implementato il sistema di invincibilita' dopo aver preso danno
+- [x] sistema per la riduzione delle vite
+- [x] sistema per gestire la morte del player
+
+***
+
+===========================================================================
+***
+
+### 14/02/2024
+
+### TO-DO:
+
+### high priority:
+
+- [ ] creare il bordo collidabile del livello
+
+### low priority:
+
+- [ ] reworka collisioni del player
+
+### DONE:
+
+- [x] fai collidere il player con i mob
+- [x] fixa il "last frame" nel keyhandler
+- [x] fixare lo spawn del player, prima del muoversi il player spawna nella posizione sbagliata (ancora da
+  monitorare, implementato il sistema per lo spawn, ma non funziona perche' javaFX non ti fa disegnare cose fuori
+  dalla finestra a start)
+
+***
+
+===========================================================================
+***
 

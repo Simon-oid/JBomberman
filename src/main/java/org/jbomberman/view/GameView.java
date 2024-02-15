@@ -59,6 +59,12 @@ public class GameView {
     return anchorPane;
   }
 
+  public void spawnPlayer(PlayerInitialPositionData playerInitialPosition) {
+
+    player.setX(playerInitialPosition.initialX());
+    player.setY(playerInitialPosition.initialY());
+  }
+
   public void movePlayer(PlayerMovementData data) {
     int xStep = data.xStep();
     int yStep = data.yStep();
@@ -66,8 +72,6 @@ public class GameView {
 
     int initialX = data.oldX();
     int initialY = data.oldY();
-
-    System.out.println(yStep);
 
     TranslateTransition transition = new TranslateTransition(Duration.seconds(delta), player);
 
@@ -178,6 +182,23 @@ public class GameView {
     }
   }
 
+  public void spawnMob(MobInitialPositionData mobInitialPositions) {
+    Type mobType = mobInitialPositions.mobType();
+    Image mobImage = mobSprites.get(mobType);
+
+    ImageView mobImageView = new ImageView(mobImage);
+    mobImageView.setFitWidth(32); // Set the initial fit width
+    mobImageView.setFitHeight(32); // Set the initial fit height
+    mobImageView.setX(mobInitialPositions.initialX());
+    mobImageView.setY(mobInitialPositions.initialY());
+
+    // Adjust the position of the mobImageView to (8, 16)
+    mobImageView.setX(8);
+    mobImageView.setY(16);
+
+    anchorPane.getChildren().add(mobImageView);
+  }
+
   public void moveMob(MobMovementData data) {
     int xStep = data.xStep();
     int yStep = data.yStep();
@@ -230,5 +251,19 @@ public class GameView {
             node ->
                 node instanceof ImageView
                     && ((ImageView) node).getImage() == mobSprites.get(mobType));
+  }
+
+  public void updatePlayerLives(PlayerLivesUpdateData data) {
+    int lives = data.lives();
+    // Update the display to reflect the new player lives
+    // You can implement this based on your game's UI
+
+    if (lives == 0) {
+      removePlayer();
+    }
+  }
+
+  public void removePlayer() {
+    anchorPane.getChildren().remove(player);
   }
 }

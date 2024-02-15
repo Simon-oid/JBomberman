@@ -1,32 +1,37 @@
 
-v	java:S135ö"YReduce the total number of break and continue statements in this loop to use at most one.(óÁ±8¬ÒöğÙ1
+v	java:S135"YReduce the total number of break and continue statements in this loop to use at most one.(óÁ±8æÒÏ»Ú1
 e
-java:S2184²"BCast one of the operands of this addition operation to a "double".(å€üÿÿÿÿ8¯ÒöğÙ1
+java:S2184Ô"BCast one of the operands of this addition operation to a "double".(å€üÿÿÿÿ8èÒÏ»Ú1
 e
-java:S2184²"BCast one of the operands of this addition operation to a "double".(å€üÿÿÿÿ8°ÒöğÙ1
+java:S2184Ô"BCast one of the operands of this addition operation to a "double".(å€üÿÿÿÿ8èÒÏ»Ú1
 ¶
-java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(ú„ŠÌ8ŠÓöğÙ1
+java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(ú„ŠÌ8ü¡ê»Ú1
 O
-java:S1874"2Remove this use of "Observable"; it is deprecated.(ú„ŠÌ8‹ÓöğÙ1
+java:S1874"2Remove this use of "Observable"; it is deprecated.(ú„ŠÌ8±ÓÏ»Ú1
 V
-java:S1117l":Rename "player" which hides the field declared at line 37.(Ì¸»!8‘ÓöğÙ1
-P
-java:S1135µ"2Complete the task associated to this TODO comment.(Çé°8—ÓöğÙ1
-;
-java:S2119ò"Save and re-use this "Random".(¼İÅf8šÓöğÙ1
-[
-java:S1854„"=Remove this useless assignment to local variable "nextTileY".(æ€âë8ŸÓöğÙ1
-`
-java:S1854ƒ"=Remove this useless assignment to local variable "nextTileX".(ëÎÅäşÿÿÿÿ8ŸÓöğÙ1
-Y	java:S125ü"<This block of commented-out lines of code should be removed.(š€Ê¤8 ÓöğÙ1
-Q
-java:S1481ƒ".Remove this unused "nextTileX" local variable.(ëÎÅäşÿÿÿÿ8 ÓöğÙ1
-L
-java:S1481„".Remove this unused "nextTileY" local variable.(æ€âë8 ÓöğÙ1
-Y	java:S125†"<This block of commented-out lines of code should be removed.(öì¯8 ÓöğÙ1
-M	java:S106Ş"+Replace this use of System.out by a logger.(¹©èûÿÿÿÿ8£ÓöğÙ1
+java:S1117s":Rename "player" which hides the field declared at line 37.(Ì¸»!8‚¢ê»Ú1
 ^
-java:S6201â"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8£ÓöğÙ1
-G	java:S106î"+Replace this use of System.out by a logger.(«•ğF8¤ÓöğÙ1
-G	java:S106õ"+Replace this use of System.out by a logger.(²â„]8¤ÓöğÙ1
-H	java:S106ü"+Replace this use of System.out by a logger.(®§º8¤ÓöğÙ1
+java:S6201»"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8ÌÓÏ»Ú1
+P
+java:S1135×"2Complete the task associated to this TODO comment.(Çé°8¿ÓÏ»Ú1
+;
+java:S2119–"Save and re-use this "Random".(¼İÅf8ÃÓÏ»Ú1
+[
+java:S1854«"=Remove this useless assignment to local variable "nextTileY".(æ€âë8ÈÓÏ»Ú1
+`
+java:S1854ª"=Remove this useless assignment to local variable "nextTileX".(ëÎÅäşÿÿÿÿ8ÈÓÏ»Ú1
+Y	java:S125£"<This block of commented-out lines of code should be removed.(š€Ê¤8ÈÓÏ»Ú1
+Q
+java:S1481ª".Remove this unused "nextTileX" local variable.(ëÎÅäşÿÿÿÿ8ÉÓÏ»Ú1
+L
+java:S1481«".Remove this unused "nextTileY" local variable.(æ€âë8ÉÓÏ»Ú1
+Y	java:S125­"<This block of commented-out lines of code should be removed.(öì¯8ÉÓÏ»Ú1
+^	java:S125…"<This block of commented-out lines of code should be removed.(ÍÊÃåùÿÿÿÿ8ÌÓÏ»Ú1
+^
+java:S6201‰"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8ÛÓÏ»Ú1
+G	java:S106•"+Replace this use of System.out by a logger.(«•ğF8ÍÓÏ»Ú1
+G	java:S106œ"+Replace this use of System.out by a logger.(²â„]8ÍÓÏ»Ú1
+^	java:S125£"<This block of commented-out lines of code should be removed.(Ä´‡öùÿÿÿÿ8ØÓÏ»Ú1
+H	java:S106Ñ"+Replace this use of System.out by a logger.(üÑ‚Ü8ÚÓÏ»Ú1
+^
+java:S6201Ü"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8—¢ê»Ú1

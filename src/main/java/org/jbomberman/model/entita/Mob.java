@@ -20,7 +20,7 @@ public class Mob extends Entity {
   public Mob(int x, int y, int width, int height, Type type, Direction direction) {
     super(x, y, width, height, direction);
     this.type = type;
-    this.speed = 0;
+    this.speed = 50;
     initHitBox();
   }
 

@@ -87,6 +87,12 @@ public class SceneController implements Observer {
             Platform.runLater(() -> gameRoot.handleTileDestruction((TileDestructionData) data));
         case MOB_MOVEMENT -> Platform.runLater(() -> gameRoot.moveMob((MobMovementData) data));
         case REMOVE_MOB -> Platform.runLater(() -> gameRoot.removeMob((RemoveMobData) data));
+        case PLAYER_LIVES_UPDATE ->
+            Platform.runLater(() -> gameRoot.updatePlayerLives((PlayerLivesUpdateData) data));
+        case MOB_INITIAL_POSITION ->
+            Platform.runLater(() -> gameRoot.spawnMob((MobInitialPositionData) data));
+        case PLAYER_INITIAL_POSITION ->
+            Platform.runLater(() -> gameRoot.spawnPlayer((PlayerInitialPositionData) data));
       }
     }
   }

@@ -48,6 +48,13 @@ public class Map extends Observable {
     executorService = Executors.newSingleThreadScheduledExecutor();
   }
 
+  public static Map getInstance() {
+    if (instance == null) {
+      instance = new Map(); // Create a new instance
+    }
+    return instance;
+  }
+
   public void loadMap(String path) {
     ArrayList<Tiles> matrix = new ArrayList<>();
 
@@ -150,15 +157,42 @@ public class Map extends Observable {
     // Read the json file
     loadEntities((String.format("level/level%s/level%s.json", level, level)));
 
+    // Ensure entities are drawn at their initial positions
+    sendInitialEntityPositions();
+
     // thread per far muovere le entita' secondo il metodo move() all'interno di mob
     moveEntities();
   }
 
-  public static Map getInstance() {
-    if (instance == null) {
-      instance = new Map(); // Create a new instance
+  private void sendInitialEntityPositions() {
+
+    int initialX = player.getX();
+    int initialY = player.getY();
+
+    sendUpdate(
+        new PlayerInitialPositionData(PackageType.PLAYER_INITIAL_POSITION, initialX, initialY));
+
+    for (Entity entity : entities) {
+      // Create package data for the initial position of the entity
+      PackageData packageData = createInitialPositionData(entity);
+      // Send the initial position update to the GameView
+      sendUpdate(packageData);
     }
-    return instance;
+  }
+
+  private PackageData createInitialPositionData(Entity entity) {
+    int initialX = entity.getX(); // Get the initial X position of the entity
+    int initialY = entity.getY(); // Get the initial Y position of the entity
+
+    if (entity instanceof Mob) {
+      // If the entity is a mob, create initial position data for mob
+      Mob mob = (Mob) entity;
+      return new MobInitialPositionData(
+          PackageType.MOB_INITIAL_POSITION, mob.getType(), initialX, initialY);
+    } else {
+      // Handle other types of entities as needed
+      return null;
+    }
   }
 
   public void moveEntities() {
@@ -213,6 +247,8 @@ public class Map extends Observable {
       mob.updateHitBox(oldX, oldY); // Update hitbox with old coordinates
       return;
     }
+
+    detectPlayerMobCollision();
 
     // Update the mob's position
     mob.move(newX, newY);
@@ -339,6 +375,9 @@ public class Map extends Observable {
 
     // Initialize the collision detection scheduler
     initCollisionDetectionScheduler(horizontalExplosionHitbox, verticalExplosionHitbox);
+
+    // Initialize the collision detection scheduler for the player
+    initPlayerCollisionDetectionScheduler(horizontalExplosionHitbox, verticalExplosionHitbox);
 
     BombExplosionData packageData =
         new BombExplosionData(PackageType.BOMB_EXPLOSION, explosionX, explosionY, ranges);
@@ -475,7 +514,7 @@ public class Map extends Observable {
 
   private void detectMobExplosionCollision(
       Rectangle2D horizontalExplosionHitbox, Rectangle2D verticalExplosionHitbox) {
-    System.out.println("Checking collision between mobs and explosion...");
+    //    System.out.println("Checking collision between mobs and explosion...");
 
     // Iterate over all entities to check for collision with explosion
     for (Entity entity : entities) {
@@ -505,7 +544,7 @@ public class Map extends Observable {
       }
     }
 
-    System.out.println("Collision detection complete.");
+    // System.out.println("Collision detection complete.");
   }
 
   private void handleMobExplosion(Mob mob) {
@@ -514,6 +553,64 @@ public class Map extends Observable {
     entities.remove(mob);
     // Notify GameView to remove the mob from the map
     sendUpdate(new RemoveMobData(PackageType.REMOVE_MOB, mob.getType()));
+  }
+
+  private void initPlayerCollisionDetectionScheduler(
+      Rectangle2D horizontalExplosionHitbox, Rectangle2D verticalExplosionHitbox) {
+    // Schedule the task for player collision detection at a fixed rate
+    ScheduledFuture<?> playerCollisionDetectionTask =
+        executorService.scheduleAtFixedRate(
+            () ->
+                detectPlayerCollisionWithExplosion(
+                    player, horizontalExplosionHitbox, verticalExplosionHitbox),
+            0,
+            100,
+            TimeUnit.MILLISECONDS);
+
+    // Schedule a task to cancel player collision detection after the two-second interval
+    executorService.schedule(() -> playerCollisionDetectionTask.cancel(false), 2, TimeUnit.SECONDS);
+  }
+
+  private void detectPlayerCollisionWithExplosion(
+      Player player, Rectangle2D horizontalExplosionHitbox, Rectangle2D verticalExplosionHitbox) {
+    Rectangle2D playerHitbox = player.getHitBox();
+
+    // Check if player's hitbox intersects with width explosion hitbox
+    if (playerHitbox.intersects(horizontalExplosionHitbox)) {
+      handlePlayerHit(player);
+    }
+
+    // Check if player's hitbox intersects with height explosion hitbox
+    if (playerHitbox.intersects(verticalExplosionHitbox)) {
+      handlePlayerHit(player);
+    }
+  }
+
+  private void handlePlayerHit(Player player) {
+    if (player.isVulnerable()) {
+      // Player takes damage from the explosion
+      player.takeDamage();
+      System.out.println("Player Took Damage!!!");
+      // Notify GameView to update display with new player lives
+      sendUpdate(new PlayerLivesUpdateData(PackageType.PLAYER_LIVES_UPDATE, player.getLives()));
+    }
+  }
+
+  public void detectPlayerMobCollision() {
+    Rectangle2D playerHitbox = player.getHitBox();
+
+    // Iterate over all mobs to check for collision with player
+    for (Entity entity : entities) {
+      if (entity instanceof Mob) {
+        Mob mob = (Mob) entity;
+        Rectangle2D mobHitbox = mob.getHitBox();
+
+        // Check if mob's hitbox intersects with player's hitbox
+        if (mobHitbox.intersects(playerHitbox)) {
+          handlePlayerHit(player);
+        }
+      }
+    }
   }
 
   public Mob[] getMobs() {
