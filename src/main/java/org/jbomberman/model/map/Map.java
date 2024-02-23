@@ -19,6 +19,8 @@ import org.jbomberman.controller.KeyHandler;
 import org.jbomberman.controller.MobHandler;
 import org.jbomberman.model.entita.*;
 import org.jbomberman.model.listener.*;
+import org.jbomberman.model.powerups.PowerUp;
+import org.jbomberman.model.powerups.PowerUpFactory;
 import org.jbomberman.model.tiles.GrassTile;
 import org.jbomberman.model.tiles.ImmovableTile;
 import org.jbomberman.model.tiles.Tile;
@@ -27,6 +29,9 @@ import org.jbomberman.view.Tiles;
 @Getter
 @Setter
 public class Map extends Observable {
+
+  private static final int MAP_WIDTH = 15; // Adjust map width to include border
+  private static final int MAP_HEIGHT = 13; // Adjust map height to include border
 
   private ArrayList<Tiles> numTileMap;
 
@@ -43,6 +48,10 @@ public class Map extends Observable {
   private ScheduledExecutorService executorService;
 
   private Set<Mob> mobsAffectedByExplosion = new HashSet<>();
+
+  private List<PowerUp> powerUps = new ArrayList<>();
+
+  private ScheduledExecutorService despawnScheduler = Executors.newScheduledThreadPool(1);
 
   private Map() {
     executorService = Executors.newSingleThreadScheduledExecutor();
@@ -76,9 +85,9 @@ public class Map extends Observable {
     tileHitBoxes = new ArrayList<>();
 
     // Iterate through the Tile objects and add hitboxes of collidable tiles to the list
-    for (int y = 0; y < 11; y++) {
-      for (int x = 0; x < 13; x++) {
-        Tiles tileType = numTileMap.get(y * 13 + x);
+    for (int y = 0; y < MAP_HEIGHT; y++) {
+      for (int x = 0; x < MAP_WIDTH; x++) {
+        Tiles tileType = numTileMap.get(y * MAP_WIDTH + x);
         Tile tile = createTile(x, y, tileType);
 
         tileHitBoxes.add(tile.getHitBox());
@@ -117,6 +126,10 @@ public class Map extends Observable {
       int posx = player.get("posx").getAsInt();
       int posy = player.get("posy").getAsInt();
 
+      // Calculate the adjusted position to center the player sprite in the first tile
+      int adjustedX = posx + 8; // Adjusted X position
+      int adjustedY = posy + 12; // Adjusted Y position
+
       Direction direction = Direction.valueOf(player.get("direction").getAsString());
 
       int lives = player.get("lives").getAsInt();
@@ -125,7 +138,7 @@ public class Map extends Observable {
       int width = player.get("width").getAsInt();
       int height = player.get("height").getAsInt();
 
-      this.player = new Player(posx, posy, width, height, lives, direction, score);
+      this.player = new Player(adjustedX, adjustedY, width, height, lives, direction, score);
 
       JsonArray mobsJson = jsonObject.get("mob").getAsJsonArray();
 
@@ -212,6 +225,8 @@ public class Map extends Observable {
     Rectangle2D newHitBox = new Rectangle2D(player.getX() + xStep, player.getY() + yStep, 32, 32);
 
     if (collidesWithSolid(newHitBox)) return;
+
+    checkPlayerPowerUpCollision();
     // TODO: fixa il fatto che quando il player collide con un blocco, si appiccia al blocco
 
     player.move(xStep, yStep);
@@ -345,7 +360,7 @@ public class Map extends Observable {
     int tileX = leftX / Tiles.GRASS.size();
     int tileY = topY / Tiles.GRASS.size();
 
-    int index = tileY * 13 + tileX;
+    int index = tileY * MAP_WIDTH + tileX;
 
     if (index >= 0 && index < numTileMap.size()) {
       return numTileMap.get(index).isCollidable();
@@ -447,12 +462,12 @@ public class Map extends Observable {
   }
 
   private void handleTileDestruction(int tileIndexX, int tileIndexY) {
-    if (tileIndexX < 0 || tileIndexX >= 13 || tileIndexY < 0 || tileIndexY >= 11) {
+    if (tileIndexX < 0 || tileIndexX >= MAP_WIDTH || tileIndexY < 0 || tileIndexY >= MAP_HEIGHT) {
       return; // Out-of-bounds coordinates, stop the destruction
     }
 
     // Calculate the tile index based on the coordinates
-    int tileIndex = tileIndexY * 13 + tileIndexX;
+    int tileIndex = tileIndexY * MAP_WIDTH + tileIndexX;
 
     Tiles tileType = numTileMap.get(tileIndex);
 
@@ -468,11 +483,14 @@ public class Map extends Observable {
       numTileMap.set(tileIndex, Tiles.GRASS);
       tileHitBoxes.set(
           tileIndex, createTile(tileIndexX, tileIndexY, Tiles.GRASS).getHitBox()); // Update hitbox
+
+      // Spawn a random power-up
+      spawnRandomPowerUp(tileIndexX, tileIndexY); // Pass tile coordinates
     }
   }
 
   private boolean isExplosionCollision(int tileX, int tileY) {
-    int index = tileY * 13 + tileX;
+    int index = tileY * MAP_WIDTH + tileX;
 
     if (index >= 0 && index < numTileMap.size()) {
       return numTileMap.get(index).isCollidable();
@@ -482,7 +500,7 @@ public class Map extends Observable {
   }
 
   private boolean isDestroyableTile(int tileX, int tileY) {
-    int index = tileY * 13 + tileX;
+    int index = tileY * MAP_WIDTH + tileX;
     if (index >= 0 && index < numTileMap.size()) {
       return numTileMap.get(index).isDestroyable();
     }
@@ -611,6 +629,80 @@ public class Map extends Observable {
         }
       }
     }
+  }
+
+  public void spawnRandomPowerUp(int tileIndexX, int tileIndexY) {
+    try {
+      PowerUp powerUp = PowerUpFactory.createRandomPowerUp();
+
+      // Calculate the coordinates based on the tile index
+      int x = tileIndexX * Tiles.GRASS.size();
+      int y = tileIndexY * Tiles.GRASS.size();
+
+      powerUp.setX(x);
+      powerUp.setY(y);
+      powerUps.add(powerUp); // Add the power-up to the powerUps collection
+
+      ScheduledFuture<?> despawnTask =
+          executorService.schedule(() -> handlePowerUpDespawn(powerUp), 2, TimeUnit.SECONDS);
+
+      powerUp.setDespawnTask(despawnTask); // Set the despawn task in the power-up
+
+      PowerUpSpawnData packageData =
+          new PowerUpSpawnData(PackageType.SPAWN_POWERUP, powerUp.getType(), x, y);
+      sendUpdate(packageData);
+    } catch (Exception e) {
+      // If an exception occurs during power-up spawning, log it (optional)
+      System.out.println("PowerUP spawn attempt did not spawn a powerup: " + e.getMessage());
+    }
+  }
+
+  public void checkPlayerPowerUpCollision() {
+    Rectangle2D playerHitBox = player.getHitBox();
+
+    // Check collision with power-ups
+    Iterator<PowerUp> iterator = powerUps.iterator();
+    while (iterator.hasNext()) {
+      PowerUp powerUp = iterator.next();
+      Rectangle2D powerUpHitBox = powerUp.getHitBox();
+      if (playerHitBox.intersects(powerUpHitBox)) {
+        // Apply power-up effect to the player
+        powerUp.applyPowerUp(player);
+
+        // Cancel despawn task
+        cancelPowerUpDespawn(powerUp);
+
+        // Get power-up position
+        int powerUpX = (int) powerUp.getX();
+        int powerUpY = (int) powerUp.getY();
+        // Remove the power-up from the list
+        iterator.remove();
+        System.out.println("powerup collision checked");
+        // Send update
+        sendUpdate(
+            new PowerUpApplicationData(
+                PackageType.POWERUP_APPLICATION, powerUp.getType(), powerUpX, powerUpY));
+        break; // Exit loop after applying one power-up per move
+      }
+    }
+  }
+
+  private void handlePowerUpDespawn(PowerUp powerUp) {
+    powerUps.remove(powerUp); // Remove the power-up from the list
+    sendUpdate(
+        new PowerUpDespawnData(
+            PackageType.POWERUP_DESPAWN, powerUp.getType(), powerUp.getX(), powerUp.getY()));
+    System.out.println("powerup despawned");
+  }
+
+  private void cancelPowerUpDespawn(PowerUp powerUp) {
+    // Get the despawn task associated with the power-up
+    ScheduledFuture<?> despawnTask = powerUp.getDespawnTask();
+    if (despawnTask != null) {
+      // Cancel the despawn task
+      despawnTask.cancel(false);
+    }
+    System.out.println("powerup despawn canceled");
   }
 
   public Mob[] getMobs() {

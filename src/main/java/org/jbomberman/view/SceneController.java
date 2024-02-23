@@ -34,6 +34,8 @@ public class SceneController implements Observer {
 
     window.getScene().setOnKeyPressed(keyHandler::onkeyPressed);
     window.getScene().setOnKeyReleased(keyHandler::onkeyReleased);
+
+    adjustWindowSize();
   }
 
   private SceneController() {
@@ -50,6 +52,15 @@ public class SceneController implements Observer {
       load(root);
     }
     window.getScene().setRoot(roots[root.ordinal()]);
+    adjustWindowSize();
+  }
+
+  private void adjustWindowSize() {
+    int windowWidth = (15 * 48) + 16; // 15 columns * tile width
+    int windowHeight = (13 * 48) + 39; // 13 rows * tile height
+
+    window.setWidth(windowWidth);
+    window.setHeight(windowHeight);
   }
 
   public void exit() {
@@ -93,6 +104,12 @@ public class SceneController implements Observer {
             Platform.runLater(() -> gameRoot.spawnMob((MobInitialPositionData) data));
         case PLAYER_INITIAL_POSITION ->
             Platform.runLater(() -> gameRoot.spawnPlayer((PlayerInitialPositionData) data));
+        case SPAWN_POWERUP ->
+            Platform.runLater(() -> gameRoot.spawnPowerUp((PowerUpSpawnData) data));
+        case POWERUP_APPLICATION ->
+            Platform.runLater(() -> gameRoot.applyPowerUp((PowerUpApplicationData) data));
+        case POWERUP_DESPAWN ->
+            Platform.runLater(() -> gameRoot.despawnPowerUp((PowerUpDespawnData) data));
       }
     }
   }

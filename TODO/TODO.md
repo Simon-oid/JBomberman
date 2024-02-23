@@ -772,3 +772,104 @@ FF >>> 22/10/2023
 ===========================================================================
 ***
 
+### 20/02/2024
+
+### TO-DO:
+
+### high priority:
+
+- [ ] implementare un HUD
+- [ ] implementare il drop dei powerup
+- [ ] implementare il sistema di score
+
+### low priority:
+
+- [ ] reworka collisioni del player (si incolla alle pareti)
+- [ ] fixa le hitbox dei mob, siccome ora sono spostate in alto a sinistra rispetto al loro sprite
+- [ ] fixare lo spawn del player
+
+### DONE:
+
+- [x] creare il bordo collidabile del livello
+
+***
+
+===========================================================================
+***
+
+### 21/02/2024
+
+### TO-DO:
+
+### high priority:
+
+- [ ] implementare la collisione tra il player e i powerup
+- [ ] implementare un HUD
+- [ ] implementare il sistema di score
+
+### low priority:
+
+- [ ] implementare timer per il despawn dei powerup
+- [ ] reworka collisioni del player (si incolla alle pareti)
+- [ ] fixa le hitbox dei mob, siccome ora sono spostate in alto a sinistra rispetto al loro sprite
+
+### DONE:
+
+- [x] fixare lo spawn del player (se si cambiano le dimensioni della finestra andranno cambiati di nuovo gli
+  aggiustamenti fatti per centrare il player nel primo tile)
+    - aggiustamenti fatti nelle posx posy nel parser di map e nella gameview
+- [x] implementare il drop dei powerup
+
+***
+
+===========================================================================
+***
+
+### 22/02/2024
+
+### TO-DO:
+
+### high priority:
+
+- [ ] implementare un HUD
+- [ ] implementare il sistema di score
+
+### low priority:
+
+- [ ] reworka collisioni del player (si incolla alle pareti)
+- [ ] fixa le hitbox dei mob, siccome ora sono spostate in alto a sinistra rispetto al loro sprite
+
+### DONE:
+
+- [x] implementare la collisione tra il player e i powerup
+- [x] implementata l'applicazione del powerup al player
+- [x] implementata la rimozione del powerup dalla mappa una volata che il player ha colliso con esso
+- [x] implementare timer per il despawn dei powerup
+
+***
+
+===========================================================================
+***
+
+### 23/02/2024
+
+### TO-DO:
+
+### high priority:
+
+- [ ] implementare un HUD
+- [ ] implementare il sistema di score
+
+### low priority:
+
+- [ ] reworka collisioni del player (si incolla alle pareti)
+- [ ] fixa le hitbox dei mob, siccome ora sono spostate in alto a sinistra rispetto al loro sprite
+- [ ] implementa l'exit tile
+
+### DONE:
+
+***
+
+===========================================================================
+***
+

@@ -1,12 +1,13 @@
 package org.jbomberman.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import lombok.Getter;
 import org.jbomberman.model.entita.Entity;
 import org.jbomberman.model.entita.Player;
 import org.jbomberman.model.powerups.PowerUp;
 
-import java.util.ArrayList;
-import java.util.List;
-
+@Getter
 public class PowerUpManager
 {
 
@@ -36,11 +37,6 @@ public class PowerUpManager
     public void removePowerUp(PowerUp powerUp)
     {
         powerUps.remove(powerUp);
-    }
-
-    public List<PowerUp> getPowerUps()
-    {
-        return powerUps;
     }
 
     public static void applyPowerUpEffect(Entity entity, PowerUp powerUp)

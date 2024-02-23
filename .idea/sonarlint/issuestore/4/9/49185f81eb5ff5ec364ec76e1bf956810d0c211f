@@ -1,14 +1,24 @@
 
-n	java:S117¬"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒ‘–¨8ˆ¥ûºÚ1
+r	java:S117#"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²öúåûÿÿÿÿ8² Œİ1
+r	java:S117$"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ç„­±ûÿÿÿÿ8² Œİ1
+n	java:S117µ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒ‘–¨8² Œİ1
+i
+java:S1301£"KReplace this "switch" statement by "if" statements to increase readability.(”İº©8³ Œİ1
 <
-java:S1640."Convert this Map to an EnumMap.(—À¢¢8€Æ»Ú1
+java:S16403"Convert this Map to an EnumMap.(—À¢¢8µ Œİ1
+^
+java:S1172G"<Remove this unused method parameter "playerInitialPosition".(Ò¨Òîúÿÿÿÿ8Ş Œİ1
 i
-java:S6201„"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(ˆ†ŸP8´¥ûºÚ1
+java:S6201"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(ˆ†ŸP8á Œİ1
 o
-java:S6201¡"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8¶¥ûºÚ1
+java:S6201ª"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8ã Œİ1
 o
-java:S6201¡"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8¶¥ûºÚ1
+java:S6201ª"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8ã Œİ1
 o
-java:S6201¡"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8¶¥ûºÚ1
+java:S6201ª"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8ã Œİ1
 i
-java:S6201ü"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(ˆ†ŸP8»¥ûºÚ1
+java:S6201…"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(ˆ†ŸP8ç Œİ1
+i
+java:S6201¿"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(ˆ†ŸP8é Œİ1
+i
+java:S6201¿"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(ˆ†ŸP8é Œİ1

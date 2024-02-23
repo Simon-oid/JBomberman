@@ -1,16 +1,2 @@
 
 ]	java:S125"<This block of commented-out lines of code should be removed.(Ñâçûÿÿÿÿ8ÔÖÛûØ1
-L	java:S106"+Replace this use of System.out by a logger.(„–Ñöıÿÿÿÿ8ÄÚçûØ1
-X	java:S125;"<This block of commented-out lines of code should be removed.(ãà‰Á8ÖÖÛûØ1
-O
-java:S1135O"2Complete the task associated to this TODO comment.(Ú§Œ8ÖÖÛûØ1
-V
-java:S3400U"9Remove this method and declare a constant for this value.(§¼Éç8ÖÖÛûØ1
-W
-java:S1172S"5Remove these unused method parameters "newX", "newY".(ü¨ûËúÿÿÿÿ8ÖÖÛûØ1
-O
-java:S1135T"2Complete the task associated to this TODO comment.(‚ûÁ•8×ÖÛûØ1
-\
-java:S1144N"?Remove this unused private "chooseRandomValidDirection" method.(ÛÎÛ÷8×ÖÛûØ1
-R
-java:S1144S"0Remove this unused private "isValidMove" method.(ü¨ûËúÿÿÿÿ8×ÖÛûØ1

@@ -1,0 +1,13 @@
+
+O
+java:S1199Y"-Extract this nested code block into a method.(ÒÌâ–øÿÿÿÿ8Ğ±€èÜ1
+X	java:S125"<This block of commented-out lines of code should be removed.(×Çç™8Õ±€èÜ1
+U
+java:S3400;"9Remove this method and declare a constant for this value.(¸®Ã'8Ö±€èÜ1
+T
+java:S1854H"7Remove this useless assignment to local variable "map".(ª›¥²8Ö±€èÜ1
+E
+java:S1481H"(Remove this unused "map" local variable.(ª›¥²8Ö±€èÜ1
+X	java:S125X"<This block of commented-out lines of code should be removed.(À¿·…8Ö±€èÜ1
+X
+java:S1751Z"6Remove this "return" statement or make it conditional.(ïùÂ¼ùÿÿÿÿ8×±€èÜ1

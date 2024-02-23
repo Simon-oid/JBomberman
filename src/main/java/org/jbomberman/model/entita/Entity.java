@@ -4,7 +4,6 @@ import javafx.geometry.Rectangle2D;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Getter
 @Setter
 public abstract class Entity
@@ -49,45 +48,6 @@ public abstract class Entity
 
     public abstract void spawn();
 
-
-//    protected boolean isValidMove(int newX, int newY)
-//    {
-//        // Check if new coordinates are within bounds of the game map
-//        boolean withinBounds = newX >= 0 && newX < Map.WIDTH && newY >= 0 && newY < Map.HEIGHT;
-//
-//        if (withinBounds)
-//        {
-//            // Calculate the corners of the solid area at the new coordinates
-//
-//            int solidRight = (int) (newX + hitBox.getWidth());
-//
-//            int solidBottom = (int) (newY + hitBox.getHeight());
-//
-//            // Check if all corners of the solid area are inside a block of grass
-//            boolean allCornersInGrass = Map.getInstance().isValidPosition(newX, newY)
-//                    && Map.getInstance().isValidPosition(solidRight, newY)
-//                    && Map.getInstance().isValidPosition(newX, solidBottom)
-//                    && Map.getInstance().isValidPosition(solidRight, solidBottom);
-//
-//            // Check if there are no other entities at the new coordinates
-//            // Check if the solid area collides with another entity
-//            boolean noEntityCollision = true;
-//            for (Entity entity : Map.getInstance().getEntities())
-//            {
-//                if (entity != this)
-//                {
-//                    entity.getHitBox().contains(hitBox);
-//                    noEntityCollision = false;
-//                }
-//            }
-//
-//            return allCornersInGrass && noEntityCollision;
-//        }
-//
-//        return false;
-//
-//
-//    }
 
     public abstract Rectangle2D getHitBox();
 }

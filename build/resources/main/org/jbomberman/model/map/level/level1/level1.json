@@ -1,9 +1,9 @@
 {
   "player": {
-    "posx": "0",
-    "posy": "0",
+    "posx": "48",
+    "posy": "48",
     "direction": "DOWN",
-    "lives": "4",
+    "lives": "3",
     "score": "0",
     "width": "32",
     "height": "32"
@@ -11,8 +11,8 @@
   "mob": [
     {
       "type": "PUROPEN",
-      "posx": "0",
-      "posy": "0",
+      "posx": "96",
+      "posy": "96",
       "direction": "DOWN",
       "width": "32",
       "height": "32"

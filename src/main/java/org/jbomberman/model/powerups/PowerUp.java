@@ -1,34 +1,34 @@
 package org.jbomberman.model.powerups;
 
+import java.util.concurrent.ScheduledFuture;
 import javafx.geometry.Rectangle2D;
 import lombok.Getter;
 import lombok.Setter;
 import org.jbomberman.model.entita.Player;
 
-public abstract class PowerUp
-{
-    @Setter
-    @Getter
-    private PowerUpType type;
+@Getter
+@Setter
+public abstract class PowerUp {
+  private PowerUpType type;
 
-    @Getter
-    @Setter
-    private Integer x; // X-coordinate
-    @Getter
-    @Setter
-    private Integer y; // Y-coordinate
+  private Integer x; // X-coordinate
+  private Integer y; // Y-coordinate
 
-    @Getter
-    @Setter
-    private Rectangle2D powerUpHitBox = new Rectangle2D(0, 0, 48, 48);
+  // Define hitbox dimensions
+  private final int hitboxWidth = 48;
+  private final int hitboxHeight = 48;
 
-    protected PowerUp(PowerUpType type)
-    {
-        this.type = type;
-    }
+  private ScheduledFuture<?> despawnTask;
 
-    public abstract void applyPowerUp(Player player); // You can adjust the method signature based on your Player class
+  protected PowerUp(PowerUpType type) {
+    this.type = type;
+  }
 
-    
+  public abstract void applyPowerUp(Player player);
+
+  public abstract Rectangle2D getHitBox();
+
+  public void setDespawnTask(ScheduledFuture<?> despawnTask) {
+    this.despawnTask = despawnTask;
+  }
 }
-

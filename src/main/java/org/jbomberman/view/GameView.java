@@ -16,6 +16,7 @@ import javafx.scene.layout.TilePane;
 import javafx.util.Duration;
 import org.jbomberman.model.entita.Type;
 import org.jbomberman.model.listener.*;
+import org.jbomberman.model.powerups.PowerUpType;
 
 public class GameView {
 
@@ -31,16 +32,20 @@ public class GameView {
 
     tilePane = new TilePane();
 
-    tilePane.setPrefRows(17);
-    tilePane.setPrefColumns(13);
+    int MAP_WIDTH = 15;
+    int MAP_HEIGHT = 13;
 
-    for (int i = 1; i < 221; i++) {
+    tilePane.setPrefRows(MAP_HEIGHT);
+    tilePane.setPrefColumns(MAP_WIDTH);
+
+    for (int i = 1; i <= MAP_WIDTH * MAP_HEIGHT; i++) {
       ImageView imageView = new ImageView();
       imageView.setFitHeight(48);
       imageView.setFitWidth(48);
       imageView.setSmooth(false);
       tilePane.getChildren().add(imageView);
     }
+
     anchorPane = new AnchorPane(tilePane, player);
 
     mobSprites = new HashMap<>();
@@ -53,16 +58,20 @@ public class GameView {
     for (Tiles tiles : data.matrix()) {
       ((ImageView) tilePane.getChildren().get(i++)).setImage(tiles.getImage());
     }
+
+    // Force layout update
+    tilePane.getParent().layout();
   }
 
   public Parent getRoot() {
+
     return anchorPane;
   }
 
   public void spawnPlayer(PlayerInitialPositionData playerInitialPosition) {
 
-    player.setX(playerInitialPosition.initialX());
-    player.setY(playerInitialPosition.initialY());
+    player.setTranslateX(48);
+    player.setTranslateY(-4);
   }
 
   public void movePlayer(PlayerMovementData data) {
@@ -265,5 +274,58 @@ public class GameView {
 
   public void removePlayer() {
     anchorPane.getChildren().remove(player);
+  }
+
+  public void spawnPowerUp(PowerUpSpawnData data) {
+    PowerUpType powerUpType = data.powerUpType();
+    ImageView powerUpImageView = new ImageView(getPowerUpImage(powerUpType));
+    powerUpImageView.setFitWidth(48);
+    powerUpImageView.setFitHeight(48);
+    powerUpImageView.setX(data.x());
+    powerUpImageView.setY(data.y());
+    anchorPane.getChildren().add(powerUpImageView);
+  }
+
+  private Image getPowerUpImage(PowerUpType powerUpType) {
+    // Add logic to return the appropriate image based on the power-up type
+    switch (powerUpType) {
+      case BOMB_UP:
+        return Tiles.BOMB_UP_POWERUP.getImage();
+        // Add cases for other power-up types if needed in the future
+      default:
+        // Return a default image if the power-up type is not recognized
+        return getDefaultPowerUpImage();
+    }
+  }
+
+  private Image getDefaultPowerUpImage() {
+    // Return a default image for power-ups if needed
+    return Tiles.EXIT.getImage();
+  }
+
+  public void applyPowerUp(PowerUpApplicationData data) {
+    int x = data.x();
+    int y = data.y();
+
+    removePowerUp(x, y);
+  }
+
+  private void removePowerUp(int x, int y) {
+    // Iterate over the children of the anchorPane to find the ImageView representing the power-up
+    anchorPane
+        .getChildren()
+        .removeIf(
+            node ->
+                node instanceof ImageView
+                    && ((ImageView) node).getX() == x
+                    && ((ImageView) node).getY() == y);
+  }
+
+  public void despawnPowerUp(PowerUpDespawnData data) {
+
+    int x = data.x();
+    int y = data.y();
+
+    removePowerUp(x, y);
   }
 }

@@ -27,7 +27,7 @@ public class Mob extends Entity {
   @Override
   protected void initHitBox() {
     hitBox = new Rectangle2D(x, y, width, height);
-    System.out.println(hitBox); // 8, 16, 32, 32
+    // System.out.println(hitBox); // 8, 16, 32, 32
   }
 
   @Override
@@ -54,34 +54,5 @@ public class Mob extends Entity {
     setX(newX);
     setY(newY);
     updateHitBox(newX, newY);
-  }
-
-  //  public void move(int xStep, int yStep) {
-  //    int oldX = getX();
-  //    int oldY = getY();
-  //
-  //    int newX = oldX + xStep;
-  //    int newY = oldY + yStep;
-  //
-  //    setX(newX);
-  //    setY(newY);
-  //    updateHitBox(newX, newY);
-  //
-  //    if (!isValidMove(newX, newY)) {
-  //      Direction newDirection = chooseRandomValidDirection();
-  //      if (newDirection != null) {
-  //        setDirection(newDirection);
-  //      }
-  //    }
-  //  }
-
-  private Direction chooseRandomValidDirection() {
-    // TODO: rework metodo choose random direction
-    return Direction.DOWN;
-  }
-
-  private boolean isValidMove(int newX, int newY) {
-    // TODO: rework metodo
-    return true;
   }
 }
