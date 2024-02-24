@@ -1,5 +1,6 @@
 package org.jbomberman.view;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Executors;
@@ -24,6 +25,11 @@ public class GameView {
   private AnchorPane anchorPane;
   private ImageView player;
   private Map<Type, Image> mobSprites;
+  private ImageView scoreboard;
+
+  private ImageView[] fontSprites;
+
+  private static final int Y_OFFSET = 100;
 
   public GameView() {
     player = new ImageView(Entities.PLAYER.getImage());
@@ -51,6 +57,26 @@ public class GameView {
     mobSprites = new HashMap<>();
     mobSprites.put(Type.PUROPEN, Entities.PUROPEN.getImage());
     mobSprites.put(Type.DENKYUN, Entities.DENKYUN.getImage());
+
+    scoreboard = new ImageView(HUD.HUD_SPRITE.getImage()); // Load custom scoreboard sprite
+    scoreboard.setFitWidth(720);
+    scoreboard.setFitHeight(100);
+
+    // Add player and scoreboard to anchorPane
+    anchorPane = new AnchorPane(tilePane, player, scoreboard);
+
+    // Load font sprites
+    loadFontSprites();
+
+    // Positioning elements within the AnchorPane using layout constraints
+    AnchorPane.setTopAnchor(tilePane, (double) Y_OFFSET); // Shift tilePane down by 256 pixels
+    AnchorPane.setLeftAnchor(tilePane, 0.0); // Position tilePane at the left
+
+    AnchorPane.setTopAnchor(player, (double) Y_OFFSET); // Shift player down by 256 pixels
+    AnchorPane.setLeftAnchor(player, 0.0); // Position player at the left
+
+    AnchorPane.setTopAnchor(scoreboard, 0.0); // Position scoreboard at the bottom
+    AnchorPane.setLeftAnchor(scoreboard, 0.0); // Position scoreboard at the left
   }
 
   public void loadMap(LoadMapData data) {
@@ -105,7 +131,7 @@ public class GameView {
     bombImageView.setFitHeight(48);
 
     bombImageView.setX(bombX);
-    bombImageView.setY(bombY);
+    bombImageView.setY(bombY + Y_OFFSET);
 
     // Add the bomb image view to the anchor pane
     anchorPane.getChildren().add(bombImageView);
@@ -117,10 +143,10 @@ public class GameView {
     int[] ranges = data.ranges();
 
     // Draw the initial explosion sprite at the bomb's position
-    drawExplosionSprite(explosionX, explosionY);
+    drawExplosionSprite(explosionX, explosionY + Y_OFFSET);
 
     // Remove the bomb image
-    removeBombImage(explosionX, explosionY);
+    removeBombImage(explosionX, explosionY + Y_OFFSET);
 
     // Draw the explosions based on the ranges array
     drawExplosionSpritesInDirection(explosionX, explosionY, ranges[0], 1, 0); // Right
@@ -151,7 +177,7 @@ public class GameView {
       int x = startX + i * deltaX * 48;
       int y = startY + i * deltaY * 48;
 
-      drawExplosionSprite(x, y);
+      drawExplosionSprite(x, y + Y_OFFSET);
     }
   }
 
@@ -201,6 +227,9 @@ public class GameView {
     mobImageView.setX(mobInitialPositions.initialX());
     mobImageView.setY(mobInitialPositions.initialY());
 
+    // Adjust the position of the mobImageView by adding 256 pixels to the y coordinate
+    AnchorPane.setTopAnchor(mobImageView, mobInitialPositions.initialY() + (double) Y_OFFSET);
+
     // Adjust the position of the mobImageView to (8, 16)
     mobImageView.setX(8);
     mobImageView.setY(16);
@@ -227,11 +256,11 @@ public class GameView {
 
     // Set the initial positions as the fromX and fromY properties
     transition.setFromX(initialX);
-    transition.setFromY(initialY);
+    transition.setFromY(initialY + Y_OFFSET);
 
     // Set the target positions using setToX and setToY
     transition.setToX(xStep);
-    transition.setToY(yStep);
+    transition.setToY(yStep + Y_OFFSET);
 
     // Adjust the position of the mobImageView to (8, 16)
     mobImageView.setX(8);
@@ -282,7 +311,7 @@ public class GameView {
     powerUpImageView.setFitWidth(48);
     powerUpImageView.setFitHeight(48);
     powerUpImageView.setX(data.x());
-    powerUpImageView.setY(data.y());
+    powerUpImageView.setY(data.y() + Y_OFFSET);
     anchorPane.getChildren().add(powerUpImageView);
   }
 
@@ -307,7 +336,7 @@ public class GameView {
     int x = data.x();
     int y = data.y();
 
-    removePowerUp(x, y);
+    removePowerUp(x, y + Y_OFFSET);
   }
 
   private void removePowerUp(int x, int y) {
@@ -326,6 +355,97 @@ public class GameView {
     int x = data.x();
     int y = data.y();
 
-    removePowerUp(x, y);
+    removePowerUp(x, y + Y_OFFSET);
+  }
+
+  private void loadFontSprites() {
+    fontSprites = new ImageView[10]; // Assuming you have sprites for digits 0-9
+
+    // Load font sprites for digits 0-9
+    for (int i = 0; i < 10; i++) {
+      fontSprites[i] = new ImageView(Font.values()[i].getImage());
+      fontSprites[i].setFitWidth(8 * 2.8); // Adjust width based on sprite size
+      fontSprites[i].setFitHeight(14 * 2.8); // Adjust height based on sprite size
+    }
+  }
+
+  public void updateScore(PlayerScoreUpdateData data) {
+    int score = data.score();
+
+    // Calculate the number of digits in the score
+    int numDigits = String.valueOf(score).length();
+
+    // Define the starting X position for drawing sprites
+    double startX = 291.0; // You may adjust this based on your layout
+
+    // Define the spacing between digits
+    double digitSpacing = 10.0 * 2.8; // Adjust this spacing as needed
+
+    // Clear any existing score sprites before drawing new ones
+    clearScoreSprites();
+
+    // Calculate the total width of all digits
+    double totalWidth = numDigits * digitSpacing;
+
+    // Calculate the starting X position to align the rightmost digit
+    double startXAligned = startX + (digitSpacing - totalWidth);
+
+    // Iterate over each digit of the score from right to left
+    for (int i = numDigits - 1; i >= 0; i--) {
+      int digit = getDigitAt(score, i);
+      if (digit >= 0 && digit <= 9) {
+        ImageView digitView = new ImageView(fontSprites[digit].getImage());
+        digitView.setFitWidth(8 * 2.8);
+        digitView.setFitHeight(44);
+
+        // Calculate the X position based on digit index and spacing
+        double xPos =
+            startXAligned + ((numDigits - 1 - i) * digitSpacing); // Adjust for right alignment
+        digitView.setX(xPos);
+        digitView.setY(28); // Adjust Y position as needed
+        anchorPane.getChildren().add(digitView);
+      }
+    }
+  }
+
+  // Utility method to get the digit at a specific position from right to left
+  private int getDigitAt(int number, int position) {
+    return (int) (number / Math.pow(10, position)) % 10;
+  }
+
+  // Utility method to clear existing score sprites
+  private void clearScoreSprites() {
+    anchorPane
+        .getChildren()
+        .removeIf(node -> node instanceof ImageView && Arrays.asList(fontSprites).contains(node));
+  }
+
+  public void drawPlayerLives(PlayerLivesUpdateData data) {
+    int lives = data.lives();
+
+    // Define the starting X position for drawing lives sprites
+    double startX = 67.6; // You may adjust this based on your layout
+
+    // Clear any existing lives sprites before drawing new ones
+    clearLivesSprites();
+
+    // Draw the lives sprite at the appropriate position
+    ImageView lifeView =
+        new ImageView(
+            fontSprites[lives]
+                .getImage()); // Assuming font sprite for lives is at index corresponding to the
+    // number of lives
+    lifeView.setFitWidth(8 * 2.8);
+    lifeView.setFitHeight(44);
+    lifeView.setX(startX);
+    lifeView.setY(28); // Adjust Y position as needed
+    anchorPane.getChildren().add(lifeView);
+  }
+
+  // Utility method to clear existing lives sprites
+  private void clearLivesSprites() {
+    anchorPane
+        .getChildren()
+        .removeIf(node -> node instanceof ImageView && Arrays.asList(fontSprites).contains(node));
   }
 }

@@ -30,6 +30,7 @@ public class SceneController implements Observer {
     KeyHandler keyHandler = KeyHandler.getInstance();
 
     if (gameRoot == null) gameRoot = new GameView();
+
     window.getScene().setRoot(gameRoot.getRoot());
 
     window.getScene().setOnKeyPressed(keyHandler::onkeyPressed);
@@ -56,9 +57,17 @@ public class SceneController implements Observer {
   }
 
   private void adjustWindowSize() {
-    int windowWidth = (15 * 48) + 16; // 15 columns * tile width
-    int windowHeight = (13 * 48) + 39; // 13 rows * tile height
+    int tileWidth = 48;
+    int tileHeight = 48;
+    int hudHeight = 139; // Height of the HUD
 
+    int mapWidth = 15;
+    int mapHeight = 13;
+
+    int windowWidth = (mapWidth * tileWidth) + 16; // 15 columns * tile width + padding
+    int windowHeight = (mapHeight * tileHeight) + hudHeight; // 13 rows * tile height + HUD height
+
+    // Set the width and height of the window
     window.setWidth(windowWidth);
     window.setHeight(windowHeight);
   }
@@ -110,6 +119,10 @@ public class SceneController implements Observer {
             Platform.runLater(() -> gameRoot.applyPowerUp((PowerUpApplicationData) data));
         case POWERUP_DESPAWN ->
             Platform.runLater(() -> gameRoot.despawnPowerUp((PowerUpDespawnData) data));
+        case PLAYER_SCORE_UPDATE ->
+            Platform.runLater(() -> gameRoot.updateScore((PlayerScoreUpdateData) data));
+        case DRAW_PLAYER_LIVES_UPDATE ->
+            Platform.runLater(() -> gameRoot.drawPlayerLives((PlayerLivesUpdateData) data));
       }
     }
   }

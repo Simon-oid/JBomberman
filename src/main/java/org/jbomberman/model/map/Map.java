@@ -170,6 +170,12 @@ public class Map extends Observable {
     // Read the json file
     loadEntities((String.format("level/level%s/level%s.json", level, level)));
 
+    // init the score of the player
+    updatePlayerScore(player);
+
+    // init the lives of the player
+    updatePlayerLives(player);
+
     // Ensure entities are drawn at their initial positions
     sendInitialEntityPositions();
 
@@ -569,6 +575,9 @@ public class Map extends Observable {
     // Handle collision between mob and explosion
     // For example, remove the mob from the game, update scores, etc.
     entities.remove(mob);
+
+    player.setScore(getPlayer().getScore() + 100);
+    updatePlayerScore(player);
     // Notify GameView to remove the mob from the map
     sendUpdate(new RemoveMobData(PackageType.REMOVE_MOB, mob.getType()));
   }
@@ -596,11 +605,13 @@ public class Map extends Observable {
     // Check if player's hitbox intersects with width explosion hitbox
     if (playerHitbox.intersects(horizontalExplosionHitbox)) {
       handlePlayerHit(player);
+      updatePlayerLives(player);
     }
 
     // Check if player's hitbox intersects with height explosion hitbox
     if (playerHitbox.intersects(verticalExplosionHitbox)) {
       handlePlayerHit(player);
+      updatePlayerLives(player);
     }
   }
 
@@ -626,6 +637,7 @@ public class Map extends Observable {
         // Check if mob's hitbox intersects with player's hitbox
         if (mobHitbox.intersects(playerHitbox)) {
           handlePlayerHit(player);
+          updatePlayerLives(player);
         }
       }
     }
@@ -703,6 +715,30 @@ public class Map extends Observable {
       despawnTask.cancel(false);
     }
     System.out.println("powerup despawn canceled");
+  }
+
+  public void updatePlayerScore(Player player) {
+    // get the score of the player
+    int score = player.getScore();
+    // Create package data containing the player's updated score
+    PlayerScoreUpdateData packageData =
+        new PlayerScoreUpdateData(PackageType.PLAYER_SCORE_UPDATE, score);
+
+    // Send the update to the GameView
+    sendUpdate(packageData);
+  }
+
+  public void updatePlayerLives(Player player) {
+
+    // get the lives of the player
+    int lives = player.getLives();
+
+    // crate package data containing the player's updated lives
+    PlayerLivesUpdateData packageData =
+        new PlayerLivesUpdateData(PackageType.DRAW_PLAYER_LIVES_UPDATE, lives);
+
+    // send update to the gameview
+    sendUpdate(packageData);
   }
 
   public Mob[] getMobs() {

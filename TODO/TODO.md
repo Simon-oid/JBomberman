@@ -857,19 +857,57 @@ FF >>> 22/10/2023
 
 ### high priority:
 
-- [ ] implementare un HUD
+- [ ] implementare il sistema che rende reattiva l'hud
+- [ ] importare numeri con il font specifico
 - [ ] implementare il sistema di score
+- [ ] reworka collisioni del player (si incolla alle pareti)
 
 ### low priority:
 
-- [ ] reworka collisioni del player (si incolla alle pareti)
+- [ ] i mob e le bombe dovrebbero essere elementi nella anchor pane, ora come ora sono solo disegnati nel punto giusto
 - [ ] fixa le hitbox dei mob, siccome ora sono spostate in alto a sinistra rispetto al loro sprite
 - [ ] implementa l'exit tile
 
 ### DONE:
 
+- [x] applicato un offset di 256 pixels a tutti gli elementi all'interno della gameview
+- [x] setuppato il sistema per disegnare un HUD
+
 ***
 
 ===========================================================================
 ***
+
+### 24/02/2024
+
+### TO-DO:
+
+### high priority:
+
+- [ ] implementare di quanto e quando lo score varia durante la partita (dove piazzare gli incrementi di score e
+  update, per ora fatto solo con l'uccisione di un mob)
+- [ ] reworka collisioni del player (si incolla alle pareti)
+- REQUISITI MANCANTI:
+- [ ] animazioni
+- [ ] suono
+- [ ] player selection
+
+### low priority:
+
+- [ ] il player e la bomba non collidono tra loro
+- [ ] i mob e le bombe dovrebbero essere elementi nella anchor pane, ora come ora sono solo disegnati nel punto giusto
+- [ ] fixa le hitbox dei mob, siccome ora sono spostate in alto a sinistra rispetto al loro sprite
+- [ ] implementa l'exit tile
+
+### DONE:
+
+- [x] implementare il sistema di score
+- [x] implementare il sistema che rende reattiva l'hud
+- [x] importare numeri con il font specifico
+
+***
+
+===========================================================================
+***
+
 

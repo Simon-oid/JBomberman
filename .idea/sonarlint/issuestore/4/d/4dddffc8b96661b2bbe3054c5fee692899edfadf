@@ -1,11 +1,11 @@
 
-g	java:S112T"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8À›†Œİ1
+g	java:S112]"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8Å¨³áİ1
 r
-java:S3655I"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ŸªÍäùÿÿÿÿ8Ê›†Œİ1
+java:S3655R"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ŸªÍäùÿÿÿÿ8Ğ¨³áİ1
 µ
-java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(Ë¬Š8Ì›†Œİ1
+java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(Ë¬Š8Ò¨³áİ1
 L
-java:S1874"0Remove this use of "Observer"; it is deprecated.(Ë¬Š8Ì›†Œİ1
-L	java:S106J"+Replace this use of System.out by a logger.(ÍÇÖÓúÿÿÿÿ8Ñ›†Œİ1
+java:S1874"0Remove this use of "Observer"; it is deprecated.(Ë¬Š8Ó¨³áİ1
+L	java:S106S"+Replace this use of System.out by a logger.(ÍÇÖÓúÿÿÿÿ8Ù¨³áİ1
 T
-java:S1874Y"2Remove this use of "Observable"; it is deprecated.(‹›Àüÿÿÿÿ8Ó›†Œİ1
+java:S1874b"2Remove this use of "Observable"; it is deprecated.(‹›Àüÿÿÿÿ8ä¨³áİ1

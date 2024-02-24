@@ -89,3 +89,13 @@ f
 6src/main/java/org/jbomberman/model/tiles/ExitTile.java,3\9\39afe2f26e67c7af092e168edefc5388aaf2e133
 s
 Csrc/main/java/org/jbomberman/model/listener/PowerUpDespawnData.java,4\f\4f919d542f0c35312184879d6ae4174ca1095075
+\
+,src/main/java/org/jbomberman/view/Roots.java,d\8\d8ef79fccb166c786cc927471480860788aba173
+_
+/src/main/java/org/jbomberman/view/Settings.java,d\c\dce03b172989c461720f088e5a953a79a6323261
+Z
+*src/main/java/org/jbomberman/view/HUD.java,8\a\8a7499f8347c0eeb3d2608b041f22538e40f2d50
+v
+Fsrc/main/java/org/jbomberman/model/listener/PlayerScoreUpdateData.java,7\5\7588d04d9480f182325abe9432871f5be4f81137
+[
++src/main/java/org/jbomberman/view/Font.java,a\8\a8acaa82f83962b1e526312a5999fd085f75358f
