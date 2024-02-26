@@ -1,13 +1,12 @@
 package org.jbomberman.model.entita;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import javafx.geometry.Rectangle2D;
 import lombok.Getter;
 import lombok.Setter;
 import org.jbomberman.model.map.Map;
-
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 @Setter
 @Getter

@@ -950,13 +950,12 @@ FF >>> 22/10/2023
 ===========================================================================
 ***
 
-### 25/02/2024
+### 26/02/2024
 
 ### TO-DO:
 
 ### high priority:
 
-- [ ] il player e la bomba non collidono tra loro
 - [ ] tutti gli sprite disegnati sulla mappa dovrebbero essere disegnati sotto il player
 - [ ] i mob devono poter collidere tra loro
 
@@ -978,6 +977,8 @@ FF >>> 22/10/2023
 - [ ] i mob e le bombe dovrebbero essere elementi nella anchor pane, ora come ora sono solo disegnati nel punto giusto
 
 ### DONE:
+
+- [x] il player e la bomba non collidono tra loro
 
 ***
 

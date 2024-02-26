@@ -234,11 +234,29 @@ public class Map extends Observable {
 
     if (collidesWithSolid(newHitBox)) return;
 
+    // Check collision with bomb
+    if (checkPlayerBombCollision(newHitBox)) {
+      // If the player is colliding with a bomb
+      if (playerWasInsideBomb()) {
+        // Allow movement
+        player.move(xStep, yStep);
+        sendUpdate(
+            new PlayerMovementData(
+                PackageType.MOVE_PLAYER,
+                player.getX() - 8,
+                player.getY() - 64,
+                delta,
+                oldX - 8,
+                oldY - 64));
+      }
+      return;
+    }
+
     checkPlayerPowerUpCollision();
 
     checkPlayerExitCollision();
-    // TODO: fixa il fatto che quando il player collide con un blocco, si appiccia al blocco
 
+    // TODO: fixa il fatto che quando il player collide con un blocco, si appiccia al blocco
     player.move(xStep, yStep);
 
     sendUpdate(
@@ -249,6 +267,25 @@ public class Map extends Observable {
             delta,
             oldX - 8,
             oldY - 64));
+  }
+
+  private boolean playerWasInsideBomb() {
+    // Check if the player's old position was inside a bomb
+    Rectangle2D oldPlayerHitBox = new Rectangle2D(player.getX(), player.getY(), 32, 32);
+    return checkPlayerBombCollision(oldPlayerHitBox);
+  }
+
+  public boolean checkPlayerBombCollision(Rectangle2D playerHitBox) {
+    for (Entity entity : entities) {
+      if (entity instanceof Bomb) {
+        Bomb bomb = (Bomb) entity;
+        Rectangle2D bombHitBox = bomb.getHitBox();
+        if (playerHitBox.intersects(bombHitBox)) {
+          return true; // Collision detected
+        }
+      }
+    }
+    return false; // No collision detected
   }
 
   public void moveMob(Mob mob, int xStep, int yStep, double delta) {
