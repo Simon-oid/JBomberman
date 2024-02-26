@@ -910,4 +910,78 @@ FF >>> 22/10/2023
 ===========================================================================
 ***
 
+### 25/02/2024
+
+### TO-DO:
+
+### high priority:
+
+- [ ] il player e la bomba non collidono tra loro
+- [ ] tutti gli sprite disegnati sulla mappa dovrebbero essere disegnati sotto il player
+- [ ] i mob devono poter collidere tra loro
+
+---
+
+- [ ] feedback sull'uccisione del mob (animazione con punti che vanno verso l'alto)
+- [ ] implementare la fine del livello quando player collide con exit tile
+- [ ] reworka collisioni del player (si incolla alle pareti)
+
+---
+
+- REQUISITI MANCANTI:
+- [ ] animazioni
+- [ ] suono
+- [ ] player selection
+
+### low priority:
+
+- [ ] i mob e le bombe dovrebbero essere elementi nella anchor pane, ora come ora sono solo disegnati nel punto giusto
+
+### DONE:
+
+- [x] implementare di quanto e quando lo score varia durante la partita (dove piazzare gli incrementi di score e
+  update, per ora fatto solo con l'uccisione di un mob)
+- [x] implementa il tile exit
+- [x] fixa le hitbox dei mob, siccome ora sono spostate in alto a sinistra rispetto al loro sprite (le hitbox dei
+  mob possono essere 48x48)
+
+***
+
+===========================================================================
+***
+
+### 25/02/2024
+
+### TO-DO:
+
+### high priority:
+
+- [ ] il player e la bomba non collidono tra loro
+- [ ] tutti gli sprite disegnati sulla mappa dovrebbero essere disegnati sotto il player
+- [ ] i mob devono poter collidere tra loro
+
+---
+
+- [ ] feedback sull'uccisione del mob (animazione con punti che vanno verso l'alto)
+- [ ] implementare la fine del livello quando player collide con exit tile
+- [ ] reworka collisioni del player (si incolla alle pareti)
+
+---
+
+- REQUISITI MANCANTI:
+- [ ] animazioni
+- [ ] suono
+- [ ] player selection
+
+### low priority:
+
+- [ ] i mob e le bombe dovrebbero essere elementi nella anchor pane, ora come ora sono solo disegnati nel punto giusto
+
+### DONE:
+
+***
+
+===========================================================================
+***
+
 

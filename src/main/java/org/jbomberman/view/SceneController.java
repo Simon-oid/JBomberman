@@ -123,6 +123,8 @@ public class SceneController implements Observer {
             Platform.runLater(() -> gameRoot.updateScore((PlayerScoreUpdateData) data));
         case DRAW_PLAYER_LIVES_UPDATE ->
             Platform.runLater(() -> gameRoot.drawPlayerLives((PlayerLivesUpdateData) data));
+        case SPAWN_EXIT_TILE ->
+            Platform.runLater(() -> gameRoot.handleExitSpawn((ExitTileSpawnData) data));
       }
     }
   }

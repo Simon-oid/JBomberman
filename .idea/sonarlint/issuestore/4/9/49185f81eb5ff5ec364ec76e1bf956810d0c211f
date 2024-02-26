@@ -12,6 +12,8 @@ e
 java:S2184‡"BCast one of the operands of this addition operation to a "double".(‹â­şÿÿÿÿ8î÷²áİ1
 e
 java:S2184º"BCast one of the operands of this addition operation to a "double".(¢œÒğøÿÿÿÿ8î÷²áİ1
+e
+java:S2184Ì"BCast one of the operands of this addition operation to a "double".(şú‘—øÿÿÿÿ8§¹ŠŞ1
 <
 java:S16409"Convert this Map to an EnumMap.(—À¢¢8ï÷²áİ1
 ^
@@ -24,6 +26,8 @@ o
 java:S6201Ä"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8¦ø²áİ1
 o
 java:S6201Ä"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8¦ø²áİ1
+Y	java:S125ê"<This block of commented-out lines of code should be removed.(„ÌÔß8ÌİŒŞ1
+Y	java:S125Š"<This block of commented-out lines of code should be removed.(„ÌÔß8ó”ŸŒŞ1
 i
 java:S6201¢"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(ˆ†ŸP8ªø²áİ1
 i

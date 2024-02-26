@@ -69,10 +69,12 @@ public class Player extends Entity {
 
   public void increaseMovementSpeed() {
     speed += 100;
+    setScore(score += 10);
   }
 
   public void incrementBombCount() {
     bombCount += 1;
+    setScore(score += 10);
   }
 
   public void incrementIceCream() {
@@ -100,6 +102,11 @@ public class Player extends Entity {
           },
           invincibilityDuration * 1000L);
     }
+  }
+
+  public boolean collidesWithExitTile(Rectangle2D exitTileHitBox) {
+    Rectangle2D playerHitBox = getHitBox(); // Assuming you have a method to get the player's hitbox
+    return playerHitBox.intersects(exitTileHitBox);
   }
 
   public void decrementBombCount() {

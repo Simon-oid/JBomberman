@@ -53,6 +53,8 @@ public class Map extends Observable {
 
   private ScheduledExecutorService despawnScheduler = Executors.newScheduledThreadPool(1);
 
+  private Rectangle2D exitTileHitBox;
+
   private Map() {
     executorService = Executors.newSingleThreadScheduledExecutor();
   }
@@ -233,6 +235,8 @@ public class Map extends Observable {
     if (collidesWithSolid(newHitBox)) return;
 
     checkPlayerPowerUpCollision();
+
+    checkPlayerExitCollision();
     // TODO: fixa il fatto che quando il player collide con un blocco, si appiccia al blocco
 
     player.move(xStep, yStep);
@@ -490,6 +494,11 @@ public class Map extends Observable {
       tileHitBoxes.set(
           tileIndex, createTile(tileIndexX, tileIndexY, Tiles.GRASS).getHitBox()); // Update hitbox
 
+      // Spawn an exit tile based on a certain percentile
+      if (shouldSpawnExitTile()) {
+        spawnExitTile(tileIndexX, tileIndexY);
+      }
+
       // Spawn a random power-up
       spawnRandomPowerUp(tileIndexX, tileIndexY); // Pass tile coordinates
     }
@@ -572,14 +581,37 @@ public class Map extends Observable {
   }
 
   private void handleMobExplosion(Mob mob) {
-    // Handle collision between mob and explosion
-    // For example, remove the mob from the game, update scores, etc.
+    int score = calculateScoreForMob(mob);
+
+    // Award the calculated score to the player
+    player.setScore(player.getScore() + score);
+    updatePlayerScore(player);
+
+    // Remove the mob from the game
     entities.remove(mob);
 
-    player.setScore(getPlayer().getScore() + 100);
-    updatePlayerScore(player);
-    // Notify GameView to remove the mob from the map
+    // Notify GameView to update display and remove the mob from the map
     sendUpdate(new RemoveMobData(PackageType.REMOVE_MOB, mob.getType()));
+  }
+
+  private int calculateScoreForMob(Mob mob) {
+    Type mobType = mob.getType();
+    int score = 0;
+
+    // Determine score based on the type of mob
+    switch (mobType) {
+      case PUROPEN:
+        score = 100; // Example score for a normal mob
+        break;
+      case DENKYUN:
+        score = 400; // Example score for a special mob
+        break;
+      default:
+        score = 0; // Default score if mob type is unknown
+        break;
+    }
+
+    return score;
   }
 
   private void initPlayerCollisionDetectionScheduler(
@@ -645,6 +677,12 @@ public class Map extends Observable {
 
   public void spawnRandomPowerUp(int tileIndexX, int tileIndexY) {
     try {
+      // Check if the tile at the given coordinates is an exit tile
+      if (numTileMap.get(tileIndexY * MAP_WIDTH + tileIndexX) == Tiles.EXIT) {
+        // Exit tile exists at these coordinates, so skip power-up spawning
+        return;
+      }
+
       PowerUp powerUp = PowerUpFactory.createRandomPowerUp();
 
       // Calculate the coordinates based on the tile index
@@ -680,7 +718,7 @@ public class Map extends Observable {
       if (playerHitBox.intersects(powerUpHitBox)) {
         // Apply power-up effect to the player
         powerUp.applyPowerUp(player);
-
+        updatePlayerScore(player);
         // Cancel despawn task
         cancelPowerUpDespawn(powerUp);
 
@@ -739,6 +777,68 @@ public class Map extends Observable {
 
     // send update to the gameview
     sendUpdate(packageData);
+  }
+
+  private boolean shouldSpawnExitTile() {
+    // Check if there's already an exit tile on the map
+    for (Tiles tile : numTileMap) {
+      if (tile == Tiles.EXIT) {
+        return false; // Exit tile already exists, so don't spawn another one
+      }
+    }
+
+    // Check if there's only one destructible tile left on the map
+    int destructibleTileCount = 0;
+    for (Tiles tile : numTileMap) {
+      if (tile.isDestroyable()) {
+        destructibleTileCount++;
+      }
+    }
+
+    // If there's only one destructible tile left, always spawn an exit tile
+    if (destructibleTileCount == 1) {
+      return true;
+    }
+
+    // Calculate the probability of spawning an exit tile (e.g., 10% chance)
+    double spawnChance = 0.1; // Adjust this value as needed
+
+    // Generate a random number between 0 and 1
+    double randomValue = Math.random();
+
+    System.out.println(randomValue <= spawnChance);
+
+    // Check if the random value falls within the spawn chance
+    return randomValue <= spawnChance;
+  }
+
+  private void spawnExitTile(int tileIndexX, int tileIndexY) {
+    // Calculate the coordinates based on the tile index
+    int x = tileIndexX * Tiles.GRASS.size();
+    int y = tileIndexY * Tiles.GRASS.size();
+
+    // Replace the destroyable tile with an exit tile
+    numTileMap.set(tileIndexY * MAP_WIDTH + tileIndexX, Tiles.EXIT);
+
+    // Store the hitbox of the exit tile
+    exitTileHitBox = new Rectangle2D(x, y, Tiles.GRASS.size(), Tiles.GRASS.size());
+
+    System.out.println("spawnato il tile exit");
+    // Notify GameView to update display with the exit tile
+    sendUpdate(new ExitTileSpawnData(PackageType.SPAWN_EXIT_TILE, x, y));
+  }
+
+  public void checkPlayerExitCollision() {
+    if (player.collidesWithExitTile(exitTileHitBox)) {
+      // Player collided with the exit tile, end the level
+      endLevel();
+    }
+  }
+
+  private void endLevel() {
+    // Add logic to end the current level, e.g., load the next level or display victory screen
+    System.out.println("Level ended!");
+    // You can add more actions here, such as loading the next level or displaying a victory screen
   }
 
   public Mob[] getMobs() {

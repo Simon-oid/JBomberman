@@ -222,17 +222,17 @@ public class GameView {
     Image mobImage = mobSprites.get(mobType);
 
     ImageView mobImageView = new ImageView(mobImage);
-    mobImageView.setFitWidth(32); // Set the initial fit width
-    mobImageView.setFitHeight(32); // Set the initial fit height
+    mobImageView.setFitWidth(48); // Set the initial fit width
+    mobImageView.setFitHeight(48); // Set the initial fit height
     mobImageView.setX(mobInitialPositions.initialX());
     mobImageView.setY(mobInitialPositions.initialY());
 
     // Adjust the position of the mobImageView by adding 256 pixels to the y coordinate
     AnchorPane.setTopAnchor(mobImageView, mobInitialPositions.initialY() + (double) Y_OFFSET);
 
-    // Adjust the position of the mobImageView to (8, 16)
-    mobImageView.setX(8);
-    mobImageView.setY(16);
+    //    // Adjust the position of the mobImageView to (8, 16)
+    //    mobImageView.setX(8);
+    //    mobImageView.setY(16);
 
     anchorPane.getChildren().add(mobImageView);
   }
@@ -249,8 +249,8 @@ public class GameView {
     Image mobImage = mobSprites.get(mobType);
 
     ImageView mobImageView = new ImageView(mobImage);
-    mobImageView.setFitWidth(32); // Set the initial fit width
-    mobImageView.setFitHeight(32); // Set the initial fit height
+    mobImageView.setFitWidth(48); // Set the initial fit width
+    mobImageView.setFitHeight(48); // Set the initial fit height
 
     TranslateTransition transition = new TranslateTransition(Duration.seconds(delta), mobImageView);
 
@@ -262,9 +262,9 @@ public class GameView {
     transition.setToX(xStep);
     transition.setToY(yStep + Y_OFFSET);
 
-    // Adjust the position of the mobImageView to (8, 16)
-    mobImageView.setX(8);
-    mobImageView.setY(8);
+    //    // Adjust the position of the mobImageView to (8, 16)
+    //    mobImageView.setX(8);
+    //    mobImageView.setY(8);
 
     // Remove the old sprite of the mob, if exists
     removeOldMobSprite(mobType);
@@ -447,5 +447,18 @@ public class GameView {
     anchorPane
         .getChildren()
         .removeIf(node -> node instanceof ImageView && Arrays.asList(fontSprites).contains(node));
+  }
+
+  public void handleExitSpawn(ExitTileSpawnData data) {
+    int exitX = data.exitTileX();
+    int exitY = data.exitTileY();
+
+    ImageView exitImageView = new ImageView(Tiles.EXIT.getImage());
+    exitImageView.setFitWidth(48);
+    exitImageView.setFitHeight(48);
+    exitImageView.setX(exitX);
+    exitImageView.setY(exitY + Y_OFFSET);
+
+    anchorPane.getChildren().add(exitImageView);
   }
 }

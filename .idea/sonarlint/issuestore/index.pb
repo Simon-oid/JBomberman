@@ -99,3 +99,5 @@ v
 Fsrc/main/java/org/jbomberman/model/listener/PlayerScoreUpdateData.java,7\5\7588d04d9480f182325abe9432871f5be4f81137
 [
 +src/main/java/org/jbomberman/view/Font.java,a\8\a8acaa82f83962b1e526312a5999fd085f75358f
+r
+Bsrc/main/java/org/jbomberman/model/listener/ExitTileSpawnData.java,4\d\4d6969882a4ac349260ae413c42b6a3ab72be16c
