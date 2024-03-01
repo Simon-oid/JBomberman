@@ -12,7 +12,7 @@ import org.jbomberman.model.map.Map;
 @Getter
 public class Bomb extends Entity {
 
-  private static final long EXPLOSION_DELAY = 2; // 2 seconds
+  private static final double EXPLOSION_DELAY = 3.4; // 2 seconds
 
   private boolean exploded = false;
 
@@ -39,7 +39,8 @@ public class Bomb extends Entity {
   @Override
   public void spawn() {
     ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-    scheduler.schedule(this::triggerExplosion, EXPLOSION_DELAY, TimeUnit.SECONDS);
+    scheduler.schedule(
+        this::triggerExplosion, (long) (EXPLOSION_DELAY * 1000), TimeUnit.MILLISECONDS);
     System.out.println("the bomb timer has been initialized");
   }
 

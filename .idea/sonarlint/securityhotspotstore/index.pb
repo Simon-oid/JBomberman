@@ -101,3 +101,11 @@ Fsrc/main/java/org/jbomberman/model/listener/PlayerScoreUpdateData.java,7\5\758
 +src/main/java/org/jbomberman/view/Font.java,a\8\a8acaa82f83962b1e526312a5999fd085f75358f
 r
 Bsrc/main/java/org/jbomberman/model/listener/ExitTileSpawnData.java,4\d\4d6969882a4ac349260ae413c42b6a3ab72be16c
+s
+Csrc/main/java/org/jbomberman/model/listener/GameOverUpdateData.java,7\4\74ff30b99c1d3ba3ac4701b739e15c0321e52d03
+^
+.src/main/java/org/jbomberman/view/ChiLoSa.java,f\f\ffddaa0b8877c6b737dd0984f8bdd35be2147d96
+k
+;src/main/java/org/jbomberman/model/tiles/ImmovableTile.java,c\4\c42d97af922e2f9f22886fc3552833327540aedc
+m
+=src/main/java/org/jbomberman/view/BombExplosionAnimation.java,0\6\06c3cd89d2bc6e8c409bbd08b0943f29b12e6464

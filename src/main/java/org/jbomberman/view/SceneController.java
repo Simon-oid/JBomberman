@@ -94,6 +94,14 @@ public class SceneController implements Observer {
     }
   }
 
+  private void switchToGameOverScene(GameOverUpdateData data) {
+    int playerScore = data.score();
+    switchTo(Roots.MENU); // usa la root game_over
+    // scene
+    // Pass the player's score to the game over scene if needed
+    // Example: gameOverController.setScore(playerScore);
+  }
+
   @Override
   public void update(Observable o, Object arg) {
     if (arg instanceof PackageData data) {
@@ -125,6 +133,7 @@ public class SceneController implements Observer {
             Platform.runLater(() -> gameRoot.drawPlayerLives((PlayerLivesUpdateData) data));
         case SPAWN_EXIT_TILE ->
             Platform.runLater(() -> gameRoot.handleExitSpawn((ExitTileSpawnData) data));
+        case GAME_OVER -> Platform.runLater(() -> switchToGameOverScene((GameOverUpdateData) data));
       }
     }
   }

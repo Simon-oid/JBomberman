@@ -33,6 +33,9 @@ public class Map extends Observable {
   private static final int MAP_WIDTH = 15; // Adjust map width to include border
   private static final int MAP_HEIGHT = 13; // Adjust map height to include border
 
+  // Getter for the level attribute
+  @Getter private Integer level = 1;
+
   private ArrayList<Tiles> numTileMap;
 
   private static Map instance;
@@ -54,6 +57,7 @@ public class Map extends Observable {
   private ScheduledExecutorService despawnScheduler = Executors.newScheduledThreadPool(1);
 
   private Rectangle2D exitTileHitBox;
+  private Direction puropenDirection = Direction.NONE;
 
   private Map() {
     executorService = Executors.newSingleThreadScheduledExecutor();
@@ -106,7 +110,6 @@ public class Map extends Observable {
         return new GrassTile(x, y); // Create and return a GrassTile instance
       case IMMOVABLE:
         return new ImmovableTile(x, y); // Create and return an ImmovableTile instance
-        // Handle other tile types as needed
       default:
         return new GrassTile(x, y); // Return null or handle the case appropriately
     }
@@ -166,6 +169,7 @@ public class Map extends Observable {
   }
 
   public void loadLevel(String level) {
+    System.out.println(level);
     // Load the map from the file
     loadMap(String.format("level/level%s/mappa_lvl%s.txt", level, level));
 
@@ -230,6 +234,9 @@ public class Map extends Observable {
     int oldX = player.getX();
     int oldY = player.getY();
 
+    // Determine the direction of movement based on xStep and yStep
+    Direction direction = calculateDirection(xStep, yStep);
+
     Rectangle2D newHitBox = new Rectangle2D(player.getX() + xStep, player.getY() + yStep, 32, 32);
 
     if (collidesWithSolid(newHitBox)) return;
@@ -247,7 +254,8 @@ public class Map extends Observable {
                 player.getY() - 64,
                 delta,
                 oldX - 8,
-                oldY - 64));
+                oldY - 64,
+                direction)); // Update direction
       }
       return;
     }
@@ -266,7 +274,22 @@ public class Map extends Observable {
             player.getY() - 64,
             delta,
             oldX - 8,
-            oldY - 64));
+            oldY - 64,
+            direction)); // Update direction
+  }
+
+  private Direction calculateDirection(int xStep, int yStep) {
+    if (xStep > 0) {
+      return Direction.RIGHT;
+    } else if (xStep < 0) {
+      return Direction.LEFT;
+    } else if (yStep > 0) {
+      return Direction.DOWN;
+    } else if (yStep < 0) {
+      return Direction.UP;
+    } else {
+      return Direction.NONE; // Keep the current direction if no movement
+    }
   }
 
   private boolean playerWasInsideBomb() {
@@ -300,14 +323,22 @@ public class Map extends Observable {
     Rectangle2D newHitBox = new Rectangle2D(newX, newY, mob.getWidth(), mob.getHeight());
 
     // Check if the new position collides with solid tiles
-    if (collidesWithSolid(newHitBox)) {
-      // If collision occurs, change direction and update hitbox with old coordinates
+    if (collidesWithSolid(newHitBox)
+        || collidesWithOtherMobs(mob, newX, newY)
+        || checkMobBombCollision(newHitBox)) {
+      // If collision occurs with solid tiles, handle collision or change direction as needed
       Direction newDirection = chooseRandomValidDirection(mob);
       if (newDirection != null) {
         mob.setDirection(newDirection);
       }
       mob.updateHitBox(oldX, oldY); // Update hitbox with old coordinates
       return;
+    }
+
+    if (mob.getType() == Type.PUROPEN) {
+      puropenDirection = mob.getDirection();
+      // Update puropenDirection when the direction of the mob changes
+      mob.setDirection(puropenDirection);
     }
 
     detectPlayerMobCollision();
@@ -317,8 +348,48 @@ public class Map extends Observable {
 
     // Create package data and send movement information to GameView
     MobMovementData mobMovementData =
-        new MobMovementData(PackageType.MOB_MOVEMENT, mob.getType(), newX, newY, delta, oldX, oldY);
+        new MobMovementData(
+            PackageType.MOB_MOVEMENT,
+            mob.getType(),
+            newX,
+            newY,
+            delta,
+            oldX,
+            oldY,
+            puropenDirection);
     sendUpdate(mobMovementData);
+  }
+
+  public boolean checkMobBombCollision(Rectangle2D mobHitBox) {
+    for (Entity entity : entities) {
+      if (entity instanceof Bomb) {
+        Bomb bomb = (Bomb) entity;
+        Rectangle2D bombHitBox = bomb.getHitBox();
+        if (mobHitBox.intersects(bombHitBox)) {
+          return true; // Collision detected
+        }
+      }
+    }
+    return false; // No collision detected
+  }
+
+  private boolean collidesWithOtherMobs(Mob mob, int newX, int newY) {
+    // Create a hitbox for the new position
+    Rectangle2D newHitBox = new Rectangle2D(newX, newY, mob.getWidth(), mob.getHeight());
+
+    // Iterate over all mobs to check for collision with other mobs
+    for (Entity entity : entities) {
+      if (entity instanceof Mob && entity != mob) {
+        Mob otherMob = (Mob) entity;
+        Rectangle2D otherMobHitbox = otherMob.getHitBox();
+        // Check if the hitbox of the other mob intersects with the new hitbox
+        if (newHitBox.intersects(otherMobHitbox)) {
+          // Collision detected with another mob
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
   private Direction chooseRandomValidDirection(Mob mob) {
@@ -628,13 +699,13 @@ public class Map extends Observable {
     entities.remove(mob);
 
     // Notify GameView to update display and remove the mob from the map
-    sendUpdate(new RemoveMobData(PackageType.REMOVE_MOB, mob.getType()));
+    sendUpdate(
+        new RemoveMobData(PackageType.REMOVE_MOB, mob.getType(), score, mob.getX(), mob.getY()));
   }
 
   private int calculateScoreForMob(Mob mob) {
     Type mobType = mob.getType();
     int score = 0;
-
     // Determine score based on the type of mob
     switch (mobType) {
       case PUROPEN:
@@ -804,16 +875,18 @@ public class Map extends Observable {
   }
 
   public void updatePlayerLives(Player player) {
-
-    // get the lives of the player
     int lives = player.getLives();
 
-    // crate package data containing the player's updated lives
-    PlayerLivesUpdateData packageData =
-        new PlayerLivesUpdateData(PackageType.DRAW_PLAYER_LIVES_UPDATE, lives);
-
-    // send update to the gameview
-    sendUpdate(packageData);
+    // Check if player has no lives left
+    if (lives <= 0) {
+      // Player has no lives left, trigger game over
+      gameOver();
+    } else {
+      // Player still has lives left, update the UI
+      PlayerLivesUpdateData packageData =
+          new PlayerLivesUpdateData(PackageType.DRAW_PLAYER_LIVES_UPDATE, lives);
+      sendUpdate(packageData);
+    }
   }
 
   private boolean shouldSpawnExitTile() {
@@ -875,7 +948,40 @@ public class Map extends Observable {
   private void endLevel() {
     // Add logic to end the current level, e.g., load the next level or display victory screen
     System.out.println("Level ended!");
-    // You can add more actions here, such as loading the next level or displaying a victory screen
+    level++;
+    // Increment the level number
+    int currentLevel = getLevel();
+    System.out.println(getLevel());
+
+    // Clear existing entities and power-ups
+    entities.clear();
+    powerUps.clear();
+
+    // Load the new level
+    loadLevel(Integer.toString(currentLevel));
+  }
+
+  private void gameOver() {
+    int score = player.getScore();
+    // Send an update to GameView indicating that the game is over
+    GameOverUpdateData gameOverData = new GameOverUpdateData(PackageType.GAME_OVER, score);
+    sendUpdate(gameOverData);
+  }
+
+  // Method to handle update when player is not moving
+  public void playerNotMovingUpdate(int xStep, int yStep, double delta) {
+    Direction direction = calculateDirection(xStep, yStep);
+    int oldY = player.getY();
+    int oldX = player.getX();
+    sendUpdate(
+        new PlayerMovementData(
+            PackageType.MOVE_PLAYER,
+            player.getX() - 8,
+            player.getY() - 64,
+            delta,
+            oldX - 8,
+            oldY - 64,
+            direction)); // Update direction
   }
 
   public Mob[] getMobs() {

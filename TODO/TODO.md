@@ -956,13 +956,12 @@ FF >>> 22/10/2023
 
 ### high priority:
 
-- [ ] tutti gli sprite disegnati sulla mappa dovrebbero essere disegnati sotto il player
-- [ ] i mob devono poter collidere tra loro
+- [ ] implementare il trigger del game over quando il player muore
+- [ ] implementare la fine del livello quando player collide con exit tile
 
 ---
 
-- [ ] feedback sull'uccisione del mob (animazione con punti che vanno verso l'alto)
-- [ ] implementare la fine del livello quando player collide con exit tile
+- [ ] animazione dei punti che da uccidere un mob
 - [ ] reworka collisioni del player (si incolla alle pareti)
 
 ---
@@ -975,14 +974,212 @@ FF >>> 22/10/2023
 ### low priority:
 
 - [ ] i mob e le bombe dovrebbero essere elementi nella anchor pane, ora come ora sono solo disegnati nel punto giusto
+- [ ] la "priorita'" di come sono disegnati gli sprite non e' fatta in modo intelligente, ogni volta che un nuovo
+  sprite viene disegnato, il player viene rimosso e ridisegnato (potrebbe non funzionare quando le animazioni sono
+  implementate)
 
 ### DONE:
 
 - [x] il player e la bomba non collidono tra loro
+- [x] tutti gli sprite disegnati sulla mappa dovrebbero essere disegnati sotto il player
+- [x] i mob devono poter collidere tra loro
+- [x] feedback sull'uccisione del mob
 
 ***
 
 ===========================================================================
 ***
+
+### 27/02/2024
+
+### TO-DO:
+
+### high priority: [working on animations rn]
+
+- [ ] reworka collisioni del player (si incolla alle pareti)
+
+---
+
+- [ ] animazione del movimento del player (abbozzato un mezzo sistema per l'animazione ma non funziona bene)
+- [ ] animazione dei Tile
+- [ ] animazione del movimento dei mob
+- [ ] animazione della bomba
+- [ ] animazione dell'esplosione
+- [ ] animazione della distruzione dei un Tile
+- [ ] animazione dell'uccisione di un mob
+- [ ] animazione dei powerup
+- [ ] animazione del TileExit
+- [ ] animazione dei punti che da uccidere un mob
+- [ ] animazione dell'hud
+- [ ] animazione della morte del player
+- [ ] animazione dello switch del livello
+
+---
+
+- REQUISITI MANCANTI:
+- [ ] animazioni
+- [ ] suono
+- [ ] player selection
+
+### low priority:
+
+- [ ] i mob e le bombe dovrebbero essere elementi nella anchor pane, ora come ora sono solo disegnati nel punto giusto
+- [ ] la "priorita'" di come sono disegnati gli sprite non e' fatta in modo intelligente, ogni volta che un nuovo
+  sprite viene disegnato, il player viene rimosso e ridisegnato (potrebbe non funzionare quando le animazioni sono
+  implementate)
+
+### DONE:
+
+- [x] implementare la fine del livello quando player collide con exit tile (implementata la meccanica di switching
+  tra livelli)
+- [x] implementare il trigger del game over quando il player muore
+
+***
+
+===========================================================================
+***
+
+### 28/02/2024
+
+### TO-DO:
+
+### high priority: [working on animations rn]
+
+- [ ] reworka collisioni del player (si incolla alle pareti)
+
+---
+
+- [ ] animazione dei Tile
+- [ ] animazione del movimento dei mob
+- [ ] animazione della bomba
+- [ ] animazione dell'esplosione
+- [ ] animazione della distruzione dei un Tile
+- [ ] animazione dell'uccisione di un mob
+- [ ] animazione dei powerup
+- [ ] animazione del TileExit
+- [ ] animazione dei punti che da uccidere un mob
+- [ ] animazione dell'hud
+- [ ] animazione della morte del player
+- [ ] animazione dello switch del livello
+- [ ] trovare un modo per sistemare il sistema di flag nell'animazione del player
+
+---
+
+- REQUISITI MANCANTI:
+- [ ] animazioni
+- [ ] suono
+- [ ] player selection
+
+### low priority:
+
+- [ ] i mob e le bombe dovrebbero essere elementi nella anchor pane, ora come ora sono solo disegnati nel punto giusto
+- [ ] la "priorita'" di come sono disegnati gli sprite non e' fatta in modo intelligente, ogni volta che un nuovo
+  sprite viene disegnato, il player viene rimosso e ridisegnato (potrebbe non funzionare quando le animazioni sono
+  implementate)
+
+### DONE:
+
+- [x] animazione del movimento del player (abbozzato un mezzo sistema per l'animazione ma non funziona bene)
+
+***
+
+===========================================================================
+***
+
+### 29/02/2024
+
+### TO-DO:
+
+### high priority: [working on animations rn]
+
+- [ ] reworka collisioni del player (si incolla alle pareti)
+
+---
+
+- [ ] animazione del movimento dei mob
+- [ ] animazione della bomba
+- [ ] animazione dell'esplosione
+- [ ] animazione della distruzione dei un Tile
+- [ ] animazione dell'uccisione di un mob
+- [ ] animazione dei powerup
+- [ ] animazione del TileExit
+- [ ] animazione dei punti che da uccidere un mob
+- [ ] animazione dell'hud
+- [ ] animazione della morte del player
+- [ ] animazione dello switch del livello
+- [ ] trovare un modo per sistemare il sistema di flag nell'animazione del player
+
+---
+
+- REQUISITI MANCANTI:
+- [ ] animazioni
+- [ ] suono
+- [ ] player selection
+
+### low priority:
+
+- [ ] i mob e le bombe dovrebbero essere elementi nella anchor pane, ora come ora sono solo disegnati nel punto giusto
+- [ ] la "priorita'" di come sono disegnati gli sprite non e' fatta in modo intelligente, ogni volta che un nuovo
+  sprite viene disegnato, il player viene rimosso e ridisegnato (potrebbe non funzionare quando le animazioni sono
+  implementate)
+
+### DONE:
+
+- [x] animazione dei Tile
+- [x] migliorati leggermente gli sprite dei bordi ( mancano ancora gli angoli e la parte sotto fatta bene)
+- [x] aggiustata grandezza dei mob
+
+***
+
+===========================================================================
+***
+
+### 1/03/2024
+
+### TO-DO:
+
+### high priority: [working on animations rn]
+
+- [ ] reworka collisioni del player (si incolla alle pareti)
+
+---
+
+- [ ] animazione della distruzione dei un Tile
+- [ ] animazione dell'uccisione di un mob
+- [ ] animazione dei powerup
+- [ ] animazione del TileExit
+- [ ] animazione dei punti che da uccidere un mob
+- [ ] animazione dell'hud
+- [ ] animazione della morte del player
+- [ ] animazione dello switch del livello
+- [ ] animazione del movimento dei mob
+- [ ] trovare un modo per sistemare il sistema di flag nell'animazione del player
+
+---
+
+- REQUISITI MANCANTI:
+- [ ] animazioni
+- [ ] suono
+- [ ] player selection
+
+### low priority:
+
+- [ ] i mob e le bombe dovrebbero essere elementi nella anchor pane, ora come ora sono solo disegnati nel punto giusto
+- [ ] la "priorita'" di come sono disegnati gli sprite non e' fatta in modo intelligente, ogni volta che un nuovo
+  sprite viene disegnato, il player viene rimosso e ridisegnato (potrebbe non funzionare quando le animazioni sono
+  implementate)
+
+### DONE:
+
+- [x] animazione della bomba
+- [x] animazione dell'esplosione
+- [x] fixato l'update dei tile ombreggiati sotto i tile distruttibili, se ora c'e' un tile ombreggiato sotto un tile
+  distruttibile, il tile ombreggiato divente un tile di erba
+
+***
+
+===========================================================================
+***
+
 
 
