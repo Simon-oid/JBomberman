@@ -562,6 +562,21 @@ public class GameView {
 
       tilePane.getChildren().set(tileIndex, imageView);
 
+      // Check if there's an IMMOVABLE tile above the destroyed tile
+      if (tileIndex - 15 >= 0 && tileIndex - 15 < tilePane.getChildren().size()) {
+        Node tileAbove = tilePane.getChildren().get(tileIndex - 15);
+        if (tileAbove instanceof ImageView) {
+          Image tileAboveImage = ((ImageView) tileAbove).getImage();
+          if (tileAboveImage == Tiles.IMMOVABLE.getImage()) {
+            animateTileDestructionUnderImmovable(imageView);
+            return;
+          }
+        }
+      }
+
+      // If there's no IMMOVABLE tile above, proceed with regular animation
+      animateTileDestruction(imageView);
+
       // Check if there's a GRASS_SHADOW_DESTROYABLE tile below
       if (tileIndex + 15 < tilePane.getChildren().size()) {
         Node tileBelow = tilePane.getChildren().get(tileIndex + 15);
@@ -579,6 +594,66 @@ public class GameView {
         }
       }
     }
+  }
+
+  private void animateTileDestruction(ImageView imageView) {
+    Timeline timeline = new Timeline();
+    timeline
+        .getKeyFrames()
+        .addAll(
+            new KeyFrame(
+                Duration.ZERO,
+                new KeyValue(imageView.imageProperty(), Tiles.DESTROYED_TILE_0.getImage())),
+            new KeyFrame(
+                Duration.seconds(0.2),
+                new KeyValue(imageView.imageProperty(), Tiles.DESTROYED_TILE_1.getImage())),
+            new KeyFrame(
+                Duration.seconds(0.4),
+                new KeyValue(imageView.imageProperty(), Tiles.DESTROYED_TILE_2.getImage())),
+            new KeyFrame(
+                Duration.seconds(0.6),
+                new KeyValue(imageView.imageProperty(), Tiles.DESTROYED_TILE_3.getImage())),
+            new KeyFrame(
+                Duration.seconds(0.8),
+                new KeyValue(imageView.imageProperty(), Tiles.DESTROYED_TILE_4.getImage())),
+            new KeyFrame(
+                Duration.seconds(1),
+                new KeyValue(imageView.imageProperty(), Tiles.DESTROYED_TILE_5.getImage())),
+            new KeyFrame(
+                Duration.seconds(1.2),
+                new KeyValue(imageView.imageProperty(), Tiles.GRASS.getImage())));
+
+    timeline.play();
+  }
+
+  private void animateTileDestructionUnderImmovable(ImageView imageView) {
+    Timeline timeline = new Timeline();
+    timeline
+        .getKeyFrames()
+        .addAll(
+            new KeyFrame(
+                Duration.ZERO,
+                new KeyValue(imageView.imageProperty(), Tiles.DESTROYED_TILE_0.getImage())),
+            new KeyFrame(
+                Duration.seconds(0.2),
+                new KeyValue(imageView.imageProperty(), Tiles.DESTROYED_TILE_1.getImage())),
+            new KeyFrame(
+                Duration.seconds(0.4),
+                new KeyValue(imageView.imageProperty(), Tiles.DESTROYED_TILE_2.getImage())),
+            new KeyFrame(
+                Duration.seconds(0.6),
+                new KeyValue(imageView.imageProperty(), Tiles.DESTROYED_TILE_3.getImage())),
+            new KeyFrame(
+                Duration.seconds(0.8),
+                new KeyValue(imageView.imageProperty(), Tiles.DESTROYED_TILE_4.getImage())),
+            new KeyFrame(
+                Duration.seconds(1),
+                new KeyValue(imageView.imageProperty(), Tiles.DESTROYED_TILE_5.getImage())),
+            new KeyFrame(
+                Duration.seconds(1.2),
+                new KeyValue(imageView.imageProperty(), Tiles.GRASS_SHADOW.getImage())));
+
+    timeline.play();
   }
 
   public void spawnMob(MobInitialPositionData mobInitialPositions) {

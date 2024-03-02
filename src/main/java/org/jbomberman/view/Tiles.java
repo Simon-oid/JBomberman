@@ -30,7 +30,13 @@ public enum Tiles {
   DESTROYABLE_UNDER_NON_DESTRUCTIBLE2(
       Tiles.class.getResourceAsStream("tiles/tile_distruttibile_2_immovable.png"), true, true),
   DESTROYABLE_UNDER_NON_DESTRUCTIBLE3(
-      Tiles.class.getResourceAsStream("tiles/tile_distruttibile_3_immovable.png"), true, true);
+      Tiles.class.getResourceAsStream("tiles/tile_distruttibile_3_immovable.png"), true, true),
+  DESTROYED_TILE_0(Tiles.class.getResourceAsStream("tiles/destroyed_tile_0.png"), true, true),
+  DESTROYED_TILE_1(Tiles.class.getResourceAsStream("tiles/destroyed_tile_1.png"), true, true),
+  DESTROYED_TILE_2(Tiles.class.getResourceAsStream("tiles/destroyed_tile_2.png"), true, true),
+  DESTROYED_TILE_3(Tiles.class.getResourceAsStream("tiles/destroyed_tile_3.png"), true, true),
+  DESTROYED_TILE_4(Tiles.class.getResourceAsStream("tiles/destroyed_tile_4.png"), true, true),
+  DESTROYED_TILE_5(Tiles.class.getResourceAsStream("tiles/destroyed_tile_5.png"), true, true);
 
   @Getter private final Image image;
   @Getter private final boolean isCollidable;

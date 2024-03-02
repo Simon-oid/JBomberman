@@ -1,51 +1,55 @@
 
 i
-java:S1301¿"KReplace this "switch" statement by "if" statements to increase readability.(”İº©8û×±Øß1
+java:S1301Š"KReplace this "switch" statement by "if" statements to increase readability.(”İº©8Â¾Çúß1
 e
-java:S2184÷"BCast one of the operands of this addition operation to a "double".(ñàø×ûÿÿÿÿ8ı×±Øß1
+java:S2184÷"BCast one of the operands of this addition operation to a "double".(ñàø×ûÿÿÿÿ8Å¾Çúß1
 `
-java:S2184"BCast one of the operands of this addition operation to a "double".(»ğ¯†8ÀêØß1
+java:S2184"BCast one of the operands of this addition operation to a "double".(»ğ¯†8Å¾Çúß1
 e
-java:S2184µ"BCast one of the operands of this addition operation to a "double".(¢œÒğøÿÿÿÿ8×ÀşØß1
+java:S2184€"BCast one of the operands of this addition operation to a "double".(¢œÒğøÿÿÿÿ8Å¾Çúß1
 e
-java:S2184Ë"BCast one of the operands of this addition operation to a "double".(şú‘—øÿÿÿÿ8ÿïÙß1
+java:S2184–"BCast one of the operands of this addition operation to a "double".(şú‘—øÿÿÿÿ8Å¾Çúß1
 <
-java:S1640="Convert this Map to an EnumMap.(—À¢¢8ÿ×±Øß1
-u	java:S116"TRename this field "MAP_WIDTH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²öúåûÿÿÿÿ8ÃØ±Øß1
-v	java:S116"URename this field "MAP_HEIGHT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ç„­±ûÿÿÿÿ8ÃØ±Øß1
-Y	java:S107¢"<Method has 8 parameters, which is greater than 7 authorized.(»Ò¬Å8Ú…öÛß1
+java:S1640="Convert this Map to an EnumMap.(—À¢¢8Æ¾Çúß1
+u	java:S116"TRename this field "MAP_WIDTH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²öúåûÿÿÿÿ8›¿Çúß1
+v	java:S116"URename this field "MAP_HEIGHT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ç„­±ûÿÿÿÿ8›¿Çúß1
+Y	java:S107¢"<Method has 8 parameters, which is greater than 7 authorized.(»Ò¬Å8¿Çúß1
 ^
-java:S1172x"<Remove this unused method parameter "playerInitialPosition".(Ò¨Òîúÿÿÿÿ8ÊØ±Øß1
-n	java:S128°"LEnd this switch case with an unconditional break, return or throw statement.(Ìßßøÿÿÿÿ8ÌØ±Øß1
+java:S1172x"<Remove this unused method parameter "playerInitialPosition".(Ò¨Òîúÿÿÿÿ8£¿Çúß1
+n	java:S128°"LEnd this switch case with an unconditional break, return or throw statement.(Ìßßøÿÿÿÿ8¥¿Çúß1
 |
-java:S1171¼"YMove the contents of this initializer to a standard constructor or to field initializers.(ÒÌâ–øÿÿÿÿ8ÍØ±Øß1
+java:S1171¼"YMove the contents of this initializer to a standard constructor or to field initializers.(ÒÌâ–øÿÿÿÿ8¦¿Çúß1
 J
-java:S1602‡",Remove useless curly braces around statement(÷¼¼Ä8Ø­ıÛß1
+java:S1602‡",Remove useless curly braces around statement(÷¼¼Ä8«¿Çúß1
 J
-java:S1602‰",Remove useless curly braces around statement(÷¼¼Ä8Ø­ıÛß1
+java:S1602‰",Remove useless curly braces around statement(÷¼¼Ä8«¿Çúß1
 o
-java:S6201"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(Ğ–ä˜ûÿÿÿÿ8ÖØ±Øß1
+java:S6201"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(Ğ–ä˜ûÿÿÿÿ8«¿Çúß1
 o
-java:S6201Ÿ"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8ÖØ±Øß1
+java:S6201Ÿ"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8±¿Çúß1
 o
-java:S6201Ÿ"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8ÛØ±Øß1
+java:S6201Ÿ"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8±¿Çúß1
 o
-java:S6201Ÿ"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8İØ±Øß1
+java:S6201Ÿ"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8±¿Çúß1
+p
+java:S3776©"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(²˜Ş8ı¯Üúß1
+j
+java:S6201¸"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(Ó£ŞÂ8ş¯Üúß1
 o
-java:S6201¸"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(•µÏ‰øÿÿÿÿ8Ï©»Üß1
+java:S6201Ç"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(•µÏ‰øÿÿÿÿ8ş¯Üúß1
 k
-java:S1854ƒ"HRemove this useless assignment to local variable "lastPuropenDirection".(ø¾ßÇşÿÿÿÿ8ÙØ±Øß1
+java:S1854Î"HRemove this useless assignment to local variable "lastPuropenDirection".(ø¾ßÇşÿÿÿÿ8µ¿Çúß1
 `
-java:S1854"=Remove this useless assignment to local variable "direction".(ıÓáƒşÿÿÿÿ8ÙØ±Øß1
+java:S1854Ì"=Remove this useless assignment to local variable "direction".(ıÓáƒşÿÿÿÿ8µ¿Çúß1
 Q
-java:S1481".Remove this unused "direction" local variable.(ıÓáƒşÿÿÿÿ8ÚØ±Øß1
+java:S1481Ì".Remove this unused "direction" local variable.(ıÓáƒşÿÿÿÿ8¶¿Çúß1
 \
-java:S1481ƒ"9Remove this unused "lastPuropenDirection" local variable.(ø¾ßÇşÿÿÿÿ8ÚØ±Øß1
+java:S1481Î"9Remove this unused "lastPuropenDirection" local variable.(ø¾ßÇşÿÿÿÿ8¶¿Çúß1
 i
-java:S6201"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(ˆ†ŸP8İØ±Øß1
+java:S6201è"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(ˆ†ŸP8·¿Çúß1
 i
-java:S6201Û"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(ˆ†ŸP8è¹Øß1
+java:S6201¦"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(ˆ†ŸP8¹¿Çúß1
 i
-java:S6201Û"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(ˆ†ŸP8å­ıÛß1
+java:S6201¦"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(ˆ†ŸP8¹¿Çúß1
 h
-java:S3252²"EUse static access with "javafx.animation.Animation" for "INDEFINITE".(Êı şÿÿÿÿ8åØ±Øß1
+java:S3252ı"EUse static access with "javafx.animation.Animation" for "INDEFINITE".(Êı şÿÿÿÿ8À¿Çúß1

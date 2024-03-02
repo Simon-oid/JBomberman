@@ -604,11 +604,11 @@ public class Map extends Observable {
 
       // Spawn an exit tile based on a certain percentile
       if (shouldSpawnExitTile()) {
-        spawnExitTile(tileIndexX, tileIndexY);
+        spawnExitTile(tileIndexX, tileIndexY, 1300);
       }
 
       // Spawn a random power-up
-      spawnRandomPowerUp(tileIndexX, tileIndexY); // Pass tile coordinates
+      spawnRandomPowerUp(tileIndexX, tileIndexY, 1300); // Pass tile coordinates
     }
   }
 
@@ -783,7 +783,7 @@ public class Map extends Observable {
     }
   }
 
-  public void spawnRandomPowerUp(int tileIndexX, int tileIndexY) {
+  public void spawnRandomPowerUp(int tileIndexX, int tileIndexY, int delayInSeconds) {
     try {
       // Check if the tile at the given coordinates is an exit tile
       if (numTileMap.get(tileIndexY * MAP_WIDTH + tileIndexX) == Tiles.EXIT) {
@@ -791,24 +791,31 @@ public class Map extends Observable {
         return;
       }
 
-      PowerUp powerUp = PowerUpFactory.createRandomPowerUp();
+      Runnable spawnTask =
+          () -> {
+            PowerUp powerUp = PowerUpFactory.createRandomPowerUp();
 
-      // Calculate the coordinates based on the tile index
-      int x = tileIndexX * Tiles.GRASS.size();
-      int y = tileIndexY * Tiles.GRASS.size();
+            // Calculate the coordinates based on the tile index
+            int x = tileIndexX * Tiles.GRASS.size();
+            int y = tileIndexY * Tiles.GRASS.size();
 
-      powerUp.setX(x);
-      powerUp.setY(y);
-      powerUps.add(powerUp); // Add the power-up to the powerUps collection
+            powerUp.setX(x);
+            powerUp.setY(y);
+            powerUps.add(powerUp); // Add the power-up to the powerUps collection
 
-      ScheduledFuture<?> despawnTask =
-          executorService.schedule(() -> handlePowerUpDespawn(powerUp), 2, TimeUnit.SECONDS);
+            ScheduledFuture<?> despawnTask =
+                executorService.schedule(() -> handlePowerUpDespawn(powerUp), 3, TimeUnit.SECONDS);
 
-      powerUp.setDespawnTask(despawnTask); // Set the despawn task in the power-up
+            powerUp.setDespawnTask(despawnTask); // Set the despawn task in the power-up
 
-      PowerUpSpawnData packageData =
-          new PowerUpSpawnData(PackageType.SPAWN_POWERUP, powerUp.getType(), x, y);
-      sendUpdate(packageData);
+            PowerUpSpawnData packageData =
+                new PowerUpSpawnData(PackageType.SPAWN_POWERUP, powerUp.getType(), x, y);
+            sendUpdate(packageData);
+          };
+
+      // Schedule the spawning task with the specified delay
+      executorService.schedule(spawnTask, delayInSeconds, TimeUnit.MILLISECONDS);
+
     } catch (Exception e) {
       // If an exception occurs during power-up spawning, log it (optional)
       System.out.println("PowerUP spawn attempt did not spawn a powerup: " + e.getMessage());
@@ -922,20 +929,31 @@ public class Map extends Observable {
     return randomValue <= spawnChance;
   }
 
-  private void spawnExitTile(int tileIndexX, int tileIndexY) {
-    // Calculate the coordinates based on the tile index
-    int x = tileIndexX * Tiles.GRASS.size();
-    int y = tileIndexY * Tiles.GRASS.size();
+  private void spawnExitTile(int tileIndexX, int tileIndexY, int delayInSeconds) {
+    Runnable spawnTask =
+        () -> {
+          try {
+            // Calculate the coordinates based on the tile index
+            int x = tileIndexX * Tiles.GRASS.size();
+            int y = tileIndexY * Tiles.GRASS.size();
 
-    // Replace the destroyable tile with an exit tile
-    numTileMap.set(tileIndexY * MAP_WIDTH + tileIndexX, Tiles.EXIT);
+            // Replace the destroyable tile with an exit tile
+            numTileMap.set(tileIndexY * MAP_WIDTH + tileIndexX, Tiles.EXIT);
 
-    // Store the hitbox of the exit tile
-    exitTileHitBox = new Rectangle2D(x, y, Tiles.GRASS.size(), Tiles.GRASS.size());
+            // Store the hitbox of the exit tile
+            exitTileHitBox = new Rectangle2D(x, y, Tiles.GRASS.size(), Tiles.GRASS.size());
 
-    System.out.println("spawnato il tile exit");
-    // Notify GameView to update display with the exit tile
-    sendUpdate(new ExitTileSpawnData(PackageType.SPAWN_EXIT_TILE, x, y));
+            System.out.println("spawnato il tile exit");
+            // Notify GameView to update display with the exit tile
+            sendUpdate(new ExitTileSpawnData(PackageType.SPAWN_EXIT_TILE, x, y));
+          } catch (Exception e) {
+            // If an exception occurs during spawning, log it (optional)
+            System.out.println("Failed to spawn exit tile: " + e.getMessage());
+          }
+        };
+
+    // Schedule the spawning task with the specified delay
+    executorService.schedule(spawnTask, delayInSeconds, TimeUnit.MILLISECONDS);
   }
 
   public void checkPlayerExitCollision() {

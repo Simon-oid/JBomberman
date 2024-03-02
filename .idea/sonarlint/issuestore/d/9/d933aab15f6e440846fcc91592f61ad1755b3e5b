@@ -42,15 +42,16 @@ G	java:S106©"+Replace this use of System.out by a logger.(²â„]8ÈŸã²ß1
 H	java:S106ú"+Replace this use of System.out by a logger.(üÑ‚Ü8ÊŸã²ß1
 ^
 java:S6201…"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8ÊŸã²ß1
-M	java:S106®"+Replace this use of System.out by a logger.(ƒ‚³ëýÿÿÿÿ8ÌŸã²ß1
+M	java:S106µ"+Replace this use of System.out by a logger.(ƒ‚³ëýÿÿÿÿ8ÍŸã²ß1
 I
-java:S1905Â"&Remove this unnecessary cast to "int".(ÇÏ¥µøÿÿÿÿ8ÍŸã²ß1
+java:S1905É"&Remove this unnecessary cast to "int".(ÇÏ¥µøÿÿÿÿ8ÍŸã²ß1
 D
-java:S1905Ã"&Remove this unnecessary cast to "int".(ÍŠ¼³8ÍŸã²ß1
-M	java:S106Æ"+Replace this use of System.out by a logger.(ôï¼¹ûÿÿÿÿ8ÍŸã²ß1
-M	java:S106Õ"+Replace this use of System.out by a logger.(™¶ÃÈýÿÿÿÿ8ÎŸã²ß1
-H	java:S106ß"+Replace this use of System.out by a logger.(ÒÔÌÛ8ÎŸã²ß1
-M	java:S106—"+Replace this use of System.out by a logger.(™Ö¹Àÿÿÿÿÿ8ÏŸã²ß1
-H	java:S106¨"+Replace this use of System.out by a logger.(žÌÓ†8ÐŸã²ß1
-M	java:S106¶"+Replace this use of System.out by a logger.(ÞÀ¬ûýÿÿÿÿ8ÐŸã²ß1
-M	java:S106º"+Replace this use of System.out by a logger.(ñî¯Ÿÿÿÿÿÿ8ÑŸã²ß1
+java:S1905Ê"&Remove this unnecessary cast to "int".(ÍŠ¼³8ÍŸã²ß1
+M	java:S106Í"+Replace this use of System.out by a logger.(ôï¼¹ûÿÿÿÿ8ÎŸã²ß1
+M	java:S106Ü"+Replace this use of System.out by a logger.(™¶ÃÈýÿÿÿÿ8ÎŸã²ß1
+H	java:S106æ"+Replace this use of System.out by a logger.(ÒÔÌÛ8ÏŸã²ß1
+M	java:S106ž"+Replace this use of System.out by a logger.(™Ö¹Àÿÿÿÿÿ8ÐŸã²ß1
+H	java:S106²"+Replace this use of System.out by a logger.(žÌÓ†8ÑŸã²ß1
+H	java:S106·"+Replace this use of System.out by a logger.(ºéê‘8ô¨ýúß1
+M	java:S106È"+Replace this use of System.out by a logger.(ÞÀ¬ûýÿÿÿÿ8®æ•ûß1
+M	java:S106Ì"+Replace this use of System.out by a logger.(ñî¯Ÿÿÿÿÿÿ8®æ•ûß1

@@ -1181,5 +1181,50 @@ FF >>> 22/10/2023
 ===========================================================================
 ***
 
+### 1/03/2024
+
+### TO-DO:
+
+### high priority: [working on animations rn]
+
+- [ ] reworka collisioni del player (si incolla alle pareti)
+
+---
+
+- [ ] animazione dell'uccisione di un mob
+- [ ] animazione dei powerup
+- [ ] animazione del TileExit
+- [ ] animazione dei punti che da uccidere un mob
+- [ ] animazione dell'hud
+- [ ] animazione della morte del player
+- [ ] animazione dello switch del livello
+- [ ] animazione del movimento dei mob
+- [ ] trovare un modo per sistemare il sistema di flag nell'animazione del player
+
+---
+
+- REQUISITI MANCANTI:
+- [ ] animazioni
+- [ ] suono
+- [ ] player selection
+
+### low priority:
+
+- [ ] i mob e le bombe dovrebbero essere elementi nella anchor pane, ora come ora sono solo disegnati nel punto giusto
+- [ ] la "priorita'" di come sono disegnati gli sprite non e' fatta in modo intelligente, ogni volta che un nuovo
+  sprite viene disegnato, il player viene rimosso e ridisegnato (potrebbe non funzionare quando le animazioni sono
+  implementate)
+
+### DONE:
+
+- [x] animazione della distruzione dei un Tile
+- [x] fixato timing dello spawn di un powerup per fittare l'animatione della distruzione di un tile
+-
+
+***
+
+===========================================================================
+***
+
 
 

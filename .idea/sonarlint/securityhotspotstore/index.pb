@@ -107,5 +107,3 @@ Csrc/main/java/org/jbomberman/model/listener/GameOverUpdateData.java,7\4\74ff30
 .src/main/java/org/jbomberman/view/ChiLoSa.java,f\f\ffddaa0b8877c6b737dd0984f8bdd35be2147d96
 k
 ;src/main/java/org/jbomberman/model/tiles/ImmovableTile.java,c\4\c42d97af922e2f9f22886fc3552833327540aedc
-m
-=src/main/java/org/jbomberman/view/BombExplosionAnimation.java,0\6\06c3cd89d2bc6e8c409bbd08b0943f29b12e6464
