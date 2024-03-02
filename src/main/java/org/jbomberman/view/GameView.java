@@ -761,33 +761,41 @@ public class GameView {
 
   public void spawnPowerUp(PowerUpSpawnData data) {
     PowerUpType powerUpType = data.powerUpType();
-    ImageView powerUpImageView = new ImageView(getPowerUpImage(powerUpType));
+    ImageView powerUpImageView = new ImageView();
+    Image[] powerUpFrames;
+
+    if (powerUpType == PowerUpType.BOMB_UP) {
+      powerUpFrames =
+          new Image[] {Tiles.POWERUP_BOMBUP_0.getImage(), Tiles.POWERUP_BOMBUP_1.getImage()};
+    } else {
+      powerUpFrames =
+          new Image[] {Tiles.POWERUP_SKATE_0.getImage(), Tiles.POWERUP_SKATE_1.getImage()};
+    }
+
     powerUpImageView.setFitWidth(48);
     powerUpImageView.setFitHeight(48);
     powerUpImageView.setX(data.x());
     powerUpImageView.setY(data.y() + Y_OFFSET);
-    anchorPane.getChildren().add(powerUpImageView);
+
+    animatePowerUp(powerUpImageView, powerUpFrames[0], powerUpFrames[1]);
 
     // Ensure bomb is drawn under the player
     anchorPane.getChildren().remove(player);
     anchorPane.getChildren().add(player);
+
+    // Add the ImageView to the anchorPane after animating it
+    anchorPane.getChildren().add(powerUpImageView);
   }
 
-  private Image getPowerUpImage(PowerUpType powerUpType) {
-    // Add logic to return the appropriate image based on the power-up type
-    switch (powerUpType) {
-      case BOMB_UP:
-        return Tiles.BOMB_UP_POWERUP.getImage();
-        // Add cases for other power-up types if needed in the future
-      default:
-        // Return a default image if the power-up type is not recognized
-        return getDefaultPowerUpImage();
-    }
-  }
-
-  private Image getDefaultPowerUpImage() {
-    // Return a default image for power-ups if needed
-    return Tiles.EXIT.getImage();
+  private void animatePowerUp(ImageView imageView, Image frame0, Image frame1) {
+    Timeline timeline =
+        new Timeline(
+            new KeyFrame(Duration.seconds(0), e -> imageView.setImage(frame0)),
+            new KeyFrame(Duration.seconds(0.1), e -> imageView.setImage(frame1)),
+            new KeyFrame(Duration.seconds(0.2), e -> imageView.setImage(frame0)),
+            new KeyFrame(Duration.seconds(0.3), e -> imageView.setImage(frame1)));
+    timeline.setCycleCount(Timeline.INDEFINITE); // Repeat the animation indefinitely
+    timeline.play();
   }
 
   public void applyPowerUp(PowerUpApplicationData data) {

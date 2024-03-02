@@ -1191,14 +1191,13 @@ FF >>> 22/10/2023
 
 ---
 
-- [ ] animazione dell'uccisione di un mob
-- [ ] animazione dei powerup
 - [ ] animazione del TileExit
 - [ ] animazione dei punti che da uccidere un mob
 - [ ] animazione dell'hud
 - [ ] animazione della morte del player
 - [ ] animazione dello switch del livello
 - [ ] animazione del movimento dei mob
+- [ ] animazione dell'uccisione di un mob
 - [ ] trovare un modo per sistemare il sistema di flag nell'animazione del player
 
 ---
@@ -1219,7 +1218,8 @@ FF >>> 22/10/2023
 
 - [x] animazione della distruzione dei un Tile
 - [x] fixato timing dello spawn di un powerup per fittare l'animatione della distruzione di un tile
--
+- [x] fixato timing dello spawn del tile exit per fittare l'animatione della distruzione di un tile
+- [x] animazione dei powerup
 
 ***
 
