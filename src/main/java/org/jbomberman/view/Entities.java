@@ -111,7 +111,8 @@ public enum Entities {
       Entities.class.getResourceAsStream("entities/bomb_explosion_left_last_4.png")),
   BOMB_EXPLOSION_RIGHT_4(Entities.class.getResourceAsStream("entities/bomb_explosion_right_4.png")),
   BOMB_EXPLOSION_RIGHT_LAST_4(
-      Entities.class.getResourceAsStream("entities/bomb_explosion_right_last_4.png"));
+      Entities.class.getResourceAsStream("entities/bomb_explosion_right_last_4.png")),
+  VOID(Entities.class.getResourceAsStream("entities/VOID.png"));
 
   @Getter private final Image image;
 

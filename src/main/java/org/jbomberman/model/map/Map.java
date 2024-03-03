@@ -57,7 +57,10 @@ public class Map extends Observable {
   private ScheduledExecutorService despawnScheduler = Executors.newScheduledThreadPool(1);
 
   private Rectangle2D exitTileHitBox;
+
   private Direction puropenDirection = Direction.NONE;
+
+  private boolean exitTileSpawned = false;
 
   private Map() {
     executorService = Executors.newSingleThreadScheduledExecutor();
@@ -603,12 +606,12 @@ public class Map extends Observable {
           tileIndex, createTile(tileIndexX, tileIndexY, Tiles.GRASS).getHitBox()); // Update hitbox
 
       // Spawn an exit tile based on a certain percentile
-      if (shouldSpawnExitTile()) {
+      if (shouldSpawnExitTile() && !exitTileSpawned) {
         spawnExitTile(tileIndexX, tileIndexY, 1300);
+        exitTileSpawned = true;
+      } else {
+        spawnRandomPowerUp(tileIndexX, tileIndexY, 1300);
       }
-
-      // Spawn a random power-up
-      spawnRandomPowerUp(tileIndexX, tileIndexY, 1300); // Pass tile coordinates
     }
   }
 

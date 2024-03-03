@@ -2,7 +2,6 @@ package org.jbomberman.view;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -15,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.TilePane;
 import javafx.util.Duration;
+import javax.swing.*;
 import org.jbomberman.model.entita.Direction;
 import org.jbomberman.model.entita.Type;
 import org.jbomberman.model.listener.*;
@@ -26,18 +26,20 @@ public class GameView {
   private TilePane tilePane;
   private AnchorPane anchorPane;
   private ImageView player;
-  private Map<Type, Image> mobSprites;
+  private HashMap<Type, ImageView> mobSprites;
   private ImageView scoreboard;
   private static final int Y_OFFSET = 100;
   private ImageView[] fontSprites;
   private ImageView[] scoreFontSprites;
-  private Timeline playerAnimation;
-  private boolean playerAnimationInProgress = false;
+  private Timeline playerMovementAnimation;
   private Direction lastAnimationDirection = Direction.NONE;
+  private HashMap<Type, Timeline> mobMovementAnimations;
+  private Direction lastPuropenDirection = Direction.NONE;
   private Image[] destructibleTileSprites;
 
   public GameView() {
-    playerAnimation = new Timeline();
+
+    playerMovementAnimation = new Timeline();
 
     player = new ImageView(Entities.PLAYER.getImage());
     player.setFitHeight(96);
@@ -58,16 +60,14 @@ public class GameView {
 
     anchorPane = new AnchorPane(tilePane, player);
 
-    mobSprites = new HashMap<>();
-    mobSprites.put(Type.PUROPEN, Entities.PUROPEN.getImage());
-    mobSprites.put(Type.DENKYUN, Entities.DENKYUN.getImage());
-
     scoreboard = new ImageView(HUD.HUD_SPRITE.getImage()); // Load custom scoreboard sprite
     scoreboard.setFitWidth(720);
     scoreboard.setFitHeight(100);
 
     // Add player and scoreboard to anchorPane
     anchorPane = new AnchorPane(tilePane, player, scoreboard);
+
+    initializeMobSprites();
 
     loadDestructibleTileAnimation();
 
@@ -86,6 +86,35 @@ public class GameView {
 
     AnchorPane.setTopAnchor(scoreboard, 0.0); // Position scoreboard at the bottom
     AnchorPane.setLeftAnchor(scoreboard, 0.0); // Position scoreboard at the left
+  }
+
+  private void initializeMobSprites() {
+    mobSprites = new HashMap<>();
+    mobMovementAnimations = new HashMap<>(); // New HashMap to store timelines
+
+    for (Type mobType : Type.values()) {
+      ImageView mobImageView;
+      Timeline mobMovementAnimation = new Timeline(); // Create a new timeline for each mob type
+
+      if (mobType == Type.PUROPEN) {
+        Image mobImage = Entities.VOID.getImage();
+        mobImageView = new ImageView(mobImage);
+      } else if (mobType == Type.DENKYUN) {
+        Image mobImage = Entities.VOID.getImage();
+        mobImageView = new ImageView(mobImage);
+      } else {
+        // Handle other mob types if needed
+        continue;
+      }
+
+      mobImageView.setFitWidth(48);
+      mobImageView.setFitHeight(80);
+      mobSprites.put(mobType, mobImageView);
+      mobMovementAnimations.put(mobType, mobMovementAnimation); // Store the timeline in the HashMap
+
+      // Add the mob ImageView to the anchorPane
+      anchorPane.getChildren().add(mobImageView);
+    }
   }
 
   public void loadMap(LoadMapData data) {
@@ -146,59 +175,61 @@ public class GameView {
 
     // Start the transition if direction is not NONE
     if (direction != Direction.NONE) {
-      // Check if the player is moving in a different direction or if the animation is not already
-      // in progress
-      if (direction != lastAnimationDirection || !playerAnimationInProgress) {
-        animatePlayer(direction);
-        playerAnimationInProgress =
-            true; // Set animation in progress only when starting a new animation
+
+      if (direction != lastAnimationDirection) {
+        animatePlayer(player, direction);
       }
-      lastAnimationDirection = direction;
-
-      // Set an event handler to update the flag when the animation is finished
-      playerAnimation.setOnFinished(event -> playerAnimationInProgress = false);
-
       transition.play();
+    } else {
+      playerMovementAnimation.pause();
+      player.setImage(Entities.PLAYER.getImage());
     }
   }
 
-  private void animatePlayer(Direction direction) {
+  private void animatePlayer(ImageView playerImageView, Direction direction) {
     switch (direction) {
       case UP:
-        playAnimation(getPlayerSpriteImages(Direction.UP));
+        playerMovementAnimation =
+            playPlayerMovementAnimation(playerImageView, getPlayerSpriteImages(Direction.UP));
         break;
       case DOWN:
-        playAnimation(getPlayerSpriteImages(Direction.DOWN));
+        playerMovementAnimation =
+            playPlayerMovementAnimation(playerImageView, getPlayerSpriteImages(Direction.DOWN));
         break;
       case LEFT:
-        playAnimation(getPlayerSpriteImages(Direction.LEFT));
+        playerMovementAnimation =
+            playPlayerMovementAnimation(playerImageView, getPlayerSpriteImages(Direction.LEFT));
         break;
       case RIGHT:
-        playAnimation(getPlayerSpriteImages(Direction.RIGHT));
+        playerMovementAnimation =
+            playPlayerMovementAnimation(playerImageView, getPlayerSpriteImages(Direction.RIGHT));
+        break;
       case NONE:
         player.setImage(Entities.PLAYER.getImage());
         break;
     }
   }
 
-  private void playAnimation(Image[] playerSpriteImages) {
-    // Create a transition to animate player movement
-    Transition transition =
-        new Transition() {
-          {
-            setCycleDuration(Duration.seconds(0.5));
-            setInterpolator(Interpolator.LINEAR);
-          }
+  private Timeline playPlayerMovementAnimation(ImageView imageView, Image[] sprites) {
 
-          @Override
-          protected void interpolate(double fraction) {
-            int index = (int) (fraction * (playerSpriteImages.length - 1));
-            player.setImage(playerSpriteImages[index]);
-          }
-        };
+    // Create keyframes for each sprite in the sequence
+    for (int i = 0; i < sprites.length; i++) {
+      final int index = i;
+      KeyFrame keyFrame =
+          new KeyFrame(
+              Duration.seconds(i * 0.2), // Change duration as needed for faster animation
+              event -> imageView.setImage(sprites[index]));
+      playerMovementAnimation.getKeyFrames().add(keyFrame);
+    }
 
-    // Play the transition
-    transition.play();
+    // Set the cycle count to indefinite to  keep the animation playing
+    playerMovementAnimation.setCycleCount(Animation.INDEFINITE);
+
+    // Play the animation
+    playerMovementAnimation.play();
+
+    // Return the timeline object
+    return playerMovementAnimation;
   }
 
   private Image[] getPlayerSpriteImages(Direction direction) {
@@ -209,18 +240,23 @@ public class GameView {
           Entities.PLAYER_UP1.getImage(),
           Entities.PLAYER_UP.getImage(),
           Entities.PLAYER_UP2.getImage(),
+          Entities.PLAYER_UP.getImage(),
           Entities.PLAYER_UP.getImage()
         };
       case DOWN:
         return new Image[] {
-          Entities.PLAYER_DOWN1.getImage(), Entities.PLAYER.getImage(),
-          Entities.PLAYER_DOWN2.getImage(), Entities.PLAYER.getImage()
+          Entities.PLAYER_DOWN1.getImage(),
+          Entities.PLAYER.getImage(),
+          Entities.PLAYER_DOWN2.getImage(),
+          Entities.PLAYER.getImage(),
+          Entities.PLAYER.getImage()
         };
       case LEFT:
         return new Image[] {
           Entities.PLAYER_LEFT1.getImage(),
           Entities.PLAYER_LEFT.getImage(),
           Entities.PLAYER_LEFT2.getImage(),
+          Entities.PLAYER_LEFT.getImage(),
           Entities.PLAYER_LEFT.getImage()
         };
       case RIGHT:
@@ -228,7 +264,15 @@ public class GameView {
           Entities.PLAYER_RIGHT1.getImage(),
           Entities.PLAYER_RIGHT.getImage(),
           Entities.PLAYER_RIGHT2.getImage(),
+          Entities.PLAYER_RIGHT.getImage(),
           Entities.PLAYER_RIGHT.getImage()
+        };
+      case NONE:
+        return new Image[] {
+          Entities.PLAYER.getImage(),
+          Entities.PLAYER.getImage(),
+          Entities.PLAYER.getImage(),
+          Entities.PLAYER.getImage(),
         };
       default:
         return new Image[] {};
@@ -658,7 +702,7 @@ public class GameView {
 
   public void spawnMob(MobInitialPositionData mobInitialPositions) {
     Type mobType = mobInitialPositions.mobType();
-    Image mobImage = mobSprites.get(mobType);
+    Image mobImage = mobSprites.get(mobType).getImage();
 
     ImageView mobImageView = new ImageView(mobImage);
     mobImageView.setFitWidth(48); // Set the initial fit width
@@ -687,11 +731,7 @@ public class GameView {
     int initialY = data.oldY();
 
     Type mobType = data.mobType();
-    Image mobImage = mobSprites.get(mobType);
-
-    ImageView mobImageView = new ImageView(mobImage);
-    mobImageView.setFitWidth(48); // Set the initial fit width
-    mobImageView.setFitHeight(80); // Set the initial fit height
+    ImageView mobImageView = mobSprites.get(mobType);
 
     // Adjust the Y position to align the bottom of the mob ImageView with the bottom of its hitbox
     double adjustedY = initialY - mobImageView.getFitHeight();
@@ -707,20 +747,73 @@ public class GameView {
     transition.setToX(xStep);
     transition.setToY(yStep);
 
-    // Remove the old sprite of the mob, if exists
-    removeOldMobSprite(mobType);
-
-    transition.play();
-
-    // Determine the direction of movement from the packet data
-    Direction direction = data.puropenDirection();
-
-    Direction lastPuropenDirection = data.puropenDirection();
-    anchorPane.getChildren().add(mobImageView);
-
     // Ensure bomb is drawn under the player
     anchorPane.getChildren().remove(player);
     anchorPane.getChildren().add(player);
+
+    Direction direction = data.puropenDirection();
+    if (mobType == Type.PUROPEN) {
+      if (direction != lastPuropenDirection) {
+        animatePuropen(mobType, direction);
+      }
+    } else {
+      //      playMobMovementAnimation(mobImageView);
+    }
+
+    transition.play();
+  }
+
+  private void animatePuropen(Type mobType, Direction direction) {
+    ImageView mobImageView = mobSprites.get(mobType);
+    Timeline puropenMovementAnimation = mobMovementAnimations.get(mobType);
+
+    switch (direction) {
+      case UP:
+        puropenMovementAnimation =
+            playMobMovementAnimation(mobImageView, getPuropenSpriteImages(Direction.UP), mobType);
+        break;
+      case DOWN:
+        puropenMovementAnimation =
+            playMobMovementAnimation(mobImageView, getPuropenSpriteImages(Direction.DOWN), mobType);
+        break;
+      case LEFT:
+        puropenMovementAnimation =
+            playMobMovementAnimation(mobImageView, getPuropenSpriteImages(Direction.LEFT), mobType);
+        break;
+      case RIGHT:
+        puropenMovementAnimation =
+            playMobMovementAnimation(
+                mobImageView, getPuropenSpriteImages(Direction.RIGHT), mobType);
+        break;
+      case NONE:
+        mobImageView.setImage(Entities.PUROPEN.getImage());
+        break;
+    }
+
+    // Update the timeline stored in the map
+    mobMovementAnimations.put(mobType, puropenMovementAnimation);
+  }
+
+  private Timeline playMobMovementAnimation(ImageView imageView, Image[] sprites, Type mobType) {
+    Timeline mobMovementAnimation = mobMovementAnimations.get(mobType);
+    // Create keyframes for each sprite in the sequence
+    for (int i = 0; i < sprites.length; i++) {
+      final int index = i;
+      KeyFrame keyFrame =
+          new KeyFrame(
+              Duration.seconds(i * 0.2), // Change duration as needed for faster animation
+              event -> imageView.setImage(sprites[index]));
+      mobMovementAnimation.getKeyFrames().add(keyFrame);
+    }
+
+    // Set the cycle count to indefinite to  keep the animation playing
+    mobMovementAnimation.setCycleCount(Animation.INDEFINITE);
+
+    // Play the animation
+    mobMovementAnimation.play();
+
+    // Return the timeline object
+    return mobMovementAnimation;
   }
 
   public void removeMob(RemoveMobData data) {
@@ -736,13 +829,10 @@ public class GameView {
   }
 
   private void removeOldMobSprite(Type mobType) {
-    // Remove the old sprite of the mob
-    anchorPane
-        .getChildren()
-        .removeIf(
-            node ->
-                node instanceof ImageView
-                    && ((ImageView) node).getImage() == mobSprites.get(mobType));
+    ImageView oldMobImageView = mobSprites.get(mobType);
+    if (oldMobImageView != null) {
+      anchorPane.getChildren().remove(oldMobImageView);
+    }
   }
 
   public void updatePlayerLives(PlayerLivesUpdateData data) {
@@ -916,16 +1006,45 @@ public class GameView {
   }
 
   public void handleExitSpawn(ExitTileSpawnData data) {
-    int exitX = data.exitTileX();
-    int exitY = data.exitTileY();
+    ImageView exitTileImageView;
+    int x = data.exitTileX();
+    int y = data.exitTileY();
 
-    ImageView exitImageView = new ImageView(Tiles.EXIT.getImage());
-    exitImageView.setFitWidth(48);
-    exitImageView.setFitHeight(48);
-    exitImageView.setX(exitX);
-    exitImageView.setY(exitY + Y_OFFSET);
+    Image exitTileImage0 = Tiles.POWERUP_ICESCREAM_0.getImage();
+    Image exitTileImage1 = Tiles.POWERUP_ICESCREAM_1.getImage();
 
-    anchorPane.getChildren().add(exitImageView);
+    exitTileImageView = new ImageView(exitTileImage0);
+    exitTileImageView.setFitWidth(48);
+    exitTileImageView.setFitHeight(48);
+    exitTileImageView.setX(x);
+    exitTileImageView.setY(y + Y_OFFSET);
+
+    // Add the ImageView to the anchor pane
+    anchorPane.getChildren().add(exitTileImageView);
+
+    // Ensure bomb is drawn under the player
+    anchorPane.getChildren().remove(player);
+    anchorPane.getChildren().add(player);
+
+    // Create the animation for the exit tile
+    Timeline exitTileAnimation =
+        new Timeline(
+            new KeyFrame(
+                Duration.seconds(0.1),
+                event -> {
+                  exitTileImageView.setImage(exitTileImage0);
+                }),
+            new KeyFrame(
+                Duration.seconds(0.2),
+                event -> {
+                  exitTileImageView.setImage(exitTileImage1);
+                }));
+
+    // Set the cycle count to 2 to repeat the animation twice
+    exitTileAnimation.setCycleCount(90);
+
+    // Start the animation
+    exitTileAnimation.play();
   }
 
   // Method to load font sprites for numbers 0-9

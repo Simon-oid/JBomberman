@@ -1,57 +1,57 @@
 
-v	java:S135¢"YReduce the total number of break and continue statements in this loop to use at most one.(óÁ±8¡ã²ß1
+v	java:S135¥"YReduce the total number of break and continue statements in this loop to use at most one.(óÁ±8¡ã²ß1
 e
-java:S2184ğ"BCast one of the operands of this addition operation to a "double".(å€üÿÿÿÿ8¥ã²ß1
+java:S2184ó"BCast one of the operands of this addition operation to a "double".(å€üÿÿÿÿ8¥ã²ß1
 e
-java:S2184ğ"BCast one of the operands of this addition operation to a "double".(å€üÿÿÿÿ8¥ã²ß1
+java:S2184ó"BCast one of the operands of this addition operation to a "double".(å€üÿÿÿÿ8¥ã²ß1
 ¶
 java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(ú„ŠÌ8¥Ÿã²ß1
 O
 java:S1874"2Remove this use of "Observable"; it is deprecated.(ú„ŠÌ8§Ÿã²ß1
 W
-java:S1117":Rename "player" which hides the field declared at line 45.(Ì¸»!8°Ÿã²ß1
-H	java:S106¬"+Replace this use of System.out by a logger.(ö§²–8³Ÿã²ß1
+java:S1117„":Rename "player" which hides the field declared at line 45.(Ì¸»!8°Ÿã²ß1
+H	java:S106¯"+Replace this use of System.out by a logger.(ö§²–8³Ÿã²ß1
 ^
-java:S6201Ô"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8µŸã²ß1
+java:S6201×"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8µŸã²ß1
 P
-java:S1135‹"2Complete the task associated to this TODO comment.(Çé°8¸Ÿã²ß1
+java:S1135"2Complete the task associated to this TODO comment.(Çé°8¸Ÿã²ß1
 e
-java:S6201¯"BReplace this instanceof check and cast with 'instanceof Bomb bomb'(¬ĞÆ“úÿÿÿÿ8¹Ÿã²ß1
+java:S6201²"BReplace this instanceof check and cast with 'instanceof Bomb bomb'(¬ĞÆ“úÿÿÿÿ8ÂôÂ¢à1
 e
-java:S6201í"BReplace this instanceof check and cast with 'instanceof Bomb bomb'(¬ĞÆ“úÿÿÿÿ8¼Ÿã²ß1
+java:S6201ğ"BReplace this instanceof check and cast with 'instanceof Bomb bomb'(¬ĞÆ“úÿÿÿÿ8ÄôÂ¢à1
 c
-java:S6201ş"EReplace this instanceof check and cast with 'instanceof Mob otherMob'(˜‚„°8½Ÿã²ß1
+java:S6201"EReplace this instanceof check and cast with 'instanceof Mob otherMob'(˜‚„°8½Ÿã²ß1
 ;
-java:S2119›"Save and re-use this "Random".(¼İÅf8¿Ÿã²ß1
+java:S2119"Save and re-use this "Random".(¼İÅf8¿Ÿã²ß1
 [
-java:S1854°"=Remove this useless assignment to local variable "nextTileY".(æ€âë8ÄŸã²ß1
+java:S1854³"=Remove this useless assignment to local variable "nextTileY".(æ€âë8ÄŸã²ß1
 `
-java:S1854¯"=Remove this useless assignment to local variable "nextTileX".(ëÎÅäşÿÿÿÿ8ÄŸã²ß1
-Y	java:S125¨"<This block of commented-out lines of code should be removed.(š€Ê¤8ÄŸã²ß1
+java:S1854²"=Remove this useless assignment to local variable "nextTileX".(ëÎÅäşÿÿÿÿ8ÄŸã²ß1
+Y	java:S125«"<This block of commented-out lines of code should be removed.(š€Ê¤8ÄŸã²ß1
 Q
-java:S1481¯".Remove this unused "nextTileX" local variable.(ëÎÅäşÿÿÿÿ8ÅŸã²ß1
+java:S1481²".Remove this unused "nextTileX" local variable.(ëÎÅäşÿÿÿÿ8ÅŸã²ß1
 L
-java:S1481°".Remove this unused "nextTileY" local variable.(æ€âë8ÅŸã²ß1
-Y	java:S125²"<This block of commented-out lines of code should be removed.(öì¯8ÅŸã²ß1
-^	java:S125’"<This block of commented-out lines of code should be removed.(ÍÊÃåùÿÿÿÿ8ÇŸã²ß1
+java:S1481³".Remove this unused "nextTileY" local variable.(æ€âë8ÅŸã²ß1
+Y	java:S125µ"<This block of commented-out lines of code should be removed.(öì¯8ÅŸã²ß1
+^	java:S125•"<This block of commented-out lines of code should be removed.(ÍÊÃåùÿÿÿÿ8ÇŸã²ß1
 ^
-java:S6201–"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8ÇŸã²ß1
-G	java:S106¢"+Replace this use of System.out by a logger.(«•ğF8ÇŸã²ß1
-G	java:S106©"+Replace this use of System.out by a logger.(²â„]8ÈŸã²ß1
-^	java:S125°"<This block of commented-out lines of code should be removed.(Ä´‡öùÿÿÿÿ8ÈŸã²ß1
-H	java:S106ú"+Replace this use of System.out by a logger.(üÑ‚Ü8ÊŸã²ß1
+java:S6201™"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8ÇŸã²ß1
+G	java:S106¥"+Replace this use of System.out by a logger.(«•ğF8ÇŸã²ß1
+G	java:S106¬"+Replace this use of System.out by a logger.(²â„]8ÈŸã²ß1
+^	java:S125³"<This block of commented-out lines of code should be removed.(Ä´‡öùÿÿÿÿ8ÈŸã²ß1
+H	java:S106ı"+Replace this use of System.out by a logger.(üÑ‚Ü8ÊŸã²ß1
 ^
-java:S6201…"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8ÊŸã²ß1
-M	java:S106µ"+Replace this use of System.out by a logger.(ƒ‚³ëıÿÿÿÿ8ÍŸã²ß1
+java:S6201ˆ"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8ÊŸã²ß1
+M	java:S106¸"+Replace this use of System.out by a logger.(ƒ‚³ëıÿÿÿÿ8ÍŸã²ß1
 I
-java:S1905É"&Remove this unnecessary cast to "int".(ÇÏ¥µøÿÿÿÿ8ÍŸã²ß1
+java:S1905Ì"&Remove this unnecessary cast to "int".(ÇÏ¥µøÿÿÿÿ8ÍŸã²ß1
 D
-java:S1905Ê"&Remove this unnecessary cast to "int".(ÍŠ¼³8ÍŸã²ß1
-M	java:S106Í"+Replace this use of System.out by a logger.(ôï¼¹ûÿÿÿÿ8ÎŸã²ß1
-M	java:S106Ü"+Replace this use of System.out by a logger.(™¶ÃÈıÿÿÿÿ8ÎŸã²ß1
-H	java:S106æ"+Replace this use of System.out by a logger.(ÒÔÌÛ8ÏŸã²ß1
-M	java:S106"+Replace this use of System.out by a logger.(™Ö¹Àÿÿÿÿÿ8ĞŸã²ß1
-H	java:S106²"+Replace this use of System.out by a logger.(ÌÓ†8ÑŸã²ß1
-H	java:S106·"+Replace this use of System.out by a logger.(ºéê‘8ô¨ıúß1
-M	java:S106È"+Replace this use of System.out by a logger.(ŞÀ¬ûıÿÿÿÿ8®æ•ûß1
-M	java:S106Ì"+Replace this use of System.out by a logger.(ñî¯Ÿÿÿÿÿÿ8®æ•ûß1
+java:S1905Í"&Remove this unnecessary cast to "int".(ÍŠ¼³8ÍŸã²ß1
+M	java:S106Ğ"+Replace this use of System.out by a logger.(ôï¼¹ûÿÿÿÿ8ÎŸã²ß1
+M	java:S106ß"+Replace this use of System.out by a logger.(™¶ÃÈıÿÿÿÿ8ÎŸã²ß1
+H	java:S106é"+Replace this use of System.out by a logger.(ÒÔÌÛ8ÏŸã²ß1
+M	java:S106¡"+Replace this use of System.out by a logger.(™Ö¹Àÿÿÿÿÿ8ĞŸã²ß1
+H	java:S106µ"+Replace this use of System.out by a logger.(ÌÓ†8ùÉÃ¢à1
+H	java:S106º"+Replace this use of System.out by a logger.(ºéê‘8úÉÃ¢à1
+M	java:S106Ë"+Replace this use of System.out by a logger.(ŞÀ¬ûıÿÿÿÿ8úÉÃ¢à1
+M	java:S106Ï"+Replace this use of System.out by a logger.(ñî¯Ÿÿÿÿÿÿ8úÉÃ¢à1

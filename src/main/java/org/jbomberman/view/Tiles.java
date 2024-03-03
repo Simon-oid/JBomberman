@@ -40,7 +40,11 @@ public enum Tiles {
   POWERUP_BOMBUP_0(Tiles.class.getResourceAsStream("tiles/powerUp_BombUp_0.png"), true, true),
   POWERUP_BOMBUP_1(Tiles.class.getResourceAsStream("tiles/powerUp_BombUp_1.png"), true, true),
   POWERUP_SKATE_0(Tiles.class.getResourceAsStream("tiles/powerUp_Skate_0.png"), true, true),
-  POWERUP_SKATE_1(Tiles.class.getResourceAsStream("tiles/powerUp_Skate_1.png"), true, true);
+  POWERUP_SKATE_1(Tiles.class.getResourceAsStream("tiles/powerUp_Skate_1.png"), true, true),
+  POWERUP_ICESCREAM_0(
+      Tiles.class.getResourceAsStream("tiles/powerUp_IceScream_0.png"), true, false),
+  POWERUP_ICESCREAM_1(
+      Tiles.class.getResourceAsStream("tiles/powerUp_IceScream_1.png"), true, false);
 
   @Getter private final Image image;
   @Getter private final boolean isCollidable;
