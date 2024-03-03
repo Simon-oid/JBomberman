@@ -1,53 +1,57 @@
 
 e
-java:S2184£"BCast one of the operands of this addition operation to a "double".(ñàø×ûÿÿÿÿ8«ë©à1
+java:S2184¤"BCast one of the operands of this addition operation to a "double".(ñàø×ûÿÿÿÿ8ı¢¯à1
 `
-java:S2184É"BCast one of the operands of this addition operation to a "double".(»ğ¯†8«ë©à1
+java:S2184Ê"BCast one of the operands of this addition operation to a "double".(»ğ¯†8ı¢¯à1
+`
+java:S2184Ê"BCast one of the operands of this addition operation to a "double".(½±ğ¿8ı¢¯à1
 e
-java:S2184ä"BCast one of the operands of this addition operation to a "double".(¢œÒğøÿÿÿÿ8«ë©à1
+java:S2184‰"BCast one of the operands of this addition operation to a "double".(¢œÒğøÿÿÿÿ8ı¢¯à1
 `
-java:S2184ü"BCast one of the operands of this addition operation to a "double".(Ì ËÉ8«ë©à1
+java:S2184¡"BCast one of the operands of this addition operation to a "double".(Ì ËÉ8ı¢¯à1
 <
-java:S1640\"Convert this Map to an EnumMap.(—À¢¢8­ë©à1
+java:S1640]"Convert this Map to an EnumMap.(—À¢¢8Ëµ³¯à1
 A
-java:S1640]"Convert this Map to an EnumMap.(€›³ıÿÿÿÿ8­ë©à1
-u	java:S116"TRename this field "MAP_WIDTH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²öúåûÿÿÿÿ8‹Ÿë©à1
-v	java:S116"URename this field "MAP_HEIGHT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ç„­±ûÿÿÿÿ8‹Ÿë©à1
-Y	java:S107Î"<Method has 8 parameters, which is greater than 7 authorized.(»Ò¬Å8Ÿë©à1
-i
-java:S1871f"LThis branch's code block is the same as the block for the branch on line 99.(¯ùìš8ìÇ“ªà1
-_
-java:S1172•"<Remove this unused method parameter "playerInitialPosition".(Ò¨Òîúÿÿÿÿ8’Ÿë©à1
-J
-java:S1602³",Remove useless curly braces around statement(÷¼¼Ä8™Ÿë©à1
-J
-java:S1602µ",Remove useless curly braces around statement(÷¼¼Ä8™Ÿë©à1
-o
-java:S6201º"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(Ğ–ä˜ûÿÿÿÿ8™Ÿë©à1
-o
-java:S6201Ë"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8Ÿë©à1
-o
-java:S6201Ë"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8Ÿë©à1
-o
-java:S6201Ë"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8Ÿë©à1
-p
-java:S3776Õ"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(²˜Ş8Ÿë©à1
+java:S1640^"Convert this Map to an EnumMap.(€›³ıÿÿÿÿ8Ëµ³¯à1
+u	java:S116"TRename this field "MAP_WIDTH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²öúåûÿÿÿÿ8…¤¯à1
+v	java:S116"URename this field "MAP_HEIGHT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ç„­±ûÿÿÿÿ8…¤¯à1
+Y	java:S107Ï"<Method has 8 parameters, which is greater than 7 authorized.(»Ò¬Å8ˆ¤¯à1
+G	java:S106G"+Replace this use of System.out by a logger.(ÖüË»8Œ¤¯à1
 j
-java:S6201ä"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(Ó£ŞÂ8ŸŸë©à1
-o
-java:S6201ó"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(•µÏ‰øÿÿÿÿ8ŸŸë©à1
-^	java:S125ø"<This block of commented-out lines of code should be removed.(µ´¤ìıÿÿÿÿ8¤Ÿë©à1
-c
-java:S3252÷"EUse static access with "javafx.animation.Animation" for "INDEFINITE".(„Èßõ8¨Ÿë©à1
-i
-java:S6201ˆ"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(ˆ†ŸP8¨Ÿë©à1
-i
-java:S6201ˆ"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(ˆ†ŸP8¨Ÿë©à1
-O
-java:S1602Š",Remove useless curly braces around statement(äÒ´Åúÿÿÿÿ8¬Ÿë©à1
-O
-java:S1602",Remove useless curly braces around statement(äÒ´Åúÿÿÿÿ8¬Ÿë©à1
-h
-java:S3252ü"EUse static access with "javafx.animation.Animation" for "INDEFINITE".(Êı şÿÿÿÿ8¯Ÿë©à1
+java:S1871g"MThis branch's code block is the same as the block for the branch on line 100.(¯ùìš8Á¶³¯à1
+_
+java:S1172–"<Remove this unused method parameter "playerInitialPosition".(Ò¨Òîúÿÿÿÿ8¤¯à1
 J
-java:S1128"(Remove this unused import 'javax.swing'.(Ìí¿Üüÿÿÿÿ8‹È“ªà1
+java:S1602´",Remove useless curly braces around statement(÷¼¼Ä8™¤¯à1
+J
+java:S1602¶",Remove useless curly braces around statement(÷¼¼Ä8š¤¯à1
+o
+java:S6201»"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(Ğ–ä˜ûÿÿÿÿ8š¤¯à1
+o
+java:S6201Ì"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8 ¤¯à1
+o
+java:S6201Ì"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8 ¤¯à1
+o
+java:S6201Ì"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8 ¤¯à1
+p
+java:S3776Ö"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(²˜Ş8¡¤¯à1
+j
+java:S6201å"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(Ó£ŞÂ8£¤¯à1
+o
+java:S6201ô"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(•µÏ‰øÿÿÿÿ8£¤¯à1
+c
+java:S3252Ğ"EUse static access with "javafx.animation.Animation" for "INDEFINITE".(÷ÄÛ½8±¤¯à1
+c
+java:S3252œ"EUse static access with "javafx.animation.Animation" for "INDEFINITE".(„Èßõ8µ¤¯à1
+i
+java:S6201­"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(ˆ†ŸP8µ¤¯à1
+i
+java:S6201­"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(ˆ†ŸP8¶¤¯à1
+O
+java:S1602¯",Remove useless curly braces around statement(äÒ´Åúÿÿÿÿ8¾¤¯à1
+O
+java:S1602´",Remove useless curly braces around statement(äÒ´Åúÿÿÿÿ8¿¤¯à1
+h
+java:S3252¡	"EUse static access with "javafx.animation.Animation" for "INDEFINITE".(Êı şÿÿÿÿ8Ã¤¯à1
+J
+java:S1128"(Remove this unused import 'javax.swing'.(Ìí¿Üüÿÿÿÿ8ò¶³¯à1

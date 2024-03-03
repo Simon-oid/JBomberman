@@ -1233,10 +1233,16 @@ FF >>> 22/10/2023
 ### high priority: [working on animations rn]
 
 - [ ] reworka collisioni del player (si incolla alle pareti)
+- [ ] implementa il supporto per piu' mob dello stesso tipo [provare hasmap di liste per type]
+- [ ] il denkyun dovrebbe poter tankare 2 hit
+- [ ] il denkyun dovrebbe avere una possibilita' di respawnare se il tile exit e' sul campo
+- [ ] le hitbox dei mob non possono essere la stessa grandezza di un tile, per via dei gametick irregolari, a volte
+  la collisione viene detectata pochi pixel prima di quello che e' il bordo del tile / entita' [provare con hitbox
+  piu' piccole e con detection delle collisioni con un offset es. hitbox del mob 45x45 ma la collisione avviene
+  sempre con un offset di 3 pixels]
 
 ---
 
-- [ ] importare sprites di Denkyun
 - [ ] animazione dei punti che da uccidere un mob
 - [ ] animazione dell'hud
 - [ ] animazione della morte del player
@@ -1252,16 +1258,16 @@ FF >>> 22/10/2023
 
 ### low priority:
 
-- [ ] i mob e le bombe dovrebbero essere elementi nella anchor pane, ora come ora sono solo disegnati nel punto giusto
-- [ ] la "priorita'" di come sono disegnati gli sprite non e' fatta in modo intelligente, ogni volta che un nuovo
-  sprite viene disegnato, il player viene rimosso e ridisegnato (potrebbe non funzionare quando le animazioni sono
-  implementate)
-
 ### DONE:
 
 - [x] animazione del TileExit
 - [x] trovare un modo per sistemare il sistema di flag nell'animazione del player
 - [x] animazione del movimento dei mob
+- [x] importare sprites di Denkyun
+- [x] i mob e le bombe dovrebbero essere elementi nella anchor pane, ora come ora sono solo disegnati nel punto giusto
+- [x] la "priorita'" di come sono disegnati gli sprite non e' fatta in modo intelligente, ogni volta che un nuovo
+  sprite viene disegnato, il player viene rimosso e ridisegnato (potrebbe non funzionare quando le animazioni sono
+  implementate)
 
 ***
 

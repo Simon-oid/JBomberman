@@ -68,6 +68,7 @@ public class GameView {
     anchorPane = new AnchorPane(tilePane, player, scoreboard);
 
     initializeMobSprites();
+    System.out.println(mobSprites);
 
     loadDestructibleTileAnimation();
 
@@ -757,7 +758,8 @@ public class GameView {
         animatePuropen(mobType, direction);
       }
     } else {
-      //      playMobMovementAnimation(mobImageView);
+      ImageView denkyunImageView = mobSprites.get(mobType);
+      playDenkyunAnimation(denkyunImageView, mobType);
     }
 
     transition.play();
@@ -801,7 +803,7 @@ public class GameView {
       final int index = i;
       KeyFrame keyFrame =
           new KeyFrame(
-              Duration.seconds(i * 0.2), // Change duration as needed for faster animation
+              Duration.seconds(i * 0.2 / 4), // Change duration as needed for faster animation
               event -> imageView.setImage(sprites[index]));
       mobMovementAnimation.getKeyFrames().add(keyFrame);
     }
@@ -813,6 +815,41 @@ public class GameView {
     mobMovementAnimation.play();
 
     // Return the timeline object
+    return mobMovementAnimation;
+  }
+
+  private Timeline playDenkyunAnimation(ImageView imageView, Type mobType) {
+
+    Timeline mobMovementAnimation = mobMovementAnimations.get(mobType);
+
+    Image[] sprites = getDenkyunSpriteImages();
+
+    Duration frameDuration = Duration.seconds(0.1);
+
+    // Add key frames to change the image at specific intervals for forward animation
+    for (int i = 0; i < sprites.length; i++) {
+      int finalI = i;
+      KeyFrame keyFrame =
+          new KeyFrame(frameDuration.multiply(i), event -> imageView.setImage(sprites[finalI]));
+      mobMovementAnimation.getKeyFrames().add(keyFrame);
+    }
+
+    // Add key frames to change the image at specific intervals for reverse animation
+    for (int i = 0; i < sprites.length; i++) {
+      int finalI = i;
+      KeyFrame keyFrame =
+          new KeyFrame(
+              frameDuration.multiply(i + sprites.length),
+              event -> imageView.setImage(sprites[sprites.length - finalI - 1]));
+      mobMovementAnimation.getKeyFrames().add(keyFrame);
+    }
+
+    // Set the cycle count to indefinite to keep the animation playing
+    mobMovementAnimation.setCycleCount(Timeline.INDEFINITE);
+
+    // Play the animation
+    mobMovementAnimation.play();
+
     return mobMovementAnimation;
   }
 
@@ -1167,7 +1204,7 @@ public class GameView {
   }
 
   // Method to get sprite images for PUROPEN in a specific direction
-  public static Image[] getPuropenSpriteImages(Direction direction) {
+  private static Image[] getPuropenSpriteImages(Direction direction) {
     switch (direction) {
       case UP:
         return new Image[] {
@@ -1200,5 +1237,16 @@ public class GameView {
       default:
         return new Image[] {};
     }
+  }
+
+  private static Image[] getDenkyunSpriteImages() {
+    return new Image[] {
+      Entities.DENKYUN_0.getImage(),
+      Entities.DENKYUN_1.getImage(),
+      Entities.DENKYUN_2.getImage(),
+      Entities.DENKYUN_3.getImage(),
+      Entities.DENKYUN_4.getImage(),
+      Entities.DENKYUN_5.getImage()
+    };
   }
 }
