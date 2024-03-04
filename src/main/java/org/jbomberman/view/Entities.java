@@ -117,7 +117,11 @@ public enum Entities {
   BOMB_EXPLOSION_RIGHT_4(Entities.class.getResourceAsStream("entities/bomb_explosion_right_4.png")),
   BOMB_EXPLOSION_RIGHT_LAST_4(
       Entities.class.getResourceAsStream("entities/bomb_explosion_right_last_4.png")),
-  VOID(Entities.class.getResourceAsStream("entities/VOID.png"));
+  VOID(Entities.class.getResourceAsStream("entities/VOID.png")),
+  PLAYER_HIT_0(Entities.class.getResourceAsStream("entities/player_hit_0.png")),
+  PLAYER_HIT_1(Entities.class.getResourceAsStream("entities/player_hit_1.png")),
+  PLAYER_HIT_2(Entities.class.getResourceAsStream("entities/player_hit_2.png")),
+  PLAYER_HIT_3(Entities.class.getResourceAsStream("entities/player_hit_3.png"));
 
   @Getter private final Image image;
 

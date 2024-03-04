@@ -1280,7 +1280,9 @@ FF >>> 22/10/2023
 
 ### high priority: [working on animations rn]
 
-- [ ] reworka collisioni del player (si incolla alle pareti)
+- [ ] creata l'animazione di quando il player viene colpito, bisogna modificare il model cosi' che quando il player
+  viene colpito, il keyhandler si ferma e riprende quando l'animazione e' finita e il player e' respawnato alle
+  coordinate iniziali
 - [ ] implementa il supporto per piu' mob dello stesso tipo [provare hasmap di liste per type]
 - [ ] il denkyun dovrebbe poter tankare 2 hit
 - [ ] il denkyun dovrebbe avere una possibilita' di respawnare se il tile exit e' sul campo
@@ -1291,7 +1293,6 @@ FF >>> 22/10/2023
 
 ---
 
-- [ ] animazione della morte del player
 - [ ] animazione dello switch del livello
 - [ ] animazione dell'uccisione di un mob
 
@@ -1304,10 +1305,13 @@ FF >>> 22/10/2023
 
 ### low priority:
 
+- [ ] reworka collisioni del player (si incolla alle pareti)
+
 ### DONE:
 
 - [x] animazione dell'hud
 - [x] animazione dei punti che da uccidere un mob
+- [x] animazione della morte del player
 
 ***
 

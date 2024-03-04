@@ -18,6 +18,8 @@ public class KeyHandler {
 
   private AnimationTimer animationTimer;
 
+  private boolean paused = false;
+
   public void onkeyPressed(KeyEvent e) {
     switch (e.getCode()) {
       case W -> upPressed = true;
@@ -104,7 +106,17 @@ public class KeyHandler {
         };
   }
 
-  public void stopTimer() {
-    animationTimer.stop();
+  public void pauseKeyHandler() {
+    if (!paused && animationTimer != null) {
+      animationTimer.stop();
+      paused = true;
+    }
+  }
+
+  public void resumeKeyHandler() {
+    if (paused && animationTimer != null) {
+      animationTimer.start();
+      paused = false;
+    }
   }
 }

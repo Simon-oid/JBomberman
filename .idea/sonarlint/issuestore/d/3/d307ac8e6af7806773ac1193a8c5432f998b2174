@@ -12,6 +12,6 @@ java:S1659"HDeclare "downPressed" and all following declarations on a separate
 ´
 java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(–ÙÇ†ÿÿÿÿÿ
 t
-java:S3776E"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(Ê‹ëùÿÿÿÿ8Šƒß1
+java:S3776G"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(Ê‹ëùÿÿÿÿ8Šƒß1
 T
-java:S1135D"2Complete the task associated to this TODO comment.(«à¸ùùÿÿÿÿ8ÕÒ…¦Ø1
+java:S1135F"2Complete the task associated to this TODO comment.(«à¸ùùÿÿÿÿ8ÕÒ…¦Ø1

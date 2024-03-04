@@ -887,15 +887,46 @@ public class GameView {
 
   public void updatePlayerLives(PlayerLivesUpdateData data) {
     int lives = data.lives();
-    // Update the display to reflect the new player lives
-    // You can implement this based on your game's UI
+
+    playPlayerHitAnimation(player, getPlayerHitSprites());
 
     if (lives == 0) {
       removePlayer();
     }
   }
 
-  public void removePlayer() {
+  private Timeline playPlayerHitAnimation(ImageView imageView, Image[] sprites) {
+
+    // Create keyframes for each sprite in the sequence
+    for (int i = 0; i < sprites.length; i++) {
+      final int index = i;
+      KeyFrame keyFrame =
+          new KeyFrame(
+              Duration.seconds(i * 0.2), // Change duration as needed for faster animation
+              event -> imageView.setImage(sprites[index]));
+      playerMovementAnimation.getKeyFrames().add(keyFrame);
+    }
+
+    // Set the cycle count to indefinite to  keep the animation playing
+    playerMovementAnimation.setCycleCount(1);
+
+    // Play the animation
+    playerMovementAnimation.play();
+
+    // Return the timeline object
+    return playerMovementAnimation;
+  }
+
+  private static Image[] getPlayerHitSprites() {
+    return new Image[] {
+      Entities.PLAYER_HIT_0.getImage(),
+      Entities.PLAYER_HIT_1.getImage(),
+      Entities.PLAYER_HIT_2.getImage(),
+      Entities.PLAYER_HIT_3.getImage(),
+    };
+  }
+
+  private void removePlayer() {
     anchorPane.getChildren().remove(player);
   }
 
