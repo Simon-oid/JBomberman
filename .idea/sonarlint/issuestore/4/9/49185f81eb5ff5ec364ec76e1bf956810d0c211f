@@ -1,57 +1,64 @@
 
 e
-java:S2184¤"BCast one of the operands of this addition operation to a "double".(ñàø×ûÿÿÿÿ8ı¢¯à1
+java:S2184±"BCast one of the operands of this addition operation to a "double".(ñàø×ûÿÿÿÿ8è§‡Óà1
 `
-java:S2184Ê"BCast one of the operands of this addition operation to a "double".(»ğ¯†8ı¢¯à1
+java:S2184×"BCast one of the operands of this addition operation to a "double".(»ğ¯†8è§‡Óà1
 `
-java:S2184Ê"BCast one of the operands of this addition operation to a "double".(½±ğ¿8ı¢¯à1
+java:S2184×"BCast one of the operands of this addition operation to a "double".(½±ğ¿8è§‡Óà1
 e
-java:S2184‰"BCast one of the operands of this addition operation to a "double".(¢œÒğøÿÿÿÿ8ı¢¯à1
+java:S2184ë"BCast one of the operands of this addition operation to a "double".(¸Öóùøÿÿÿÿ8è§‡Óà1
+e
+java:S2184–"BCast one of the operands of this addition operation to a "double".(¢œÒğøÿÿÿÿ8è§‡Óà1
 `
-java:S2184¡"BCast one of the operands of this addition operation to a "double".(Ì ËÉ8ı¢¯à1
+java:S2184®"BCast one of the operands of this addition operation to a "double".(Ì ËÉ8è§‡Óà1
+e
+java:S2184¡
+"HCast one of the operands of this multiplication operation to a "double".(á­‘u8Ÿ¸Óà1
 <
-java:S1640]"Convert this Map to an EnumMap.(—À¢¢8Ëµ³¯à1
+java:S1640j"Convert this Map to an EnumMap.(—À¢¢8ê§‡Óà1
 A
-java:S1640^"Convert this Map to an EnumMap.(€›³ıÿÿÿÿ8Ëµ³¯à1
-u	java:S116"TRename this field "MAP_WIDTH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²öúåûÿÿÿÿ8…¤¯à1
-v	java:S116"URename this field "MAP_HEIGHT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ç„­±ûÿÿÿÿ8…¤¯à1
-Y	java:S107Ï"<Method has 8 parameters, which is greater than 7 authorized.(»Ò¬Å8ˆ¤¯à1
-G	java:S106G"+Replace this use of System.out by a logger.(ÖüË»8Œ¤¯à1
+java:S1640k"Convert this Map to an EnumMap.(€›³ıÿÿÿÿ8ê§‡Óà1
+u	java:S116"TRename this field "MAP_WIDTH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²öúåûÿÿÿÿ8Î¨‡Óà1
+v	java:S116"URename this field "MAP_HEIGHT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ç„­±ûÿÿÿÿ8Î¨‡Óà1
+Y	java:S107Ü"<Method has 8 parameters, which is greater than 7 authorized.(»Ò¬Å8Ñ¨‡Óà1
 j
-java:S1871g"MThis branch's code block is the same as the block for the branch on line 100.(¯ùìš8Á¶³¯à1
+java:S1871t"MThis branch's code block is the same as the block for the branch on line 113.(¯ùìš8Ö¨‡Óà1
 _
-java:S1172–"<Remove this unused method parameter "playerInitialPosition".(Ò¨Òîúÿÿÿÿ8¤¯à1
+java:S1172£"<Remove this unused method parameter "playerInitialPosition".(Ò¨Òîúÿÿÿÿ8×¨‡Óà1
 J
-java:S1602´",Remove useless curly braces around statement(÷¼¼Ä8™¤¯à1
+java:S1602Á",Remove useless curly braces around statement(÷¼¼Ä8ß¨‡Óà1
 J
-java:S1602¶",Remove useless curly braces around statement(÷¼¼Ä8š¤¯à1
+java:S1602Ã",Remove useless curly braces around statement(÷¼¼Ä8ß¨‡Óà1
 o
-java:S6201»"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(Ğ–ä˜ûÿÿÿÿ8š¤¯à1
+java:S6201È"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(Ğ–ä˜ûÿÿÿÿ8ß¨‡Óà1
 o
-java:S6201Ì"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8 ¤¯à1
+java:S6201Ù"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8æ¨‡Óà1
 o
-java:S6201Ì"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8 ¤¯à1
+java:S6201Ù"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8æ¨‡Óà1
 o
-java:S6201Ì"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8 ¤¯à1
+java:S6201Ù"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8æ¨‡Óà1
 p
-java:S3776Ö"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(²˜Ş8¡¤¯à1
+java:S3776ã"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(²˜Ş8æ¨‡Óà1
 j
-java:S6201å"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(Ó£ŞÂ8£¤¯à1
+java:S6201ò"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(Ó£ŞÂ8ç¨‡Óà1
 o
-java:S6201ô"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(•µÏ‰øÿÿÿÿ8£¤¯à1
+java:S6201"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(•µÏ‰øÿÿÿÿ8ç¨‡Óà1
 c
-java:S3252Ğ"EUse static access with "javafx.animation.Animation" for "INDEFINITE".(÷ÄÛ½8±¤¯à1
+java:S3252İ"EUse static access with "javafx.animation.Animation" for "INDEFINITE".(÷ÄÛ½8ï¨‡Óà1
 c
-java:S3252œ"EUse static access with "javafx.animation.Animation" for "INDEFINITE".(„Èßõ8µ¤¯à1
+java:S3252©"EUse static access with "javafx.animation.Animation" for "INDEFINITE".(„Èßõ8ò¨‡Óà1
 i
-java:S6201­"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(ˆ†ŸP8µ¤¯à1
+java:S6201º"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(ˆ†ŸP8ò¨‡Óà1
 i
-java:S6201­"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(ˆ†ŸP8¶¤¯à1
+java:S6201º"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(ˆ†ŸP8ò¨‡Óà1
 O
-java:S1602¯",Remove useless curly braces around statement(äÒ´Åúÿÿÿÿ8¾¤¯à1
+java:S1602¼",Remove useless curly braces around statement(äÒ´Åúÿÿÿÿ8ö¨‡Óà1
 O
-java:S1602´",Remove useless curly braces around statement(äÒ´Åúÿÿÿÿ8¿¤¯à1
+java:S1602Á",Remove useless curly braces around statement(äÒ´Åúÿÿÿÿ8ö¨‡Óà1
+b
+java:S3252…	"EUse static access with "javafx.animation.Animation" for "INDEFINITE".(¨ˆ¹N8ù¨‡Óà1
 h
-java:S3252¡	"EUse static access with "javafx.animation.Animation" for "INDEFINITE".(Êı şÿÿÿÿ8Ã¤¯à1
-J
-java:S1128"(Remove this unused import 'javax.swing'.(Ìí¿Üüÿÿÿÿ8ò¶³¯à1
+java:S3252Ï	"EUse static access with "javafx.animation.Animation" for "INDEFINITE".(Êı şÿÿÿÿ8û¨‡Óà1
+h
+java:S3252¥
+"EUse static access with "javafx.animation.Animation" for "INDEFINITE".(òğšÓıÿÿÿÿ8¶»”Óà1

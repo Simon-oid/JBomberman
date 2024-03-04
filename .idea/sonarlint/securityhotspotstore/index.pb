@@ -107,3 +107,9 @@ Csrc/main/java/org/jbomberman/model/listener/GameOverUpdateData.java,7\4\74ff30
 .src/main/java/org/jbomberman/view/ChiLoSa.java,f\f\ffddaa0b8877c6b737dd0984f8bdd35be2147d96
 k
 ;src/main/java/org/jbomberman/model/tiles/ImmovableTile.java,c\4\c42d97af922e2f9f22886fc3552833327540aedc
+b
+2src/main/java/org/jbomberman/view/FontMobKill.java,a\0\a0dd16c3e6176ebe168cd7e2db7467e677658900
+i
+9src/main/java/org/jbomberman/view/FontMobKillFlicker.java,9\6\96758495cafb54ec38d97ea24757b4fa880fe522
+\
+,src/main/java/org/jbomberman/view/Clock.java,c\9\c9c8fa66c3d9aa35af2593ee3c536561c5e25d49

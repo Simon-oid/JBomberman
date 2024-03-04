@@ -1274,5 +1274,46 @@ FF >>> 22/10/2023
 ===========================================================================
 ***
 
+### 4/03/2024
+
+### TO-DO:
+
+### high priority: [working on animations rn]
+
+- [ ] reworka collisioni del player (si incolla alle pareti)
+- [ ] implementa il supporto per piu' mob dello stesso tipo [provare hasmap di liste per type]
+- [ ] il denkyun dovrebbe poter tankare 2 hit
+- [ ] il denkyun dovrebbe avere una possibilita' di respawnare se il tile exit e' sul campo
+- [ ] le hitbox dei mob non possono essere la stessa grandezza di un tile, per via dei gametick irregolari, a volte
+  la collisione viene detectata pochi pixel prima di quello che e' il bordo del tile / entita' [provare con hitbox
+  piu' piccole e con detection delle collisioni con un offset es. hitbox del mob 45x45 ma la collisione avviene
+  sempre con un offset di 3 pixels]
+
+---
+
+- [ ] animazione della morte del player
+- [ ] animazione dello switch del livello
+- [ ] animazione dell'uccisione di un mob
+
+---
+
+- REQUISITI MANCANTI:
+- [ ] animazioni
+- [ ] suono
+- [ ] player selection
+
+### low priority:
+
+### DONE:
+
+- [x] animazione dell'hud
+- [x] animazione dei punti che da uccidere un mob
+
+***
+
+===========================================================================
+***
+
+
 
 

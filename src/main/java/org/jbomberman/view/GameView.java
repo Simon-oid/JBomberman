@@ -14,7 +14,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.TilePane;
 import javafx.util.Duration;
-import javax.swing.*;
 import org.jbomberman.model.entita.Direction;
 import org.jbomberman.model.entita.Type;
 import org.jbomberman.model.listener.*;
@@ -31,11 +30,15 @@ public class GameView {
   private static final int Y_OFFSET = 100;
   private ImageView[] fontSprites;
   private ImageView[] scoreFontSprites;
+  private ImageView[] scoreFontFlickerSprites;
   private Timeline playerMovementAnimation;
   private Direction lastAnimationDirection = Direction.NONE;
   private HashMap<Type, Timeline> mobMovementAnimations;
   private Direction lastPuropenDirection = Direction.NONE;
   private Image[] destructibleTileSprites;
+  private ImageView[] clockSprites;
+  private Timeline clockAnimation;
+  private ImageView clockImageView;
 
   public GameView() {
 
@@ -67,8 +70,16 @@ public class GameView {
     // Add player and scoreboard to anchorPane
     anchorPane = new AnchorPane(tilePane, player, scoreboard);
 
+    // Load clock sprites
+    loadClockSprites();
+
+    // Initialize clock animation
+    initializeClockAnimation();
+
+    // Draw clock on HUD
+    drawClockOnHUD();
+
     initializeMobSprites();
-    System.out.println(mobSprites);
 
     loadDestructibleTileAnimation();
 
@@ -77,6 +88,8 @@ public class GameView {
 
     // Load font sprites for numbers 0-9
     loadScoreFontSprites();
+
+    loadScoreFlickerFontSprites();
 
     // Positioning elements within the AnchorPane using layout constraints
     AnchorPane.setTopAnchor(tilePane, (double) Y_OFFSET); // Shift tilePane down by 256 pixels
@@ -859,7 +872,7 @@ public class GameView {
     int x = data.x();
     int y = data.y();
 
-    spawnScoreNumbers(score, x, y);
+    spawnScoreNumbers(score, x, y + 50);
 
     // Remove the sprite of the mob from the screen
     removeOldMobSprite(mobType);
@@ -1086,16 +1099,28 @@ public class GameView {
 
   // Method to load font sprites for numbers 0-9
   private void loadScoreFontSprites() {
-    scoreFontSprites = new ImageView[10]; // Assuming you have sprites for digits 0-9
+    scoreFontSprites = new ImageView[5]; // Assuming you have sprites for digits 0-9
 
     // Load font sprites for digits 0-9
-    for (int i = 0; i < 10; i++) {
-      scoreFontSprites[i] = new ImageView(Font.values()[i].getImage());
+    for (int i = 0; i < 5; i++) {
+      scoreFontSprites[i] = new ImageView(FontMobKill.values()[i].getImage());
       scoreFontSprites[i].setFitWidth(8 * 2.8); // Adjust width based on sprite size
       scoreFontSprites[i].setFitHeight(14 * 2.8); // Adjust height based on sprite size
     }
   }
 
+  private void loadScoreFlickerFontSprites() {
+    scoreFontFlickerSprites = new ImageView[5]; // Assuming you have sprites for digits 0-9
+
+    // Load font sprites for digits 0-9
+    for (int i = 0; i < 5; i++) {
+      scoreFontFlickerSprites[i] = new ImageView(FontMobKillFlicker.values()[i].getImage());
+      scoreFontFlickerSprites[i].setFitWidth(8 * 2.8); // Adjust width based on sprite size
+      scoreFontFlickerSprites[i].setFitHeight(14 * 2.8); // Adjust height based on sprite size
+    }
+  }
+
+  // Method to spawn numbers when mobs are killed
   // Method to spawn numbers when mobs are killed
   public void spawnScoreNumbers(int score, double x, double y) {
     String scoreString = String.valueOf(score);
@@ -1108,19 +1133,40 @@ public class GameView {
         ImageView digitView = new ImageView(scoreFontSprites[digit].getImage());
         digitView.setFitWidth(8 * 2.8);
         digitView.setFitHeight(44);
+        digitView.setX(startX + (i * 10 * 2.8));
+        digitView.setY(y);
 
-        // Calculate the X position based on digit index and spacing
-        double xPos = startX + (i * 10 * 2.8); // Adjust spacing as needed
-        digitView.setX(xPos);
-        digitView.setY(y); // Adjust Y position as needed
+        // Create a translation animation to move the digit up
+        Timeline moveUpAnimation =
+            new Timeline(
+                new KeyFrame(Duration.ZERO, e -> digitView.setTranslateY(0)),
+                new KeyFrame(Duration.seconds(1), e -> digitView.setTranslateY(-20)),
+                new KeyFrame(Duration.seconds(2), e -> digitView.setTranslateY(-40)));
+
+        // Create a timeline to flicker the digit between normal and flicker sprites
+        Timeline flickerAnimation =
+            new Timeline(
+                new KeyFrame(
+                    Duration.ZERO, e -> digitView.setImage(scoreFontSprites[digit].getImage())),
+                new KeyFrame(
+                    Duration.seconds(0.2),
+                    e -> digitView.setImage(scoreFontFlickerSprites[digit].getImage())),
+                new KeyFrame(
+                    Duration.seconds(0.4),
+                    e -> digitView.setImage(scoreFontSprites[digit].getImage())));
+        flickerAnimation.setCycleCount(Timeline.INDEFINITE);
+
+        // Play both animations together
+        moveUpAnimation.play();
+        flickerAnimation.play();
+
         anchorPane.getChildren().add(digitView);
 
-        // Schedule a task to remove the digit after 2 seconds
-        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-        scheduler.schedule(
-            () -> Platform.runLater(() -> anchorPane.getChildren().remove(digitView)),
-            2,
-            TimeUnit.SECONDS);
+        // Remove the digit from the anchorPane after 2 seconds
+        Timeline removeAnimation =
+            new Timeline(
+                new KeyFrame(Duration.seconds(3), e -> anchorPane.getChildren().remove(digitView)));
+        removeAnimation.play();
       }
     }
   }
@@ -1248,5 +1294,41 @@ public class GameView {
       Entities.DENKYUN_4.getImage(),
       Entities.DENKYUN_5.getImage()
     };
+  }
+
+  private void loadClockSprites() {
+    clockSprites = new ImageView[8];
+    for (int i = 0; i < 8; i++) {
+      clockSprites[i] = new ImageView(Clock.values()[i].getImage());
+    }
+  }
+
+  private void initializeClockAnimation() {
+    clockAnimation = new Timeline();
+    // Add keyframes to switch between clock sprites
+    for (int i = 0; i <= 8; i++) {
+      final int index = i;
+      KeyFrame keyFrame =
+          new KeyFrame(
+              Duration.seconds(i * 1),
+              event -> clockImageView.setImage(clockSprites[index].getImage()));
+      clockAnimation.getKeyFrames().add(keyFrame);
+    }
+    clockAnimation.setCycleCount(Timeline.INDEFINITE);
+  }
+
+  private void drawClockOnHUD() {
+    clockImageView = new ImageView();
+    clockImageView.setFitWidth(16 * 2.8); // Adjust width based on sprite size
+    clockImageView.setFitHeight(25 * 2.8); // Adjust height based on sprite size
+    // Set clock position to center of scoreboard
+    double x = (720 - 382); // Assuming scoreboard width is 720
+    double y = 24; // Adjust Y position as needed
+    clockImageView.setX(x);
+    clockImageView.setY(y);
+    // Start clock animation
+    clockAnimation.play();
+    // Add clock to HUD AnchorPane
+    anchorPane.getChildren().add(clockImageView);
   }
 }
