@@ -6,8 +6,12 @@ import java.util.Observer;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,6 +31,7 @@ public class SceneController implements Observer {
   private GameView gameRoot;
 
   public void initialize() {
+
     KeyHandler keyHandler = KeyHandler.getInstance();
 
     if (gameRoot == null) gameRoot = new GameView();
@@ -106,7 +111,11 @@ public class SceneController implements Observer {
   public void update(Observable o, Object arg) {
     if (arg instanceof PackageData data) {
       switch (data.type()) {
-        case LOADMAP -> Platform.runLater(() -> gameRoot.loadMap((LoadMapData) data));
+        case LOADMAP ->
+            Platform.runLater(
+                () -> {
+                  gameRoot.loadMap((LoadMapData) data);
+                });
         case MOVE_PLAYER -> Platform.runLater(() -> gameRoot.movePlayer((PlayerMovementData) data));
         case SPAWN_BOMB -> Platform.runLater(() -> gameRoot.spawnBomb((BombSpawnData) data));
         case BOMB_EXPLOSION ->

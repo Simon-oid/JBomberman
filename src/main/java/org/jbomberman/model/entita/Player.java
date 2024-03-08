@@ -22,7 +22,7 @@ public class Player extends Entity {
 
   private int explosionRadius;
 
-  private int invincibilityDuration = 3; // In seconds
+  private int invincibilityDuration = 2; // In seconds
 
   public Player(int x, int y, int width, int height, int lives, Direction direction, int score) {
     super(x, y, width, height, direction);

@@ -1,60 +1,56 @@
 
-œ	java:S135ª"YReduce the total number of break and continue statements in this loop to use at most one.(óÁ±8¾Öúñà1J$ba72d752-948e-4fdb-acce-f79a48e79227
+œ	java:S135¼"YReduce the total number of break and continue statements in this loop to use at most one.(óÁ±8¾‹÷á1J$62e2596c-ab1e-41c9-ac88-525d85d6d8c8
 ‹
-java:S2184ø"BCast one of the operands of this addition operation to a "double".(å€üÿÿÿÿ8ÂÖúñà1J$80ddc858-9942-43ce-b492-a6305d9d2bb9
+java:S2184Š"BCast one of the operands of this addition operation to a "double".(å€üÿÿÿÿ8‘¾‹÷á1J$03dc87aa-e234-4a64-9439-176c7b55e40b
 ‹
-java:S2184ø"BCast one of the operands of this addition operation to a "double".(å€üÿÿÿÿ8ÂÖúñà1J$ebb3cda5-229c-4880-806d-af09d946905d
+java:S2184Š"BCast one of the operands of this addition operation to a "double".(å€üÿÿÿÿ8‘¾‹÷á1J$00fe0987-d69b-49ba-a2ff-b6df4d50698b
 Ü
-java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(ú„ŠÌ8«×úñà1J$70256481-3376-4513-bba0-d41d7757a892
+java:S6548""˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(ú„ŠÌ8ğ¾‹÷á1J$7aa112c9-273a-4df1-b79b-b6d420b72de9
 u
-java:S1874"2Remove this use of "Observable"; it is deprecated.(ú„ŠÌ8¬×úñà1J$48b8bf3e-92dc-4eb9-a209-270d390ce72e
+java:S1874""2Remove this use of "Observable"; it is deprecated.(ú„ŠÌ8ñ¾‹÷á1J$036ed505-6f82-4f73-9f2c-b2f35ff23d9d
 }
-java:S1117†":Rename "player" which hides the field declared at line 45.(Ì¸»!8³×úñà1J$113bb5f1-671d-4414-8faf-52ee8f9136cf
-n	java:S106´"+Replace this use of System.out by a logger.(ö§²–8¶×úñà1J$29e69792-00d1-497f-9212-a3cc3286ca65
+java:S1117‰":Rename "player" which hides the field declared at line 48.(Ì¸»!8ö¾‹÷á1J$62012371-db1f-4dd8-a451-1298b2067cc2
+n	java:S106·"+Replace this use of System.out by a logger.(ö§²–8ù¾‹÷á1J$bf0dd71e-9e64-427d-8cdc-b6ae6f84cc35
 „
-java:S6201Ü"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8·×úñà1J$70ef7425-4302-45cf-b933-7e37e2f90428
+java:S6201î"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8Çœü÷á1J$dd52a885-8ea8-4f4b-ba8b-832854bb98f4
 v
-java:S1135“"2Complete the task associated to this TODO comment.(Çé°8º×úñà1J$cdecedd0-b9b0-4b24-ad93-8c5a4ee56240
-‹
-java:S6201·"BReplace this instanceof check and cast with 'instanceof Bomb bomb'(¬ĞÆ“úÿÿÿÿ8»×úñà1J$9da5bc79-9dd9-4fb1-b752-73aa19d4b718
-‹
-java:S6201õ"BReplace this instanceof check and cast with 'instanceof Bomb bomb'(¬ĞÆ“úÿÿÿÿ8½×úñà1J$f863bf8d-e815-4fcd-88f7-bbd4e79180a0
+java:S1135¥"2Complete the task associated to this TODO comment.(Çé°8Éœü÷á1J$5ee28d04-3074-441d-9f83-73dbe3d3f3ad
 ‰
-java:S6201†"EReplace this instanceof check and cast with 'instanceof Mob otherMob'(˜‚„°8¾×úñà1J$ce7ab9c0-b6b9-4209-8e34-5f17a2339750
+java:S6201˜"EReplace this instanceof check and cast with 'instanceof Mob otherMob'(˜‚„°8Ìœü÷á1J$ff2b7097-b72f-4e55-bcdb-ed9315b4d7c4
 a
-java:S2119£"Save and re-use this "Random".(¼İÅf8¿×úñà1J$867421cf-75b4-44bc-a5c0-2eaf73315c74
+java:S2119µ"Save and re-use this "Random".(¼İÅf8Íœü÷á1J$7b08c537-d7f4-482e-a46f-e12da4743268
 
-java:S1854¸"=Remove this useless assignment to local variable "nextTileY".(æ€âë8Ä×úñà1J$2830f713-272b-4ca9-b0a0-12d78391b97f
+java:S1854Ê"=Remove this useless assignment to local variable "nextTileY".(æ€âë8Òœü÷á1J$a79c80f5-f518-4895-a277-1262d9ca8d01
 †
-java:S1854·"=Remove this useless assignment to local variable "nextTileX".(ëÎÅäşÿÿÿÿ8Ä×úñà1J$3cf605c2-9e09-4b55-8bd0-e1709c39682a
-	java:S125°"<This block of commented-out lines of code should be removed.(š€Ê¤8Ä×úñà1J$815268c9-9818-4e64-bd29-8db44d35fa10
+java:S1854É"=Remove this useless assignment to local variable "nextTileX".(ëÎÅäşÿÿÿÿ8Ä×úñà1J$b3415075-7361-4585-b636-0156a1964f34
+	java:S125Â"<This block of commented-out lines of code should be removed.(š€Ê¤8Òœü÷á1J$635e874d-99bf-4fe7-88e6-5914b07ec8e4
 w
-java:S1481·".Remove this unused "nextTileX" local variable.(ëÎÅäşÿÿÿÿ8Å×úñà1J$83cfc04d-c64d-49a6-ac30-f92ee0aff937
+java:S1481É".Remove this unused "nextTileX" local variable.(ëÎÅäşÿÿÿÿ8Å×úñà1J$90bc4692-0a99-4e84-8cbd-737675fb6c51
 r
-java:S1481¸".Remove this unused "nextTileY" local variable.(æ€âë8Å×úñà1J$f71261bf-ced0-4558-bce5-54380ab5cccc
-	java:S125º"<This block of commented-out lines of code should be removed.(öì¯8Å×úñà1J$fc889051-d0fa-4a6a-8ac4-74000e230f05
-„	java:S125š"<This block of commented-out lines of code should be removed.(ÍÊÃåùÿÿÿÿ8Ç×úñà1J$c4538e5a-db2b-4e53-9fd3-4746da4ac651
+java:S1481Ê".Remove this unused "nextTileY" local variable.(æ€âë8Óœü÷á1J$049abe37-0103-4abc-94b4-cf0dbc488d8c
+	java:S125Ì"<This block of commented-out lines of code should be removed.(öì¯8Óœü÷á1J$8bfbb4cd-7e10-4acb-a088-bbec08dd7e90
+„	java:S125¬"<This block of commented-out lines of code should be removed.(ÍÊÃåùÿÿÿÿ8Õœü÷á1J$fa17ca1e-6f2c-4a7a-a3a4-2c3757468833
 „
-java:S6201"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8Ç×úñà1J$1bc9fbff-757f-4ab4-b88e-d3a78545be52
-m	java:S106ª"+Replace this use of System.out by a logger.(«•ğF8Ç×úñà1J$df51f02a-aa62-4a54-adab-9459a1350b44
-m	java:S106±"+Replace this use of System.out by a logger.(²â„]8Ç×úñà1J$aba28965-e79b-4027-8609-a17ebfe502fc
-„	java:S125¸"<This block of commented-out lines of code should be removed.(Ä´‡öùÿÿÿÿ8È×úñà1J$bd6d46f3-a8e6-4872-b299-2cee14c46004
+java:S6201°"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8Õœü÷á1J$b8a92e92-48cc-4574-accc-c17430d37cf9
+m	java:S106¼"+Replace this use of System.out by a logger.(«•ğF8Õœü÷á1J$54203549-2134-4c55-a82a-c699bf3fa6d5
+m	java:S106Ã"+Replace this use of System.out by a logger.(²â„]8Öœü÷á1J$cfde4ceb-9032-45df-83bd-225f69305453
+„	java:S125Ê"<This block of commented-out lines of code should be removed.(Ä´‡öùÿÿÿÿ8Öœü÷á1J$375cc99d-b80d-488d-8bf1-9b472c3b7a34
 p
-java:S1172ÿ",Remove this unused method parameter "delta".(ò…ŒÖ8Ê×úñà1J$c28741f5-47c4-4251-b2d2-375567b04342
-„	java:S125‰"<This block of commented-out lines of code should be removed.(ó½º·úÿÿÿÿ8®æĞïá1J$66e133c5-821f-4ef5-a2a5-a9bd30ec604c
-n	java:S106"+Replace this use of System.out by a logger.(üÑ‚Ü8õŒÑïá1J$a4920319-f654-4403-a360-fea540058d15
+java:S1172‘",Remove this unused method parameter "delta".(ò…ŒÖ8Øœü÷á1J$c9309144-4625-4bc9-bf29-4b6116ac504b
+„	java:S125›"<This block of commented-out lines of code should be removed.(ó½º·úÿÿÿÿ8Ùœü÷á1J$04b6c538-aa10-4d22-9c76-61e3c35ecfa3
+n	java:S106¢"+Replace this use of System.out by a logger.(üÑ‚Ü8Ùœü÷á1J$ddebd4e6-cf69-4aef-ade0-5e35473e1619
 „
-java:S6201¦"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8öŒÑïá1J$01f1ccd5-cd58-47e2-83a9-405753673674
-s	java:S106Ö"+Replace this use of System.out by a logger.(ƒ‚³ëıÿÿÿÿ8÷ŒÑïá1J$7e9e21f6-7461-404e-a755-c867190a9194
+java:S6201¸"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8Úœü÷á1J$267ca3ce-ca9b-4108-aab5-22a5eddf9b5d
+s	java:S106è"+Replace this use of System.out by a logger.(ƒ‚³ëıÿÿÿÿ8Ûœü÷á1J$fa3dbbd8-1b78-46c7-b660-95afe1304d34
 o
-java:S1905ê"&Remove this unnecessary cast to "int".(ÇÏ¥µøÿÿÿÿ8ùŒÑïá1J$b12ed884-c591-4bc1-81ac-1853b7e3bc03
+java:S1905ü"&Remove this unnecessary cast to "int".(ÇÏ¥µøÿÿÿÿ8ùŒÑïá1J$c5d537c3-0b9c-41e3-9610-850d6cc580a8
 j
-java:S1905ë"&Remove this unnecessary cast to "int".(ÍŠ¼³8ùŒÑïá1J$cad07f32-1942-475a-8bec-538ddb894c02
-s	java:S106î"+Replace this use of System.out by a logger.(ôï¼¹ûÿÿÿÿ8ùŒÑïá1J$a951b078-9fb9-4b79-a2b5-2a1311d06f8a
-s	java:S106ı"+Replace this use of System.out by a logger.(™¶ÃÈıÿÿÿÿ8úŒÑïá1J$adeaf4bb-6d1b-434f-b567-c5545b2139fa
-n	java:S106‡"+Replace this use of System.out by a logger.(ÒÔÌÛ8úŒÑïá1J$11aebabd-dfd9-4408-9334-9e9fc90f9c4c
-s	java:S106¿"+Replace this use of System.out by a logger.(™Ö¹Àÿÿÿÿÿ8üŒÑïá1J$375d380d-e01f-4236-bf06-b90f22d846b8
-n	java:S106Ó"+Replace this use of System.out by a logger.(ÌÓ†8ıŒÑïá1J$a230f2c7-8729-491a-9087-2f10ac0541b3
-n	java:S106Ø"+Replace this use of System.out by a logger.(ºéê‘8ıŒÑïá1J$43ab99b1-f661-465f-ac96-a42256f9f08e
-s	java:S106é"+Replace this use of System.out by a logger.(ŞÀ¬ûıÿÿÿÿ8şŒÑïá1J$67d9b108-5ec0-4e20-8347-4945439dc00d
-s	java:S106í"+Replace this use of System.out by a logger.(ñî¯Ÿÿÿÿÿÿ8şŒÑïá1J$9d2b9d8b-7a4c-4c79-9005-6914253853a1
+java:S1905ı"&Remove this unnecessary cast to "int".(ÍŠ¼³8Üœü÷á1J$1947c217-d21a-4193-849c-3b3b14216722
+s	java:S106€"+Replace this use of System.out by a logger.(ôï¼¹ûÿÿÿÿ8Üœü÷á1J$033693a6-a7ea-4f57-8c87-2ad76057d142
+s	java:S106"+Replace this use of System.out by a logger.(™¶ÃÈıÿÿÿÿ8İœü÷á1J$9aa5634e-61f5-4f79-92d6-e73387768fc0
+n	java:S106™"+Replace this use of System.out by a logger.(ÒÔÌÛ8İœü÷á1J$f43ac158-3170-4beb-8ac2-fc6894cfc885
+s	java:S106Ñ"+Replace this use of System.out by a logger.(™Ö¹Àÿÿÿÿÿ8Şœü÷á1J$4ec630a7-43d6-4944-9b36-1754c403e893
+n	java:S106å"+Replace this use of System.out by a logger.(ÌÓ†8ßœü÷á1J$be9e9372-5076-4171-9415-8c7d42c8091e
+n	java:S106ê"+Replace this use of System.out by a logger.(ºéê‘8ßœü÷á1J$e0131948-2bb7-4210-92bd-605d84ce92e4
+s	java:S106û"+Replace this use of System.out by a logger.(ŞÀ¬ûıÿÿÿÿ8àœü÷á1J$6396a6a3-b82f-4482-acce-604ff370cfbe
+s	java:S106ÿ"+Replace this use of System.out by a logger.(ñî¯Ÿÿÿÿÿÿ8àœü÷á1J$2feb017a-a5e9-4174-b061-c2857f8aec43

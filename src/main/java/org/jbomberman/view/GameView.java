@@ -1,7 +1,9 @@
 package org.jbomberman.view;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -41,46 +43,20 @@ public class GameView {
   private Timeline clockAnimation;
   private ImageView clockImageView;
 
-  public GameView() {
+  private static final double ANIMATION_DURATION = 0.5; // Duration for animations in seconds
+  private static final double HUD_APPEARANCE_DELAY = 0; // Delay before HUD appears
 
+  public GameView() {
     playerMovementAnimation = new Timeline();
 
-    player = new ImageView(Entities.PLAYER.getImage());
-    player.setFitHeight(96);
-    player.setFitWidth(48);
+    // Initialize player and tilePane
+    initializePlayerAndTilePane();
 
-    tilePane = new TilePane();
-
-    tilePane.setPrefRows(MAP_HEIGHT);
-    tilePane.setPrefColumns(MAP_WIDTH);
-
-    for (int i = 1; i <= MAP_WIDTH * MAP_HEIGHT; i++) {
-      ImageView imageView = new ImageView();
-      imageView.setFitHeight(48);
-      imageView.setFitWidth(48);
-      imageView.setSmooth(false);
-      tilePane.getChildren().add(imageView);
-    }
-
-    anchorPane = new AnchorPane(tilePane, player);
-
-    scoreboard = new ImageView(HUD.HUD_SPRITE.getImage()); // Load custom scoreboard sprite
-    scoreboard.setFitWidth(720);
-    scoreboard.setFitHeight(100);
-
-    // Add player and scoreboard to anchorPane
-    anchorPane = new AnchorPane(tilePane, player, scoreboard);
+    // Initialize scoreboard
+    initializeScoreboard();
 
     // Load clock sprites
     loadClockSprites();
-
-    // Initialize clock animation
-    initializeClockAnimation();
-
-    // Draw clock on HUD
-    drawClockOnHUD();
-
-    initializeMobSprites();
 
     loadDestructibleTileAnimation();
 
@@ -92,15 +68,147 @@ public class GameView {
 
     loadScoreFlickerFontSprites();
 
-    // Positioning elements within the AnchorPane using layout constraints
-    AnchorPane.setTopAnchor(tilePane, (double) Y_OFFSET); // Shift tilePane down by 256 pixels
-    AnchorPane.setLeftAnchor(tilePane, 0.0); // Position tilePane at the left
+    // Add player and scoreboard to anchorPane
+    anchorPane = new AnchorPane(player, scoreboard, tilePane); // Exclude tilePane initially
 
+    // Positioning elements within the AnchorPane using layout constraints
     AnchorPane.setTopAnchor(player, (double) Y_OFFSET); // Shift player down by 256 pixels
     AnchorPane.setLeftAnchor(player, 0.0); // Position player at the left
 
+    // Positioning elements within the AnchorPane using layout constraints
+    AnchorPane.setTopAnchor(tilePane, (double) Y_OFFSET); // Shift tilepane down by 256 pixels
+    AnchorPane.setLeftAnchor(tilePane, 0.0); // Position tilepane at the left
+
     AnchorPane.setTopAnchor(scoreboard, 0.0); // Position scoreboard at the bottom
     AnchorPane.setLeftAnchor(scoreboard, 0.0); // Position scoreboard at the left
+
+    initializeMobSprites();
+    // Initialize clock animation
+    initializeClockAnimation();
+
+    // Draw clock on HUD
+    drawClockOnHUD();
+
+    // Slowly appear the HUD elements
+    slowlyAppearHUD();
+
+    // Schedule the addition of tilePane with a delay
+    Timeline timeline =
+        new Timeline(
+            new KeyFrame(
+                Duration.seconds(0.8),
+                event -> {
+                  // Slide in the tilemap from below
+                  slideInTilemapFromBelow();
+                }));
+    timeline.setCycleCount(1); // Ensure timeline executes only once
+    timeline.play();
+  }
+
+  // Method to initialize player and tilePane
+  private void initializePlayerAndTilePane() {
+    player = new ImageView(Entities.VOID.getImage());
+    player.setFitHeight(96);
+    player.setFitWidth(48);
+
+    tilePane = new TilePane();
+    tilePane.setPrefRows(MAP_HEIGHT);
+    tilePane.setPrefColumns(MAP_WIDTH);
+
+    // Add tile images to tilePane
+    for (int i = 1; i <= MAP_WIDTH * MAP_HEIGHT; i++) {
+      ImageView imageView = new ImageView();
+      imageView.setFitHeight(48);
+      imageView.setFitWidth(48);
+      imageView.setSmooth(false);
+      tilePane.getChildren().add(imageView);
+    }
+  }
+
+  // Method to initialize scoreboard
+  private void initializeScoreboard() {
+    scoreboard = new ImageView(HUD.HUD_SPRITE.getImage()); // Load custom scoreboard sprite
+    scoreboard.setFitWidth(720);
+    scoreboard.setFitHeight(100);
+  }
+
+  // Method to slowly appear the HUD elements
+  // Method to slowly appear the HUD elements
+  public void slowlyAppearHUD() {
+    List<Node> hudNodes = new ArrayList<>(anchorPane.getChildren());
+    hudNodes.remove(tilePane); // Exclude tilePane from fading animation
+    fadeIn(hudNodes, ANIMATION_DURATION, HUD_APPEARANCE_DELAY);
+
+    // Fade in the score numbers
+    fadeInScoreNumbers();
+
+    // Fade in the clock
+    fadeInClock();
+  }
+
+  // Utility method to fade in the score numbers with a delay
+  private void fadeInScoreNumbers() {
+    fadeIn(Arrays.asList(scoreFontSprites), ANIMATION_DURATION, HUD_APPEARANCE_DELAY);
+    fadeIn(Arrays.asList(scoreFontFlickerSprites), ANIMATION_DURATION, HUD_APPEARANCE_DELAY);
+  }
+
+  // Utility method to fade in the clock with a delay
+  private void fadeInClock() {
+    clockImageView.setOpacity(0.0);
+
+    FadeTransition fadeTransition =
+        new FadeTransition(Duration.seconds(ANIMATION_DURATION), clockImageView);
+    fadeTransition.setFromValue(0.0);
+    fadeTransition.setToValue(1.0);
+    fadeTransition.setDelay(Duration.seconds(HUD_APPEARANCE_DELAY)); // Add the delay
+    fadeTransition.play();
+  }
+
+  // Method to slide in the tilemap from below
+  public void slideInTilemapFromBelow() {
+
+    // Schedule the slide-in animation with the specified delay
+    Timeline timeline =
+        new Timeline(
+            new KeyFrame(
+                Duration.seconds(1),
+                event -> {
+                  double finalX = 0; // Final X position
+                  double finalY = 0; // Final Y position
+                  double initialY = 900; // Start from below the screen
+
+                  slideIn(tilePane, ANIMATION_DURATION, finalX, finalX, initialY, finalY);
+                }));
+    timeline.play();
+  }
+
+  // Utility method to slide in a node from below
+  // Utility method to slide in a node from below
+  private void slideIn(
+      Node node, double durationSeconds, double fromX, double toX, double fromY, double toY) {
+    node.setTranslateX(fromX);
+    node.setTranslateY(fromY);
+    TranslateTransition translateTransition =
+        new TranslateTransition(Duration.seconds(durationSeconds), node);
+    translateTransition.setFromX(fromX);
+    translateTransition.setToX(toX);
+    translateTransition.setFromY(fromY);
+    translateTransition.setToY(toY);
+    translateTransition.play();
+  }
+
+  // Utility method to fade in a list of nodes with a delay
+  private void fadeIn(List<Node> nodes, double durationSeconds, double delaySeconds) {
+    for (Node node : nodes) {
+      if (node != tilePane) { // Exclude tilePane from fading animation
+        node.setOpacity(0.0);
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(durationSeconds), node);
+        fadeTransition.setFromValue(0.0);
+        fadeTransition.setToValue(1.0);
+        fadeTransition.setDelay(Duration.seconds(delaySeconds));
+        fadeTransition.play();
+      }
+    }
   }
 
   private void initializeMobSprites() {
@@ -133,6 +241,7 @@ public class GameView {
   }
 
   public void loadMap(LoadMapData data) {
+
     int i = 0;
     for (Tiles tiles : data.matrix()) {
       ImageView tileImageView = (ImageView) tilePane.getChildren().get(i++);
@@ -928,7 +1037,7 @@ public class GameView {
     }
   }
 
-  private Timeline playPlayerHitAnimation(ImageView imageView, Image[] sprites) {
+  private void playPlayerHitAnimation(ImageView imageView, Image[] sprites) {
 
     // Clear existing key frames from playerMovementAnimation
     playerMovementAnimation.getKeyFrames().clear();
@@ -948,11 +1057,24 @@ public class GameView {
     // Set the cycle count to indefinite to  keep the animation playing
     playerHitAnimation.setCycleCount(1);
 
-    // Play the animation
+    // Play the hit animation
+    playerHitAnimation.setOnFinished(event -> playFlickerAnimation(imageView));
     playerHitAnimation.play();
+  }
 
-    // Return the timeline object
-    return playerHitAnimation;
+  private void playFlickerAnimation(ImageView imageView) {
+    // Create a Timeline for flickering
+    Timeline flickerAnimation =
+        new Timeline(
+            new KeyFrame(Duration.seconds(0.1), event -> imageView.setVisible(false)),
+            new KeyFrame(Duration.seconds(0.2), event -> imageView.setVisible(true)));
+
+    // Set the cycle count to play the flicker animation for 2 seconds
+    flickerAnimation.setCycleCount(20); // Adjust duration and cycle count as needed
+
+    // Play the flicker animation
+    flickerAnimation.setOnFinished(finishedEvent -> imageView.setVisible(true));
+    flickerAnimation.play();
   }
 
   private static Image[] getPlayerHitSprites() {
@@ -1051,7 +1173,7 @@ public class GameView {
     int numDigits = String.valueOf(score).length();
 
     // Define the starting X position for drawing sprites
-    double startX = 291.0; // You may adjust this based on your layout
+    double startX = 293.0; // You may adjust this based on your layout
 
     // Define the spacing between digits
     double digitSpacing = 10.0 * 2.8; // Adjust this spacing as needed

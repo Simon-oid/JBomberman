@@ -1,17 +1,27 @@
 
-g	java:S112]"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ÜûËğà1
+	java:S112b"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8Î‰Ãøá1J$833bafa9-ebc2-4746-9cc6-7bfa1e413917
+˜
+java:S3655W"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ŸªÍäùÿÿÿÿ8×‰Ãøá1J$9140e37a-f963-4e2e-a4ff-173ecf7ead70
+Û
+java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(Ë¬Š8Ø‰Ãøá1J$1228c98a-27f4-4931-affc-cf4105ebd3b3
 r
-java:S3655R"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ŸªÍäùÿÿÿÿ8åûËğà1
-µ
-java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(Ë¬Š8æûËğà1
+java:S1874"0Remove this use of "Observer"; it is deprecated.(Ë¬Š8Ø‰Ãøá1J$63359736-8daa-4a2b-ad1f-7bdc011122c7
+r	java:S106X"+Replace this use of System.out by a logger.(ÍÇÖÓúÿÿÿÿ8İ‰Ãøá1J$8f52ffb9-d4b8-45cc-a42e-c40f083373e2
+‚
+java:S1854g"?Remove this useless assignment to local variable "playerScore".(ì¥ª¯8Ş‰Ãøá1J$e5ad4e79-081a-4593-b594-33403b431f77
+s
+java:S1481g"0Remove this unused "playerScore" local variable.(ì¥ª¯8Ş‰Ãøá1J$b9e81191-ab30-4ec8-89e2-446cd975846f
+ƒ	java:S125k"<This block of commented-out lines of code should be removed.(¥õ°‡úÿÿÿÿ8Ş‰Ãøá1J$f0fb75f5-5884-4693-a073-3bf304caad75
+z
+java:S1874o"2Remove this use of "Observable"; it is deprecated.(‹›Àüÿÿÿÿ8à‰Ãøá1J$ec76d89f-6eef-434a-b128-f55fd903f35c
+ 	java:S131q"YComplete cases by adding the missing enum constants or add a default case to this switch.(û¡Úüÿÿÿÿ8à‰Ãøá1J$7772b447-6f5d-48eb-8e8f-1441457ec956
+o
+java:S1602t",Remove useless curly braces around statement(÷¼¼Ä8á‰Ãøá1J$1d3845ec-8063-4126-8b86-316c0eb911b4
 L
-java:S1874"0Remove this use of "Observer"; it is deprecated.(Ë¬Š8çûËğà1
-L	java:S106S"+Replace this use of System.out by a logger.(ÍÇÖÓúÿÿÿÿ8ëûËğà1
-\
-java:S1854b"?Remove this useless assignment to local variable "playerScore".(ì¥ª¯8ìûËğà1
-M
-java:S1481b"0Remove this unused "playerScore" local variable.(ì¥ª¯8ìûËğà1
-]	java:S125f"<This block of commented-out lines of code should be removed.(¥õ°‡úÿÿÿÿ8íûËğà1
-T
-java:S1874j"2Remove this use of "Observable"; it is deprecated.(‹›Àüÿÿÿÿ8íûËğà1
-z	java:S131l"YComplete cases by adding the missing enum constants or add a default case to this switch.(û¡Úüÿÿÿÿ8ˆƒìğà1
+java:S1128	"/Remove this unused import 'javafx.scene.Scene'.(Õü²8È‚Çøá1
+]
+java:S1128";Remove this unused import 'javafx.scene.layout.Background'.(¤ä—ıÿÿÿÿ8É‚Çøá1
+a
+java:S1128"?Remove this unused import 'javafx.scene.layout.BackgroundFill'.(ß¡‰úÿÿÿÿ8É‚Çøá1
+R
+java:S1128"5Remove this unused import 'javafx.scene.paint.Color'.(Ïî£à8É‚Çøá1

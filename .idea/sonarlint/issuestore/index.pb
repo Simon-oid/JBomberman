@@ -115,3 +115,7 @@ i
 ,src/main/java/org/jbomberman/view/Clock.java,c\9\c9c8fa66c3d9aa35af2593ee3c536561c5e25d49
 f
 6src/main/java/org/jbomberman/view/EntitiesFlicker.java,3\c\3c7329e8b25fe2da67dc5c99c0e13255f019bfd8
+e
+5src/main/java/org/jbomberman/view/PixelateEffect.java,b\a\ba4c816691aa4a604e0f8ac96c41129a360bc9e1
+c
+3src/main/java/org/jbomberman/view/PixelatePane.java,6\d\6deb38a4c1053ecc0a24d55b78ab810af5f7b139

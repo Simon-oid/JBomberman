@@ -12,7 +12,10 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.geometry.Rectangle2D;
+import javafx.util.Duration;
 import lombok.Getter;
 import lombok.Setter;
 import org.jbomberman.controller.KeyHandler;
@@ -178,23 +181,38 @@ public class Map extends Observable {
 
   public void loadLevel(String level) {
     System.out.println(level);
-    // Load the map from the file
-    loadMap(String.format("level/level%s/mappa_lvl%s.txt", level, level));
 
-    // Read the json file
-    loadEntities((String.format("level/level%s/level%s.json", level, level)));
+    Timeline timeline0 =
+        new Timeline(
+            new KeyFrame(
+                Duration.seconds(2),
+                event -> {
+                  // Load the map from the file
+                  loadMap(String.format("level/level%s/mappa_lvl%s.txt", level, level));
 
-    // init the score of the player
-    updatePlayerScore(player);
+                  // Read the json file
+                  loadEntities((String.format("level/level%s/level%s.json", level, level)));
 
-    // init the lives of the player
-    updatePlayerLives(player);
+                  // Ensure entities are drawn at their initial positions
+                  sendInitialEntityPositions();
 
-    // Ensure entities are drawn at their initial positions
-    sendInitialEntityPositions();
+                  // thread per far muovere le entita' secondo il metodo move() all'interno di mob
+                  moveEntities();
+                }));
+    timeline0.play();
 
-    // thread per far muovere le entita' secondo il metodo move() all'interno di mob
-    moveEntities();
+    Timeline timeline =
+        new Timeline(
+            new KeyFrame(
+                Duration.seconds(1.5),
+                event -> {
+                  // Call the method to update the player score after the delay
+                  updatePlayerScore(player);
+
+                  // Call the method to update the player lives after the delay
+                  updatePlayerLives(player);
+                }));
+    timeline.play();
   }
 
   private void sendInitialEntityPositions() {
@@ -777,7 +795,7 @@ public class Map extends Observable {
       //            player.setX(startingPosX);
       //            player.setY(startingPosY);
       scheduler.schedule(
-          this::resumeKeyHandler, 3000, TimeUnit.MILLISECONDS); // Adjust timing as needed
+          this::resumeKeyHandler, 2000, TimeUnit.MILLISECONDS); // Adjust timing as needed
 
       // Player takes damage from the explosion
 

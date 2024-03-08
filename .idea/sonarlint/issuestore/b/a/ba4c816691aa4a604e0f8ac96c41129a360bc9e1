@@ -1,0 +1,22 @@
+
+€
+java:S3518&"=Make sure "samples" can't be zero before doing this division.(‘ºÛ–8ÖÈÆõá1J$af84972f-c06a-455d-89c5-89be5d764295
+‰
+java:S3518G"AMake sure "blurSamples" can't be zero before doing this division.(ƒ‡þ–ûÿÿÿÿ8×ÈÆõá1J$f7e33fa3-79c3-4c24-b889-d9d0850006a8
+}
+java:S1118":Add a private constructor to hide the implicit public one.(¼ó­Ó8ØÈÆõá1J$4776d64b-57ef-4836-9908-8905752914c0
+•
+java:S3776
+"RRefactor this method to reduce its Cognitive Complexity from 32 to the 15 allowed.(¶™­ô8ÙÈÆõá1J$fd486ef6-0211-45e0-8a01-ea488334f03e
+}
+java:S1854":Remove this useless assignment to local variable "scaleY".(ÏÇóþ8ÚÈÆõá1J$334f79d5-e5a2-4adb-a970-990667af32c1
+‚
+java:S1854":Remove this useless assignment to local variable "scaleX".(«‡±žÿÿÿÿÿ8ÚÈÆõá1J$717f7cae-626c-4f6a-a088-2ca6087d5e10
+q
+java:S1905")Remove this unnecessary cast to "double".(«‡±žÿÿÿÿÿ8ÛÈÆõá1J$8cf5b855-ec4a-4629-860d-f636e4c21bd7
+s
+java:S1481"+Remove this unused "scaleX" local variable.(«‡±žÿÿÿÿÿ8ÜÈÆõá1J$40ddf63f-c6d0-469d-b36f-bb05c9fda03b
+l
+java:S1905")Remove this unnecessary cast to "double".(ÏÇóþ8ÜÈÆõá1J$fd15e2f9-661a-4dc3-878c-3fef1d526fdf
+n
+java:S1481"+Remove this unused "scaleY" local variable.(ÏÇóþ8ÜÈÆõá1J$23bf2c1e-9ac1-44d9-9605-d2d01b9d34dd
