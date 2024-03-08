@@ -1318,6 +1318,135 @@ FF >>> 22/10/2023
 ===========================================================================
 ***
 
+### 5/03/2024
+
+### TO-DO:
+
+### high priority: [working on animations rn]
+
+- [ ] il denkyun dovrebbe poter tankare 2 hit
+- [ ] il denkyun dovrebbe avere una possibilita' di respawnare se il tile exit e' sul campo
+- [ ] le hitbox dei mob non possono essere la stessa grandezza di un tile, per via dei gametick irregolari, a volte
+  la collisione viene detectata pochi pixel prima di quello che e' il bordo del tile / entita' [provare con hitbox
+  piu' piccole e con detection delle collisioni con un offset es. hitbox del mob 45x45 ma la collisione avviene
+  sempre con un offset di 3 pixels]
+
+---
+
+- [ ] animazione dello switch del livello
+- [ ] animazione dell'uccisione di un mob
+
+---
+
+- REQUISITI MANCANTI:
+- [ ] animazioni
+- [ ] suono
+- [ ] player selection
+
+### low priority:
+
+- [ ] reworka collisioni del player (si incolla alle pareti)
+- [ ] creata l'animazione di quando il player viene colpito, bisogna modificare il model cosi' che quando il player
+  viene colpito, il player e' respawnato alle
+  coordinate iniziali
+
+### DONE:
+
+- [x] il keyhandler si ferma e riprende quando l'animazione e' finita e
+- [x] fixato il timing dell'esplosionde della bomba
+- [x] implementa il supporto per piu' mob dello stesso tipo [provare hasmap di liste per type]
+
+***
+
+===========================================================================
+***
+
+### 6/03/2024
+
+### TO-DO:
+
+### high priority: [working on animations rn]
+
+- [ ] fixare il fatto che ora come ora, quando le imageview dei mob sono inizializzate, per via di una shallow copy
+  della lista dei mob, soltanto le ultime due imageview per tipo sono utilizzate per disegnare i mob (sulle ultime
+  imageview vengono disegnate le animazioni dei primi due mob )
+- [ ] il denkyun dovrebbe poter tankare 2 hit
+- [ ] il denkyun dovrebbe avere una possibilita' di respawnare se il tile exit e' sul campo
+- [ ] le hitbox dei mob non possono essere la stessa grandezza di un tile, per via dei gametick irregolari, a volte
+  la collisione viene detectata pochi pixel prima di quello che e' il bordo del tile / entita' [provare con hitbox
+  piu' piccole e con detection delle collisioni con un offset es. hitbox del mob 45x45 ma la collisione avviene
+  sempre con un offset di 3 pixels]
+
+---
+
+- [ ] animazione dello switch del livello
+- [ ] animazione dell'uccisione di un mob
+
+---
+
+- REQUISITI MANCANTI:
+- [ ] animazioni
+- [ ] suono
+- [ ] player selection
+
+### low priority:
+
+- [ ] reworka collisioni del player (si incolla alle pareti)
+- [ ] creata l'animazione di quando il player viene colpito, bisogna modificare il model cosi' che quando il player
+  viene colpito, il player e' respawnato alle
+  coordinate iniziali
+
+### DONE:
+
+***
+
+===========================================================================
+***
+
+### 7/03/2024
+
+### TO-DO:
+
+### high priority: [working on animations rn]
+
+- [ ] fixare il fatto che ora come ora, quando le imageview dei mob sono inizializzate, per via di una shallow copy
+  della lista dei mob, soltanto le ultime due imageview per tipo sono utilizzate per disegnare i mob (sulle ultime
+  imageview vengono disegnate le animazioni dei primi due mob )
+- [ ] il denkyun dovrebbe poter tankare 2 hit
+- [ ] il denkyun dovrebbe avere una possibilita' di respawnare se il tile exit e' sul campo
+- [ ] le hitbox dei mob non possono essere la stessa grandezza di un tile, per via dei gametick irregolari, a volte
+  la collisione viene detectata pochi pixel prima di quello che e' il bordo del tile / entita' [provare con hitbox
+  piu' piccole e con detection delle collisioni con un offset es. hitbox del mob 45x45 ma la collisione avviene
+  sempre con un offset di 3 pixels]
+
+---
+
+- [ ] animazione dello switch del livello
+- [ ] animazione dell'uccisione di un mob
+
+---
+
+- REQUISITI MANCANTI:
+- [ ] animazioni
+- [ ] suono
+- [ ] player selection
+
+### low priority:
+
+- [ ] reworka collisioni del player (si incolla alle pareti)
+- [ ] creata l'animazione di quando il player viene colpito, bisogna modificare il model cosi' che quando il player
+  viene colpito, il player e' respawnato alle
+  coordinate iniziali
+
+### DONE:
+
+***
+
+===========================================================================
+***
+
+
+
 
 
 

@@ -32,6 +32,7 @@ public class GameView {
   private ImageView[] scoreFontSprites;
   private ImageView[] scoreFontFlickerSprites;
   private Timeline playerMovementAnimation;
+  private Timeline playerHitAnimation;
   private Direction lastAnimationDirection = Direction.NONE;
   private HashMap<Type, Timeline> mobMovementAnimations;
   private Direction lastPuropenDirection = Direction.NONE;
@@ -872,10 +873,42 @@ public class GameView {
     int x = data.x();
     int y = data.y();
 
-    spawnScoreNumbers(score, x, y + 50);
+    // Stop the existing movement animation of the mob
+    stopMobMovementAnimation(mobType);
 
-    // Remove the sprite of the mob from the screen
-    removeOldMobSprite(mobType);
+    // Play the flickering animation between the normal sprite and the flickering sprite
+    playFlickeringAnimation(mobType);
+
+    // Delay the removal of the mob sprite by 2 seconds and play spawnScoreNumbers
+    Timeline delayTimeline =
+        new Timeline(
+            new KeyFrame(
+                Duration.seconds(2),
+                event -> {
+                  spawnScoreNumbers(score, x, y + 50);
+                  removeOldMobSprite(mobType);
+                }));
+    delayTimeline.play();
+  }
+
+  private void stopMobMovementAnimation(Type mobType) {
+    // Retrieve the timeline associated with the mob type and stop it
+    Timeline mobMovementAnimation = mobMovementAnimations.get(mobType);
+    if (mobMovementAnimation != null) {
+      mobMovementAnimation.stop();
+    }
+  }
+
+  private void playFlickeringAnimation(Type mobType) {
+    ImageView mobImageView = mobSprites.get(mobType);
+    if (mobImageView != null) {
+      Timeline flickeringAnimation =
+          new Timeline(
+              new KeyFrame(Duration.seconds(0.050), event -> mobImageView.setVisible(false)),
+              new KeyFrame(Duration.seconds(0.1), event -> mobImageView.setVisible(true)));
+      flickeringAnimation.setCycleCount(Animation.INDEFINITE); // Repeat indefinitely
+      flickeringAnimation.play();
+    }
   }
 
   private void removeOldMobSprite(Type mobType) {
@@ -897,24 +930,29 @@ public class GameView {
 
   private Timeline playPlayerHitAnimation(ImageView imageView, Image[] sprites) {
 
+    // Clear existing key frames from playerMovementAnimation
+    playerMovementAnimation.getKeyFrames().clear();
+
+    playerHitAnimation = new Timeline();
+
     // Create keyframes for each sprite in the sequence
     for (int i = 0; i < sprites.length; i++) {
       final int index = i;
       KeyFrame keyFrame =
           new KeyFrame(
-              Duration.seconds(i * 0.2), // Change duration as needed for faster animation
+              Duration.seconds(i * 0.6), // Change duration as needed for faster animation
               event -> imageView.setImage(sprites[index]));
-      playerMovementAnimation.getKeyFrames().add(keyFrame);
+      playerHitAnimation.getKeyFrames().add(keyFrame);
     }
 
     // Set the cycle count to indefinite to  keep the animation playing
-    playerMovementAnimation.setCycleCount(1);
+    playerHitAnimation.setCycleCount(1);
 
     // Play the animation
-    playerMovementAnimation.play();
+    playerHitAnimation.play();
 
     // Return the timeline object
-    return playerMovementAnimation;
+    return playerHitAnimation;
   }
 
   private static Image[] getPlayerHitSprites() {

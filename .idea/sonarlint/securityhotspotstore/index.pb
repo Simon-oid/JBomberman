@@ -113,3 +113,5 @@ i
 9src/main/java/org/jbomberman/view/FontMobKillFlicker.java,9\6\96758495cafb54ec38d97ea24757b4fa880fe522
 \
 ,src/main/java/org/jbomberman/view/Clock.java,c\9\c9c8fa66c3d9aa35af2593ee3c536561c5e25d49
+f
+6src/main/java/org/jbomberman/view/EntitiesFlicker.java,3\c\3c7329e8b25fe2da67dc5c99c0e13255f019bfd8

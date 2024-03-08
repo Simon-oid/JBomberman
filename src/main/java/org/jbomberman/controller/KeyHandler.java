@@ -20,6 +20,8 @@ public class KeyHandler {
 
   private boolean paused = false;
 
+  private long lastFrameTime = -1;
+
   public void onkeyPressed(KeyEvent e) {
     switch (e.getCode()) {
       case W -> upPressed = true;
@@ -118,5 +120,18 @@ public class KeyHandler {
       animationTimer.start();
       paused = false;
     }
+  }
+
+  public double getDelta() {
+    if (lastFrameTime == -1) {
+      lastFrameTime = System.nanoTime();
+      return 0; // No delta for the first frame
+    }
+
+    long currentTime = System.nanoTime();
+    double deltaSeconds = (currentTime - lastFrameTime) / 1_000_000_000.0;
+    lastFrameTime = currentTime;
+
+    return deltaSeconds;
   }
 }

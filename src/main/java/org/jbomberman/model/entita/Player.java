@@ -100,7 +100,7 @@ public class Player extends Entity {
               setVulnerable(true); // Make the player vulnerable again
             }
           },
-          invincibilityDuration * 1000L);
+          invincibilityDuration * 3000L);
     }
   }
 

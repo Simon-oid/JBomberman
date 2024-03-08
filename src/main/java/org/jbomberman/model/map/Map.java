@@ -43,6 +43,8 @@ public class Map extends Observable {
   private List<Entity> entities;
 
   private Player player;
+  private int startingPosX;
+  private int startingPosY;
 
   private boolean mobsMovement;
 
@@ -133,6 +135,9 @@ public class Map extends Observable {
 
       int posx = player.get("posx").getAsInt();
       int posy = player.get("posy").getAsInt();
+
+      startingPosX = posx;
+      startingPosY = posy;
 
       // Calculate the adjusted position to center the player sprite in the first tile
       int adjustedX = posx + 8; // Adjusted X position
@@ -344,7 +349,7 @@ public class Map extends Observable {
       mob.setDirection(puropenDirection);
     }
 
-    detectPlayerMobCollision();
+    detectPlayerMobCollision(delta);
 
     // Update the mob's position
     mob.move(newX, newY);
@@ -537,8 +542,8 @@ public class Map extends Observable {
           // Clear the set of mobs affected by the explosion after the interval
           mobsAffectedByExplosion.clear();
         },
-        2,
-        TimeUnit.SECONDS);
+        550,
+        TimeUnit.MILLISECONDS);
   }
 
   private int[] explodeAdjacentTiles(int x, int y, int playerRadius) {
@@ -738,7 +743,8 @@ public class Map extends Observable {
             TimeUnit.MILLISECONDS);
 
     // Schedule a task to cancel player collision detection after the two-second interval
-    executorService.schedule(() -> playerCollisionDetectionTask.cancel(false), 2, TimeUnit.SECONDS);
+    executorService.schedule(
+        () -> playerCollisionDetectionTask.cancel(false), 550, TimeUnit.MILLISECONDS);
   }
 
   private void detectPlayerCollisionWithExplosion(
@@ -747,28 +753,52 @@ public class Map extends Observable {
 
     // Check if player's hitbox intersects with width explosion hitbox
     if (playerHitbox.intersects(horizontalExplosionHitbox)) {
-      handlePlayerHit(player);
+      handlePlayerHit(player, KeyHandler.getInstance().getDelta());
       updatePlayerLives(player);
     }
 
     // Check if player's hitbox intersects with height explosion hitbox
     if (playerHitbox.intersects(verticalExplosionHitbox)) {
-      handlePlayerHit(player);
+      handlePlayerHit(player, KeyHandler.getInstance().getDelta());
       updatePlayerLives(player);
     }
   }
 
-  private void handlePlayerHit(Player player) {
+  private void handlePlayerHit(Player player, double delta) {
     if (player.isVulnerable()) {
-      // Player takes damage from the explosion
+
       player.takeDamage();
+
+      pauseKeyHandler();
+
+      // Schedule the method call to resume key handler and set player position after a delay
+      ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+      // Set player position if needed
+      //            player.setX(startingPosX);
+      //            player.setY(startingPosY);
+      scheduler.schedule(
+          this::resumeKeyHandler, 3000, TimeUnit.MILLISECONDS); // Adjust timing as needed
+
+      // Player takes damage from the explosion
+
       System.out.println("Player Took Damage!!!");
+
       // Notify GameView to update display with new player lives
       sendUpdate(new PlayerLivesUpdateData(PackageType.PLAYER_LIVES_UPDATE, player.getLives()));
     }
   }
 
-  public void detectPlayerMobCollision() {
+  private void pauseKeyHandler() {
+    // Pause the KeyHandler
+    KeyHandler.getInstance().pauseKeyHandler();
+  }
+
+  private void resumeKeyHandler() {
+    // Resume the KeyHandler
+    KeyHandler.getInstance().resumeKeyHandler();
+  }
+
+  public void detectPlayerMobCollision(double delta) {
     Rectangle2D playerHitbox = player.getHitBox();
 
     // Iterate over all mobs to check for collision with player
@@ -779,7 +809,7 @@ public class Map extends Observable {
 
         // Check if mob's hitbox intersects with player's hitbox
         if (mobHitbox.intersects(playerHitbox)) {
-          handlePlayerHit(player);
+          handlePlayerHit(player, delta);
           updatePlayerLives(player);
         }
       }
