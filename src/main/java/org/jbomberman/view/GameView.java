@@ -24,6 +24,8 @@ import org.jbomberman.model.powerups.PowerUpType;
 public class GameView {
   int MAP_WIDTH = 15;
   int MAP_HEIGHT = 13;
+
+  private int currentLevel;
   private TilePane tilePane;
   private AnchorPane anchorPane;
   private ImageView player;
@@ -43,14 +45,17 @@ public class GameView {
   private Timeline clockAnimation;
   private ImageView clockImageView;
 
+  private boolean firstTimeLoading = true;
+
   private static final double ANIMATION_DURATION = 0.5; // Duration for animations in seconds
   private static final double HUD_APPEARANCE_DELAY = 0; // Delay before HUD appears
 
   public GameView() {
     playerMovementAnimation = new Timeline();
 
-    // Initialize player and tilePane
-    initializePlayerAndTilePane();
+    anchorPane = new AnchorPane();
+
+    initializePlayer();
 
     // Initialize scoreboard
     initializeScoreboard();
@@ -69,20 +74,78 @@ public class GameView {
     loadScoreFlickerFontSprites();
 
     // Add player and scoreboard to anchorPane
-    anchorPane = new AnchorPane(player, scoreboard, tilePane); // Exclude tilePane initially
+    anchorPane = new AnchorPane(player, scoreboard); // Exclude tilePane initially
+
+    currentLevel = 1;
+
+    initGameView();
+  }
+
+  private void initGameView() {
+
+    ImageView levelSwapFontImageView;
+
+    // Load and display the appropriate LevelSwapFont image based on the current level
+    if (currentLevel == 1) {
+      levelSwapFontImageView = new ImageView(LevelSwapFont.STAGE1_LVL_1.getImage());
+    } else if (currentLevel == 2) {
+      levelSwapFontImageView = new ImageView(LevelSwapFont.STAGE1_LVL_2.getImage());
+    } else {
+      // Handle unsupported levels or default case
+      return;
+    }
+
+    // Add the LevelSwapFont image to the anchorPane
+    anchorPane.getChildren().add(levelSwapFontImageView);
+
+    // Position the LevelSwapFont image within the AnchorPane using layout constraints
+    // Position the LevelSwapFont image below the tilePane
+    AnchorPane.setTopAnchor(
+        levelSwapFontImageView, (double) Y_OFFSET + 150); // Initially position below the screen
+    AnchorPane.setLeftAnchor(levelSwapFontImageView, (-700.0)); // Center horizontally
+
+    // Slide the LevelSwapFont image from below to Y_OFFSET + 150
+    Timeline slideInTimeline1 =
+        new Timeline(
+            new KeyFrame(
+                Duration.seconds(0.5),
+                new KeyValue(
+                    levelSwapFontImageView.translateXProperty(), (860)))); // Center horizontally
+
+    // Create a pause transition with a duration of 1 second
+    PauseTransition pauseTransition = new PauseTransition(Duration.seconds(3));
+
+    // Slide the LevelSwapFont image from the center to the right
+    Timeline slideInTimeline2 =
+        new Timeline(
+            new KeyFrame(
+                Duration.seconds(0.5),
+                new KeyValue(
+                    levelSwapFontImageView.translateXProperty(),
+                    (710 + 999)))); // Center horizontally
+
+    // Chain the timelines
+    slideInTimeline1.setOnFinished(event -> pauseTransition.play());
+    pauseTransition.setOnFinished(event -> slideInTimeline2.play());
+
+    slideInTimeline1.play();
+
+    initializeTilePane();
+
+    tilePane.setVisible(false);
 
     // Positioning elements within the AnchorPane using layout constraints
     AnchorPane.setTopAnchor(player, (double) Y_OFFSET); // Shift player down by 256 pixels
     AnchorPane.setLeftAnchor(player, 0.0); // Position player at the left
 
-    // Positioning elements within the AnchorPane using layout constraints
-    AnchorPane.setTopAnchor(tilePane, (double) Y_OFFSET); // Shift tilepane down by 256 pixels
-    AnchorPane.setLeftAnchor(tilePane, 0.0); // Position tilepane at the left
-
     AnchorPane.setTopAnchor(scoreboard, 0.0); // Position scoreboard at the bottom
     AnchorPane.setLeftAnchor(scoreboard, 0.0); // Position scoreboard at the left
 
     initializeMobSprites();
+
+    for (ImageView mobSprite : mobSprites.values()) {
+      mobSprite.setVisible(false);
+    }
     // Initialize clock animation
     initializeClockAnimation();
 
@@ -96,21 +159,89 @@ public class GameView {
     Timeline timeline =
         new Timeline(
             new KeyFrame(
-                Duration.seconds(0.8),
+                Duration.seconds(2.3),
                 event -> {
                   // Slide in the tilemap from below
                   slideInTilemapFromBelow();
                 }));
     timeline.setCycleCount(1); // Ensure timeline executes only once
     timeline.play();
+
+    Timeline timeline1 =
+        new Timeline(
+            new KeyFrame(
+                Duration.seconds(3.5),
+                event -> {
+                  tilePane.setVisible(true);
+                  player.setVisible(true);
+                  // Hide the mobs
+                  for (ImageView mobSprite : mobSprites.values()) {
+                    mobSprite.setVisible(true);
+                  }
+                }));
+
+    Timeline timeline2 =
+        new Timeline(
+            new KeyFrame(
+                Duration.seconds(5),
+                event -> {
+                  anchorPane.getChildren().remove(levelSwapFontImageView);
+                }));
+    timeline2.setCycleCount(1);
+    timeline1.setCycleCount(1);
+    timeline1.play();
+    timeline2.play();
+  }
+
+  // Method to reset the game view
+  public void resetGameView() {
+    if (firstTimeLoading) {
+      firstTimeLoading = false;
+    } else {
+
+      currentLevel++;
+
+      anchorPane.getChildren().remove(tilePane);
+
+      player.setVisible(false);
+
+      removeAllPowerUps();
+
+      // Hide the mobs
+      for (ImageView mobSprite : mobSprites.values()) {
+        mobSprite.setVisible(false);
+      }
+      initGameView();
+    }
+  }
+
+  private void removeAllPowerUps() {
+    List<Image> powerUpImages =
+        Arrays.asList(
+            Tiles.POWERUP_BOMBUP_0.getImage(),
+            Tiles.POWERUP_BOMBUP_1.getImage(),
+            Tiles.POWERUP_SKATE_0.getImage(),
+            Tiles.POWERUP_SKATE_1.getImage(),
+            Tiles.POWERUP_ICESCREAM_0.getImage(),
+            Tiles.POWERUP_ICESCREAM_1.getImage());
+
+    List<Node> toRemove = new ArrayList<>();
+    for (Node node : anchorPane.getChildren()) {
+      if (node instanceof ImageView && powerUpImages.contains(((ImageView) node).getImage())) {
+        toRemove.add(node);
+      }
+    }
+    anchorPane.getChildren().removeAll(toRemove);
   }
 
   // Method to initialize player and tilePane
-  private void initializePlayerAndTilePane() {
+  private void initializePlayer() {
     player = new ImageView(Entities.VOID.getImage());
     player.setFitHeight(96);
     player.setFitWidth(48);
+  }
 
+  private void initializeTilePane() {
     tilePane = new TilePane();
     tilePane.setPrefRows(MAP_HEIGHT);
     tilePane.setPrefColumns(MAP_WIDTH);
@@ -123,6 +254,11 @@ public class GameView {
       imageView.setSmooth(false);
       tilePane.getChildren().add(imageView);
     }
+
+    anchorPane.getChildren().add(tilePane);
+    // Position tilePane within the AnchorPane using layout constraints
+    AnchorPane.setTopAnchor(tilePane, (double) Y_OFFSET); // Shift tilepane down by 256 pixels
+    AnchorPane.setLeftAnchor(tilePane, 0.0); // Position tilepane at the left
   }
 
   // Method to initialize scoreboard

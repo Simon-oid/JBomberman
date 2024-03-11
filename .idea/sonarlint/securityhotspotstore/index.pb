@@ -117,5 +117,5 @@ f
 6src/main/java/org/jbomberman/view/EntitiesFlicker.java,3\c\3c7329e8b25fe2da67dc5c99c0e13255f019bfd8
 e
 5src/main/java/org/jbomberman/view/PixelateEffect.java,b\a\ba4c816691aa4a604e0f8ac96c41129a360bc9e1
-c
-3src/main/java/org/jbomberman/view/PixelatePane.java,6\d\6deb38a4c1053ecc0a24d55b78ab810af5f7b139
+d
+4src/main/java/org/jbomberman/view/LevelSwapFont.java,9\1\91ea409bfdc7d0e401a4e4ea7508980ff878e27a

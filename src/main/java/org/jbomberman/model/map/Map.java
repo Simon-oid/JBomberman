@@ -185,7 +185,7 @@ public class Map extends Observable {
     Timeline timeline0 =
         new Timeline(
             new KeyFrame(
-                Duration.seconds(2),
+                Duration.seconds(3.5),
                 event -> {
                   // Load the map from the file
                   loadMap(String.format("level/level%s/mappa_lvl%s.txt", level, level));
@@ -1026,7 +1026,6 @@ public class Map extends Observable {
     entities.clear();
     powerUps.clear();
 
-    // Load the new level
     loadLevel(Integer.toString(currentLevel));
   }
 

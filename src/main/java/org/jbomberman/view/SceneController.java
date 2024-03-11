@@ -6,12 +6,8 @@ import java.util.Observer;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
@@ -42,6 +38,8 @@ public class SceneController implements Observer {
     window.getScene().setOnKeyReleased(keyHandler::onkeyReleased);
 
     adjustWindowSize();
+
+    window.getScene().getRoot().setStyle("-fx-background-color: black;");
   }
 
   private SceneController() {
@@ -114,6 +112,7 @@ public class SceneController implements Observer {
         case LOADMAP ->
             Platform.runLater(
                 () -> {
+                  gameRoot.resetGameView();
                   gameRoot.loadMap((LoadMapData) data);
                 });
         case MOVE_PLAYER -> Platform.runLater(() -> gameRoot.movePlayer((PlayerMovementData) data));
