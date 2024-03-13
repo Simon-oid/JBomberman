@@ -338,6 +338,8 @@ public class Map extends Observable {
   }
 
   public void moveMob(Mob mob, int xStep, int yStep, double delta) {
+
+    int currentLives = mob.getLives();
     int oldX = mob.getX();
     int oldY = mob.getY();
 
@@ -541,6 +543,9 @@ public class Map extends Observable {
     BombExplosionData packageData =
         new BombExplosionData(PackageType.BOMB_EXPLOSION, explosionX, explosionY, ranges);
     sendUpdate(packageData);
+
+    // increment the player's bomb count after the explosion
+    player.regenBombCount();
   }
 
   private void initCollisionDetectionScheduler(
@@ -717,16 +722,47 @@ public class Map extends Observable {
   private void handleMobExplosion(Mob mob) {
     int score = calculateScoreForMob(mob);
 
-    // Award the calculated score to the player
-    player.setScore(player.getScore() + score);
-    updatePlayerScore(player);
+    if (mob.isVulnerable()) { // If the mob is vulnerable
+      mob.setLives(mob.getLives() - 1);
 
-    // Remove the mob from the game
-    entities.remove(mob);
+      if (mob.getLives() == 0 && mob.getType() == Type.PUROPEN) { // PUROPEN mob reaches 0 lives
+        // Check if the exit tile is present on the map
+        if (isExitTilePresent()) {
+          // Respawn the PUROPEN mob at the exit tile
+          respawnMobAtExitTile(mob);
+        }
+      }
 
-    // Notify GameView to update display and remove the mob from the map
-    sendUpdate(
-        new RemoveMobData(PackageType.REMOVE_MOB, mob.getType(), score, mob.getX(), mob.getY()));
+      // Send the current number of lives along with the RemoveMobData package
+      sendUpdate(
+          new RemoveMobData(
+              PackageType.REMOVE_MOB,
+              mob.getType(),
+              mob.getLives(), // Send current number of lives
+              score,
+              mob.getX(),
+              mob.getY()));
+
+      mob.invincible();
+    }
+
+    // Remove the mob from the game if its lives equal 0
+    if (mob.getLives() <= 0) {
+      // Award the calculated score to the player
+      player.setScore(player.getScore() + score);
+      updatePlayerScore(player);
+      entities.remove(mob);
+    }
+  }
+
+  private boolean isExitTilePresent() {
+    // Implement logic to check if the exit tile is present on the map
+    // Return true if the exit tile is present, false otherwise
+    return false;
+  }
+
+  private void respawnMobAtExitTile(Mob mob) {
+    // Implement logic to respawn the mob at the exit tile
   }
 
   private int calculateScoreForMob(Mob mob) {

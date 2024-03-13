@@ -1,17 +1,17 @@
 
-	java:S112`"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8Î‰Ãøá1J$84df5f2b-7b35-4d8a-8c8a-ba03b6c837be
+	java:S112`"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8Î‰Ãøá1J$89e6c8a0-8578-4957-bf1a-066437a50721
 ˜
-java:S3655U"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ŸªÍäùÿÿÿÿ8×‰Ãøá1J$e18828d5-33aa-47c6-a048-cc11539b2750
+java:S3655U"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ŸªÍäùÿÿÿÿ8×‰Ãøá1J$dc4de470-e083-4822-9246-a23626150b2a
 Û
-java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(Ë¬Š8Ø‰Ãøá1J$e9670b5f-360e-4862-9a69-dc6d60785b29
+java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(Ë¬Š8Ø‰Ãøá1J$a5533208-68ef-46ec-8fd4-2456bb53c475
 r
-java:S1874"0Remove this use of "Observer"; it is deprecated.(Ë¬Š8Ø‰Ãøá1J$532a963d-d63b-4761-840a-c46537c88832
-r	java:S106V"+Replace this use of System.out by a logger.(ÍÇÖÓúÿÿÿÿ8İ‰Ãøá1J$ec9b91b8-5a51-4025-91b0-1c51ff17b900
+java:S1874"0Remove this use of "Observer"; it is deprecated.(Ë¬Š8Ø‰Ãøá1J$4d18b7f4-bba7-476f-bab0-095019f1e33a
+r	java:S106V"+Replace this use of System.out by a logger.(ÍÇÖÓúÿÿÿÿ8İ‰Ãøá1J$fa5234c2-1a49-4b5d-9f1f-3bca782b5534
 ‚
-java:S1854e"?Remove this useless assignment to local variable "playerScore".(ì¥ª¯8Ş‰Ãøá1J$4b2821a5-b6d5-4d16-a235-73e27de900f6
+java:S1854e"?Remove this useless assignment to local variable "playerScore".(ì¥ª¯8Ş‰Ãøá1J$8b7ee72a-2494-4ff2-814d-137406f3d0f7
 s
-java:S1481e"0Remove this unused "playerScore" local variable.(ì¥ª¯8Ş‰Ãøá1J$0c4387df-bc09-4f4d-af7b-10847dfc5335
-ƒ	java:S125i"<This block of commented-out lines of code should be removed.(¥õ°‡úÿÿÿÿ8Ş‰Ãøá1J$b60c33c7-c1a4-4d4d-8bb4-441c47cd93ea
+java:S1481e"0Remove this unused "playerScore" local variable.(ì¥ª¯8Ş‰Ãøá1J$793480e7-4fe9-4489-b71e-3bc08efcf105
+ƒ	java:S125i"<This block of commented-out lines of code should be removed.(¥õ°‡úÿÿÿÿ8Ş‰Ãøá1J$da109f69-a0db-48cf-8b54-9206c36b72fb
 z
-java:S1874m"2Remove this use of "Observable"; it is deprecated.(‹›Àüÿÿÿÿ8à‰Ãøá1J$5ecc0e94-1a7c-4d64-93c8-1d92f2936772
- 	java:S131o"YComplete cases by adding the missing enum constants or add a default case to this switch.(û¡Úüÿÿÿÿ8à‰Ãøá1J$a4cb3d92-a1a4-414a-8d7f-d68ea20a26b4
+java:S1874m"2Remove this use of "Observable"; it is deprecated.(‹›Àüÿÿÿÿ8à‰Ãøá1J$8c902231-0c5e-4f5f-9e4e-da8ab950a38d
+ 	java:S131o"YComplete cases by adding the missing enum constants or add a default case to this switch.(û¡Úüÿÿÿÿ8à‰Ãøá1J$38ae3cd0-9a1c-47e3-a4ae-2d933aa56cbb

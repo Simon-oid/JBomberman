@@ -1,73 +1,73 @@
 
 ‹
-java:S2184§"BCast one of the operands of this addition operation to a "double".(ñàø×ûÿÿÿÿ8ìàĞõâ1J$df80b81a-24cb-48c8-a467-e394683eb87b
+java:S2184§"BCast one of the operands of this addition operation to a "double".(ñàø×ûÿÿÿÿ8ìàĞõâ1J$fe54d0dc-59ad-4784-8c09-857974a47fe9
 †
-java:S2184Í"BCast one of the operands of this addition operation to a "double".(»ğ¯†8ìàĞõâ1J$ceffdb01-34cf-4262-9183-e54229cadd55
+java:S2184Í"BCast one of the operands of this addition operation to a "double".(»ğ¯†8ìàĞõâ1J$a5227447-9a68-49a7-9eff-1a721c10d4b7
 †
-java:S2184Í"BCast one of the operands of this addition operation to a "double".(½±ğ¿8ìàĞõâ1J$2f53d056-5f8a-4173-8b2c-36945a6cc176
+java:S2184Í"BCast one of the operands of this addition operation to a "double".(½±ğ¿8ìàĞõâ1J$e83120df-c04f-482e-af64-1a339b33bda2
 ‹
-java:S2184í"BCast one of the operands of this addition operation to a "double".(¸Öóùøÿÿÿÿ8ìàĞõâ1J$efc317f0-d6f6-41af-afd4-041d73c68880
+java:S2184ğ"BCast one of the operands of this addition operation to a "double".(¸Öóùøÿÿÿÿ8€äÄÇã1J$0ff4307c-1326-4ca5-9fa8-d5867845791a
 ‹
-java:S2184İ	"BCast one of the operands of this addition operation to a "double".(¢œÒğøÿÿÿÿ8ìàĞõâ1J$e61cf5fb-cbc6-4e0f-b5fd-540521bcffce
+java:S2184á	"BCast one of the operands of this addition operation to a "double".(¢œÒğøÿÿÿÿ8èŠÛÇã1J$edf90acb-6544-4ba7-a996-a657c036632d
 †
-java:S2184õ
-"BCast one of the operands of this addition operation to a "double".(Ì ËÉ8ìàĞõâ1J$24d78fd9-1971-4167-bde5-c2b715ed5246
+java:S2184ù
+"BCast one of the operands of this addition operation to a "double".(Ì ËÉ8éŠÛÇã1J$830e94f6-e8f5-4325-b844-0c51768cb55a
 ‹
-java:S2184è"HCast one of the operands of this multiplication operation to a "double".(á­‘u8ìàĞõâ1J$a18306d1-7c01-4ba0-b40e-5247f8e36da3
+java:S2184ì"HCast one of the operands of this multiplication operation to a "double".(á­‘u8éŠÛÇã1J$213c5f9a-cb71-4224-bc8c-56b7ac696b24
 c
-java:S1640ß"Convert this Map to an EnumMap.(—À¢¢8ïàĞõâ1J$a6d1ca41-db8e-4742-8996-886171debe28
+java:S1640ß"Convert this Map to an EnumMap.(—À¢¢8ïàĞõâ1J$ab6c0089-8758-4429-8e98-0f92c678e796
 h
-java:S1640à"Convert this Map to an EnumMap.(€›³ıÿÿÿÿ8ïàĞõâ1J$e8ae305a-74be-4c2a-b708-97f093aa6b6c
-›	java:S116"TRename this field "MAP_WIDTH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²öúåûÿÿÿÿ8âáĞõâ1J$ba2aefae-3043-466a-9ded-1da6826a47f9
-œ	java:S116"URename this field "MAP_HEIGHT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ç„­±ûÿÿÿÿ8âáĞõâ1J$67d0ed0f-6716-4a5e-8c9b-c7c7c0d37b59
+java:S1640à"Convert this Map to an EnumMap.(€›³ıÿÿÿÿ8ïàĞõâ1J$a23e2fec-ec69-4372-9652-fd84621c0036
+›	java:S116"TRename this field "MAP_WIDTH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²öúåûÿÿÿÿ8âáĞõâ1J$dbe9bfba-a1f6-4e69-a0dd-a314654aab66
+œ	java:S116"URename this field "MAP_HEIGHT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ç„­±ûÿÿÿÿ8âáĞõâ1J$9cbd5596-d923-4764-8897-617f30ab8088
 ©
-java:S1450'"aRemove the "playerHitAnimation" field and declare it as a local variable in the relevant methods.(ûŸ¬ºùÿÿÿÿ8åáĞõâ1J$41bad4fd-7ffb-4a83-96eb-570dc1c31e40
-	java:S107Ò"<Method has 8 parameters, which is greater than 7 authorized.(»Ò¬Å8çáĞõâ1J$b319f402-5126-417f-985b-8421bb9db15c
+java:S1450'"aRemove the "playerHitAnimation" field and declare it as a local variable in the relevant methods.(ûŸ¬ºùÿÿÿÿ8åáĞõâ1J$30833a4a-6a9b-430f-a6e9-6ba7eb4ee0d9
+	java:S107Ò"<Method has 8 parameters, which is greater than 7 authorized.(»Ò¬Å8çáĞõâ1J$c1c4c569-7d05-4fb7-9a51-61ea0633054f
 u
-java:S1602£",Remove useless curly braces around statement(äÒ´Åúÿÿÿÿ8íáĞõâ1J$77bbb96b-51b9-449d-8ef9-06c074772760
+java:S1602£",Remove useless curly braces around statement(äÒ´Åúÿÿÿÿ8íáĞõâ1J$e59ee287-4bfc-498b-b05d-90d96362ed1f
 u
-java:S1602»",Remove useless curly braces around statement(äÒ´Åúÿÿÿÿ8îáĞõâ1J$15cb5462-8596-47ce-a3ea-6884311258f5
+java:S1602»",Remove useless curly braces around statement(äÒ´Åúÿÿÿÿ8îáĞõâ1J$7dca862d-1192-4e27-88c4-35227d034a9a
 •
-java:S6201æ"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(ˆÔ¼ÿûÿÿÿÿ8ïáĞõâ1J$3536cd85-f587-4ef1-a7fa-5b21a9c56a24
+java:S6201æ"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(ˆÔ¼ÿûÿÿÿÿ8ïáĞõâ1J$b1b3583a-2504-4380-be49-3cfe72f9e3d5
 ‘
-java:S1871é"MThis branch's code block is the same as the block for the branch on line 358.(¯ùìš8õáĞõâ1J$2c6c2505-f199-459b-a785-8abf48686879
+java:S1871é"MThis branch's code block is the same as the block for the branch on line 358.(¯ùìš8õáĞõâ1J$d2216a3c-859e-4da0-8523-765f7953cb40
 …
-java:S1172™"<Remove this unused method parameter "playerInitialPosition".(Ò¨Òîúÿÿÿÿ8öáĞõâ1J$0c7d6a05-b311-43e2-abb3-06680185d0f9
+java:S1172™"<Remove this unused method parameter "playerInitialPosition".(Ò¨Òîúÿÿÿÿ8öáĞõâ1J$acbf7792-9070-424d-a364-2409c82b5975
 p
-java:S1602·",Remove useless curly braces around statement(÷¼¼Ä8ıáĞõâ1J$2157ce6d-962e-422e-8067-255eb79d83fc
+java:S1602·",Remove useless curly braces around statement(÷¼¼Ä8ıáĞõâ1J$75174cb4-a2ea-45ac-a498-f9d7927e88a3
 p
-java:S1602¹",Remove useless curly braces around statement(÷¼¼Ä8ıáĞõâ1J$f106fc68-031c-4fee-a87a-2b58ee77b835
+java:S1602¹",Remove useless curly braces around statement(÷¼¼Ä8ıáĞõâ1J$ad569f51-198e-4108-85a3-85cb9623eef9
 •
-java:S6201¾"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(Ğ–ä˜ûÿÿÿÿ8ıáĞõâ1J$c41cd819-6f10-4197-a9af-1441c244302a
+java:S6201¾"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(Ğ–ä˜ûÿÿÿÿ8ıáĞõâ1J$a3a2cd36-ed09-4eb1-a3dd-7a2f48035fcf
 •
-java:S6201Ï"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8‚âĞõâ1J$d23ff886-a934-4c30-8776-01c80767db0c
+java:S6201Ï"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8‚âĞõâ1J$fa5786c2-cf19-460c-8268-9effd4497395
 •
-java:S6201Ï"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8‚âĞõâ1J$c651959f-51a9-44db-bdb7-3d0cc7ad0408
+java:S6201Ï"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8‚âĞõâ1J$8de44962-89ea-41aa-9db2-b8a70f66a8ef
 •
-java:S6201Ï"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8‚âĞõâ1J$ef378a03-2b6b-4494-909f-46f29f6d9112
+java:S6201Ï"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(¥ÚÃ£ûÿÿÿÿ8‚âĞõâ1J$7eda7940-d617-4551-a42b-660e25e33cf0
 –
-java:S3776Ù"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(²˜Ş8ƒâĞõâ1J$aa15e0b3-1f3b-4554-a019-5b7a385aadad
+java:S3776Ù"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(²˜Ş8ƒâĞõâ1J$1bea7f99-843a-43c8-9200-18cc8fe27903
 
-java:S6201è"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(Ó£ŞÂ8„âĞõâ1J$d254885d-297d-42d6-adac-6c27a5d25caf
+java:S6201è"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(Ó£ŞÂ8„âĞõâ1J$3ed82479-ba94-4941-a3f9-a46de2936f1f
 •
-java:S6201÷"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(•µÏ‰øÿÿÿÿ8„âĞõâ1J$190d6987-a754-491a-8cac-1c7564366991
+java:S6201÷"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(•µÏ‰øÿÿÿÿ8„âĞõâ1J$cb0a98a1-b8fd-433e-95d8-d9160f21b574
 ‰
-java:S3252Ó"EUse static access with "javafx.animation.Animation" for "INDEFINITE".(÷ÄÛ½8ŒâĞõâ1J$ae2bafe5-2ac9-46b9-b3c6-a1c9f815568e
+java:S3252Ó"EUse static access with "javafx.animation.Animation" for "INDEFINITE".(÷ÄÛ½8ŒâĞõâ1J$94c9c92c-2cb7-47ee-a15b-de9be6ec7d98
 ‰
-java:S3252ğ	"EUse static access with "javafx.animation.Animation" for "INDEFINITE".(„Èßõ8‘âĞõâ1J$02ce9edc-7d7a-4326-9337-bb92282a9c2a
+java:S3252ô	"EUse static access with "javafx.animation.Animation" for "INDEFINITE".(„Èßõ8™ŒÛÇã1J$7accdb21-b681-4882-aa79-8131613e2d98
 
-java:S6201
-"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(ˆ†ŸP8’âĞõâ1J$aa5fd935-f1b2-4ca2-af95-59f037ff290b
+java:S6201…
+"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(ˆ†ŸP8™ŒÛÇã1J$d06eabc8-35d1-49ca-b516-40e196d0ecfb
 
-java:S6201
-"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(ˆ†ŸP8’âĞõâ1J$bf61312c-9628-4a77-8efc-903d2db7464a
+java:S6201…
+"LReplace this instanceof check and cast with 'instanceof ImageView imageview'(ˆ†ŸP8™ŒÛÇã1J$ee07d9a2-6b6d-449a-bbb4-85db6a8bd07b
 u
-java:S1602ƒ",Remove useless curly braces around statement(äÒ´Åúÿÿÿÿ8–âĞõâ1J$7157e775-2a88-4210-b182-50b8df69f291
+java:S1602‡",Remove useless curly braces around statement(äÒ´Åúÿÿÿÿ8ŒÛÇã1J$5ac14187-4fd2-4095-94eb-face55bf0579
 u
-java:S1602ˆ",Remove useless curly braces around statement(äÒ´Åúÿÿÿÿ8–âĞõâ1J$03d6024c-5263-4122-947d-6924132f95e4
+java:S1602Œ",Remove useless curly braces around statement(äÒ´Åúÿÿÿÿ8ŒÛÇã1J$807fef07-6959-421b-a14d-f8a5ae7638bd
 ˆ
-java:S3252Ì"EUse static access with "javafx.animation.Animation" for "INDEFINITE".(¨ˆ¹N8™âĞõâ1J$ce7f4585-7ea8-49ce-a5ff-8b494855f6bb
+java:S3252Ğ"EUse static access with "javafx.animation.Animation" for "INDEFINITE".(¨ˆ¹N8¢ŒÛÇã1J$eef85f00-9fbd-43b2-95c9-b08b1d528b70
 
-java:S3252–"EUse static access with "javafx.animation.Animation" for "INDEFINITE".(Êı şÿÿÿÿ8šâĞõâ1J$a397d1b8-ce47-4b2a-bf94-0eda8a99da91
+java:S3252š"EUse static access with "javafx.animation.Animation" for "INDEFINITE".(Êı şÿÿÿÿ8¥ŒÛÇã1J$c91fec76-e91a-4c7a-8be0-22360475a975
 
-java:S3252ì"EUse static access with "javafx.animation.Animation" for "INDEFINITE".(òğšÓıÿÿÿÿ8âĞõâ1J$ed107539-d46c-49ba-b425-a7798dea018b
+java:S3252ğ"EUse static access with "javafx.animation.Animation" for "INDEFINITE".(òğšÓıÿÿÿÿ8¨ŒÛÇã1J$3ba78210-48ea-435d-86a6-a082a62247ed

@@ -77,6 +77,10 @@ public class Player extends Entity {
     setScore(score += 10);
   }
 
+  public void regenBombCount() {
+    bombCount += 1;
+  }
+
   public void incrementIceCream() {
     lives += 4;
     score += 50000;

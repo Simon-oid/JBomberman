@@ -7,13 +7,17 @@ import javafx.geometry.Rectangle2D;
 import lombok.Getter;
 import lombok.Setter;
 
+@Getter
+@Setter
 public class Mob extends Entity {
 
-  @Getter @Setter private Type type;
+  private Type type;
 
-  @Getter @Setter private int speed;
+  private int speed;
 
-  @Getter @Setter private int invincibilityDuration = 2; // In seconds
+  private int lives; // Number of lives for the mob
+
+  private int invincibilityDuration = 3; // In seconds
 
   // private Rectangle2D mobHitBox = new Rectangle2D(8, 16, 32, 32);
 
@@ -21,6 +25,7 @@ public class Mob extends Entity {
     super(x, y, width, height, direction);
     this.type = type;
     this.speed = 50;
+    this.lives = (type == Type.PUROPEN) ? 1 : 2;
     initHitBox();
   }
 
@@ -40,7 +45,7 @@ public class Mob extends Entity {
     setVulnerable(false); // Player becomes invincible
     // Schedule a task to make the player vulnerable again after the invincibility duration
 
-    ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+    ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
     scheduler.schedule(() -> isVulnerable = true, invincibilityDuration, TimeUnit.SECONDS);
   }
 
@@ -54,5 +59,11 @@ public class Mob extends Entity {
     setX(newX);
     setY(newY);
     updateHitBox(newX, newY);
+  }
+
+  public void invincible() {
+    setVulnerable(false);
+    ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+    scheduler.schedule(() -> isVulnerable = true, invincibilityDuration, TimeUnit.SECONDS);
   }
 }

@@ -1117,23 +1117,27 @@ public class GameView {
     int score = data.score();
     int x = data.x();
     int y = data.y();
+    int lives = data.lives();
 
-    // Stop the existing movement animation of the mob
-    stopMobMovementAnimation(mobType);
+    if (lives > 0) {
+      // Play the flickering animation between the normal sprite and the flickering sprite
+      playFlickeringAnimation(mobType);
+    } else {
 
-    // Play the flickering animation between the normal sprite and the flickering sprite
-    playFlickeringAnimation(mobType);
-
-    // Delay the removal of the mob sprite by 2 seconds and play spawnScoreNumbers
-    Timeline delayTimeline =
-        new Timeline(
-            new KeyFrame(
-                Duration.seconds(2),
-                event -> {
-                  spawnScoreNumbers(score, x, y + 50);
-                  removeOldMobSprite(mobType);
-                }));
-    delayTimeline.play();
+      playFlickeringAnimation(mobType);
+      // Stop the existing movement animation of the mob
+      stopMobMovementAnimation(mobType);
+      // Delay the removal of the mob sprite by 2 seconds and play spawnScoreNumbers
+      Timeline delayTimeline =
+          new Timeline(
+              new KeyFrame(
+                  Duration.seconds(2),
+                  event -> {
+                    spawnScoreNumbers(score, x, y + 50);
+                    removeOldMobSprite(mobType);
+                  }));
+      delayTimeline.play();
+    }
   }
 
   private void stopMobMovementAnimation(Type mobType) {
@@ -1151,7 +1155,7 @@ public class GameView {
           new Timeline(
               new KeyFrame(Duration.seconds(0.050), event -> mobImageView.setVisible(false)),
               new KeyFrame(Duration.seconds(0.1), event -> mobImageView.setVisible(true)));
-      flickeringAnimation.setCycleCount(Animation.INDEFINITE); // Repeat indefinitely
+      flickeringAnimation.setCycleCount(30); // Repeat indefinitely
       flickeringAnimation.play();
     }
   }
