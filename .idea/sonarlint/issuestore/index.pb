@@ -119,3 +119,7 @@ e
 5src/main/java/org/jbomberman/view/PixelateEffect.java,b\a\ba4c816691aa4a604e0f8ac96c41129a360bc9e1
 d
 4src/main/java/org/jbomberman/view/LevelSwapFont.java,9\1\91ea409bfdc7d0e401a4e4ea7508980ff878e27a
+b
+2src/main/java/org/jbomberman/model/tiles/Tile.java,6\6\66acf289f4ae535917257c2b0abdb1143243f1d7
+s
+Csrc/main/java/org/jbomberman/model/listener/DenkyunRespawnData.java,f\6\f65c12972685149af3d70074aeaf910e0a477c94

@@ -725,14 +725,6 @@ public class Map extends Observable {
     if (mob.isVulnerable()) { // If the mob is vulnerable
       mob.setLives(mob.getLives() - 1);
 
-      if (mob.getLives() == 0 && mob.getType() == Type.PUROPEN) { // PUROPEN mob reaches 0 lives
-        // Check if the exit tile is present on the map
-        if (isExitTilePresent()) {
-          // Respawn the PUROPEN mob at the exit tile
-          respawnMobAtExitTile(mob);
-        }
-      }
-
       // Send the current number of lives along with the RemoveMobData package
       sendUpdate(
           new RemoveMobData(
@@ -748,6 +740,22 @@ public class Map extends Observable {
 
     // Remove the mob from the game if its lives equal 0
     if (mob.getLives() <= 0) {
+
+      if (mob.getLives() == 0 && mob.getType() == Type.DENKYUN) { // PUROPEN mob reaches 0 lives
+        // Check if the exit tile is present on the map
+        if (isExitTilePresent()) {
+
+          Timeline delayTimeline =
+              new Timeline(
+                  new KeyFrame(
+                      Duration.seconds(5),
+                      event -> {
+                        // Respawn the PUROPEN mob at the exit tile
+                        respawnMobOnExitTile();
+                      }));
+          delayTimeline.play();
+        }
+      }
       // Award the calculated score to the player
       player.setScore(player.getScore() + score);
       updatePlayerScore(player);
@@ -756,13 +764,57 @@ public class Map extends Observable {
   }
 
   private boolean isExitTilePresent() {
-    // Implement logic to check if the exit tile is present on the map
-    // Return true if the exit tile is present, false otherwise
+    // Check if there's already an exit tile on the map
+    for (Tiles tile : numTileMap) {
+      if (tile == Tiles.EXIT) {
+        return true; // Exit tile already exists, so don't spawn another one
+      }
+    }
     return false;
   }
 
-  private void respawnMobAtExitTile(Mob mob) {
-    // Implement logic to respawn the mob at the exit tile
+  private void respawnMobOnExitTile() {
+    // Find the position of the exit tile
+    int[] exitTilePosition = findExitTilePosition(numTileMap);
+    System.out.println(exitTilePosition[0]);
+    if (exitTilePosition != null) {
+      // Calculate the position of the exit tile
+      int exitTilePosX = exitTilePosition[0];
+      int exitTilePosY = exitTilePosition[1];
+
+      // Create a new DENKYUN mob at the exit tile position
+      Mob denkyunMob = new Mob(exitTilePosX, exitTilePosY, 47, 47, Type.DENKYUN, Direction.RIGHT);
+      // Spawn the DENKYUN mob
+      denkyunMob.spawn();
+      entities.add(denkyunMob);
+
+      sendUpdate(
+          new DenkyunRespawnData(
+              PackageType.DENKYUN_RESPAWN,
+              denkyunMob.getType(),
+              denkyunMob.getX(),
+              denkyunMob.getY()));
+    }
+  }
+
+  private int[] findExitTilePosition(ArrayList<Tiles> numTileMap) {
+
+    int mapWidth = 15; // Width of the map in tile units
+    int tileSize = 48; // Size of each tile in pixels
+
+    int exitIndex = numTileMap.indexOf(Tiles.EXIT);
+    if (exitIndex != -1) {
+      int exitTileX = exitIndex % mapWidth; // X coordinate of the exit tile in tile units
+      int exitTileY = exitIndex / mapWidth; // Y coordinate of the exit tile in tile units
+      int exitTileTopLeftX =
+          exitTileX * tileSize; // X coordinate of the top-left pixel of the exit tile
+      int exitTileTopLeftY =
+          exitTileY * tileSize; // Y coordinate of the top-left pixel of the exit tile
+      return new int[] {
+        exitTileTopLeftX, exitTileTopLeftY
+      }; // Return exit tile top-left position (x, y)
+    }
+    return null; // Exit tile not found
   }
 
   private int calculateScoreForMob(Mob mob) {

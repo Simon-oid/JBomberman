@@ -44,7 +44,9 @@ public enum Tiles {
   POWERUP_ICESCREAM_0(
       Tiles.class.getResourceAsStream("tiles/powerUp_IceScream_0.png"), true, false),
   POWERUP_ICESCREAM_1(
-      Tiles.class.getResourceAsStream("tiles/powerUp_IceScream_1.png"), true, false);
+      Tiles.class.getResourceAsStream("tiles/powerUp_IceScream_1.png"), true, false),
+  EXIT_TILE_0(Tiles.class.getResourceAsStream("tiles/exit_tile_0.png"), true, false),
+  EXIT_TILE_1(Tiles.class.getResourceAsStream("tiles/exit_tile_1.png"), true, false);
 
   @Getter private final Image image;
   @Getter private final boolean isCollidable;

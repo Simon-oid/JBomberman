@@ -995,6 +995,7 @@ public class GameView {
 
     // Adjust the Y position to align the bottom of the mob ImageView with the bottom of its hitbox
     double adjustedY = initialY - mobImageView.getFitHeight();
+    System.out.println(adjustedY);
     mobImageView.setY(adjustedY);
 
     TranslateTransition transition = new TranslateTransition(Duration.seconds(delta), mobImageView);
@@ -1019,6 +1020,7 @@ public class GameView {
     } else {
       ImageView denkyunImageView = mobSprites.get(mobType);
       playDenkyunAnimation(denkyunImageView, mobType);
+      System.out.println("denkyun should move");
     }
 
     transition.play();
@@ -1391,8 +1393,8 @@ public class GameView {
     int x = data.exitTileX();
     int y = data.exitTileY();
 
-    Image exitTileImage0 = Tiles.POWERUP_ICESCREAM_0.getImage();
-    Image exitTileImage1 = Tiles.POWERUP_ICESCREAM_1.getImage();
+    Image exitTileImage0 = Tiles.EXIT_TILE_0.getImage();
+    Image exitTileImage1 = Tiles.EXIT_TILE_1.getImage();
 
     exitTileImageView = new ImageView(exitTileImage0);
     exitTileImageView.setFitWidth(48);
@@ -1422,7 +1424,7 @@ public class GameView {
                 }));
 
     // Set the cycle count to 2 to repeat the animation twice
-    exitTileAnimation.setCycleCount(90);
+    exitTileAnimation.setCycleCount(900);
 
     // Start the animation
     exitTileAnimation.play();
@@ -1661,5 +1663,31 @@ public class GameView {
     clockAnimation.play();
     // Add clock to HUD AnchorPane
     anchorPane.getChildren().add(clockImageView);
+  }
+
+  public void spawnDenkyunAtCoordinates(DenkyunRespawnData data) {
+    double x = data.x();
+    double y = data.y();
+
+    initializeDenkyun(x, y);
+  }
+
+  private void initializeDenkyun(double x, double y) {
+    ImageView denkyunImageView = new ImageView(Entities.VOID.getImage());
+    denkyunImageView.setFitWidth(48);
+    denkyunImageView.setFitHeight(80);
+
+    Timeline mobMovementAnimation = new Timeline();
+
+    anchorPane.getChildren().add(denkyunImageView); // Add Denkyun ImageView to the anchorPane
+
+    // Set the position of the Denkyun ImageView within the AnchorPane using layout constraints
+    AnchorPane.setTopAnchor(denkyunImageView, y - 175);
+    AnchorPane.setLeftAnchor(denkyunImageView, x - 48);
+
+    mobSprites.put(Type.DENKYUN, denkyunImageView);
+    mobMovementAnimations.put(Type.DENKYUN, mobMovementAnimation);
+
+    playFlickeringAnimation(Type.DENKYUN); // Start flickering animation after pause
   }
 }

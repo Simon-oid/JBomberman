@@ -1635,6 +1635,90 @@ FF >>> 22/10/2023
 ===========================================================================
 ***
 
+### 14/03/2024
+
+### TO-DO:
+
+### high priority: [working on animations rn]
+
+---
+
+- [ ] animazione per tile exit
+- [ ] le hitbox dei mob non possono essere la stessa grandezza di un tile, per via dei gametick irregolari, a volte
+  la collisione viene detectata pochi pixel prima di quello che e' il bordo del tile / entita' [provare con hitbox
+  piu' piccole e con detection delle collisioni con un offset es. hitbox del mob 45x45 ma la collisione avviene
+  sempre con un offset di 3 pixels]
+- [ ] fixare il fatto che ora come ora, quando le imageview dei mob sono inizializzate, per via di una shallow copy
+  della lista dei mob, soltanto le ultime due imageview per tipo sono utilizzate per disegnare i mob (sulle ultime
+  imageview vengono disegnate le animazioni dei primi due mob )
+
+---
+
+- REQUISITI MANCANTI:
+- [ ] animazioni
+- [ ] suono
+- [ ] player selection
+
+### low priority:
+
+- [ ] reworka collisioni del player (si incolla alle pareti)
+- [ ] bisogna modificare il model cosi' che quando il player
+  viene colpito, il player e' respawnato alle
+  coordinate iniziali
+
+### DONE:
+
+- [ ] il denkyun dovrebbe avere una possibilita' di respawnare se il tile exit e' sul campo[creata la logica dentro
+  handleMobHit ma bisogna implementare i metodi: isExitTilePresent() e respawnMobAtExitTile()]
+- [x] creati metodi, isExitTilePresent(), respawnMobOnExitTile(), findExitTilePosition()
+
+***
+
+===========================================================================
+***
+
+### 15/03/2024
+
+### TO-DO:
+
+### high priority: [animations done]
+
+---
+
+- [ ] le hitbox dei mob non possono essere la stessa grandezza di un tile, per via dei gametick irregolari, a volte
+  la collisione viene detectata pochi pixel prima di quello che e' il bordo del tile / entita' [provare con hitbox
+  piu' piccole e con detection delle collisioni con un offset es. hitbox del mob 45x45 ma la collisione avviene
+  sempre con un offset di 3 pixels]
+- [ ] fixare il fatto che ora come ora, quando le imageview dei mob sono inizializzate, per via di una shallow copy
+  della lista dei mob, soltanto le ultime due imageview per tipo sono utilizzate per disegnare i mob (sulle ultime
+  imageview vengono disegnate le animazioni dei primi due mob )
+
+---
+
+- REQUISITI MANCANTI:
+
+- [ ] suono
+- [ ] player selection
+
+### low priority:
+
+- [ ] reworka collisioni del player (si incolla alle pareti)
+- [ ] bisogna modificare il model cosi' che quando il player
+  viene colpito, il player e' respawnato alle
+  coordinate iniziali
+
+### DONE:
+
+- [x] animazione per tile exit
+- [x] il denkyun dovrebbe avere una possibilita' di respawnare se il tile exit e' sul campo[creata la logica dentro
+  handleMobHit ma bisogna implementare i metodi: isExitTilePresent() e respawnMobAtExitTile()]
+- [x] animazioni
+
+***
+
+===========================================================================
+***
+
 
 
 
