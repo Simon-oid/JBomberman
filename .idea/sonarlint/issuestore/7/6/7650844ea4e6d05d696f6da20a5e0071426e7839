@@ -1,0 +1,25 @@
+
+Ü
+java:S6548
+"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(£àñÁ8™…™Úå1J$c40dd391-a75d-4e12-8c55-2e5a145d8931
+[
+java:S1854">Remove this useless assignment to local variable "baseFormat".(Ñ÷¨8¡õÏÚå1
+a
+java:S2147/"DCombine this catch with the one at line 45, which has the same body.(ŸäÁ‚8¢õÏÚå1
+a
+java:S21471"DCombine this catch with the one at line 47, which has the same body.(ûëßæ8¢õÏÚå1
+a
+java:S21473"DCombine this catch with the one at line 49, which has the same body.(˜É³8¢õÏÚå1
+L	java:S106"+Replace this use of System.out by a logger.(Ğ¸ãïûÿÿÿÿ8£õÏÚå1
+L
+java:S1481"/Remove this unused "baseFormat" local variable.(Ñ÷¨8¤õÏÚå1
+[
+java:S1854R">Remove this useless assignment to local variable "baseFormat".(Ñ÷¨8¦õÏÚå1
+a
+java:S2147\"DCombine this catch with the one at line 90, which has the same body.(ï­£Ä8¦õÏÚå1
+a
+java:S2147^"DCombine this catch with the one at line 92, which has the same body.(Ó•Şˆ8¦õÏÚå1
+f
+java:S2147`"DCombine this catch with the one at line 94, which has the same body.(Ñ¾éÓüÿÿÿÿ8¦õÏÚå1
+L
+java:S1481R"/Remove this unused "baseFormat" local variable.(Ñ÷¨8§õÏÚå1

@@ -113,8 +113,6 @@ i
 9src/main/java/org/jbomberman/view/FontMobKillFlicker.java,9\6\96758495cafb54ec38d97ea24757b4fa880fe522
 \
 ,src/main/java/org/jbomberman/view/Clock.java,c\9\c9c8fa66c3d9aa35af2593ee3c536561c5e25d49
-f
-6src/main/java/org/jbomberman/view/EntitiesFlicker.java,3\c\3c7329e8b25fe2da67dc5c99c0e13255f019bfd8
 e
 5src/main/java/org/jbomberman/view/PixelateEffect.java,b\a\ba4c816691aa4a604e0f8ac96c41129a360bc9e1
 d
@@ -123,3 +121,9 @@ b
 2src/main/java/org/jbomberman/model/tiles/Tile.java,6\6\66acf289f4ae535917257c2b0abdb1143243f1d7
 s
 Csrc/main/java/org/jbomberman/model/listener/DenkyunRespawnData.java,f\6\f65c12972685149af3d70074aeaf910e0a477c94
+c
+3src/main/java/org/jbomberman/view/AudioManager.java,7\6\7650844ea4e6d05d696f6da20a5e0071426e7839
+b
+2src/main/java/org/jbomberman/view/AudioSample.java,c\c\cc5b58f61989649d83e5813e657e8d75f4b8eb02
+p
+@src/main/java/org/jbomberman/model/listener/LevelUpdateData.java,5\8\58fe075ec01be36445dd9f497a7bb1fa480def59

@@ -144,6 +144,7 @@ public class SceneController implements Observer {
         case GAME_OVER -> Platform.runLater(() -> switchToGameOverScene((GameOverUpdateData) data));
         case DENKYUN_RESPAWN ->
             Platform.runLater(() -> gameRoot.spawnDenkyunAtCoordinates((DenkyunRespawnData) data));
+        case LEVEL_UPDATE -> Platform.runLater(() -> gameRoot.levelClear((LevelUpdateData) data));
       }
     }
   }

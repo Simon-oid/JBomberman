@@ -339,7 +339,6 @@ public class Map extends Observable {
 
   public void moveMob(Mob mob, int xStep, int yStep, double delta) {
 
-    int currentLives = mob.getLives();
     int oldX = mob.getX();
     int oldY = mob.getY();
 
@@ -702,14 +701,14 @@ public class Map extends Observable {
 
         // Check if mob's hitbox intersects with width explosion hitbox
         if (mobHitbox.intersects(horizontalExplosionHitbox)) {
-          System.out.println("Collision detected between mob and width explosion!");
+          // System.out.println("Collision detected between mob and width explosion!");
           handleMobExplosion(mob);
           mobsAffectedByExplosion.add(mob);
         }
 
         // Check if mob's hitbox intersects with height explosion hitbox
         if (mobHitbox.intersects(verticalExplosionHitbox)) {
-          System.out.println("Collision detected between mob and height explosion!");
+          // System.out.println("Collision detected between mob and height explosion!");
           handleMobExplosion(mob);
           mobsAffectedByExplosion.add(mob);
         }
@@ -783,7 +782,10 @@ public class Map extends Observable {
       int exitTilePosY = exitTilePosition[1];
 
       // Create a new DENKYUN mob at the exit tile position
-      Mob denkyunMob = new Mob(exitTilePosX, exitTilePosY, 47, 47, Type.DENKYUN, Direction.RIGHT);
+      Mob denkyunMob = new Mob(exitTilePosX, exitTilePosY, 45, 45, Type.DENKYUN, Direction.RIGHT);
+
+      Direction newDirection = chooseRandomValidDirection(denkyunMob);
+      denkyunMob.setDirection(newDirection);
       // Spawn the DENKYUN mob
       denkyunMob.spawn();
       entities.add(denkyunMob);
@@ -887,7 +889,7 @@ public class Map extends Observable {
 
       // Player takes damage from the explosion
 
-      System.out.println("Player Took Damage!!!");
+      // System.out.println("Player Took Damage!!!");
 
       // Notify GameView to update display with new player lives
       sendUpdate(new PlayerLivesUpdateData(PackageType.PLAYER_LIVES_UPDATE, player.getLives()));
@@ -981,7 +983,7 @@ public class Map extends Observable {
         int powerUpY = (int) powerUp.getY();
         // Remove the power-up from the list
         iterator.remove();
-        System.out.println("powerup collision checked");
+        // System.out.println("powerup collision checked");
         // Send update
         sendUpdate(
             new PowerUpApplicationData(
@@ -996,7 +998,7 @@ public class Map extends Observable {
     sendUpdate(
         new PowerUpDespawnData(
             PackageType.POWERUP_DESPAWN, powerUp.getType(), powerUp.getX(), powerUp.getY()));
-    System.out.println("powerup despawned");
+    // System.out.println("powerup despawned");
   }
 
   private void cancelPowerUpDespawn(PowerUp powerUp) {
@@ -1006,7 +1008,7 @@ public class Map extends Observable {
       // Cancel the despawn task
       despawnTask.cancel(false);
     }
-    System.out.println("powerup despawn canceled");
+    // System.out.println("powerup despawn canceled");
   }
 
   public void updatePlayerScore(Player player) {
@@ -1062,7 +1064,7 @@ public class Map extends Observable {
     // Generate a random number between 0 and 1
     double randomValue = Math.random();
 
-    System.out.println(randomValue <= spawnChance);
+    // System.out.println(randomValue <= spawnChance);
 
     // Check if the random value falls within the spawn chance
     return randomValue <= spawnChance;
@@ -1082,7 +1084,7 @@ public class Map extends Observable {
             // Store the hitbox of the exit tile
             exitTileHitBox = new Rectangle2D(x, y, Tiles.GRASS.size(), Tiles.GRASS.size());
 
-            System.out.println("spawnato il tile exit");
+            // System.out.println("spawnato il tile exit");
             // Notify GameView to update display with the exit tile
             sendUpdate(new ExitTileSpawnData(PackageType.SPAWN_EXIT_TILE, x, y));
           } catch (Exception e) {
@@ -1103,18 +1105,26 @@ public class Map extends Observable {
   }
 
   private void endLevel() {
-    // Add logic to end the current level, e.g., load the next level or display victory screen
-    System.out.println("Level ended!");
     level++;
     // Increment the level number
     int currentLevel = getLevel();
     System.out.println(getLevel());
 
     // Clear existing entities and power-ups
+    pauseKeyHandler();
     entities.clear();
     powerUps.clear();
 
+    // Remove the exit tile hitbox
+    removeExitTileHitbox();
+
     loadLevel(Integer.toString(currentLevel));
+
+    sendUpdate(new LevelUpdateData(PackageType.LEVEL_UPDATE, currentLevel));
+  }
+
+  private void removeExitTileHitbox() {
+    exitTileHitBox = null;
   }
 
   private void gameOver() {

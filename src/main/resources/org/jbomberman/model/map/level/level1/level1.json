@@ -14,16 +14,16 @@
       "posx": "96",
       "posy": "144",
       "direction": "DOWN",
-      "width": "46",
-      "height": "46"
+      "width": "44",
+      "height": "44"
     },
     {
       "type": "DENKYUN",
       "posx": "144",
       "posy": "144",
       "direction": "RIGHT",
-      "width": "46",
-      "height": "46"
+      "width": "44",
+      "height": "44"
     }
   ],
   "powerup_spawn_chance": 0.2

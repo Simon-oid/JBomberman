@@ -45,15 +45,34 @@ public class GameView {
   private Timeline clockAnimation;
   private ImageView clockImageView;
 
+  private ImageView exitTileImageView;
+
   private boolean firstTimeLoading = true;
 
   private static final double ANIMATION_DURATION = 0.5; // Duration for animations in seconds
   private static final double HUD_APPEARANCE_DELAY = 0; // Delay before HUD appears
 
+  private AudioManager audioManager; // AudioManager instance
+
+  private AnimationTimer soundTimer;
+  private long lastPlayTime;
+  private boolean soundTimerRunning = false;
+
+  private AnimationTimer soundtrackTimer;
+
+  private long lastPlayTimeSoundtrack;
+
   public GameView() {
+
+    setupSoundTimer();
+
+    audioManager = AudioManager.getInstance(); // Get AudioManager instance
+
     playerMovementAnimation = new Timeline();
 
     anchorPane = new AnchorPane();
+
+    setupSoundTrackTimer();
 
     initializePlayer();
 
@@ -81,7 +100,50 @@ public class GameView {
     initGameView();
   }
 
+  private void setupSoundTrackTimer() {
+    soundtrackTimer =
+        new AnimationTimer() {
+          @Override
+          public void handle(long now) {
+            // Calculate the elapsed time since the last playback in seconds
+            long elapsedTimeSeconds = (now - lastPlayTimeSoundtrack) / 1_000_000_000;
+
+            // Check if the elapsed time exceeds the duration of the soundtrack (2 minutes and 42
+            // seconds)
+            if (elapsedTimeSeconds >= (2 * 60 + 42)) {
+              audioManager.play(AudioSample.SOUNDTRACK);
+              lastPlayTimeSoundtrack = now; // Reset the last playback time
+            }
+          }
+        };
+  }
+
+  private void stopSoundtrackTimer() {
+    if (soundtrackTimer != null) {
+      soundtrackTimer.stop();
+      soundtrackTimer = null;
+    }
+  }
+
+  private void stopSoundtrack() {
+    audioManager.stop(AudioSample.SOUNDTRACK); // Stop the soundtrack
+    audioManager.reinitializeSoundtrackClip(); // Reinitialize the soundtrack clip
+  }
+
   private void initGameView() {
+
+    audioManager.play(AudioSample.STAGE_INTRO);
+
+    // Schedule both soundtrack playback and timer setup inside a timeline
+    Timeline timelineSoundTrack =
+        new Timeline(
+            new KeyFrame(
+                Duration.seconds(3.5),
+                event -> {
+                  audioManager.play(AudioSample.SOUNDTRACK);
+                }));
+    timelineSoundTrack.setCycleCount(1); // Ensure timeline executes only once
+    timelineSoundTrack.play();
 
     ImageView levelSwapFontImageView;
 
@@ -196,10 +258,13 @@ public class GameView {
   // Method to reset the game view
   public void resetGameView() {
     if (firstTimeLoading) {
+
       firstTimeLoading = false;
     } else {
 
       currentLevel++;
+
+      anchorPane.getChildren().remove(exitTileImageView);
 
       anchorPane.getChildren().remove(tilePane);
 
@@ -211,6 +276,10 @@ public class GameView {
       for (ImageView mobSprite : mobSprites.values()) {
         mobSprite.setVisible(false);
       }
+      stopSoundtrackTimer();
+
+      setupSoundTrackTimer();
+
       initGameView();
     }
   }
@@ -412,7 +481,23 @@ public class GameView {
     player.setTranslateY(-4);
   }
 
+  private void setupSoundTimer() {
+    soundTimer =
+        new AnimationTimer() {
+          @Override
+          public void handle(long now) {
+            // Check if at least 500 milliseconds (half a second) have passed since the last play
+            // time
+            if (now - lastPlayTime >= 320_000_000) {
+              audioManager.play(AudioSample.WALKING_1);
+              lastPlayTime = now;
+            }
+          }
+        };
+  }
+
   public void movePlayer(PlayerMovementData data) {
+
     int xStep = data.xStep();
     int yStep = data.yStep();
     double delta = data.delta();
@@ -435,14 +520,23 @@ public class GameView {
 
     // Start the transition if direction is not NONE
     if (direction != Direction.NONE) {
-
       if (direction != lastAnimationDirection) {
         animatePlayer(player, direction);
+        // Start the sound timer if not already running
+        if (!soundTimerRunning) {
+          soundTimer.start();
+          soundTimerRunning = true;
+        }
       }
       transition.play();
     } else {
       playerMovementAnimation.pause();
       player.setImage(Entities.PLAYER.getImage());
+      // Stop the sound timer when movement stops
+      if (soundTimerRunning) {
+        soundTimer.stop();
+        soundTimerRunning = false;
+      }
     }
   }
 
@@ -559,6 +653,9 @@ public class GameView {
 
     // Play bomb explosion animation with bomb timer duration
     playBombExplosionAnimation(bombImageView, bombTimer);
+
+    // Play bomb explosion sound
+    audioManager.play(AudioSample.BOMB_PLACEMENT);
   }
 
   private void playBombExplosionAnimation(ImageView bombImageView, double bombTimer) {
@@ -597,7 +694,11 @@ public class GameView {
     timeline.setCycleCount(2);
 
     // Remove the bomb image view from the anchor pane after the animation finishes
-    timeline.setOnFinished(event -> anchorPane.getChildren().remove(bombImageView));
+    timeline.setOnFinished(
+        event -> {
+          audioManager.play(AudioSample.BOMB_EXPLOSION);
+          anchorPane.getChildren().remove(bombImageView);
+        });
 
     // Play the timeline
     timeline.play();
@@ -995,18 +1096,22 @@ public class GameView {
 
     // Adjust the Y position to align the bottom of the mob ImageView with the bottom of its hitbox
     double adjustedY = initialY - mobImageView.getFitHeight();
-    System.out.println(adjustedY);
+
     mobImageView.setY(adjustedY);
 
-    TranslateTransition transition = new TranslateTransition(Duration.seconds(delta), mobImageView);
+    TranslateTransition xTransition =
+        new TranslateTransition(Duration.seconds(delta), mobImageView);
+    xTransition.setFromX(initialX);
+    xTransition.setToX(xStep);
+    xTransition.setCycleCount(1);
+    xTransition.play();
 
-    // Set the initial positions as the fromX and fromY properties
-    transition.setFromX(initialX);
-    transition.setFromY(initialY);
-
-    // Set the target positions using setToX and setToY
-    transition.setToX(xStep);
-    transition.setToY(yStep);
+    TranslateTransition yTransition =
+        new TranslateTransition(Duration.seconds(delta), mobImageView);
+    yTransition.setFromY(initialY);
+    yTransition.setToY(yStep);
+    yTransition.setCycleCount(1);
+    yTransition.play();
 
     // Ensure bomb is drawn under the player
     anchorPane.getChildren().remove(player);
@@ -1017,13 +1122,10 @@ public class GameView {
       if (direction != lastPuropenDirection) {
         animatePuropen(mobType, direction);
       }
-    } else {
+    } else { // TODO: aggiungere check per far partire animazione del dnekyun una volta sola
       ImageView denkyunImageView = mobSprites.get(mobType);
       playDenkyunAnimation(denkyunImageView, mobType);
-      System.out.println("denkyun should move");
     }
-
-    transition.play();
   }
 
   private void animatePuropen(Type mobType, Direction direction) {
@@ -1129,6 +1231,16 @@ public class GameView {
       playFlickeringAnimation(mobType);
       // Stop the existing movement animation of the mob
       stopMobMovementAnimation(mobType);
+
+      Timeline delayTimeline1 =
+          new Timeline(
+              new KeyFrame(
+                  Duration.seconds(1),
+                  event -> {
+                    audioManager.play(AudioSample.MOB_DEATH);
+                  }));
+      delayTimeline1.play();
+
       // Delay the removal of the mob sprite by 2 seconds and play spawnScoreNumbers
       Timeline delayTimeline =
           new Timeline(
@@ -1163,6 +1275,7 @@ public class GameView {
   }
 
   private void removeOldMobSprite(Type mobType) {
+
     ImageView oldMobImageView = mobSprites.get(mobType);
     if (oldMobImageView != null) {
       anchorPane.getChildren().remove(oldMobImageView);
@@ -1177,6 +1290,9 @@ public class GameView {
     if (lives == 0) {
       removePlayer();
     }
+
+    soundTimer.stop();
+    audioManager.play(AudioSample.BOMBERMAN_DEATH);
   }
 
   private void playPlayerHitAnimation(ImageView imageView, Image[] sprites) {
@@ -1275,6 +1391,8 @@ public class GameView {
     int x = data.x();
     int y = data.y();
 
+    audioManager.play(AudioSample.POWER_UP_PICKUP);
+
     removePowerUp(x, y + Y_OFFSET);
   }
 
@@ -1360,6 +1478,7 @@ public class GameView {
   }
 
   public void drawPlayerLives(PlayerLivesUpdateData data) {
+
     int lives = data.lives();
 
     // Define the starting X position for drawing lives sprites
@@ -1389,7 +1508,7 @@ public class GameView {
   }
 
   public void handleExitSpawn(ExitTileSpawnData data) {
-    ImageView exitTileImageView;
+
     int x = data.exitTileX();
     int y = data.exitTileY();
 
@@ -1689,5 +1808,13 @@ public class GameView {
     mobMovementAnimations.put(Type.DENKYUN, mobMovementAnimation);
 
     playFlickeringAnimation(Type.DENKYUN); // Start flickering animation after pause
+  }
+
+  public void levelClear(LevelUpdateData data) {
+    int level = data.currentLevel();
+
+    stopSoundtrack();
+
+    audioManager.play(AudioSample.STAGE_CLEAR);
   }
 }

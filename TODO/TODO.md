@@ -1719,6 +1719,180 @@ FF >>> 22/10/2023
 ===========================================================================
 ***
 
+### 16/03/2024
+
+### TO-DO:
+
+### high priority: [animations done]
+
+---
+
+- [ ] fixare il fatto che ora come ora, quando le imageview dei mob sono inizializzate, per via di una shallow copy
+  della lista dei mob, soltanto le ultime due imageview per tipo sono utilizzate per disegnare i mob (sulle ultime
+  imageview vengono disegnate le animazioni dei primi due mob )
+
+---
+
+- REQUISITI MANCANTI:
+
+- [ ] suono
+- [ ] player selection
+
+### low priority:
+
+- [ ] reworka collisioni del player (si incolla alle pareti)
+- [ ] bisogna modificare il model cosi' che quando il player
+  viene colpito, il player e' respawnato alle
+  coordinate iniziali
+
+### DONE:
+
+- [x] [NON FUNZIONA PROVARE UN ALTRO METODO]le hitbox dei mob non possono essere la stessa grandezza di un tile, per
+  via
+  dei gametick
+  irregolari, a
+  volte
+  la collisione viene detectata pochi pixel prima di quello che e' il bordo del tile / entita' [provare con hitbox
+  piu' piccole e con detection delle collisioni con un offset es. hitbox del mob 45x45 ma la collisione avviene
+  sempre con un offset di 3 pixels]
+
+***
+
+===========================================================================
+***
+
+### 18/03/2024
+
+### TO-DO:
+
+### high priority: [doing audio stuff rn]
+
+---
+
+- [ ] fare l'animazione per quando il player entra nel tile exit
+- [ ] fixare il fatto che ora come ora, quando le imageview dei mob sono inizializzate, per via di una shallow copy
+  della lista dei mob, soltanto le ultime due imageview per tipo sono utilizzate per disegnare i mob (sulle ultime
+  imageview vengono disegnate le animazioni dei primi due mob )
+
+---
+
+- REQUISITI MANCANTI:
+
+- [ ] suono
+- [ ] player selection
+
+### low priority:
+
+- [ ] reworka collisioni del player (si incolla alle pareti)
+- [ ] bisogna modificare il model cosi' che quando il player
+  viene colpito, il player e' respawnato alle
+  coordinate iniziali
+
+### DONE:
+
+***
+
+===========================================================================
+***
+
+### 19/03/2024
+
+### TO-DO:
+
+### high priority: [doing audio stuff rn]
+
+- [ ] fixare il fatto che se la soundtrack viene messa in pausa, poi no si puo' piu' restartare
+
+---
+
+- [ ] l'exit tile non viene rimosso correttamente quando un nuovo livello viene caricato, rimane nella vecchia
+  posizione ma viene nascosto dai nuovi sprites
+- [ ] quando il player collide con il tile exit, il numero del livello continua ad aumentare
+- [ ] fare l'animazione per quando il player entra nel tile exit
+- [ ] fixare il fatto che ora come ora, quando le imageview dei mob sono inizializzate, per via di una shallow copy
+  della lista dei mob, soltanto le ultime due imageview per tipo sono utilizzate per disegnare i mob (sulle ultime
+  imageview vengono disegnate le animazioni dei primi due mob )
+
+---
+
+- REQUISITI MANCANTI:
+
+- [ ] suono
+- [ ] player selection
+- [ ] settings
+
+### low priority:
+
+- [ ] reworka collisioni del player (si incolla alle pareti)
+- [ ] bisogna modificare il model cosi' che quando il player
+  viene colpito, il player e' respawnato alle
+  coordinate iniziali
+
+### DONE:
+
+-[x] suono per l'esplosione della bomba
+- [x] suono per l'uccisione di un mob
+- [x] suono per la raccolta di un powerup
+- [x] suono per la morte del player
+- [x] suono per il cambio di stage
+- [x] suono per stage clear
+- [x] suono per posizionamento della bomba
+- [x] suono per il movimento del player
+- [x] suono per la morte di un mob
+- [x] implementata una bozza per l'handling della soundtrack per livello [ fixare il fatto che se si stoppa la
+  traccia e la si fa riapartire, la traccia non riparte ]
+
+***
+
+===========================================================================
+***
+
+### 20/03/2024
+
+### TO-DO:
+
+### high priority: [doing audio stuff rn]
+
+---
+
+- [ ] fare l'animazione per quando il player entra nel tile exit
+- [ ] fixare il fatto che ora come ora, quando le imageview dei mob sono inizializzate, per via di una shallow copy
+  della lista dei mob, soltanto le ultime due imageview per tipo sono utilizzate per disegnare i mob (sulle ultime
+  imageview vengono disegnate le animazioni dei primi due mob )
+
+---
+
+- REQUISITI MANCANTI:
+
+
+- [ ] player selection
+- [ ] settings
+
+### low priority:
+
+- [ ] reworka collisioni del player (si incolla alle pareti)
+- [ ] bisogna modificare il model cosi' che quando il player
+  viene colpito, il player e' respawnato alle
+  coordinate iniziali
+
+### DONE:
+
+- [x] fixare il fatto che se la soundtrack viene messa in pausa, poi no si puo' piu' restartare
+- [x] suono
+- [x] l'exit tile non viene rimosso correttamente quando un nuovo livello viene caricato, rimane nella vecchia
+  posizione ma viene nascosto dai nuovi sprites
+- [x] quando il player collide con il tile exit, il numero del livello continua ad aumentare [da fixare il fatto che
+  quando il keyhandler viene stoppato il player contrinua ad andare ]
+
+***
+
+===========================================================================
+***
+
+
+
+
+
 
 
 
