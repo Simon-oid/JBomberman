@@ -21,7 +21,9 @@ public enum AudioSample {
   BOMBERMAN_DEATH(
       "Z:/projects/Intellij/JBomberman/src/main/resources/org/jbomberman/view/audioSamples/bomberman_dies.wav"),
   POWER_UP_PICKUP(
-      "Z:/projects/Intellij/JBomberman/src/main/resources/org/jbomberman/view/audioSamples/item_get.wav");
+      "Z:/projects/Intellij/JBomberman/src/main/resources/org/jbomberman/view/audioSamples/item_get.wav"),
+  ENDING(
+      "Z:/projects/Intellij/JBomberman/src/main/resources/org/jbomberman/view/audioSamples/ending.wav");
 
   private final String filename;
 

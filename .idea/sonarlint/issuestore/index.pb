@@ -103,8 +103,6 @@ r
 Bsrc/main/java/org/jbomberman/model/listener/ExitTileSpawnData.java,4\d\4d6969882a4ac349260ae413c42b6a3ab72be16c
 s
 Csrc/main/java/org/jbomberman/model/listener/GameOverUpdateData.java,7\4\74ff30b99c1d3ba3ac4701b739e15c0321e52d03
-^
-.src/main/java/org/jbomberman/view/ChiLoSa.java,f\f\ffddaa0b8877c6b737dd0984f8bdd35be2147d96
 k
 ;src/main/java/org/jbomberman/model/tiles/ImmovableTile.java,c\4\c42d97af922e2f9f22886fc3552833327540aedc
 b
@@ -113,8 +111,6 @@ i
 9src/main/java/org/jbomberman/view/FontMobKillFlicker.java,9\6\96758495cafb54ec38d97ea24757b4fa880fe522
 \
 ,src/main/java/org/jbomberman/view/Clock.java,c\9\c9c8fa66c3d9aa35af2593ee3c536561c5e25d49
-e
-5src/main/java/org/jbomberman/view/PixelateEffect.java,b\a\ba4c816691aa4a604e0f8ac96c41129a360bc9e1
 d
 4src/main/java/org/jbomberman/view/LevelSwapFont.java,9\1\91ea409bfdc7d0e401a4e4ea7508980ff878e27a
 b
@@ -127,3 +123,9 @@ b
 2src/main/java/org/jbomberman/view/AudioSample.java,c\c\cc5b58f61989649d83e5813e657e8d75f4b8eb02
 p
 @src/main/java/org/jbomberman/model/listener/LevelUpdateData.java,5\8\58fe075ec01be36445dd9f497a7bb1fa480def59
+k
+;src/main/java/org/jbomberman/model/listener/youWinData.java,2\8\28502971f678c68f0f62dfad010dbcc6608c0a43
+k
+;src/main/java/org/jbomberman/model/listener/YouWinData.java,a\1\a177c849ee9a92e7fe9c87ce09e20f9a0f6f07fd
+]
+-src/main/java/org/jbomberman/view/YouWin.java,0\2\02f27c2549e37ac533aef9994e98c1b24ff41389

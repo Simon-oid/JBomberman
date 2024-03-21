@@ -3,12 +3,14 @@ package org.jbomberman.view;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import lombok.Getter;
 import lombok.Setter;
 import org.jbomberman.controller.KeyHandler;
@@ -75,7 +77,7 @@ public class SceneController implements Observer {
     window.setHeight(windowHeight);
   }
 
-  public void exit() {
+  public void exitConfirm() {
 
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
     alert.setTitle("exit?");
@@ -89,6 +91,11 @@ public class SceneController implements Observer {
     }
   }
 
+  public void exit() {
+    window.close();
+    System.exit(0);
+  }
+
   private void load(Roots root) {
     try {
       roots[root.ordinal()] = FXMLLoader.load(getClass().getResource(root.getResourcePath()));
@@ -99,10 +106,22 @@ public class SceneController implements Observer {
 
   private void switchToGameOverScene(GameOverUpdateData data) {
     int playerScore = data.score();
+    gameRoot.terminateGameEntitiesAndSounds();
     switchTo(Roots.MENU); // usa la root game_over
     // scene
     // Pass the player's score to the game over scene if needed
     // Example: gameOverController.setScore(playerScore);
+  }
+
+  private void switchToYouWonScene() {
+
+    PauseTransition delay = new PauseTransition(Duration.seconds(3.5));
+    delay.setOnFinished(
+        event -> {
+          switchTo(Roots.YOU_WIN);
+          AudioManager.getInstance().play(AudioSample.ENDING);
+        });
+    delay.play();
   }
 
   @Override
@@ -145,6 +164,7 @@ public class SceneController implements Observer {
         case DENKYUN_RESPAWN ->
             Platform.runLater(() -> gameRoot.spawnDenkyunAtCoordinates((DenkyunRespawnData) data));
         case LEVEL_UPDATE -> Platform.runLater(() -> gameRoot.levelClear((LevelUpdateData) data));
+        case YOU_WIN -> Platform.runLater(this::switchToYouWonScene);
       }
     }
   }

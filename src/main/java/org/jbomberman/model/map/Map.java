@@ -635,7 +635,6 @@ public class Map extends Observable {
       // Spawn an exit tile based on a certain percentile
       if (shouldSpawnExitTile() && !exitTileSpawned) {
         spawnExitTile(tileIndexX, tileIndexY, 1300);
-        exitTileSpawned = true;
       } else {
         spawnRandomPowerUp(tileIndexX, tileIndexY, 1300);
       }
@@ -1087,6 +1086,8 @@ public class Map extends Observable {
             // System.out.println("spawnato il tile exit");
             // Notify GameView to update display with the exit tile
             sendUpdate(new ExitTileSpawnData(PackageType.SPAWN_EXIT_TILE, x, y));
+
+            exitTileSpawned = true;
           } catch (Exception e) {
             // If an exception occurs during spawning, log it (optional)
             System.out.println("Failed to spawn exit tile: " + e.getMessage());
@@ -1118,9 +1119,26 @@ public class Map extends Observable {
     // Remove the exit tile hitbox
     removeExitTileHitbox();
 
+    exitTileSpawned = false;
+
+    if (currentLevel > 2) {
+      KeyHandler.getInstance().stopKeyHandler();
+      displayYouWinScreen();
+      sendUpdate(new LevelUpdateData(PackageType.LEVEL_UPDATE, currentLevel));
+      return;
+    }
+
     loadLevel(Integer.toString(currentLevel));
 
     sendUpdate(new LevelUpdateData(PackageType.LEVEL_UPDATE, currentLevel));
+  }
+
+  private void displayYouWinScreen() {
+    // Create a new PackageData instance for the "You Won" event
+    PackageData youWinData = new YouWinData(PackageType.YOU_WIN);
+
+    // Send the update
+    sendUpdate(youWinData);
   }
 
   private void removeExitTileHitbox() {

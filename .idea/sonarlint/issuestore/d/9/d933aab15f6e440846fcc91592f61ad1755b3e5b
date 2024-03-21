@@ -1,70 +1,70 @@
 
-v	java:S135À"YReduce the total number of break and continue statements in this loop to use at most one.(óÁ±8Û¯ÖÛå1
-R
-java:S1066é"/Merge this if statement with the enclosing one.(’œßºüÿÿÿÿ8Ü¯ÖÛå1
-e
-java:S2184Š"BCast one of the operands of this addition operation to a "double".(å€üÿÿÿÿ8à¯ÖÛå1
-e
-java:S2184Š"BCast one of the operands of this addition operation to a "double".(å€üÿÿÿÿ8à¯ÖÛå1
-q
-java:S2259Š"NA "NullPointerException" could be thrown; "exitTilePosition" is nullable here.(¾Ş¯Ñúÿÿÿÿ8µ°ÖÛå1
-U
-java:S2589‹"7Remove this expression which always evaluates to "true"(–æ©¿8µ°ÖÛå1
-¶
-java:S6548""˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(ú„ŠÌ8¹°ÖÛå1
-O
-java:S1874""2Remove this use of "Observable"; it is deprecated.(ú„ŠÌ8»°ÖÛå1
-W
-java:S1117‰":Rename "player" which hides the field declared at line 48.(Ì¸»!8Á°ÖÛå1
-H	java:S106·"+Replace this use of System.out by a logger.(ö§²–8Ã°ÖÛå1
-^
-java:S6201î"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8Æ°ÖÛå1
-P
-java:S1135¥"2Complete the task associated to this TODO comment.(Çé°8É°ÖÛå1
-e
-java:S6201É"BReplace this instanceof check and cast with 'instanceof Bomb bomb'(¬ĞÆ“úÿÿÿÿ8Ê°ÖÛå1
-e
-java:S6201ˆ"BReplace this instanceof check and cast with 'instanceof Bomb bomb'(¬ĞÆ“úÿÿÿÿ8Ë°ÖÛå1
-c
-java:S6201™"EReplace this instanceof check and cast with 'instanceof Mob otherMob'(˜‚„°8Ì°ÖÛå1
-;
-java:S2119¶"Save and re-use this "Random".(¼İÅf8Ï°ÖÛå1
-[
-java:S1854Î"=Remove this useless assignment to local variable "nextTileY".(æ€âë8Ó°ÖÛå1
-`
-java:S1854Í"=Remove this useless assignment to local variable "nextTileX".(ëÎÅäşÿÿÿÿ8Ó°ÖÛå1
-Y	java:S125Æ"<This block of commented-out lines of code should be removed.(š€Ê¤8Ö°ÖÛå1
-Q
-java:S1481Í".Remove this unused "nextTileX" local variable.(ëÎÅäşÿÿÿÿ8×°ÖÛå1
-L
-java:S1481Î".Remove this unused "nextTileY" local variable.(æ€âë8Ù°ÖÛå1
-Y	java:S125Ğ"<This block of commented-out lines of code should be removed.(öì¯8Û°ÖÛå1
-^	java:S125°"<This block of commented-out lines of code should be removed.(ÍÊÃåùÿÿÿÿ8Ş°ÖÛå1
-^
-java:S6201´"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8Ş°ÖÛå1
-Y	java:S125À"<This block of commented-out lines of code should be removed.(ßƒ¢¡8Ş°ÖÛå1
-^	java:S125Ç"<This block of commented-out lines of code should be removed.(õ…àüÿÿÿÿ8Ş°ÖÛå1
-^	java:S125Î"<This block of commented-out lines of code should be removed.(Ä´‡öùÿÿÿÿ8Ş°ÖÛå1
-O
-java:S1602ï",Remove useless curly braces around statement(äÒ´Åúÿÿÿÿ8á°ÖÛå1
-M	java:S106Š"+Replace this use of System.out by a logger.(¾Ş¯Ñúÿÿÿÿ8ã°ÖÛå1
-I
-java:S1168³"&Return an empty array instead of null.(ƒ‚íşùÿÿÿÿ8ä°ÖÛå1
-J
-java:S1172ë",Remove this unused method parameter "delta".(ò…ŒÖ8æ°ÖÛå1
-^	java:S125õ"<This block of commented-out lines of code should be removed.(ó½º·úÿÿÿÿ8æ°ÖÛå1
-^	java:S125ü"<This block of commented-out lines of code should be removed.(ÓÚ»şüÿÿÿÿ8æ°ÖÛå1
-^
-java:S6201’"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8ç°ÖÛå1
-M	java:S106Â"+Replace this use of System.out by a logger.(ƒ‚³ëıÿÿÿÿ8é°ÖÛå1
-I
-java:S1905Ö"&Remove this unnecessary cast to "int".(ÇÏ¥µøÿÿÿÿ8ê°ÖÛå1
-D
-java:S1905×"&Remove this unnecessary cast to "int".(ÍŠ¼³8ê°ÖÛå1
-Y	java:S125Ú"<This block of commented-out lines of code should be removed.(³®ö 8ê°ÖÛå1
-Y	java:S125é"<This block of commented-out lines of code should be removed.(ä·Úµ8ë°ÖÛå1
-Y	java:S125ó"<This block of commented-out lines of code should be removed.(¹èÏ…8ë°ÖÛå1
-^	java:S125«"<This block of commented-out lines of code should be removed.(ªŠÿÿÿÿÿ8í°ÖÛå1
-^	java:S125¿"<This block of commented-out lines of code should be removed.(æÂ”Éúÿÿÿÿ8í°ÖÛå1
-H	java:S106Ä"+Replace this use of System.out by a logger.(ºéê‘8í°ÖÛå1
-M	java:S106×"+Replace this use of System.out by a logger.(ñî¯Ÿÿÿÿÿÿ8î°ÖÛå1
+œ	java:S135À"YReduce the total number of break and continue statements in this loop to use at most one.(óÁ±8ÿ¿àæ1J$27a5c6fa-690d-464b-a2c3-c455be357149
+x
+java:S1066è"/Merge this if statement with the enclosing one.(’œßºüÿÿÿÿ8€Ààæ1J$1e695dc0-6159-4431-9cd8-86ce75a9cd10
+‹
+java:S2184Š"BCast one of the operands of this addition operation to a "double".(å€üÿÿÿÿ8„Ààæ1J$4bf1363d-8d5e-4041-a9ad-963f64dc50bd
+‹
+java:S2184Š"BCast one of the operands of this addition operation to a "double".(å€üÿÿÿÿ8„Ààæ1J$7d9bd8d1-c97b-452d-9b21-5367dfd5fcc3
+—
+java:S2259‰"NA "NullPointerException" could be thrown; "exitTilePosition" is nullable here.(¾Ş¯Ñúÿÿÿÿ8ÙÀàæ1J$c4758cc4-5757-412c-bc06-b14b586c8088
+{
+java:S2589Š"7Remove this expression which always evaluates to "true"(–æ©¿8ÙÀàæ1J$1a53506a-fb41-45bd-a148-d96613cf34b5
+Ü
+java:S6548""˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(ú„ŠÌ8İÀàæ1J$3ddee7bc-cdff-4534-9b9d-cf2f5058f19d
+u
+java:S1874""2Remove this use of "Observable"; it is deprecated.(ú„ŠÌ8ŞÀàæ1J$a5e9ce46-b3fb-404d-8c6c-4adc588f01e5
+}
+java:S1117‰":Rename "player" which hides the field declared at line 48.(Ì¸»!8äÀàæ1J$56be3ed1-9b8c-4bdb-83af-a591c7b63d68
+n	java:S106·"+Replace this use of System.out by a logger.(ö§²–8æÀàæ1J$a4a34707-0b61-46ac-b215-3f55618fef09
+„
+java:S6201î"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8èÀàæ1J$1db250ef-328f-4412-8c54-0ee9a8912f4d
+v
+java:S1135¥"2Complete the task associated to this TODO comment.(Çé°8êÀàæ1J$b603fafe-36c3-4eed-b698-54baa6fe1d71
+‹
+java:S6201É"BReplace this instanceof check and cast with 'instanceof Bomb bomb'(¬ĞÆ“úÿÿÿÿ8çéæ1J$544a8c14-7d8a-49b9-977f-ae9376b36d72
+‹
+java:S6201ˆ"BReplace this instanceof check and cast with 'instanceof Bomb bomb'(¬ĞÆ“úÿÿÿÿ8ééæ1J$9b865ab2-a8a0-48a1-81f9-fb343defce8d
+‰
+java:S6201™"EReplace this instanceof check and cast with 'instanceof Mob otherMob'(˜‚„°8íÀàæ1J$de22b953-0b0d-41ba-9eae-1145bd2db26e
+a
+java:S2119¶"Save and re-use this "Random".(¼İÅf8ïÀàæ1J$5668dfb7-89a3-4223-84fb-9fe35d672e0d
+
+java:S1854Î"=Remove this useless assignment to local variable "nextTileY".(æ€âë8óÀàæ1J$aa4803c5-b5c3-4483-8c53-ed2f2e4822ed
+†
+java:S1854Í"=Remove this useless assignment to local variable "nextTileX".(ëÎÅäşÿÿÿÿ8óÀàæ1J$39c3d919-10ed-4f96-94d9-78ba332cdfa2
+	java:S125Æ"<This block of commented-out lines of code should be removed.(š€Ê¤8ôÀàæ1J$32f2012f-3118-40d1-9250-b51f78b66c7b
+w
+java:S1481Í".Remove this unused "nextTileX" local variable.(ëÎÅäşÿÿÿÿ8ôÀàæ1J$3a92c723-36ee-42a5-8c9e-8835352ac38b
+r
+java:S1481Î".Remove this unused "nextTileY" local variable.(æ€âë8ôÀàæ1J$14892d45-ee16-4930-9906-de6413594b3e
+	java:S125Ğ"<This block of commented-out lines of code should be removed.(öì¯8ôÀàæ1J$c59e2f16-08b3-4bff-9a22-18795c56fce6
+„	java:S125¯"<This block of commented-out lines of code should be removed.(ÍÊÃåùÿÿÿÿ8÷Ààæ1J$8d73622b-da99-4651-bf69-375ad2785732
+„
+java:S6201³"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8÷Ààæ1J$63495915-20e6-4b9d-be88-8b1876cd812b
+	java:S125¿"<This block of commented-out lines of code should be removed.(ßƒ¢¡8÷Ààæ1J$74a08aaf-9e4b-4cb6-a327-b3e6a77b3d00
+„	java:S125Æ"<This block of commented-out lines of code should be removed.(õ…àüÿÿÿÿ8÷Ààæ1J$c1853642-ac26-4f12-9c0c-e404ee84929a
+„	java:S125Í"<This block of commented-out lines of code should be removed.(Ä´‡öùÿÿÿÿ8÷Ààæ1J$3149aabf-da76-4b53-ae3b-5283b878ee7d
+u
+java:S1602î",Remove useless curly braces around statement(äÒ´Åúÿÿÿÿ8ùÀàæ1J$67bfb477-0fab-4ea2-aa53-0f739efb5a69
+s	java:S106‰"+Replace this use of System.out by a logger.(¾Ş¯Ñúÿÿÿÿ8ùÀàæ1J$b82084ea-7e3c-45d1-baeb-edc118f1005d
+o
+java:S1168²"&Return an empty array instead of null.(ƒ‚íşùÿÿÿÿ8úÀàæ1J$818c16bc-15cb-44f8-82b6-eaec40b3c725
+p
+java:S1172ê",Remove this unused method parameter "delta".(ò…ŒÖ8üÀàæ1J$8d44899d-6975-40f5-ab65-45ebeab3cc1f
+„	java:S125ô"<This block of commented-out lines of code should be removed.(ó½º·úÿÿÿÿ8ıÀàæ1J$39b53b1e-7194-4490-bc09-9aea3e3ecfa0
+„	java:S125û"<This block of commented-out lines of code should be removed.(ÓÚ»şüÿÿÿÿ8ıÀàæ1J$7ca5e763-d21b-492d-8dc1-5722b11eff35
+„
+java:S6201‘"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8ıÀàæ1J$2bfd951b-a02a-4a81-b43a-f7056fbb3675
+s	java:S106Á"+Replace this use of System.out by a logger.(ƒ‚³ëıÿÿÿÿ8ÿÀàæ1J$2b7f4e4d-5243-46ba-bca0-8f965fd1fc96
+o
+java:S1905Õ"&Remove this unnecessary cast to "int".(ÇÏ¥µøÿÿÿÿ8€Áàæ1J$83e00dc5-e1bc-4e00-b056-c2e08a0dee73
+j
+java:S1905Ö"&Remove this unnecessary cast to "int".(ÍŠ¼³8€Áàæ1J$f800b64a-e96b-473c-ab8b-0c40a58c8298
+	java:S125Ù"<This block of commented-out lines of code should be removed.(³®ö 8€Áàæ1J$42725d7e-5863-402c-b5b3-383f30a3fa30
+	java:S125è"<This block of commented-out lines of code should be removed.(ä·Úµ8Áàæ1J$6dff82ee-d4c3-4d6a-be6b-465a5db8b89f
+	java:S125ò"<This block of commented-out lines of code should be removed.(¹èÏ…8Áàæ1J$5ead3525-223b-4a57-b144-b3c277e9cb8e
+„	java:S125ª"<This block of commented-out lines of code should be removed.(ªŠÿÿÿÿÿ8‚Áàæ1J$707fc97e-c00c-4b3c-b403-308ac91b7035
+„	java:S125¾"<This block of commented-out lines of code should be removed.(æÂ”Éúÿÿÿÿ8ƒÁàæ1J$f89bdb38-e75c-4e8a-b7bb-9f4bd3c04d22
+n	java:S106Å"+Replace this use of System.out by a logger.(ºéê‘8ƒÁàæ1J$525c2ea5-8871-4480-b0b5-77d94e10e156
+s	java:S106Ø"+Replace this use of System.out by a logger.(ñî¯Ÿÿÿÿÿÿ8ƒÁàæ1J$f2383540-1f5f-4c69-bc82-6efcb7025689

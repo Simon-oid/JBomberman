@@ -4,15 +4,14 @@ import lombok.Getter;
 
 @Getter
 public enum Roots {
-    LEVEL_SELECTION("scenes/LevelSelection.fxml"),
-    SETTINGS("scenes/Settings.fxml"),
-    MENU("scenes/Menu.fxml"),
-    CHI_LO_SA("scenes/ChiLoSa.fxml");
+  LEVEL_SELECTION("scenes/LevelSelection.fxml"),
+  SETTINGS("scenes/Settings.fxml"),
+  MENU("scenes/Menu.fxml"),
+  YOU_WIN("scenes/YouWin.fxml");
 
-    private final String resourcePath;
+  private final String resourcePath;
 
-    Roots(String resourcePath) {
-        this.resourcePath = resourcePath;
-    }
-
+  Roots(String resourcePath) {
+    this.resourcePath = resourcePath;
+  }
 }

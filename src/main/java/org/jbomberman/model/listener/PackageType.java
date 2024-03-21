@@ -19,5 +19,6 @@ public enum PackageType {
   SPAWN_EXIT_TILE,
   GAME_OVER,
   DENKYUN_RESPAWN,
-  LEVEL_UPDATE
+  LEVEL_UPDATE,
+  YOU_WIN
 }

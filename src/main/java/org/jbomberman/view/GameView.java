@@ -68,8 +68,6 @@ public class GameView {
 
     audioManager = AudioManager.getInstance(); // Get AudioManager instance
 
-    playerMovementAnimation = new Timeline();
-
     anchorPane = new AnchorPane();
 
     setupSoundTrackTimer();
@@ -131,6 +129,8 @@ public class GameView {
   }
 
   private void initGameView() {
+
+    playerMovementAnimation = new Timeline();
 
     audioManager.play(AudioSample.STAGE_INTRO);
 
@@ -530,8 +530,9 @@ public class GameView {
       }
       transition.play();
     } else {
-      playerMovementAnimation.pause();
       player.setImage(Entities.PLAYER.getImage());
+      playerMovementAnimation.pause();
+
       // Stop the sound timer when movement stops
       if (soundTimerRunning) {
         soundTimer.stop();
@@ -1758,7 +1759,7 @@ public class GameView {
   private void initializeClockAnimation() {
     clockAnimation = new Timeline();
     // Add keyframes to switch between clock sprites
-    for (int i = 0; i <= 8; i++) {
+    for (int i = 0; i < 8; i++) {
       final int index = i;
       KeyFrame keyFrame =
           new KeyFrame(
@@ -1811,10 +1812,67 @@ public class GameView {
   }
 
   public void levelClear(LevelUpdateData data) {
-    int level = data.currentLevel();
+
+    playerMovementAnimation.stop(); //
+    playerMovementAnimation.getKeyFrames().clear(); // clear animation
+    playerMovementAnimation = null; //
+
+    playSpinAnimation();
 
     stopSoundtrack();
 
+    soundTimer.stop();
+
     audioManager.play(AudioSample.STAGE_CLEAR);
+  }
+
+  private Image[] getSpinSprites() {
+    return new Image[] {
+      Entities.PLAYER_SPIN_0.getImage(),
+      Entities.PLAYER_SPIN_0.getImage(),
+      Entities.PLAYER_SPIN_0.getImage(),
+      Entities.PLAYER_SPIN_1.getImage(),
+      Entities.PLAYER_SPIN_2.getImage(),
+      Entities.PLAYER_SPIN_3.getImage(),
+      Entities.PLAYER_SPIN_4.getImage(),
+      Entities.PLAYER_SPIN_5.getImage(),
+      Entities.PLAYER_SPIN_6.getImage(),
+      Entities.PLAYER_SPIN_7.getImage(),
+      Entities.PLAYER_SPIN_8.getImage(),
+      Entities.VOID.getImage()
+    };
+  }
+
+  private void playSpinAnimation() {
+
+    ImageView playerImageView = player;
+
+    Image[] spinSprites = getSpinSprites();
+    Duration frameDuration = Duration.seconds(0.2);
+
+    Timeline spinAnimation = new Timeline();
+
+    // Add key frames to change the image at specific intervals for spin animation
+    for (int i = 0; i < spinSprites.length; i++) {
+      int finalI = i;
+      KeyFrame keyFrame =
+          new KeyFrame(
+              frameDuration.multiply(i), event -> playerImageView.setImage(spinSprites[finalI]));
+      spinAnimation.getKeyFrames().add(keyFrame);
+    }
+
+    // Set the cycle count to play the animation once
+    spinAnimation.setCycleCount(1);
+
+    // Play the spin animation
+    spinAnimation.play();
+  }
+
+  public void terminateGameEntitiesAndSounds() {
+    // Clear all entities
+    soundTimer.stop();
+    // Stop all sounds
+    // Assuming you have a SoundManager class that handles all sounds
+    AudioManager.getInstance().stop(AudioSample.SOUNDTRACK);
   }
 }

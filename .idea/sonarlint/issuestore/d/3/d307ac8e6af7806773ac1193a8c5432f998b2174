@@ -1,17 +1,17 @@
 
-w
-java:S1104"UMake upPressed a static final constant or non-public and provide accessors if needed.(Ë¿á†øÿÿÿÿ8¤…„óÅ1
-y
-java:S1104"WMake downPressed a static final constant or non-public and provide accessors if needed.(Ë¿á†øÿÿÿÿ8¤…„óÅ1
-y
-java:S1104"WMake leftPressed a static final constant or non-public and provide accessors if needed.(Ë¿á†øÿÿÿÿ8¤…„óÅ1
+
+java:S1104"UMake upPressed a static final constant or non-public and provide accessors if needed.(Ë¿á†øÿÿÿÿ8¤…„óÅ1J$958904e1-a678-41c0-93ee-1f6f59cd3605
+Ÿ
+java:S1104"WMake downPressed a static final constant or non-public and provide accessors if needed.(Ë¿á†øÿÿÿÿ8¤…„óÅ1J$8b100256-c984-4d93-8117-707b9cd1a621
+Ÿ
+java:S1104"WMake leftPressed a static final constant or non-public and provide accessors if needed.(Ë¿á†øÿÿÿÿ8¤…„óÅ1J$11277693-37f3-482d-87d4-342362cf94d1
+ 
+java:S1104"XMake rightPressed a static final constant or non-public and provide accessors if needed.(Ë¿á†øÿÿÿÿ8¤…„óÅ1J$c91daf69-acf7-4333-8692-c8a18eca6705
+
+java:S1659"HDeclare "downPressed" and all following declarations on a separate line.(Ë¿á†øÿÿÿÿ8±…„óÅ1J$a4c68de4-d04b-45c8-b4f3-1295850c84d8
+Ú
+java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(–ÙÇ†ÿÿÿÿÿJ$543c8a89-70f5-49e6-9343-3a476ea0287b
+š
+java:S3776I"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(Ê‹ëùÿÿÿÿ8Šƒß1J$07c40949-ce4a-41b8-a601-bdd115f8143c
 z
-java:S1104"XMake rightPressed a static final constant or non-public and provide accessors if needed.(Ë¿á†øÿÿÿÿ8¤…„óÅ1
-j
-java:S1659"HDeclare "downPressed" and all following declarations on a separate line.(Ë¿á†øÿÿÿÿ8±…„óÅ1
-´
-java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(–ÙÇ†ÿÿÿÿÿ
-t
-java:S3776I"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(Ê‹ëùÿÿÿÿ8Šƒß1
-T
-java:S1135H"2Complete the task associated to this TODO comment.(«à¸ùùÿÿÿÿ8ÕÒ…¦Ø1
+java:S1135H"2Complete the task associated to this TODO comment.(«à¸ùùÿÿÿÿ8ÕÒ…¦Ø1J$f5d55b50-ca50-41c8-84be-1298fbb79d01

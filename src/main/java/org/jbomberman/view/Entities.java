@@ -121,7 +121,16 @@ public enum Entities {
   PLAYER_HIT_0(Entities.class.getResourceAsStream("entities/player_hit_0.png")),
   PLAYER_HIT_1(Entities.class.getResourceAsStream("entities/player_hit_1.png")),
   PLAYER_HIT_2(Entities.class.getResourceAsStream("entities/player_hit_2.png")),
-  PLAYER_HIT_3(Entities.class.getResourceAsStream("entities/player_hit_3.png"));
+  PLAYER_HIT_3(Entities.class.getResourceAsStream("entities/player_hit_3.png")),
+  PLAYER_SPIN_0(Entities.class.getResourceAsStream("entities/Bomberman_spin_0.png")),
+  PLAYER_SPIN_1(Entities.class.getResourceAsStream("entities/Bomberman_spin_1.png")),
+  PLAYER_SPIN_2(Entities.class.getResourceAsStream("entities/Bomberman_spin_2.png")),
+  PLAYER_SPIN_3(Entities.class.getResourceAsStream("entities/Bomberman_spin_3.png")),
+  PLAYER_SPIN_4(Entities.class.getResourceAsStream("entities/Bomberman_spin_4.png")),
+  PLAYER_SPIN_5(Entities.class.getResourceAsStream("entities/Bomberman_spin_5.png")),
+  PLAYER_SPIN_6(Entities.class.getResourceAsStream("entities/Bomberman_spin_6.png")),
+  PLAYER_SPIN_7(Entities.class.getResourceAsStream("entities/Bomberman_spin_7.png")),
+  PLAYER_SPIN_8(Entities.class.getResourceAsStream("entities/Bomberman_spin_8.png"));
 
   @Getter private final Image image;
 

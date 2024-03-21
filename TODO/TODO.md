@@ -1851,11 +1851,10 @@ FF >>> 22/10/2023
 
 ### TO-DO:
 
-### high priority: [doing audio stuff rn]
+### high priority:
 
 ---
 
-- [ ] fare l'animazione per quando il player entra nel tile exit
 - [ ] fixare il fatto che ora come ora, quando le imageview dei mob sono inizializzate, per via di una shallow copy
   della lista dei mob, soltanto le ultime due imageview per tipo sono utilizzate per disegnare i mob (sulle ultime
   imageview vengono disegnate le animazioni dei primi due mob )
@@ -1874,6 +1873,9 @@ FF >>> 22/10/2023
 - [ ] bisogna modificare il model cosi' che quando il player
   viene colpito, il player e' respawnato alle
   coordinate iniziali
+- [ ] l'animazione del player che entra nel file exit fa schifo
+- [ ] puoi udare lo sprite sheet goated per l'animazione della morte del player
+-
 
 ### DONE:
 
@@ -1881,14 +1883,66 @@ FF >>> 22/10/2023
 - [x] suono
 - [x] l'exit tile non viene rimosso correttamente quando un nuovo livello viene caricato, rimane nella vecchia
   posizione ma viene nascosto dai nuovi sprites
-- [x] quando il player collide con il tile exit, il numero del livello continua ad aumentare [da fixare il fatto che
-  quando il keyhandler viene stoppato il player contrinua ad andare ]
+- [x] quando il player collide con il tile exit, il numero del livello continua ad aumentare
+- [x] fare l'animazione per quando il player entra nel tile exit
 
 ***
 
 ===========================================================================
 ***
 
+### 21/03/2024
+
+### TO-DO:
+
+### high priority: [doing ui stuff rn]
+
+- [ ] finire schermata YOUWIN
+- [ ] implementare la schermata GameOver
+- [ ] implementare il profilo utente
+- [ ] implementare un avatar selezionabile
+- [ ] creare un mini database con all'interno tutti i punteggi delle persone che hanno giocato al gioco, (leaderboard)
+
+---
+
+- [ ] fixare la probabilita' con cui puo' spawnare l'exit tile prima di arrivare all'ultimo blocco distruttibile
+  sulla mappa
+- [ ] fixare il modo in cui vengono creati i powerup, da fixare la probebilita' con cui vengono droppati i powerup
+  (ora come ora esce PER FORZA almeno un powerup per blocco)
+- [ ] implementare ultimo powerup
+- [ ] fixare il fatto che ora come ora, quando le imageview dei mob sono inizializzate, per via di una shallow copy
+  della lista dei mob, soltanto le ultime due imageview per tipo sono utilizzate per disegnare i mob (sulle ultime
+  imageview vengono disegnate le animazioni dei primi due mob )
+
+---
+
+- REQUISITI MANCANTI:
+
+
+- [ ] gestione del profilo utente
+
+### low priority:
+
+- [ ] reworka collisioni del player (si incolla alle pareti)
+- [ ] bisogna modificare il model cosi' che quando il player
+  viene colpito, il player e' respawnato alle
+  coordinate iniziali
+- [ ] puoi udare lo sprite sheet goated per l'animazione della morte del player
+
+### DONE:
+
+- [x] fixata l'animazione del player che entra nel tile exit
+- [x] implementato il winning screen
+- [x] ora quando il player vince, la soundtrack per l'ending playa
+- [x] importati sprite per la schermata YOUWIN
+- [x] trovata soluzione per la limitazione del numero dei colori supportati (GIMP: export in jpeg -> rifinitura ->
+  export in png)
+- [x] fix vari
+
+ ***
+
+===========================================================================
+***
 
 
 

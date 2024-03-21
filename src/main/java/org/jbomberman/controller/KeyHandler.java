@@ -134,4 +134,12 @@ public class KeyHandler {
 
     return deltaSeconds;
   }
+
+  public void stopKeyHandler() {
+    if (animationTimer != null) {
+      animationTimer.stop();
+      animationTimer = null;
+      paused = true;
+    }
+  }
 }
