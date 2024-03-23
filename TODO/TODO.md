@@ -1939,7 +1939,98 @@ FF >>> 22/10/2023
   export in png)
 - [x] fix vari
 
- ***
+***
+
+===========================================================================
+***
+
+### 22/03/2024
+
+### TO-DO:
+
+### high priority: [doing ui stuff rn]
+
+- [ ] implementare la schermata GameOver
+- [ ] implementare il profilo utente
+- [ ] implementare un avatar selezionabile
+- [ ] creare un mini database con all'interno tutti i punteggi delle persone che hanno giocato al gioco, (leaderboard)
+
+---
+
+- [ ] fixare la probabilita' con cui puo' spawnare l'exit tile prima di arrivare all'ultimo blocco distruttibile
+  sulla mappa
+- [ ] fixare il modo in cui vengono creati i powerup, da fixare la probebilita' con cui vengono droppati i powerup
+  (ora come ora esce PER FORZA almeno un powerup per blocco)
+- [ ] implementare ultimo powerup
+- [ ] fixare il fatto che ora come ora, quando le imageview dei mob sono inizializzate, per via di una shallow copy
+  della lista dei mob, soltanto le ultime due imageview per tipo sono utilizzate per disegnare i mob (sulle ultime
+  imageview vengono disegnate le animazioni dei primi due mob )
+
+---
+
+- REQUISITI MANCANTI:
+
+
+- [ ] gestione del profilo utente
+
+### low priority:
+
+- [ ] reworka collisioni del player (si incolla alle pareti)
+- [ ] bisogna modificare il model cosi' che quando il player
+  viene colpito, il player e' respawnato alle
+  coordinate iniziali
+- [ ] puoi udare lo sprite sheet goated per l'animazione della morte del player
+
+### DONE:
+
+- [x] finire schermata YOUWIN
+
+***
+
+===========================================================================
+***
+
+### 23/03/2024
+
+### TO-DO:
+
+### high priority: [doing ui stuff rn]
+
+- [ ] implementare il profilo utente
+- [ ] implementare un avatar selezionabile
+- [ ] creare un mini database con all'interno tutti i punteggi delle persone che hanno giocato al gioco, (leaderboard)
+
+---
+
+- [ ] fixare la probabilita' con cui puo' spawnare l'exit tile prima di arrivare all'ultimo blocco distruttibile
+  sulla mappa
+- [ ] fixare il modo in cui vengono creati i powerup, da fixare la probebilita' con cui vengono droppati i powerup
+  (ora come ora esce PER FORZA almeno un powerup per blocco)
+- [ ] implementare ultimo powerup
+- [ ] fixare il fatto che ora come ora, quando le imageview dei mob sono inizializzate, per via di una shallow copy
+  della lista dei mob, soltanto le ultime due imageview per tipo sono utilizzate per disegnare i mob (sulle ultime
+  imageview vengono disegnate le animazioni dei primi due mob )
+
+---
+
+- REQUISITI MANCANTI:
+
+
+- [ ] gestione del profilo utente
+
+### low priority:
+
+- [ ] reworka collisioni del player (si incolla alle pareti)
+- [ ] bisogna modificare il model cosi' che quando il player
+  viene colpito, il player e' respawnato alle
+  coordinate iniziali
+- [ ] puoi udare lo sprite sheet goated per l'animazione della morte del player
+
+### DONE:
+
+- [x] implementare la schermata GameOver
+
+***
 
 ===========================================================================
 ***

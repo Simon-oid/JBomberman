@@ -264,24 +264,33 @@ public class GameView {
 
       currentLevel++;
 
-      anchorPane.getChildren().remove(exitTileImageView);
-
-      anchorPane.getChildren().remove(tilePane);
-
-      player.setVisible(false);
-
-      removeAllPowerUps();
-
-      // Hide the mobs
-      for (ImageView mobSprite : mobSprites.values()) {
-        mobSprite.setVisible(false);
-      }
-      stopSoundtrackTimer();
-
-      setupSoundTrackTimer();
+      resetView();
 
       initGameView();
     }
+  }
+
+  public void resetView() {
+
+    anchorPane.getChildren().remove(exitTileImageView);
+
+    anchorPane.getChildren().remove(tilePane);
+
+    player.setVisible(false);
+
+    removeAllPowerUps();
+
+    // Hide the mobs
+    for (ImageView mobSprite : mobSprites.values()) {
+      mobSprite.setVisible(false);
+    }
+    stopSoundtrackTimer();
+
+    setupSoundTrackTimer();
+  }
+
+  public void clearHUD() {
+    anchorPane.getChildren().removeAll(scoreboard, clockImageView);
   }
 
   private void removeAllPowerUps() {
@@ -1286,17 +1295,20 @@ public class GameView {
   public void updatePlayerLives(PlayerLivesUpdateData data) {
     int lives = data.lives();
 
-    playPlayerHitAnimation(player, getPlayerHitSprites());
-
     if (lives == 0) {
-      removePlayer();
+      playPlayerDeathAnimation(player, getPlayerHitSprites());
+      Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3.5), e -> removePlayer()));
+      timeline.play();
+      soundTimer.stop();
+      audioManager.play(AudioSample.BOMBERMAN_DEATH);
+    } else {
+      playPlayerHitAnimation(player, getPlayerHitSprites());
+      soundTimer.stop();
+      audioManager.play(AudioSample.BOMBERMAN_DEATH);
     }
-
-    soundTimer.stop();
-    audioManager.play(AudioSample.BOMBERMAN_DEATH);
   }
 
-  private void playPlayerHitAnimation(ImageView imageView, Image[] sprites) {
+  public void playPlayerHitAnimation(ImageView imageView, Image[] sprites) {
 
     // Clear existing key frames from playerMovementAnimation
     playerMovementAnimation.getKeyFrames().clear();
@@ -1318,6 +1330,28 @@ public class GameView {
 
     // Play the hit animation
     playerHitAnimation.setOnFinished(event -> playFlickerAnimation(imageView));
+    playerHitAnimation.play();
+  }
+
+  private void playPlayerDeathAnimation(ImageView imageView, Image[] sprites) {
+    // Clear existing key frames from playerMovementAnimation
+    playerMovementAnimation.getKeyFrames().clear();
+
+    playerHitAnimation = new Timeline();
+
+    // Create keyframes for each sprite in the sequence
+    for (int i = 0; i < sprites.length; i++) {
+      final int index = i;
+      KeyFrame keyFrame =
+          new KeyFrame(
+              Duration.seconds(i * 0.6), // Change duration as needed for faster animation
+              event -> imageView.setImage(sprites[index]));
+      playerHitAnimation.getKeyFrames().add(keyFrame);
+    }
+
+    // Set the cycle count to indefinite to  keep the animation playing
+    playerHitAnimation.setCycleCount(1);
+
     playerHitAnimation.play();
   }
 

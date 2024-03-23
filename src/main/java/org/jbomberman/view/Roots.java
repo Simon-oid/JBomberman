@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 public enum Roots {
   LEVEL_SELECTION("scenes/LevelSelection.fxml"),
-  SETTINGS("scenes/Settings.fxml"),
+  GAME_OVER("scenes/GameOver.fxml"),
   MENU("scenes/Menu.fxml"),
   YOU_WIN("scenes/YouWin.fxml");
 

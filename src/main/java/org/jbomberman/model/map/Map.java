@@ -827,7 +827,7 @@ public class Map extends Observable {
         score = 100; // Example score for a normal mob
         break;
       case DENKYUN:
-        score = 400; // Example score for a special mob
+        score = 300; // Example score for a special mob
         break;
       default:
         score = 0; // Default score if mob type is unknown
@@ -1026,8 +1026,10 @@ public class Map extends Observable {
 
     // Check if player has no lives left
     if (lives <= 0) {
+
       // Player has no lives left, trigger game over
       gameOver();
+
     } else {
       // Player still has lives left, update the UI
       PlayerLivesUpdateData packageData =
@@ -1121,7 +1123,7 @@ public class Map extends Observable {
 
     exitTileSpawned = false;
 
-    if (currentLevel > 2) {
+    if (currentLevel == 2) { // set to == 1 for testing purposes
       KeyHandler.getInstance().stopKeyHandler();
       displayYouWinScreen();
       sendUpdate(new LevelUpdateData(PackageType.LEVEL_UPDATE, currentLevel));
@@ -1147,9 +1149,16 @@ public class Map extends Observable {
 
   private void gameOver() {
     int score = player.getScore();
+
     // Send an update to GameView indicating that the game is over
-    GameOverUpdateData gameOverData = new GameOverUpdateData(PackageType.GAME_OVER, score);
+    GameOverUpdateData gameOverData =
+        new GameOverUpdateData(PackageType.GAME_OVER, score, player.getLives());
     sendUpdate(gameOverData);
+
+    // Clear existing entities and power-ups
+    KeyHandler.getInstance().stopKeyHandler();
+    entities.clear();
+    powerUps.clear();
   }
 
   // Method to handle update when player is not moving

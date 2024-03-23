@@ -106,11 +106,33 @@ public class SceneController implements Observer {
 
   private void switchToGameOverScene(GameOverUpdateData data) {
     int playerScore = data.score();
-    gameRoot.terminateGameEntitiesAndSounds();
-    switchTo(Roots.MENU); // usa la root game_over
-    // scene
-    // Pass the player's score to the game over scene if needed
-    // Example: gameOverController.setScore(playerScore);
+
+    PauseTransition delay = new PauseTransition(Duration.seconds(3.5));
+    delay.setOnFinished(
+        event -> {
+          gameRoot.resetView();
+
+          gameRoot.clearHUD();
+
+          AudioManager.getInstance().stop(AudioSample.SOUNDTRACK);
+
+          // Load the GameOver scene and get the controller
+          FXMLLoader loader =
+              new FXMLLoader(getClass().getResource(Roots.GAME_OVER.getResourcePath()));
+          try {
+            roots[Roots.GAME_OVER.ordinal()] = loader.load();
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
+          switchTo(Roots.GAME_OVER);
+          GameOver gameOverScene = loader.getController();
+
+          // Pass the score to the GameOver scene
+          gameOverScene.setPlayerScore(playerScore);
+
+          AudioManager.getInstance().play(AudioSample.GAME_OVER);
+        });
+    delay.play();
   }
 
   private void switchToYouWonScene() {
@@ -118,7 +140,13 @@ public class SceneController implements Observer {
     PauseTransition delay = new PauseTransition(Duration.seconds(3.5));
     delay.setOnFinished(
         event -> {
+          gameRoot.resetView();
+
+          gameRoot.clearHUD();
+
           switchTo(Roots.YOU_WIN);
+
+          AudioManager.getInstance().play(AudioSample.AUDIENCE);
           AudioManager.getInstance().play(AudioSample.ENDING);
         });
     delay.play();
@@ -160,7 +188,11 @@ public class SceneController implements Observer {
             Platform.runLater(() -> gameRoot.drawPlayerLives((PlayerLivesUpdateData) data));
         case SPAWN_EXIT_TILE ->
             Platform.runLater(() -> gameRoot.handleExitSpawn((ExitTileSpawnData) data));
-        case GAME_OVER -> Platform.runLater(() -> switchToGameOverScene((GameOverUpdateData) data));
+        case GAME_OVER ->
+            Platform.runLater(
+                () -> {
+                  switchToGameOverScene((GameOverUpdateData) data);
+                });
         case DENKYUN_RESPAWN ->
             Platform.runLater(() -> gameRoot.spawnDenkyunAtCoordinates((DenkyunRespawnData) data));
         case LEVEL_UPDATE -> Platform.runLater(() -> gameRoot.levelClear((LevelUpdateData) data));

@@ -23,7 +23,11 @@ public enum AudioSample {
   POWER_UP_PICKUP(
       "Z:/projects/Intellij/JBomberman/src/main/resources/org/jbomberman/view/audioSamples/item_get.wav"),
   ENDING(
-      "Z:/projects/Intellij/JBomberman/src/main/resources/org/jbomberman/view/audioSamples/ending.wav");
+      "Z:/projects/Intellij/JBomberman/src/main/resources/org/jbomberman/view/audioSamples/ending.wav"),
+  AUDIENCE(
+      "Z:/projects/Intellij/JBomberman/src/main/resources/org/jbomberman/view/audioSamples/audience.wav"),
+  GAME_OVER(
+      "Z:/projects/Intellij/JBomberman/src/main/resources/org/jbomberman/view/audioSamples/gameOver.wav");
 
   private final String filename;
 

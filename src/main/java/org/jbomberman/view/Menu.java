@@ -13,15 +13,12 @@ public class Menu implements Initializable {
 
   @FXML public Button play;
 
-  @FXML public Button settings;
-
-  @FXML public Button chiLoSa;
+  @FXML public Button gameOver;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     exit.setOnAction(event -> SceneController.getInstance().exit());
     play.setOnAction(event -> SceneController.getInstance().switchTo(Roots.LEVEL_SELECTION));
-    settings.setOnAction(event -> SceneController.getInstance().switchTo(Roots.SETTINGS));
-    chiLoSa.setOnAction(event -> SceneController.getInstance().switchTo(Roots.YOU_WIN));
+    gameOver.setOnAction(event -> SceneController.getInstance().switchTo(Roots.GAME_OVER));
   }
 }
