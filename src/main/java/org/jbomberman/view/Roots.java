@@ -4,10 +4,12 @@ import lombok.Getter;
 
 @Getter
 public enum Roots {
+  MENU("scenes/Menu.fxml"),
+  PLAYER_SELECTION("scenes/PlayerSelection.fxml"),
   LEVEL_SELECTION("scenes/LevelSelection.fxml"),
   GAME_OVER("scenes/GameOver.fxml"),
-  MENU("scenes/Menu.fxml"),
-  YOU_WIN("scenes/YouWin.fxml");
+  YOU_WIN("scenes/YouWin.fxml"),
+  LEADERBOARD("scenes/Leaderboard.fxml");
 
   private final String resourcePath;
 

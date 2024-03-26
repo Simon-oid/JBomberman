@@ -16,16 +16,21 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.TilePane;
 import javafx.util.Duration;
+import lombok.Getter;
+import lombok.Setter;
 import org.jbomberman.model.entita.Direction;
 import org.jbomberman.model.entita.Type;
 import org.jbomberman.model.listener.*;
 import org.jbomberman.model.powerups.PowerUpType;
 
+@Getter
+@Setter
 public class GameView {
   int MAP_WIDTH = 15;
   int MAP_HEIGHT = 13;
 
   private int currentLevel;
+  private int playerScore;
   private TilePane tilePane;
   private AnchorPane anchorPane;
   private ImageView player;
@@ -1462,7 +1467,10 @@ public class GameView {
   }
 
   public void updateScore(PlayerScoreUpdateData data) {
+
     int score = data.score();
+
+    this.playerScore = score;
 
     // Calculate the number of digits in the score
     int numDigits = String.valueOf(score).length();

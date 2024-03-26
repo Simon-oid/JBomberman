@@ -1,6 +1,7 @@
 package org.jbomberman;
 
 
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,9 +10,6 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.jbomberman.model.map.Map;
 import org.jbomberman.view.SceneController;
-
-import java.io.IOException;
-
 
 public class Main extends Application
 {
@@ -34,8 +32,8 @@ public class Main extends Application
 
         stage.setResizable(false);
 
-        stage.setWidth((48.0 * 13) + 16);
-        stage.setHeight((48.0 * 11) + 39);
+        stage.setWidth(736);
+        stage.setHeight(763);
 
         stage.setOnCloseRequest(event ->
         {

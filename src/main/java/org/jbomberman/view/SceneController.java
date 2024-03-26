@@ -1,5 +1,6 @@
 package org.jbomberman.view;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
@@ -130,6 +131,15 @@ public class SceneController implements Observer {
           // Pass the score to the GameOver scene
           gameOverScene.setPlayerScore(playerScore);
 
+          try (FileWriter writer =
+              new FileWriter("src/main/resources/playerData/playerData.csv", true)) {
+            writer.write(
+                Integer.toString(playerScore) + "\n"); // Write the player's score and a newline
+            writer.flush();
+          } catch (IOException e) {
+            e.printStackTrace();
+          }
+
           AudioManager.getInstance().play(AudioSample.GAME_OVER);
         });
     delay.play();
@@ -145,6 +155,17 @@ public class SceneController implements Observer {
           gameRoot.clearHUD();
 
           switchTo(Roots.YOU_WIN);
+
+          int playerScore = gameRoot.getPlayerScore();
+
+          try (FileWriter writer =
+              new FileWriter("src/main/resources/playerData/playerData.csv", true)) {
+            writer.write(
+                Integer.toString(playerScore) + "\n"); // Write the player's score and a newline
+            writer.flush();
+          } catch (IOException e) {
+            e.printStackTrace();
+          }
 
           AudioManager.getInstance().play(AudioSample.AUDIENCE);
           AudioManager.getInstance().play(AudioSample.ENDING);

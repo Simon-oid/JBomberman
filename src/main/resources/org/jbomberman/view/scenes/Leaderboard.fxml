@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<AnchorPane prefHeight="763.0" prefWidth="736.0" xmlns="http://javafx.com/javafx/21.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jbomberman.view.Leaderboard">
+    <children>
+        <Pane fx:id="scrollingBackgroundPane" prefHeight="763.0" prefWidth="739.0">
+        </Pane>
+        <Button fx:id="exit" layoutX="41.0" layoutY="638.0" mnemonicParsing="false" prefHeight="39.0"
+                prefWidth="618.0"/>
+        <ImageView fitHeight="589.0" fitWidth="616.0" layoutX="52.0" layoutY="80.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <image>
+                <Image url="@../scenesAssets/gameOver_frame.png"/>
+            </image>
+        </ImageView>
+        <VBox fx:id="scoresBox" layoutX="43.0" layoutY="50.0" prefHeight="600.0" prefWidth="618.0"/>
+    </children>
+</AnchorPane>

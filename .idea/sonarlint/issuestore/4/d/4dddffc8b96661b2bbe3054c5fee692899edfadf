@@ -1,14 +1,14 @@
 
-	java:S112g"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ğˆğâæ1J$0599b47e-5172-4b05-8d3b-d763abf14dad
-	java:S112}"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ğˆğâæ1J$72e3a3d9-2331-4cdf-b0bd-f7643c2f5e8f
+	java:S112h"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8“Úáç1J$fa9dc9b8-c92b-424f-bdc2-a904a75e7bca
+	java:S112~"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8“Úáç1J$5a2443e8-2f3b-407e-a41d-c77b57120ad3
 ˜
-java:S3655W"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ŸªÍäùÿÿÿÿ8üˆğâæ1J$03e321b0-452d-4ce0-a65f-fd271b92d32c
+java:S3655X"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ŸªÍäùÿÿÿÿ8ŸÚáç1J$e4d7161f-a884-4b4f-9ac2-3c42db1f3fb5
 Û
-java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(Ë¬Š8ıˆğâæ1J$b7bfb57e-8044-4b13-abe7-5d4f33844cb2
+java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(Ë¬Š8 Úáç1J$04ca9fa3-eb61-49e1-b204-f32248bb952b
 r
-java:S1874"0Remove this use of "Observer"; it is deprecated.(Ë¬Š8ÿˆğâæ1J$d98e8a34-5f0a-41b9-a964-75b54f2a18da
-r	java:S106X"+Replace this use of System.out by a logger.(ÍÇÖÓúÿÿÿÿ8†‰ğâæ1J$894a4d6c-70d4-4106-9c0c-a3bb47a2cacc
+java:S1874"0Remove this use of "Observer"; it is deprecated.(Ë¬Š8¡Úáç1J$74a8c650-231d-4c30-98c8-875d532904a3
+r	java:S106Y"+Replace this use of System.out by a logger.(ÍÇÖÓúÿÿÿÿ8¦Úáç1J$a3702b90-3f4b-4860-8c6f-59f46463938d
 {
-java:S1874œ"2Remove this use of "Observable"; it is deprecated.(‹›Àüÿÿÿÿ8‰ğâæ1J$8341593f-1a0d-4e1b-8d5a-81cdcb33b310
+java:S1874±"2Remove this use of "Observable"; it is deprecated.(‹›Àüÿÿÿÿ8¯Úáç1J$3b6d02b3-8896-4d6d-aae6-c368b2fab013
 p
-java:S1602Á",Remove useless curly braces around statement(÷¼¼Ä8è¼òâæ1J$2bb90369-2ea9-4b01-b167-d0987fa8f60f
+java:S1602Ö",Remove useless curly braces around statement(÷¼¼Ä8²Úáç1J$326dc262-106b-4d30-9f21-dba6241b8142

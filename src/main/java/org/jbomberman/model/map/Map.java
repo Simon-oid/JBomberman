@@ -273,6 +273,7 @@ public class Map extends Observable {
       if (playerWasInsideBomb()) {
         // Allow movement
         player.move(xStep, yStep);
+
         sendUpdate(
             new PlayerMovementData(
                 PackageType.MOVE_PLAYER,
@@ -290,7 +291,7 @@ public class Map extends Observable {
 
     checkPlayerExitCollision();
 
-    // TODO: fixa il fatto che quando il player collide con un blocco, si appiccia al blocco
+    // TODO: fixa il fatto che quando il player collide con un blocco, si appiccica al blocco
     player.move(xStep, yStep);
 
     sendUpdate(
@@ -1123,7 +1124,7 @@ public class Map extends Observable {
 
     exitTileSpawned = false;
 
-    if (currentLevel == 2) { // set to == 1 for testing purposes
+    if (currentLevel > 2) { // set to == 1 for testing purposes
       KeyHandler.getInstance().stopKeyHandler();
       displayYouWinScreen();
       sendUpdate(new LevelUpdateData(PackageType.LEVEL_UPDATE, currentLevel));
@@ -1159,6 +1160,7 @@ public class Map extends Observable {
     KeyHandler.getInstance().stopKeyHandler();
     entities.clear();
     powerUps.clear();
+    setLevel(1);
   }
 
   // Method to handle update when player is not moving

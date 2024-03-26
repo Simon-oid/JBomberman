@@ -10,7 +10,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import org.jbomberman.model.map.Map;
 
 public class GameOver implements Initializable {
 
@@ -69,8 +68,7 @@ public class GameOver implements Initializable {
 
     yes.setOnAction(
         event -> {
-          Map.getInstance().loadLevel("1");
-          SceneController.getInstance().initialize();
+          SceneController.getInstance().switchTo(Roots.PLAYER_SELECTION);
         });
 
     no.setOnAction(event -> SceneController.getInstance().switchTo(Roots.MENU));

@@ -21,7 +21,6 @@ public class AudioManager {
 
   public void play(AudioSample audioSample) {
     try {
-      System.out.println(audioSample);
       String filename = audioSample.getFilename();
       InputStream in = new BufferedInputStream(new FileInputStream(filename));
       AudioInputStream audioIn = AudioSystem.getAudioInputStream(in);
