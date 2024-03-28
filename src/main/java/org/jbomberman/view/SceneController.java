@@ -108,6 +108,25 @@ public class SceneController implements Observer {
   private void switchToGameOverScene(GameOverUpdateData data) {
     int playerScore = data.score();
 
+    // Load the GameOver scene and get the controller
+    FXMLLoader loader = new FXMLLoader(getClass().getResource(Roots.GAME_OVER.getResourcePath()));
+    try {
+      roots[Roots.GAME_OVER.ordinal()] = loader.load();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+    GameOver gameOverScene = loader.getController();
+
+    // Pass the score to the GameOver scene
+    gameOverScene.setPlayerScore(playerScore);
+
+    try (FileWriter writer = new FileWriter("src/main/resources/playerData/playerData.csv", true)) {
+      writer.write(Integer.toString(playerScore) + "\n"); // Write the player's score and a newline
+      writer.flush();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
     PauseTransition delay = new PauseTransition(Duration.seconds(3.5));
     delay.setOnFinished(
         event -> {
@@ -115,30 +134,11 @@ public class SceneController implements Observer {
 
           gameRoot.clearHUD();
 
+          gameRoot.setCurrentLevel(0);
+
           AudioManager.getInstance().stop(AudioSample.SOUNDTRACK);
 
-          // Load the GameOver scene and get the controller
-          FXMLLoader loader =
-              new FXMLLoader(getClass().getResource(Roots.GAME_OVER.getResourcePath()));
-          try {
-            roots[Roots.GAME_OVER.ordinal()] = loader.load();
-          } catch (IOException e) {
-            throw new RuntimeException(e);
-          }
           switchTo(Roots.GAME_OVER);
-          GameOver gameOverScene = loader.getController();
-
-          // Pass the score to the GameOver scene
-          gameOverScene.setPlayerScore(playerScore);
-
-          try (FileWriter writer =
-              new FileWriter("src/main/resources/playerData/playerData.csv", true)) {
-            writer.write(
-                Integer.toString(playerScore) + "\n"); // Write the player's score and a newline
-            writer.flush();
-          } catch (IOException e) {
-            e.printStackTrace();
-          }
 
           AudioManager.getInstance().play(AudioSample.GAME_OVER);
         });

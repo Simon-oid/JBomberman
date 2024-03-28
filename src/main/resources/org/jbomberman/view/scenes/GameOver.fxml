@@ -16,6 +16,7 @@
                 <Image url="@../scenesAssets/gameOver_frame.png"/>
             </image>
         </ImageView>
+        <Pane fx:id="playerNamePane" layoutX="203.0" layoutY="200.0"/>
         <Button fx:id="continueButton" layoutX="203.0" layoutY="251.0" mnemonicParsing="false" prefHeight="60.0"
                 prefWidth="314.0" style="-fx-background-color: transparent;"/>
         <Button fx:id="yes" layoutX="226.0" layoutY="324.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="91.0"

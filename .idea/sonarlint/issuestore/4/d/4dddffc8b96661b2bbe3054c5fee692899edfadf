@@ -1,14 +1,14 @@
 
-	java:S112h"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8“Úáç1J$fa9dc9b8-c92b-424f-bdc2-a904a75e7bca
-	java:S112~"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8“Úáç1J$5a2443e8-2f3b-407e-a41d-c77b57120ad3
+	java:S112h"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8°î–²è1J$ebd6a1b0-b6ff-4ecd-ba23-4558a4a6d9db
+	java:S112t"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ä¾²è1J$3f5a4b91-565d-419c-9ba8-7c66af725eae
 ˜
-java:S3655X"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ŸªÍäùÿÿÿÿ8ŸÚáç1J$e4d7161f-a884-4b4f-9ac2-3c42db1f3fb5
+java:S3655X"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ŸªÍäùÿÿÿÿ8Ìî–²è1J$aaab493a-eccd-44a8-bf0b-c71e5b814c97
 Û
-java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(Ë¬Š8 Úáç1J$04ca9fa3-eb61-49e1-b204-f32248bb952b
+java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(Ë¬Š8Íî–²è1J$cddc3d61-8217-4f0d-bdf2-5f74b8f468f0
 r
-java:S1874"0Remove this use of "Observer"; it is deprecated.(Ë¬Š8¡Úáç1J$74a8c650-231d-4c30-98c8-875d532904a3
-r	java:S106Y"+Replace this use of System.out by a logger.(ÍÇÖÓúÿÿÿÿ8¦Úáç1J$a3702b90-3f4b-4860-8c6f-59f46463938d
+java:S1874"0Remove this use of "Observer"; it is deprecated.(Ë¬Š8Îî–²è1J$2e48f77f-7dcd-4956-ac47-87a9b68ec131
+r	java:S106Y"+Replace this use of System.out by a logger.(ÍÇÖÓúÿÿÿÿ8Óî–²è1J$d2f4cf1b-23c8-48b6-920b-16c7ced75924
 {
-java:S1874±"2Remove this use of "Observable"; it is deprecated.(‹›Àüÿÿÿÿ8¯Úáç1J$3b6d02b3-8896-4d6d-aae6-c368b2fab013
+java:S1874±"2Remove this use of "Observable"; it is deprecated.(‹›Àüÿÿÿÿ8Ûî–²è1J$5223f7bf-9c0c-40f4-b68a-e14c39c1b8c1
 p
-java:S1602Ö",Remove useless curly braces around statement(÷¼¼Ä8²Úáç1J$326dc262-106b-4d30-9f21-dba6241b8142
+java:S1602Ö",Remove useless curly braces around statement(÷¼¼Ä8İî–²è1J$2c925a28-724f-4a4d-9a56-ae6785971b96

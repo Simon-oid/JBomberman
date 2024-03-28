@@ -180,7 +180,8 @@ public class Map extends Observable {
   }
 
   public void loadLevel(String level) {
-    System.out.println(level);
+
+    System.out.println("Loading level " + level + "...");
 
     Timeline timeline0 =
         new Timeline(
@@ -1030,6 +1031,8 @@ public class Map extends Observable {
 
       // Player has no lives left, trigger game over
       gameOver();
+
+      player.setLives(5);
 
     } else {
       // Player still has lives left, update the UI

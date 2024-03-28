@@ -1,8 +1,7 @@
 
 
-java:S1450"ZRemove the "playerScore" field and declare it as a local variable in the relevant methods.(®½î¸8ğáç1J$bc653992-2dd3-4778-b627-fdcafe6ca6d7
-N
-java:S1602F",Remove useless curly braces around statement(äÒ´Åúÿÿÿÿ8Óöáç1
-ƒ	java:S125M"<This block of commented-out lines of code should be removed.(û¾Ì–ıÿÿÿÿ8õáç1J$cd2ab293-7f17-4b25-839b-9eacad8d0b3c
+java:S1450"ZRemove the "playerScore" field and declare it as a local variable in the relevant methods.(®½î¸8ğáç1J$fffec6b3-f441-4bc0-80c5-332b1666a157
+t
+java:S1602H",Remove useless curly braces around statement(äÒ´Åúÿÿÿÿ8Óöáç1J$3446adb8-a17d-4778-8a49-0f65562ddfab
 r
-java:S1068"/Remove this unused "playerScore" private field.(®½î¸8öáç1J$ac5a2153-2139-421d-a37e-6f85b593c6a4
+java:S1068"/Remove this unused "playerScore" private field.(®½î¸8öáç1J$490e936b-392f-43f1-9bbd-70e31ac14b00

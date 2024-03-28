@@ -20,6 +20,8 @@ public class GameOver implements Initializable {
   @FXML private HBox scoreHBox;
 
   @FXML private Pane scrollingBackgroundPane;
+
+  @FXML private Pane playerNamePane;
   private int playerScore;
 
   public void setPlayerScore(int playerScore) {
@@ -68,16 +70,9 @@ public class GameOver implements Initializable {
 
     yes.setOnAction(
         event -> {
-          SceneController.getInstance().switchTo(Roots.PLAYER_SELECTION);
+          SceneController.getInstance().switchTo(Roots.MENU);
         });
 
     no.setOnAction(event -> SceneController.getInstance().switchTo(Roots.MENU));
-
-    //    // Convert the player's score to a string and add the ImageView for each digit to the HBox
-    //    String scoreStr = String.valueOf(playerScore);
-    //    for (char digit : scoreStr.toCharArray()) {
-    //      ImageView digitSprite = getDigitSprite(Character.getNumericValue(digit));
-    //      scoreHBox.getChildren().add(digitSprite);
-    //    }
   }
 }

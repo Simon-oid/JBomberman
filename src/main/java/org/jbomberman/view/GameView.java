@@ -208,6 +208,11 @@ public class GameView {
     AnchorPane.setTopAnchor(scoreboard, 0.0); // Position scoreboard at the bottom
     AnchorPane.setLeftAnchor(scoreboard, 0.0); // Position scoreboard at the left
 
+    // Initialize scoreboard
+    initializeScoreboard();
+
+    scoreboard.setVisible(false);
+
     initializeMobSprites();
 
     for (ImageView mobSprite : mobSprites.values()) {
@@ -241,6 +246,7 @@ public class GameView {
                 event -> {
                   tilePane.setVisible(true);
                   player.setVisible(true);
+                  scoreboard.setVisible(true);
                   // Hide the mobs
                   for (ImageView mobSprite : mobSprites.values()) {
                     mobSprite.setVisible(true);
@@ -264,6 +270,8 @@ public class GameView {
   public void resetGameView() {
     if (firstTimeLoading) {
 
+      currentLevel = 1;
+
       firstTimeLoading = false;
     } else {
 
@@ -282,6 +290,11 @@ public class GameView {
     anchorPane.getChildren().remove(tilePane);
 
     player.setVisible(false);
+
+    scoreboard.setVisible(false);
+
+    clockAnimation.stop();
+    clockAnimation.getKeyFrames().clear();
 
     removeAllPowerUps();
 
