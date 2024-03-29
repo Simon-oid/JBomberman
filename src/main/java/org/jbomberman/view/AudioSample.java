@@ -27,7 +27,13 @@ public enum AudioSample {
   AUDIENCE(
       "Z:/projects/Intellij/JBomberman/src/main/resources/org/jbomberman/view/audioSamples/audience.wav"),
   GAME_OVER(
-      "Z:/projects/Intellij/JBomberman/src/main/resources/org/jbomberman/view/audioSamples/gameOver.wav");
+      "Z:/projects/Intellij/JBomberman/src/main/resources/org/jbomberman/view/audioSamples/gameOver.wav"),
+  MAIN_MENU(
+      "Z:/projects/Intellij/JBomberman/src/main/resources/org/jbomberman/view/audioSamples/mainMenu_theme.wav"),
+  PLAYER_SELECTION(
+      "Z:/projects/Intellij/JBomberman/src/main/resources/org/jbomberman/view/audioSamples/playerSelection_theme.wav"),
+  LEADERBOARD(
+      "Z:/projects/Intellij/JBomberman/src/main/resources/org/jbomberman/view/audioSamples/leaderboard_theme.wav");
 
   private final String filename;
 

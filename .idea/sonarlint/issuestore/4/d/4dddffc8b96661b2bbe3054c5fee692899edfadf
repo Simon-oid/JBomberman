@@ -1,14 +1,14 @@
 
-	java:S112h"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8°î–²è1J$ebd6a1b0-b6ff-4ecd-ba23-4558a4a6d9db
-	java:S112t"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ä¾²è1J$3f5a4b91-565d-419c-9ba8-7c66af725eae
+	java:S112w"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ÜÅÙè1J$be07ede1-96ca-4a30-abbd-8153a951a38e
+	java:S112…"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ÜÅÙè1J$cbdc9f50-0bec-415f-b3a6-1d31baa0bb23
 ˜
-java:S3655X"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ŸªÍäùÿÿÿÿ8Ìî–²è1J$aaab493a-eccd-44a8-bf0b-c71e5b814c97
+java:S3655g"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ŸªÍäùÿÿÿÿ8êÅÙè1J$ee1cd338-7f89-4f8e-8f53-5ab8cd749208
 Û
-java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(Ë¬Š8Íî–²è1J$cddc3d61-8217-4f0d-bdf2-5f74b8f468f0
+java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(Ë¬Š8ìÅÙè1J$5231fdff-ad9b-40f6-8442-d6008fe60e01
 r
-java:S1874"0Remove this use of "Observer"; it is deprecated.(Ë¬Š8Îî–²è1J$2e48f77f-7dcd-4956-ac47-87a9b68ec131
-r	java:S106Y"+Replace this use of System.out by a logger.(ÍÇÖÓúÿÿÿÿ8Óî–²è1J$d2f4cf1b-23c8-48b6-920b-16c7ced75924
+java:S1874"0Remove this use of "Observer"; it is deprecated.(Ë¬Š8íÅÙè1J$c65aa1f5-efc5-4c1c-bb0c-a2c555dbc0b3
+r	java:S106h"+Replace this use of System.out by a logger.(ÍÇÖÓúÿÿÿÿ8óÅÙè1J$c9ac29f7-6b75-4b88-92dc-827e941ece7d
 {
-java:S1874±"2Remove this use of "Observable"; it is deprecated.(‹›Àüÿÿÿÿ8Ûî–²è1J$5223f7bf-9c0c-40f4-b68a-e14c39c1b8c1
+java:S1874Ä"2Remove this use of "Observable"; it is deprecated.(‹›Àüÿÿÿÿ8üÅÙè1J$088b4af2-f462-4670-af26-edf326c501c4
 p
-java:S1602Ö",Remove useless curly braces around statement(÷¼¼Ä8İî–²è1J$2c925a28-724f-4a4d-9a56-ae6785971b96
+java:S1602é",Remove useless curly braces around statement(÷¼¼Ä8ÿÅÙè1J$dcf57c12-2e36-42e7-8427-c2eebf41b4ea

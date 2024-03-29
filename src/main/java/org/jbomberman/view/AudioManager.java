@@ -5,19 +5,32 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import javax.sound.sampled.*;
 
 public class AudioManager {
 
   private static AudioManager instance;
   private Clip soundtrackClip; // Separate clip for the soundtrack
+  private List<Clip> clips; // Collection of all Clip instances
 
   public static AudioManager getInstance() {
     if (instance == null) instance = new AudioManager();
     return instance;
   }
 
-  private AudioManager() {}
+  private AudioManager() {
+    clips = new ArrayList<>();
+  }
+
+  public void stopAll() {
+    for (Clip clip : clips) {
+      if (clip != null && clip.isRunning()) {
+        clip.stop();
+      }
+    }
+  }
 
   public void play(AudioSample audioSample) {
     try {
@@ -34,12 +47,18 @@ public class AudioManager {
       DataLine.Info info = new DataLine.Info(Clip.class, targetFormat);
       Clip clip = (Clip) AudioSystem.getLine(info);
       clip.open(audioStream);
-      clip.start();
 
-      if (audioSample == AudioSample.SOUNDTRACK) {
-        resetSoundtrackClip();
-        soundtrackClip = clip;
+      // Check if the audio sample is one of the soundtracks that should be looped
+      if (audioSample == AudioSample.MAIN_MENU
+          || audioSample == AudioSample.PLAYER_SELECTION
+          || audioSample == AudioSample.LEADERBOARD) {
+        clip.loop(Clip.LOOP_CONTINUOUSLY); // Loop the soundtrack continuously
+      } else {
+        clip.start(); // Start the clip normally for other audio samples
       }
+
+      // Add the clip to the collection of clips
+      clips.add(clip);
 
     } catch (FileNotFoundException e1) {
       e1.printStackTrace();

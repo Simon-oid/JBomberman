@@ -60,6 +60,21 @@ public class SceneController implements Observer {
     }
     window.getScene().setRoot(roots[root.ordinal()]);
     adjustWindowSize();
+
+    // Play the mainTheme when the MENU root is selected
+    if (root == Roots.MENU) {
+      AudioManager.getInstance().stopAll();
+
+      AudioManager.getInstance().play(AudioSample.MAIN_MENU);
+    } else if (root == Roots.PLAYER_SELECTION) {
+      AudioManager.getInstance().stopAll();
+
+      AudioManager.getInstance().play(AudioSample.PLAYER_SELECTION);
+    } else if (root == Roots.LEADERBOARD) {
+      AudioManager.getInstance().stopAll();
+
+      AudioManager.getInstance().play(AudioSample.LEADERBOARD);
+    }
   }
 
   private void adjustWindowSize() {
@@ -108,6 +123,8 @@ public class SceneController implements Observer {
   private void switchToGameOverScene(GameOverUpdateData data) {
     int playerScore = data.score();
 
+    AudioManager.getInstance().stopAll();
+
     // Load the GameOver scene and get the controller
     FXMLLoader loader = new FXMLLoader(getClass().getResource(Roots.GAME_OVER.getResourcePath()));
     try {
@@ -146,6 +163,8 @@ public class SceneController implements Observer {
   }
 
   private void switchToYouWonScene() {
+
+    AudioManager.getInstance().stopAll();
 
     PauseTransition delay = new PauseTransition(Duration.seconds(3.5));
     delay.setOnFinished(

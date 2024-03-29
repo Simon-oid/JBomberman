@@ -145,3 +145,5 @@ f
 6src/main/java/org/jbomberman/view/PlayerSelection.java,e\3\e3cda7ced1e8e9e8a87551f619845f1e5c02349c
 b
 2src/main/java/org/jbomberman/view/Leaderboard.java,1\0\10460de2cc2937fdee38380d3a64a40b4ace258e
+f
+6src/main/java/org/jbomberman/view/MainMenuSprites.java,e\9\e95118c12bb3c9744ed265de56bcc4738ce1a182
