@@ -1,8 +1,8 @@
 
 p
-java:S1604>"(Make this anonymous inner class a lambda(©‚ƒ¶úÿÿÿÿ8§ÍÚÙè1J$4846d4d8-a1fb-4f46-bb33-7703053d7b66
+java:S1604>"(Make this anonymous inner class a lambda(©‚ƒ¶úÿÿÿÿ8§ÍÚÙè1J$b1a369bc-2f54-4481-99ab-56a9b6fdd86e
 ‹
-java:S1612u"HReplace this lambda with method reference 'ImageView.class::isInstance'.(ûîó8ÙÍÚÙè1J$b34760ce-9b5e-4f8a-9918-bcee5473a38f
-n	java:S106"+Replace this use of System.out by a logger.(ñŒ•±8ÚÍÚÙè1J$e848e756-827f-4ac7-af9a-b3abf8c8a7c5
-m	java:S106„"+Replace this use of System.out by a logger.(Ó±Íw8ÚÍÚÙè1J$d03de1ab-eb36-4a36-a01a-32a98b13a896
-m	java:S106‡"+Replace this use of System.out by a logger.(Ó±Íw8ÛôôÙè1J$1aea0007-22fb-4971-8e86-f1049e880b73
+java:S1612u"HReplace this lambda with method reference 'ImageView.class::isInstance'.(ûîó8ÙÍÚÙè1J$fd5a2b33-bba3-4149-80b5-2f2cb564b599
+n	java:S106"+Replace this use of System.out by a logger.(ñŒ•±8ÚÍÚÙè1J$80923a7b-7f02-48ea-9eb0-e6d5ac38fc9b
+m	java:S106„"+Replace this use of System.out by a logger.(Ó±Íw8ÚÍÚÙè1J$df193b95-a93f-4796-a11d-cb82ed9bfc25
+m	java:S106‡"+Replace this use of System.out by a logger.(Ó±Íw8ÛôôÙè1J$177b75e4-f17e-4b2d-8770-2569160ab873

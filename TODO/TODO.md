@@ -2267,6 +2267,45 @@ FF >>> 22/10/2023
 ===========================================================================
 ***
 
+### 04/04/2024
+
+### TO-DO:
+
+### high priority: [fixing stuff rn]
+
+---
+
+- [ ] fixare il fatto che ora come ora, quando le imageview dei mob sono inizializzate, per via di una shallow copy
+  della lista dei mob, soltanto le ultime due imageview per tipo sono utilizzate per disegnare i mob (sulle ultime
+  imageview vengono disegnate le animazioni dei primi due mob )
+
+---
+
+- REQUISITI MANCANTI:
+
+### low priority:
+
+- [ ] reworka collisioni del player (si incolla alle pareti)
+- [ ] bisogna modificare il model cosi' che quando il player
+  viene colpito, il player e' respawnato alle
+  coordinate iniziali
+- [ ] puoi usare lo sprite sheet goated per l'animazione della morte del player
+
+### DONE:
+
+- [x] fixare la directory che viene presa per caricare i file all'interno degli enum per i sample audio
+- [x] fixare la probabilita' con cui puo' spawnare l'exit tile prima di arrivare all'ultimo blocco distruttibile
+  sulla mappa
+- [x] fixare il modo in cui vengono creati i powerup, da fixare la probebilita' con cui vengono droppati i powerup
+  (ora come ora esce PER FORZA almeno un powerup per blocco)
+- [x] implementato lo spawn dei powerup ogni volta che un mob muore
+- [x] implementare ultimo powerup
+
+***
+
+===========================================================================
+***
+
 
 
 

@@ -22,8 +22,7 @@ import org.jbomberman.controller.KeyHandler;
 import org.jbomberman.controller.MobHandler;
 import org.jbomberman.model.entita.*;
 import org.jbomberman.model.listener.*;
-import org.jbomberman.model.powerups.PowerUp;
-import org.jbomberman.model.powerups.PowerUpFactory;
+import org.jbomberman.model.powerups.*;
 import org.jbomberman.model.tiles.GrassTile;
 import org.jbomberman.model.tiles.ImmovableTile;
 import org.jbomberman.model.tiles.Tile;
@@ -547,6 +546,85 @@ public class Map extends Observable {
 
     // increment the player's bomb count after the explosion
     player.regenBombCount();
+
+    // Check if the explosion hitboxes intersect with the exit tile hitbox
+    if (exitTileHitBox != null
+        && (exitTileHitBox.intersects(horizontalExplosionHitbox)
+            || exitTileHitBox.intersects(verticalExplosionHitbox))) {
+      // Get the exit tile coordinates
+      int exitTileX = (int) exitTileHitBox.getMinX() / Tiles.GRASS.size();
+      int exitTileY = (int) exitTileHitBox.getMinY() / Tiles.GRASS.size();
+
+      // Define the coordinates of the adjacent tiles
+      int[][] adjacentTiles = {
+        {exitTileX - 1, exitTileY},
+        {exitTileX + 1, exitTileY},
+        {exitTileX, exitTileY - 1},
+        {exitTileX, exitTileY + 1}
+      };
+
+      // Iterate over the adjacent tiles
+      for (int[] tile : adjacentTiles) {
+        int tileX = tile[0];
+        int tileY = tile[1];
+
+        // Check if the tile is within the map bounds and is not occupied by another tile
+        if (tileX >= 0
+            && tileX < MAP_WIDTH
+            && tileY >= 0
+            && tileY < MAP_HEIGHT
+            && numTileMap.get(tileY * MAP_WIDTH + tileX) == Tiles.GRASS) {
+          // Spawn an IceCreamPowerUp at the adjacent tile location
+          spawnPowerUp(tileX, tileY, PowerUpType.ICE_CREAM, 0);
+          break;
+        }
+      }
+    }
+  }
+
+  public void spawnPowerUp(int tileIndexX, int tileIndexY, PowerUpType type, int delayInSeconds) {
+    Runnable spawnTask =
+        () -> {
+          try {
+            // Calculate the coordinates based on the tile index
+            int x = tileIndexX * Tiles.GRASS.size();
+            int y = tileIndexY * Tiles.GRASS.size();
+
+            PowerUp powerUp;
+            switch (type) {
+              case BOMB_UP:
+                powerUp = new BombUpPowerUp();
+                break;
+              case SKATE:
+                powerUp = new SkatePowerUp();
+                break;
+              case ICE_CREAM:
+                powerUp = new IceCreamPowerUp();
+                break;
+              default:
+                return;
+            }
+
+            powerUp.setX(x);
+            powerUp.setY(y);
+            powerUps.add(powerUp); // Add the power-up to the powerUps collection
+
+            ScheduledFuture<?> despawnTask =
+                executorService.schedule(() -> handlePowerUpDespawn(powerUp), 3, TimeUnit.SECONDS);
+
+            powerUp.setDespawnTask(despawnTask); // Set the despawn task in the power-up
+
+            PowerUpSpawnData packageData =
+                new PowerUpSpawnData(PackageType.SPAWN_POWERUP, powerUp.getType(), x, y);
+            sendUpdate(packageData);
+          } catch (Exception e) {
+            // If an exception occurs during power-up spawning, log it (optional)
+            System.out.println("PowerUP spawn attempt did not spawn a powerup: " + e.getMessage());
+          }
+        };
+
+    // Schedule the spawning task with the specified delay
+    executorService.schedule(spawnTask, delayInSeconds, TimeUnit.MILLISECONDS);
   }
 
   private void initCollisionDetectionScheduler(
@@ -634,13 +712,29 @@ public class Map extends Observable {
       tileHitBoxes.set(
           tileIndex, createTile(tileIndexX, tileIndexY, Tiles.GRASS).getHitBox()); // Update hitbox
 
-      // Spawn an exit tile based on a certain percentile
-      if (shouldSpawnExitTile() && !exitTileSpawned) {
-        spawnExitTile(tileIndexX, tileIndexY, 1300);
+      // Generate a random number between 0 and 1
+      double randomValue = Math.random();
+      // Check if the random value falls within the spawn chance
+      if (randomValue <= 0.05
+          || isLastDestroyableTile()) { // Adjust this value as needed for the desired spawn chance
+        if (!exitTileSpawned) {
+          spawnExitTile(tileIndexX, tileIndexY, 1300);
+          exitTileSpawned = true;
+        }
       } else {
-        spawnRandomPowerUp(tileIndexX, tileIndexY, 1300);
+        // Generate a random number between 0 and 1
+        randomValue = Math.random();
+
+        // Check if the random value falls within the spawn chance
+        if (randomValue <= 0.2) { // Adjust this value as needed for the desired spawn chance
+          spawnRandomPowerUp(tileIndexX, tileIndexY, 1300);
+        }
       }
     }
+  }
+
+  private boolean isLastDestroyableTile() {
+    return numTileMap.stream().filter(Tiles::isDestroyable).count() == 0;
   }
 
   private boolean isExplosionCollision(int tileX, int tileY) {
@@ -759,6 +853,15 @@ public class Map extends Observable {
       // Award the calculated score to the player
       player.setScore(player.getScore() + score);
       updatePlayerScore(player);
+
+      // Schedule a powerup to spawn at the mob's location after a delay
+      despawnScheduler.schedule(
+          () ->
+              spawnRandomPowerUp(
+                  mob.getX() / Tiles.GRASS.size(), mob.getY() / Tiles.GRASS.size(), 0),
+          2100,
+          TimeUnit.MILLISECONDS);
+
       entities.remove(mob);
     }
   }
@@ -1040,39 +1143,6 @@ public class Map extends Observable {
           new PlayerLivesUpdateData(PackageType.DRAW_PLAYER_LIVES_UPDATE, lives);
       sendUpdate(packageData);
     }
-  }
-
-  private boolean shouldSpawnExitTile() {
-    // Check if there's already an exit tile on the map
-    for (Tiles tile : numTileMap) {
-      if (tile == Tiles.EXIT) {
-        return false; // Exit tile already exists, so don't spawn another one
-      }
-    }
-
-    // Check if there's only one destructible tile left on the map
-    int destructibleTileCount = 0;
-    for (Tiles tile : numTileMap) {
-      if (tile.isDestroyable()) {
-        destructibleTileCount++;
-      }
-    }
-
-    // If there's only one destructible tile left, always spawn an exit tile
-    if (destructibleTileCount == 1) {
-      return true;
-    }
-
-    // Calculate the probability of spawning an exit tile (e.g., 10% chance)
-    double spawnChance = 0.1; // Adjust this value as needed
-
-    // Generate a random number between 0 and 1
-    double randomValue = Math.random();
-
-    // System.out.println(randomValue <= spawnChance);
-
-    // Check if the random value falls within the spawn chance
-    return randomValue <= spawnChance;
   }
 
   private void spawnExitTile(int tileIndexX, int tileIndexY, int delayInSeconds) {

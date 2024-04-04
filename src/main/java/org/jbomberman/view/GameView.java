@@ -129,8 +129,7 @@ public class GameView {
   }
 
   private void stopSoundtrack() {
-    audioManager.stop(AudioSample.SOUNDTRACK); // Stop the soundtrack
-    audioManager.reinitializeSoundtrackClip(); // Reinitialize the soundtrack clip
+    AudioManager.getInstance().stopAll();
   }
 
   private void initGameView() {
@@ -1409,9 +1408,12 @@ public class GameView {
     if (powerUpType == PowerUpType.BOMB_UP) {
       powerUpFrames =
           new Image[] {Tiles.POWERUP_BOMBUP_0.getImage(), Tiles.POWERUP_BOMBUP_1.getImage()};
-    } else {
+    } else if (powerUpType == PowerUpType.SKATE) {
       powerUpFrames =
           new Image[] {Tiles.POWERUP_SKATE_0.getImage(), Tiles.POWERUP_SKATE_1.getImage()};
+    } else {
+      powerUpFrames =
+          new Image[] {Tiles.POWERUP_ICESCREAM_0.getImage(), Tiles.POWERUP_ICESCREAM_1.getImage()};
     }
 
     powerUpImageView.setFitWidth(48);
