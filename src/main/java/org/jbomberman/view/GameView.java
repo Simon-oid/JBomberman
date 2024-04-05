@@ -29,6 +29,8 @@ public class GameView {
   int MAP_WIDTH = 15;
   int MAP_HEIGHT = 13;
 
+  int adjustedYOffset = 64;
+
   private int currentLevel;
   private int playerScore;
   private TilePane tilePane;
@@ -1121,24 +1123,19 @@ public class GameView {
     Type mobType = data.mobType();
     ImageView mobImageView = mobSprites.get(mobType);
 
-    // Adjust the Y position to align the bottom of the mob ImageView with the bottom of its hitbox
-    double adjustedY = initialY - mobImageView.getFitHeight();
+    mobImageView.setY(adjustedYOffset);
 
-    mobImageView.setY(adjustedY);
+    // Reset the translation of the ImageView
+    mobImageView.setTranslateX(0);
+    mobImageView.setTranslateY(0);
 
-    TranslateTransition xTransition =
-        new TranslateTransition(Duration.seconds(delta), mobImageView);
-    xTransition.setFromX(initialX);
-    xTransition.setToX(xStep);
-    xTransition.setCycleCount(1);
-    xTransition.play();
-
-    TranslateTransition yTransition =
-        new TranslateTransition(Duration.seconds(delta), mobImageView);
-    yTransition.setFromY(initialY);
-    yTransition.setToY(yStep);
-    yTransition.setCycleCount(1);
-    yTransition.play();
+    TranslateTransition transition = new TranslateTransition(Duration.seconds(delta), mobImageView);
+    transition.setFromX(initialX);
+    transition.setFromY(initialY);
+    transition.setToX(xStep);
+    transition.setToY(yStep);
+    transition.setCycleCount(1);
+    transition.play();
 
     // Ensure bomb is drawn under the player
     anchorPane.getChildren().remove(player);
