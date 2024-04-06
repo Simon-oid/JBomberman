@@ -148,7 +148,8 @@ public class Map extends Observable {
       Direction direction = Direction.valueOf(player.get("direction").getAsString());
 
       int lives = player.get("lives").getAsInt();
-      int score = player.get("score").getAsInt();
+
+      int score = (this.player == null) ? player.get("score").getAsInt() : this.player.getScore();
 
       int width = player.get("width").getAsInt();
       int height = player.get("height").getAsInt();
@@ -429,10 +430,13 @@ public class Map extends Observable {
 
     // Check each direction and add it to the list if it is valid
     for (Direction direction : Direction.values()) {
-      if (direction != currentDirection && isValidDirection(mob, direction)) {
+      if (direction != currentDirection
+          && direction != Direction.NONE
+          && isValidDirection(mob, direction)) {
         validDirections.add(direction);
       }
     }
+    System.out.println(validDirections);
 
     // If there are valid directions available, choose a random one
     if (!validDirections.isEmpty()) {
@@ -441,7 +445,7 @@ public class Map extends Observable {
     }
 
     // If no valid directions are available, return null
-    return null;
+    return currentDirection;
   }
 
   private boolean isValidDirection(Mob mob, Direction direction) {
@@ -889,6 +893,7 @@ public class Map extends Observable {
       Mob denkyunMob = new Mob(exitTilePosX, exitTilePosY, 45, 45, Type.DENKYUN, Direction.RIGHT);
 
       Direction newDirection = chooseRandomValidDirection(denkyunMob);
+
       denkyunMob.setDirection(newDirection);
       // Spawn the DENKYUN mob
       denkyunMob.spawn();

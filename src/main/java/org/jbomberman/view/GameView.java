@@ -32,24 +32,45 @@ public class GameView {
   int adjustedYOffset = 64;
 
   private int currentLevel;
+
   private int playerScore;
+
   private TilePane tilePane;
+
   private AnchorPane anchorPane;
+
   private ImageView player;
-  private HashMap<Type, ImageView> mobSprites;
+
+  private HashMap<Type, List<ImageView>> mobSprites;
+
   private ImageView scoreboard;
+
   private static final int Y_OFFSET = 100;
+
   private ImageView[] fontSprites;
+
   private ImageView[] scoreFontSprites;
+
   private ImageView[] scoreFontFlickerSprites;
+
   private Timeline playerMovementAnimation;
+
   private Timeline playerHitAnimation;
+
   private Direction lastAnimationDirection = Direction.NONE;
+
+  // TODO: modificare l'hasmap cosi' che invece del tipo ha un imageview
+
   private HashMap<Type, Timeline> mobMovementAnimations;
+
   private Direction lastPuropenDirection = Direction.NONE;
+
   private Image[] destructibleTileSprites;
+
   private ImageView[] clockSprites;
+
   private Timeline clockAnimation;
+
   private ImageView clockImageView;
 
   private ImageView exitTileImageView;
@@ -216,8 +237,10 @@ public class GameView {
 
     initializeMobSprites();
 
-    for (ImageView mobSprite : mobSprites.values()) {
-      mobSprite.setVisible(false);
+    for (List<ImageView> mobSpriteList : mobSprites.values()) {
+      for (ImageView mobSprite : mobSpriteList) {
+        mobSprite.setVisible(false);
+      }
     }
     // Initialize clock animation
     initializeClockAnimation();
@@ -249,8 +272,10 @@ public class GameView {
                   player.setVisible(true);
                   scoreboard.setVisible(true);
                   // Hide the mobs
-                  for (ImageView mobSprite : mobSprites.values()) {
-                    mobSprite.setVisible(true);
+                  for (List<ImageView> mobSpriteList : mobSprites.values()) {
+                    for (ImageView mobSprite : mobSpriteList) {
+                      mobSprite.setVisible(true);
+                    }
                   }
                 }));
 
@@ -300,9 +325,14 @@ public class GameView {
     removeAllPowerUps();
 
     // Hide the mobs
-    for (ImageView mobSprite : mobSprites.values()) {
-      mobSprite.setVisible(false);
+
+    // Hide the mobs
+    for (List<ImageView> mobSpriteList : mobSprites.values()) {
+      for (ImageView mobSprite : mobSpriteList) {
+        mobSprite.setVisible(false);
+      }
     }
+
     stopSoundtrackTimer();
 
     setupSoundTrackTimer();
@@ -449,27 +479,32 @@ public class GameView {
     mobMovementAnimations = new HashMap<>(); // New HashMap to store timelines
 
     for (Type mobType : Type.values()) {
-      ImageView mobImageView;
+      List<ImageView> mobImageViewList = new ArrayList<>();
       Timeline mobMovementAnimation = new Timeline(); // Create a new timeline for each mob type
 
       if (mobType == Type.PUROPEN) {
         Image mobImage = Entities.VOID.getImage();
-        mobImageView = new ImageView(mobImage);
+        ImageView mobImageView = new ImageView(mobImage);
+        mobImageView.setFitWidth(48);
+        mobImageView.setFitHeight(80);
+        mobImageViewList.add(mobImageView);
+        // Add the mob ImageView to the anchorPane
+        anchorPane.getChildren().add(mobImageView);
       } else if (mobType == Type.DENKYUN) {
         Image mobImage = Entities.VOID.getImage();
-        mobImageView = new ImageView(mobImage);
+        ImageView mobImageView = new ImageView(mobImage);
+        mobImageView.setFitWidth(48);
+        mobImageView.setFitHeight(80);
+        mobImageViewList.add(mobImageView);
+        // Add the mob ImageView to the anchorPane
+        anchorPane.getChildren().add(mobImageView);
       } else {
         // Handle other mob types if needed
         continue;
       }
 
-      mobImageView.setFitWidth(48);
-      mobImageView.setFitHeight(80);
-      mobSprites.put(mobType, mobImageView);
+      mobSprites.put(mobType, mobImageViewList);
       mobMovementAnimations.put(mobType, mobMovementAnimation); // Store the timeline in the HashMap
-
-      // Add the mob ImageView to the anchorPane
-      anchorPane.getChildren().add(mobImageView);
     }
   }
 
@@ -1092,20 +1127,26 @@ public class GameView {
 
   public void spawnMob(MobInitialPositionData mobInitialPositions) {
     Type mobType = mobInitialPositions.mobType();
-    Image mobImage = mobSprites.get(mobType).getImage();
+    List<ImageView> mobImageViewList = mobSprites.get(mobType);
 
-    ImageView mobImageView = new ImageView(mobImage);
-    mobImageView.setFitWidth(48); // Set the initial fit width
-    mobImageView.setFitHeight(48); // Set the initial fit height
+    for (ImageView mobImageView : mobImageViewList) {
+      mobImageView.setFitWidth(48); // Set the initial fit width
+      mobImageView.setFitHeight(80); // Set the initial fit height
 
-    // Adjust the Y position to align the bottom of the mob ImageView with the bottom of its hitbox
-    double adjustedY = mobInitialPositions.initialY() - mobImageView.getFitHeight();
-    mobImageView.setY(adjustedY);
+      if (mobType == Type.DENKYUN) {
+        mobImageView.setX(mobInitialPositions.initialX() - 144);
+      } else if (mobType == Type.PUROPEN) {
+        mobImageView.setX(mobInitialPositions.initialX() - 96);
+      }
 
-    mobImageView.setX(mobInitialPositions.initialX());
+      // Adjust the Y position to align the bottom of the mob ImageView with the bottom of its
+      // hitbox
+      double adjustedY = mobInitialPositions.initialY() - mobImageView.getFitHeight();
+      mobImageView.setY(adjustedY);
 
-    // Add the mob ImageView to the anchor pane
-    anchorPane.getChildren().add(mobImageView);
+      // Add the mob ImageView to the anchor pane
+      anchorPane.getChildren().add(mobImageView);
+    }
 
     // Ensure bomb is drawn under the player
     anchorPane.getChildren().remove(player);
@@ -1121,21 +1162,24 @@ public class GameView {
     int initialY = data.oldY();
 
     Type mobType = data.mobType();
-    ImageView mobImageView = mobSprites.get(mobType);
+    List<ImageView> mobImageViewList = mobSprites.get(mobType);
 
-    mobImageView.setY(adjustedYOffset);
+    for (ImageView mobImageView : mobImageViewList) {
+      mobImageView.setY(adjustedYOffset);
 
-    // Reset the translation of the ImageView
-    mobImageView.setTranslateX(0);
-    mobImageView.setTranslateY(0);
+      // Reset the translation of the ImageView
+      mobImageView.setTranslateX(0);
+      mobImageView.setTranslateY(0);
 
-    TranslateTransition transition = new TranslateTransition(Duration.seconds(delta), mobImageView);
-    transition.setFromX(initialX);
-    transition.setFromY(initialY);
-    transition.setToX(xStep);
-    transition.setToY(yStep);
-    transition.setCycleCount(1);
-    transition.play();
+      TranslateTransition transition =
+          new TranslateTransition(Duration.seconds(delta), mobImageView);
+      transition.setFromX(initialX);
+      transition.setFromY(initialY);
+      transition.setToX(xStep);
+      transition.setToY(yStep);
+      transition.setCycleCount(1);
+      transition.play();
+    }
 
     // Ensure bomb is drawn under the player
     anchorPane.getChildren().remove(player);
@@ -1147,36 +1191,41 @@ public class GameView {
         animatePuropen(mobType, direction);
       }
     } else { // TODO: aggiungere check per far partire animazione del dnekyun una volta sola
-      ImageView denkyunImageView = mobSprites.get(mobType);
-      playDenkyunAnimation(denkyunImageView, mobType);
+      for (ImageView denkyunImageView : mobSprites.get(mobType)) {
+        playDenkyunAnimation(denkyunImageView, mobType);
+      }
     }
   }
 
   private void animatePuropen(Type mobType, Direction direction) {
-    ImageView mobImageView = mobSprites.get(mobType);
+    List<ImageView> mobImageViewList = mobSprites.get(mobType);
     Timeline puropenMovementAnimation = mobMovementAnimations.get(mobType);
 
-    switch (direction) {
-      case UP:
-        puropenMovementAnimation =
-            playMobMovementAnimation(mobImageView, getPuropenSpriteImages(Direction.UP), mobType);
-        break;
-      case DOWN:
-        puropenMovementAnimation =
-            playMobMovementAnimation(mobImageView, getPuropenSpriteImages(Direction.DOWN), mobType);
-        break;
-      case LEFT:
-        puropenMovementAnimation =
-            playMobMovementAnimation(mobImageView, getPuropenSpriteImages(Direction.LEFT), mobType);
-        break;
-      case RIGHT:
-        puropenMovementAnimation =
-            playMobMovementAnimation(
-                mobImageView, getPuropenSpriteImages(Direction.RIGHT), mobType);
-        break;
-      case NONE:
-        mobImageView.setImage(Entities.PUROPEN.getImage());
-        break;
+    for (ImageView mobImageView : mobImageViewList) {
+      switch (direction) {
+        case UP:
+          puropenMovementAnimation =
+              playMobMovementAnimation(mobImageView, getPuropenSpriteImages(Direction.UP), mobType);
+          break;
+        case DOWN:
+          puropenMovementAnimation =
+              playMobMovementAnimation(
+                  mobImageView, getPuropenSpriteImages(Direction.DOWN), mobType);
+          break;
+        case LEFT:
+          puropenMovementAnimation =
+              playMobMovementAnimation(
+                  mobImageView, getPuropenSpriteImages(Direction.LEFT), mobType);
+          break;
+        case RIGHT:
+          puropenMovementAnimation =
+              playMobMovementAnimation(
+                  mobImageView, getPuropenSpriteImages(Direction.RIGHT), mobType);
+          break;
+        case NONE:
+          mobImageView.setImage(Entities.PUROPEN.getImage());
+          break;
+      }
     }
 
     // Update the timeline stored in the map
@@ -1287,22 +1336,25 @@ public class GameView {
   }
 
   private void playFlickeringAnimation(Type mobType) {
-    ImageView mobImageView = mobSprites.get(mobType);
-    if (mobImageView != null) {
-      Timeline flickeringAnimation =
-          new Timeline(
-              new KeyFrame(Duration.seconds(0.050), event -> mobImageView.setVisible(false)),
-              new KeyFrame(Duration.seconds(0.1), event -> mobImageView.setVisible(true)));
-      flickeringAnimation.setCycleCount(30); // Repeat indefinitely
-      flickeringAnimation.play();
+    List<ImageView> mobImageViewList = mobSprites.get(mobType);
+    if (mobImageViewList != null) {
+      for (ImageView mobImageView : mobImageViewList) {
+        Timeline flickeringAnimation =
+            new Timeline(
+                new KeyFrame(Duration.seconds(0.050), event -> mobImageView.setVisible(false)),
+                new KeyFrame(Duration.seconds(0.1), event -> mobImageView.setVisible(true)));
+        flickeringAnimation.setCycleCount(30); // Repeat indefinitely
+        flickeringAnimation.play();
+      }
     }
   }
 
   private void removeOldMobSprite(Type mobType) {
-
-    ImageView oldMobImageView = mobSprites.get(mobType);
-    if (oldMobImageView != null) {
-      anchorPane.getChildren().remove(oldMobImageView);
+    List<ImageView> oldMobImageViewList = mobSprites.get(mobType);
+    if (oldMobImageViewList != null) {
+      for (ImageView oldMobImageView : oldMobImageViewList) {
+        anchorPane.getChildren().remove(oldMobImageView);
+      }
     }
   }
 
@@ -1859,7 +1911,10 @@ public class GameView {
     AnchorPane.setTopAnchor(denkyunImageView, y - 175);
     AnchorPane.setLeftAnchor(denkyunImageView, x - 48);
 
-    mobSprites.put(Type.DENKYUN, denkyunImageView);
+    List<ImageView> denkyunImageViewList =
+        mobSprites.computeIfAbsent(Type.DENKYUN, k -> new ArrayList<>());
+    denkyunImageViewList.add(denkyunImageView);
+
     mobMovementAnimations.put(Type.DENKYUN, mobMovementAnimation);
 
     playFlickeringAnimation(Type.DENKYUN); // Start flickering animation after pause
@@ -1920,13 +1975,5 @@ public class GameView {
 
     // Play the spin animation
     spinAnimation.play();
-  }
-
-  public void terminateGameEntitiesAndSounds() {
-    // Clear all entities
-    soundTimer.stop();
-    // Stop all sounds
-    // Assuming you have a SoundManager class that handles all sounds
-    AudioManager.getInstance().stop(AudioSample.SOUNDTRACK);
   }
 }

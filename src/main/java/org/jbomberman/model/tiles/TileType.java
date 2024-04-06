@@ -7,7 +7,8 @@ public enum TileType {
   DESTROYABLE(3),
   EXIT(4),
   BORDER_HORIZONTAL(5),
-  BORDER_VERTICAL(6);
+  BORDER_VERTICAL(6),
+  TOP_LEFT_CORNER(7);
 
   private final int value;
 

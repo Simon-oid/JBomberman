@@ -3,7 +3,7 @@
     "posx": "48",
     "posy": "48",
     "direction": "DOWN",
-    "lives": "1",
+    "lives": "5",
     "score": "0",
     "width": "32",
     "height": "32"
@@ -13,17 +13,17 @@
       "type": "PUROPEN",
       "posx": "96",
       "posy": "144",
-      "direction": "DOWN",
-      "width": "44",
-      "height": "44"
+      "direction": "LEFT",
+      "width": "47",
+      "height": "47"
     },
     {
       "type": "DENKYUN",
       "posx": "144",
       "posy": "144",
       "direction": "RIGHT",
-      "width": "44",
-      "height": "44"
+      "width": "47",
+      "height": "47"
     }
   ],
   "powerup_spawn_chance": 0.2

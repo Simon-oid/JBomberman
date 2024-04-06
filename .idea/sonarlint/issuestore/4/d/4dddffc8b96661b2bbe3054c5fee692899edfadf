@@ -1,14 +1,17 @@
 
-	java:S112w"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ÜÅÙè1J$be07ede1-96ca-4a30-abbd-8153a951a38e
-	java:S112…"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ÜÅÙè1J$cbdc9f50-0bec-415f-b3a6-1d31baa0bb23
+	java:S112“"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ÜÅÙè1J$d2f27da8-9f57-46e4-b8bd-d4b21b67417a
+	java:S112¡"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ÜÅÙè1J$b98fd331-5c3a-4777-87d5-c46bcabdb68b
+¶
+java:S1192€"mDefine a constant instead of duplicating this literal "src/main/resources/playerData/playerData.csv" 3 times.(è€ÂŸÿÿÿÿÿ8ÑäŸë1J$9ea34bf4-428f-48cd-8e8c-9840f560b45f
+—
+java:S2095€"NUse try-with-resources or close this "RandomAccessFile" in a "finally" clause.(è€ÂŸÿÿÿÿÿ8éäŸë1J$3caab2ea-ae29-47f2-bdc9-421d882f4fb1
 ˜
-java:S3655g"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ŸªÍäùÿÿÿÿ8êÅÙè1J$ee1cd338-7f89-4f8e-8f53-5ab8cd749208
+java:S3655q"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ŸªÍäùÿÿÿÿ8êÅÙè1J$fa77b4d5-0a55-4a50-b803-0028863d312c
 Û
-java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(Ë¬Š8ìÅÙè1J$5231fdff-ad9b-40f6-8442-d6008fe60e01
+java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(Ë¬Š8ìÅÙè1J$2995f086-eab8-40dc-aa16-dd340ae6ddac
 r
-java:S1874"0Remove this use of "Observer"; it is deprecated.(Ë¬Š8íÅÙè1J$c65aa1f5-efc5-4c1c-bb0c-a2c555dbc0b3
-r	java:S106h"+Replace this use of System.out by a logger.(ÍÇÖÓúÿÿÿÿ8óÅÙè1J$c9ac29f7-6b75-4b88-92dc-827e941ece7d
+java:S1874"0Remove this use of "Observer"; it is deprecated.(Ë¬Š8íÅÙè1J$074d0d00-65dd-499d-824a-dd37112105a1
 {
-java:S1874Ä"2Remove this use of "Observable"; it is deprecated.(‹›Àüÿÿÿÿ8üÅÙè1J$088b4af2-f462-4670-af26-edf326c501c4
+java:S1874à"2Remove this use of "Observable"; it is deprecated.(‹›Àüÿÿÿÿ8üÅÙè1J$c8da89b6-3918-48d7-bc8b-e0a45d655837
 p
-java:S1602é",Remove useless curly braces around statement(÷¼¼Ä8ÿÅÙè1J$dcf57c12-2e36-42e7-8427-c2eebf41b4ea
+java:S1602…",Remove useless curly braces around statement(÷¼¼Ä8ÿÅÙè1J$58357c96-a0af-420b-81ae-8a2302a45fd5

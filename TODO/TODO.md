@@ -2317,6 +2317,7 @@ FF >>> 22/10/2023
 - [ ] fixare il fatto che ora come ora, quando le imageview dei mob sono inizializzate, per via di una shallow copy
   della lista dei mob, soltanto le ultime due imageview per tipo sono utilizzate per disegnare i mob (sulle ultime
   imageview vengono disegnate le animazioni dei primi due mob )
+    - un possibile modo di implementare questa funzione e' utilizzare un hasmap<imageview, timeline>
 
 ---
 
@@ -2334,6 +2335,43 @@ FF >>> 22/10/2023
 
 - [x] fixate l'update delle imageview dei mob quandi si muovono sull'asse delle Y, prima si muovevano piu'
   velocemente sull'asse delle Y
+
+***
+
+===========================================================================
+***
+
+### 06/04/2024
+
+### TO-DO:
+
+### high priority: [fixing stuff rn]
+
+---
+
+- [ ] fixare il fatto che ora come ora, quando le imageview dei mob sono inizializzate, per via di una shallow copy
+  della lista dei mob, soltanto le ultime due imageview per tipo sono utilizzate per disegnare i mob (sulle ultime
+  imageview vengono disegnate le animazioni dei primi due mob )
+    - un possibile modo di implementare questa funzione e' utilizzare un hasmap<imageview, timeline>
+
+---
+
+- REQUISITI MANCANTI:
+
+### low priority:
+
+- [ ] reworka collisioni del player (si incolla alle pareti)
+- [ ] bisogna modificare il model cosi' che quando il player
+  viene colpito, il player e' respawnato alle
+  coordinate iniziali
+- [ ] puoi usare lo sprite sheet goated per l'animazione della morte del player
+
+### DONE:
+
+- [x] fixato il movement dei mob, ora non si incastrano piu' randomicamente
+- [x] aumentata stabilita' per la scoreboard, ora se un player esce dal gioco senza salvare, il nome del player non
+  viene salvato senza lo score della run
+- [x] completati i tileset per il bordo del livello
 
 ***
 

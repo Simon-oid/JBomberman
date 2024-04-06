@@ -2,6 +2,7 @@ package org.jbomberman.view;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.util.Observable;
 import java.util.Observer;
 import javafx.animation.PauseTransition;
@@ -43,6 +44,15 @@ public class SceneController implements Observer {
     adjustWindowSize();
 
     window.getScene().getRoot().setStyle("-fx-background-color: black;");
+
+    window.setOnCloseRequest(
+        event -> {
+          // Prevent the window from closing
+          event.consume();
+
+          // Call the exitConfirm method
+          exitConfirm();
+        });
   }
 
   private SceneController() {
@@ -98,10 +108,10 @@ public class SceneController implements Observer {
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
     alert.setTitle("exit?");
     alert.setHeaderText("stai per uscire dal gioco!");
-    alert.setContentText("i progressi non salvati, nun so salvati: ");
+    alert.setContentText("i progressi non salvati, non verranno salvati: ");
 
     if (alert.showAndWait().get() == ButtonType.OK) {
-      System.out.println("daje sei uscito!");
+      revertUsernameChanges();
       window.close();
       System.exit(0);
     }
@@ -110,6 +120,24 @@ public class SceneController implements Observer {
   public void exit() {
     window.close();
     System.exit(0);
+  }
+
+  private void revertUsernameChanges() {
+    try {
+      RandomAccessFile file =
+          new RandomAccessFile("src/main/resources/playerData/playerData.csv", "rw");
+      long length = file.length() - 1;
+      byte b;
+      do {
+        length -= 1;
+        file.seek(length);
+        b = file.readByte();
+      } while (b != 10 && length > 0);
+      file.setLength(length + 1);
+      file.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   private void load(Roots root) {

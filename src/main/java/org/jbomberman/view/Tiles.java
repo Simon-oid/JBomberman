@@ -19,6 +19,12 @@ public enum Tiles {
       Tiles.class.getResourceAsStream("tiles/border_tile_vertical_right.png"), true, false),
   BORDER_HORIZONTAL_DOWN(
       Tiles.class.getResourceAsStream("tiles/border_tile_horizontal_down.png"), true, false),
+  BORDER_TOP_LEFT(Tiles.class.getResourceAsStream("tiles/border_tile_topleft.png"), true, false),
+  BORDER_BOTTOM_LEFT(
+      Tiles.class.getResourceAsStream("tiles/border_tile_bottomleft.png"), true, false),
+  BORDER_TOP_RIGHT(Tiles.class.getResourceAsStream("tiles/border_tile_topright.png"), true, false),
+  BORDER_BOTTOM_RIGHT(
+      Tiles.class.getResourceAsStream("tiles/border_tile_bottomright.png"), true, false),
   BOMB_UP_POWERUP(Tiles.class.getResourceAsStream("tiles/border_bottomleft1.png"), true, false),
   DESTROYABLE1(Tiles.class.getResourceAsStream("tiles/tile_distruttibile_1.png"), true, true),
   DESTROYABLE2(Tiles.class.getResourceAsStream("tiles/tile_distruttibile_2.png"), true, true),
