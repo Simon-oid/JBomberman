@@ -1,9 +1,6 @@
 package org.jbomberman.view;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -41,7 +38,9 @@ public class GameView {
 
   private ImageView player;
 
-  private HashMap<Type, List<ImageView>> mobSprites;
+  private HashMap<Type, Map<Integer, Sprite>> mobSprites;
+
+  private int spriteIdCounter = 0; // Add this line at the class level
 
   private ImageView scoreboard;
 
@@ -59,9 +58,7 @@ public class GameView {
 
   private Direction lastAnimationDirection = Direction.NONE;
 
-  // TODO: modificare l'hasmap cosi' che invece del tipo ha un imageview
-
-  private HashMap<Type, Timeline> mobMovementAnimations;
+  private Map<Sprite, Timeline> mobMovementAnimations;
 
   private Direction lastPuropenDirection = Direction.NONE;
 
@@ -89,6 +86,8 @@ public class GameView {
   private AnimationTimer soundtrackTimer;
 
   private long lastPlayTimeSoundtrack;
+
+  private HashMap<ImageView, TranslateTransition> mobTransitions = new HashMap<>();
 
   public GameView() {
 
@@ -237,9 +236,9 @@ public class GameView {
 
     initializeMobSprites();
 
-    for (List<ImageView> mobSpriteList : mobSprites.values()) {
-      for (ImageView mobSprite : mobSpriteList) {
-        mobSprite.setVisible(false);
+    for (Map<Integer, Sprite> mobSpriteMap : mobSprites.values()) {
+      for (Sprite mobSprite : mobSpriteMap.values()) {
+        mobSprite.getImageView().setVisible(false);
       }
     }
     // Initialize clock animation
@@ -272,9 +271,10 @@ public class GameView {
                   player.setVisible(true);
                   scoreboard.setVisible(true);
                   // Hide the mobs
-                  for (List<ImageView> mobSpriteList : mobSprites.values()) {
-                    for (ImageView mobSprite : mobSpriteList) {
-                      mobSprite.setVisible(true);
+                  // Show the mobs
+                  for (Map<Integer, Sprite> mobSpriteMap : mobSprites.values()) {
+                    for (Sprite mobSprite : mobSpriteMap.values()) {
+                      mobSprite.getImageView().setVisible(true);
                     }
                   }
                 }));
@@ -327,9 +327,9 @@ public class GameView {
     // Hide the mobs
 
     // Hide the mobs
-    for (List<ImageView> mobSpriteList : mobSprites.values()) {
-      for (ImageView mobSprite : mobSpriteList) {
-        mobSprite.setVisible(false);
+    for (Map<Integer, Sprite> mobSpriteMap : mobSprites.values()) {
+      for (Sprite mobSprite : mobSpriteMap.values()) {
+        mobSprite.getImageView().setVisible(false);
       }
     }
 
@@ -478,33 +478,41 @@ public class GameView {
     mobSprites = new HashMap<>();
     mobMovementAnimations = new HashMap<>(); // New HashMap to store timelines
 
+    int numberOfPuropens = 0;
+    int numberOfDenkyuns = 0;
+
+    if (currentLevel == 1) {
+      numberOfPuropens = 3;
+    } else if (currentLevel == 2) {
+      numberOfPuropens = 3;
+      numberOfDenkyuns = 1;
+    }
+
+    int puropenIdCounter = 0; // Separate counter for PUROPEN
+    int denkyunIdCounter = 0; // Separate counter for DENKYUN
+
     for (Type mobType : Type.values()) {
       List<ImageView> mobImageViewList = new ArrayList<>();
-      Timeline mobMovementAnimation = new Timeline(); // Create a new timeline for each mob type
+      Map<Integer, Sprite> mobSpriteMap = new HashMap<>(); // Create a new map for Sprites
+      int numberOfMobs = (mobType == Type.PUROPEN) ? numberOfPuropens : numberOfDenkyuns;
 
-      if (mobType == Type.PUROPEN) {
-        Image mobImage = Entities.VOID.getImage();
-        ImageView mobImageView = new ImageView(mobImage);
+      for (int i = 0; i < numberOfMobs; i++) {
+        // Use the Sprites instance to get the image for the ImageView
+        ImageView mobImageView = new ImageView(Entities.VOID.getImage());
         mobImageView.setFitWidth(48);
         mobImageView.setFitHeight(80);
         mobImageViewList.add(mobImageView);
-        // Add the mob ImageView to the anchorPane
-        anchorPane.getChildren().add(mobImageView);
-      } else if (mobType == Type.DENKYUN) {
-        Image mobImage = Entities.VOID.getImage();
-        ImageView mobImageView = new ImageView(mobImage);
-        mobImageView.setFitWidth(48);
-        mobImageView.setFitHeight(80);
-        mobImageViewList.add(mobImageView);
-        // Add the mob ImageView to the anchorPane
-        anchorPane.getChildren().add(mobImageView);
-      } else {
-        // Handle other mob types if needed
-        continue;
+
+        // Create a new Sprite with the unique ID and add it to the map
+        int spriteId = (mobType == Type.PUROPEN) ? puropenIdCounter++ : denkyunIdCounter++;
+        Sprite mobSprite = new Sprite(mobImageView, spriteId, 0, 0);
+        mobSpriteMap.put(spriteId, mobSprite); // Add the Sprite to the map
+
+        // Create a new Timeline for each mob and store it in the map
+        Timeline mobTimeline = new Timeline();
+        mobMovementAnimations.put(mobSprite, mobTimeline); // Store the Timeline in the map
       }
-
-      mobSprites.put(mobType, mobImageViewList);
-      mobMovementAnimations.put(mobType, mobMovementAnimation); // Store the timeline in the HashMap
+      mobSprites.put(mobType, mobSpriteMap);
     }
   }
 
@@ -1127,30 +1135,60 @@ public class GameView {
 
   public void spawnMob(MobInitialPositionData mobInitialPositions) {
     Type mobType = mobInitialPositions.mobType();
-    List<ImageView> mobImageViewList = mobSprites.get(mobType);
+    int mobId = mobInitialPositions.id();
 
-    for (ImageView mobImageView : mobImageViewList) {
+    // Get the list of sprites for the given mob type
+    Map<Integer, Sprite> mobSpriteMap = mobSprites.get(mobType);
+    // Check if the list is not empty and the mobId is valid
+    // Check if the map is not null and contains the mobId
+    if (mobSpriteMap != null && mobSpriteMap.containsKey(mobId)) {
+      // Get the sprite that corresponds to the mobId from the map
+      Sprite mobSprite = mobSpriteMap.get(mobId);
+
+      System.out.println(
+          "mobType: "
+              + mobType
+              + " "
+              + "mobId:"
+              + mobSprite.getId()
+              + " "
+              + "mobX:"
+              + mobInitialPositions.initialX()
+              + " "
+              + "mobY:"
+              + mobInitialPositions.initialY());
+      ImageView mobImageView = mobSprite.getImageView();
       mobImageView.setFitWidth(48); // Set the initial fit width
       mobImageView.setFitHeight(80); // Set the initial fit height
 
-      if (mobType == Type.DENKYUN) {
-        mobImageView.setX(mobInitialPositions.initialX() - 144);
-      } else if (mobType == Type.PUROPEN) {
-        mobImageView.setX(mobInitialPositions.initialX() - 96);
+      // Set the initial position of each mob
+      mobSprite.setInitialX(mobInitialPositions.initialX()); // Add an offset based on the index
+      mobSprite.setInitialY(mobInitialPositions.initialY());
+
+      if (!anchorPane.getChildren().contains(mobImageView)) {
+        anchorPane.getChildren().add(mobImageView); // add the mobImageView to the anchorPane
       }
 
-      // Adjust the Y position to align the bottom of the mob ImageView with the bottom of its
-      // hitbox
+      int adjustment = 0;
+      if (mobType == Type.DENKYUN) {
+        adjustment = 96;
+      } else if (mobType == Type.PUROPEN && currentLevel == 1) {
+        adjustment = 386;
+      } else if (mobType == Type.PUROPEN && currentLevel == 2) {
+        adjustment = 288;
+      }
+
+      if (mobId == 0 && currentLevel == 1) {
+        mobImageView.setX(mobInitialPositions.initialX() - adjustment - 48);
+      }
+
       double adjustedY = mobInitialPositions.initialY() - mobImageView.getFitHeight();
       mobImageView.setY(adjustedY);
 
-      // Add the mob ImageView to the anchor pane
-      anchorPane.getChildren().add(mobImageView);
+      // Ensure bomb is drawn under the player
+      anchorPane.getChildren().remove(player);
+      anchorPane.getChildren().add(player);
     }
-
-    // Ensure bomb is drawn under the player
-    anchorPane.getChildren().remove(player);
-    anchorPane.getChildren().add(player);
   }
 
   public void moveMob(MobMovementData data) {
@@ -1162,78 +1200,79 @@ public class GameView {
     int initialY = data.oldY();
 
     Type mobType = data.mobType();
-    List<ImageView> mobImageViewList = mobSprites.get(mobType);
 
-    for (ImageView mobImageView : mobImageViewList) {
-      mobImageView.setY(adjustedYOffset);
+    int mobId = data.id(); // Get the ID from the data
 
-      // Reset the translation of the ImageView
-      mobImageView.setTranslateX(0);
-      mobImageView.setTranslateY(0);
+    // Get the specific mob using the ID
+    Sprite mobSprite = mobSprites.get(mobType).get(mobId);
+    ImageView mobImageView = mobSprite.getImageView();
 
-      TranslateTransition transition =
-          new TranslateTransition(Duration.seconds(delta), mobImageView);
-      transition.setFromX(initialX);
-      transition.setFromY(initialY);
-      transition.setToX(xStep);
-      transition.setToY(yStep);
-      transition.setCycleCount(1);
-      transition.play();
-    }
+    mobImageView.setY(adjustedYOffset);
+
+    // Create a new TranslateTransition for the specific mob
+    TranslateTransition transition = new TranslateTransition(Duration.seconds(delta));
+
+    // Set the ImageView as the node to be translated
+    transition.setNode(mobImageView);
+
+    transition.setFromX(initialX);
+    transition.setFromY(initialY);
+    transition.setToX(xStep);
+    transition.setToY(yStep);
+
+    transition.setCycleCount(1);
+    transition.play();
 
     // Ensure bomb is drawn under the player
     anchorPane.getChildren().remove(player);
     anchorPane.getChildren().add(player);
 
+    // Animation is played for every mob, regardless of its type
     Direction direction = data.puropenDirection();
     if (mobType == Type.PUROPEN) {
       if (direction != lastPuropenDirection) {
-        animatePuropen(mobType, direction);
+        animatePuropen(mobSprite, direction);
       }
-    } else { // TODO: aggiungere check per far partire animazione del dnekyun una volta sola
-      for (ImageView denkyunImageView : mobSprites.get(mobType)) {
-        playDenkyunAnimation(denkyunImageView, mobType);
-      }
+    } else if (mobType == Type.DENKYUN) {
+      playDenkyunAnimation(mobSprite, mobImageView);
     }
   }
 
-  private void animatePuropen(Type mobType, Direction direction) {
-    List<ImageView> mobImageViewList = mobSprites.get(mobType);
-    Timeline puropenMovementAnimation = mobMovementAnimations.get(mobType);
+  private void animatePuropen(Sprite mobSprite, Direction direction) {
 
-    for (ImageView mobImageView : mobImageViewList) {
-      switch (direction) {
-        case UP:
-          puropenMovementAnimation =
-              playMobMovementAnimation(mobImageView, getPuropenSpriteImages(Direction.UP), mobType);
-          break;
-        case DOWN:
-          puropenMovementAnimation =
-              playMobMovementAnimation(
-                  mobImageView, getPuropenSpriteImages(Direction.DOWN), mobType);
-          break;
-        case LEFT:
-          puropenMovementAnimation =
-              playMobMovementAnimation(
-                  mobImageView, getPuropenSpriteImages(Direction.LEFT), mobType);
-          break;
-        case RIGHT:
-          puropenMovementAnimation =
-              playMobMovementAnimation(
-                  mobImageView, getPuropenSpriteImages(Direction.RIGHT), mobType);
-          break;
-        case NONE:
-          mobImageView.setImage(Entities.PUROPEN.getImage());
-          break;
-      }
+    ImageView mobImageView = mobSprite.getImageView();
+
+    Timeline puropenMovementAnimation = mobMovementAnimations.get(mobSprite);
+    switch (direction) {
+      case UP:
+        puropenMovementAnimation =
+            playMobMovementAnimation(mobSprite, mobImageView, getPuropenSpriteImages(Direction.UP));
+        break;
+      case DOWN:
+        playMobMovementAnimation(mobSprite, mobImageView, getPuropenSpriteImages(Direction.DOWN));
+        break;
+      case LEFT:
+        playMobMovementAnimation(mobSprite, mobImageView, getPuropenSpriteImages(Direction.LEFT));
+        break;
+      case RIGHT:
+        playMobMovementAnimation(mobSprite, mobImageView, getPuropenSpriteImages(Direction.RIGHT));
+        break;
+      case NONE:
+        mobImageView.setImage(Entities.PUROPEN.getImage());
+        break;
     }
-
     // Update the timeline stored in the map
-    mobMovementAnimations.put(mobType, puropenMovementAnimation);
+    mobMovementAnimations.put(mobSprite, puropenMovementAnimation);
   }
 
-  private Timeline playMobMovementAnimation(ImageView imageView, Image[] sprites, Type mobType) {
-    Timeline mobMovementAnimation = mobMovementAnimations.get(mobType);
+  private Timeline playMobMovementAnimation(
+      Sprite mobSprite, ImageView imageView, Image[] sprites) {
+    Timeline mobMovementAnimation =
+        mobMovementAnimations.get(mobSprite); // Get the existing Timeline
+
+    // Clear the old keyframes if necessary
+    mobMovementAnimation.getKeyFrames().clear();
+
     // Create keyframes for each sprite in the sequence
     for (int i = 0; i < sprites.length; i++) {
       final int index = i;
@@ -1244,19 +1283,23 @@ public class GameView {
       mobMovementAnimation.getKeyFrames().add(keyFrame);
     }
 
-    // Set the cycle count to indefinite to  keep the animation playing
+    // Set the cycle count to indefinite to keep the animation playing
     mobMovementAnimation.setCycleCount(Animation.INDEFINITE);
 
     // Play the animation
     mobMovementAnimation.play();
 
+    // Update the timeline stored in the map
+    mobMovementAnimations.put(mobSprite, mobMovementAnimation);
+
     // Return the timeline object
     return mobMovementAnimation;
   }
 
-  private Timeline playDenkyunAnimation(ImageView imageView, Type mobType) {
+  private Timeline playDenkyunAnimation(Sprite mobSprite, ImageView imageView) {
 
-    Timeline mobMovementAnimation = mobMovementAnimations.get(mobType);
+    Timeline mobMovementAnimation =
+        mobMovementAnimations.get(mobSprite); // Get the existing Timeline
 
     Image[] sprites = getDenkyunSpriteImages();
 
@@ -1286,6 +1329,10 @@ public class GameView {
     // Play the animation
     mobMovementAnimation.play();
 
+    // Update the timeline stored in the map
+    mobMovementAnimations.put(mobSprite, mobMovementAnimation);
+
+    // Return the timeline object
     return mobMovementAnimation;
   }
 
@@ -1295,50 +1342,62 @@ public class GameView {
     int x = data.x();
     int y = data.y();
     int lives = data.lives();
+    int mobId = data.id(); // Get the ID from the data
 
-    if (lives > 0) {
-      // Play the flickering animation between the normal sprite and the flickering sprite
-      playFlickeringAnimation(mobType);
-    } else {
+    // Get the map of sprites for the mob type
+    Map<Integer, Sprite> mobSpriteMap = mobSprites.get(mobType);
 
-      playFlickeringAnimation(mobType);
-      // Stop the existing movement animation of the mob
-      stopMobMovementAnimation(mobType);
+    if (mobSpriteMap != null) {
+      // Get the sprite with the matching ID
+      Sprite mobSprite = mobSpriteMap.get(mobId);
+      if (mobSprite != null) { // Check if the sprite exists
+        if (lives > 0) {
+          // Play the flickering animation between the normal sprite and the flickering sprite
+          playFlickeringAnimation(mobType, mobId);
+        } else {
+          playFlickeringAnimation(mobType, mobId);
+          // Stop the existing movement animation of the mob
+          stopMobMovementAnimation(mobSprite);
 
-      Timeline delayTimeline1 =
-          new Timeline(
-              new KeyFrame(
-                  Duration.seconds(1),
-                  event -> {
-                    audioManager.play(AudioSample.MOB_DEATH);
-                  }));
-      delayTimeline1.play();
+          Timeline delayTimeline1 =
+              new Timeline(
+                  new KeyFrame(
+                      Duration.seconds(1),
+                      event -> {
+                        audioManager.play(AudioSample.MOB_DEATH);
+                      }));
+          delayTimeline1.play();
 
-      // Delay the removal of the mob sprite by 2 seconds and play spawnScoreNumbers
-      Timeline delayTimeline =
-          new Timeline(
-              new KeyFrame(
-                  Duration.seconds(2),
-                  event -> {
-                    spawnScoreNumbers(score, x, y + 50);
-                    removeOldMobSprite(mobType);
-                  }));
-      delayTimeline.play();
+          // Delay the removal of the mob sprite by 2 seconds and play spawnScoreNumbers
+          Timeline delayTimeline =
+              new Timeline(
+                  new KeyFrame(
+                      Duration.seconds(2),
+                      event -> {
+                        spawnScoreNumbers(score, x, y + 50);
+                        removeOldMobSprite(mobType, mobId); // Pass the ID to the remove method
+                      }));
+          delayTimeline.play();
+        }
+      }
     }
   }
 
-  private void stopMobMovementAnimation(Type mobType) {
-    // Retrieve the timeline associated with the mob type and stop it
-    Timeline mobMovementAnimation = mobMovementAnimations.get(mobType);
+  private void stopMobMovementAnimation(Sprite mobSprite) {
+    Timeline mobMovementAnimation = mobMovementAnimations.get(mobSprite);
     if (mobMovementAnimation != null) {
       mobMovementAnimation.stop();
+      mobMovementAnimations.remove(mobSprite);
     }
   }
 
-  private void playFlickeringAnimation(Type mobType) {
-    List<ImageView> mobImageViewList = mobSprites.get(mobType);
-    if (mobImageViewList != null) {
-      for (ImageView mobImageView : mobImageViewList) {
+  private void playFlickeringAnimation(Type mobType, int mobId) {
+    Map<Integer, Sprite> mobSpriteMap = mobSprites.get(mobType);
+    if (mobSpriteMap != null) {
+      // Get the specific sprite with the matching ID
+      Sprite mobSprite = mobSpriteMap.get(mobId);
+      if (mobSprite != null) { // Check if the sprite exists
+        ImageView mobImageView = mobSprite.getImageView();
         Timeline flickeringAnimation =
             new Timeline(
                 new KeyFrame(Duration.seconds(0.050), event -> mobImageView.setVisible(false)),
@@ -1349,11 +1408,20 @@ public class GameView {
     }
   }
 
-  private void removeOldMobSprite(Type mobType) {
-    List<ImageView> oldMobImageViewList = mobSprites.get(mobType);
-    if (oldMobImageViewList != null) {
-      for (ImageView oldMobImageView : oldMobImageViewList) {
-        anchorPane.getChildren().remove(oldMobImageView);
+  private void removeOldMobSprite(Type mobType, int mobId) {
+    Map<Integer, Sprite> mobSpriteMap = mobSprites.get(mobType);
+    if (mobSpriteMap != null) {
+      // Get the specific sprite with the matching ID
+      Sprite mobSprite = mobSpriteMap.get(mobId);
+      if (mobSprite != null) { // Check if the sprite exists
+        ImageView mobImageView = mobSprite.getImageView();
+        anchorPane.getChildren().remove(mobImageView);
+
+        // Remove the Timeline associated with the Sprite from the map
+        mobMovementAnimations.remove(mobSprite);
+
+        // Remove the Sprite from the map
+        mobSpriteMap.remove(mobId);
       }
     }
   }
@@ -1803,7 +1871,7 @@ public class GameView {
       Tiles tileAbove = data.matrix().get(aboveIndex);
 
       // Return true if the tile above is of type IMMOVABLE
-      return tileAbove == Tiles.IMMOVABLE;
+      return tileAbove == Tiles.IMMOVABLE || tileAbove == Tiles.BORDER_HORIZONTAL;
     }
     return false;
   }
@@ -1894,33 +1962,44 @@ public class GameView {
   public void spawnDenkyunAtCoordinates(DenkyunRespawnData data) {
     double x = data.x();
     double y = data.y();
-
-    initializeDenkyun(x, y);
+    System.out.println(data.id());
+    initializeDenkyun(x, y, data.id());
   }
 
-  private void initializeDenkyun(double x, double y) {
+  private void initializeDenkyun(double x, double y, int denkyunId) {
     ImageView denkyunImageView = new ImageView(Entities.VOID.getImage());
     denkyunImageView.setFitWidth(48);
     denkyunImageView.setFitHeight(80);
 
-    Timeline mobMovementAnimation = new Timeline();
+    AnchorPane.setTopAnchor(denkyunImageView, (double) Y_OFFSET - 35);
+    AnchorPane.setLeftAnchor(denkyunImageView, 0.0);
 
     anchorPane.getChildren().add(denkyunImageView); // Add Denkyun ImageView to the anchorPane
 
-    // Set the position of the Denkyun ImageView within the AnchorPane using layout constraints
-    AnchorPane.setTopAnchor(denkyunImageView, y - 175);
-    AnchorPane.setLeftAnchor(denkyunImageView, x - 48);
+    denkyunImageView.setY(y - 96);
 
-    List<ImageView> denkyunImageViewList =
-        mobSprites.computeIfAbsent(Type.DENKYUN, k -> new ArrayList<>());
-    denkyunImageViewList.add(denkyunImageView);
+    // Create a new Sprite for the Denkyun with the passed ID
+    Sprite denkyunSprite = new Sprite(denkyunImageView, denkyunId, 0, 0);
 
-    mobMovementAnimations.put(Type.DENKYUN, mobMovementAnimation);
+    Map<Integer, Sprite> denkyunMap = mobSprites.get(Type.DENKYUN);
+    if (denkyunMap == null) {
+      denkyunMap = new HashMap<>();
+      mobSprites.put(Type.DENKYUN, denkyunMap);
+    }
+    denkyunMap.put(denkyunId, denkyunSprite);
 
-    playFlickeringAnimation(Type.DENKYUN); // Start flickering animation after pause
+    // Create a new timeline for the Denkyun mob
+    Timeline mobMovementAnimation = new Timeline();
+
+    // Add the timeline to the map using the Sprite as the key
+    mobMovementAnimations.put(denkyunSprite, mobMovementAnimation);
+
+    playFlickeringAnimation(Type.DENKYUN, denkyunId); // Start flickering animation after pause
   }
 
   public void levelClear(LevelUpdateData data) {
+
+    spriteIdCounter = 0;
 
     playerMovementAnimation.stop(); //
     playerMovementAnimation.getKeyFrames().clear(); // clear animation

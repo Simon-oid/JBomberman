@@ -11,6 +11,8 @@ import lombok.Setter;
 @Setter
 public class Mob extends Entity {
 
+  private int id;
+
   private Type type;
 
   private int speed;
@@ -19,10 +21,9 @@ public class Mob extends Entity {
 
   private int invincibilityDuration = 3; // In seconds
 
-  // private Rectangle2D mobHitBox = new Rectangle2D(8, 16, 32, 32);
-
-  public Mob(int x, int y, int width, int height, Type type, Direction direction) {
+  public Mob(int x, int y, int width, int height, Type type, Direction direction, int id) {
     super(x, y, width, height, direction);
+    this.id = id;
     this.type = type;
     this.speed = 70;
     this.lives = (type == Type.PUROPEN) ? 1 : 2;

@@ -1,0 +1,50 @@
+{
+  "player": {
+    "posx": "48",
+    "posy": "48",
+    "direction": "DOWN",
+    "lives": "69",
+    "score": "69420",
+    "width": "32",
+    "height": "32"
+  },
+  "mob": [
+    {
+      "id": "2",
+      "type": "PUROPEN",
+      "posx": "48",
+      "posy": "432",
+      "direction": "DOWN",
+      "width": "47",
+      "height": "47"
+    },
+    {
+      "id": "1",
+      "type": "PUROPEN",
+      "posx": "288",
+      "posy": "336",
+      "direction": "RIGHT",
+      "width": "47",
+      "height": "47"
+    },
+    {
+      "id": "0",
+      "type": "PUROPEN",
+      "posx": "288",
+      "posy": "528",
+      "direction": "DOWN",
+      "width": "47",
+      "height": "47"
+    },
+    {
+      "id": "0",
+      "type": "DENKYUN",
+      "posx": "144",
+      "posy": "192",
+      "direction": "DOWN",
+      "width": "47",
+      "height": "47"
+    }
+  ],
+  "powerup_spawn_chance": 0.2
+}

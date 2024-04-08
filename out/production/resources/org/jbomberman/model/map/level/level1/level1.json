@@ -1,0 +1,41 @@
+{
+  "player": {
+    "posx": "48",
+    "posy": "48",
+    "direction": "DOWN",
+    "lives": "5",
+    "score": "0",
+    "width": "32",
+    "height": "32"
+  },
+  "mob": [
+    {
+      "id": "2",
+      "type": "PUROPEN",
+      "posx": "432",
+      "posy": "240",
+      "direction": "DOWN",
+      "width": "47",
+      "height": "47"
+    },
+    {
+      "id": "1",
+      "type": "PUROPEN",
+      "posx": "288",
+      "posy": "432",
+      "direction": "LEFT",
+      "width": "47",
+      "height": "47"
+    },
+    {
+      "id": "0",
+      "type": "PUROPEN",
+      "posx": "384",
+      "posy": "528",
+      "direction": "UP",
+      "width": "47",
+      "height": "47"
+    }
+  ],
+  "powerup_spawn_chance": 0.2
+}

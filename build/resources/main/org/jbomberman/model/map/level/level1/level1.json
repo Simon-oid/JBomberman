@@ -10,18 +10,29 @@
   },
   "mob": [
     {
+      "id": "0",
       "type": "PUROPEN",
-      "posx": "96",
-      "posy": "144",
+      "posx": "432",
+      "posy": "240",
+      "direction": "DOWN",
+      "width": "47",
+      "height": "47"
+    },
+    {
+      "id": "1",
+      "type": "PUROPEN",
+      "posx": "288",
+      "posy": "432",
       "direction": "LEFT",
       "width": "47",
       "height": "47"
     },
     {
-      "type": "DENKYUN",
-      "posx": "144",
-      "posy": "144",
-      "direction": "RIGHT",
+      "id": "2",
+      "type": "PUROPEN",
+      "posx": "384",
+      "posy": "528",
+      "direction": "UP",
       "width": "47",
       "height": "47"
     }

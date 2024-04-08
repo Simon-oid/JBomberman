@@ -2378,6 +2378,80 @@ FF >>> 22/10/2023
 ===========================================================================
 ***
 
+### 07/04/2024
+
+### TO-DO:
+
+### high priority: [fixing stuff rn]
+
+---
+
+- [ ] fixare il fatto che ora come ora, quando le imageview dei mob sono inizializzate, per via di una shallow copy
+  della lista dei mob, soltanto le ultime due imageview per tipo sono utilizzate per disegnare i mob (sulle ultime
+  imageview vengono disegnate le animazioni dei primi due mob )
+    - possiamo implementare un sistema di id, ogni mob ha un id nel suo costruttore, quando il mob viene caricato
+      (letto dal json) un id viene assegnato al mob e poi utilizzato per identificarlo nella gameview
+
+---
+
+- REQUISITI MANCANTI:
+
+### low priority:
+
+- [ ] reworka collisioni del player (si incolla alle pareti)
+- [ ] bisogna modificare il model cosi' che quando il player
+  viene colpito, il player e' respawnato alle
+  coordinate iniziali
+- [ ] puoi usare lo sprite sheet goated per l'animazione della morte del player
+
+### DONE:
+
+***
+
+===========================================================================
+***
+
+### 08/04/2024
+
+### TO-DO:
+
+### high priority:
+
+---
+
+FINISHED VERSION 1.0
+---
+
+### low priority:
+
+- [ ] reworka collisioni del player (si incolla alle pareti)
+- [ ] bisogna modificare il model cosi' che quando il player
+  viene colpito, il player e' respawnato alle
+  coordinate iniziali
+- [ ] puoi usare lo sprite sheet goated per l'animazione della morte del player
+
+### DONE:
+
+- [x] fixare il fatto che ora come ora, quando le imageview dei mob sono inizializzate, per via di una shallow copy
+  della lista dei mob, soltanto le ultime due imageview per tipo sono utilizzate per disegnare i mob (sulle ultime
+  imageview vengono disegnate le animazioni dei primi due mob )
+    - possiamo implementare un sistema di id, ogni mob ha un id nel suo costruttore, quando il mob viene caricato
+      (letto dal json) un id viene assegnato al mob e poi utilizzato per identificarlo nella gameview
+
+- [x] fixato handling per le animation timeline per ogni mob presente sul terreno
+- [x] reworkato il sistema di handling per gli ID di mob
+- [x] reworkato l'handling degli sprite per all'interno della gameview
+- [x] reworkato il sistema di handling per le timeline
+- [x] reworkati alcuni metodi che riguardavano la gestionde della distruzione dei tile
+- [x] reworkati tutti i metodi che utilizzavano mobSprites, ora utilizza una mappa che comprende anche gli id dei mob
+- [x] vari fix che riguardavano bug sorti dal cambiamento di altri metodi fondamentali
+
+***
+
+===========================================================================
+***
+
+
 
 
 

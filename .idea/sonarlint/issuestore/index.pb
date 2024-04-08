@@ -147,5 +147,5 @@ b
 2src/main/java/org/jbomberman/view/Leaderboard.java,1\0\10460de2cc2937fdee38380d3a64a40b4ace258e
 f
 6src/main/java/org/jbomberman/view/MainMenuSprites.java,e\9\e95118c12bb3c9744ed265de56bcc4738ce1a182
-n
->src/main/java/org/jbomberman/view/DenkyunAnimationManager.java,c\4\c4ab9d2366f17b6005b54a3e352efc8fc28d42a9
+]
+-src/main/java/org/jbomberman/view/Sprite.java,0\0\00e0971ba6c1d1ff3faad49f81b8e77cb2e9a99c

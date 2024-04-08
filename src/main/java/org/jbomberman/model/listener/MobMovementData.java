@@ -6,6 +6,7 @@ import org.jbomberman.model.entita.Type;
 public record MobMovementData(
     PackageType type,
     Type mobType,
+    int id,
     int xStep,
     int yStep,
     double delta,

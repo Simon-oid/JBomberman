@@ -147,7 +147,7 @@ public class Map extends Observable {
 
       Direction direction = Direction.valueOf(player.get("direction").getAsString());
 
-      int lives = player.get("lives").getAsInt();
+      int lives = (this.player == null) ? player.get("lives").getAsInt() : this.player.getLives();
 
       int score = (this.player == null) ? player.get("score").getAsInt() : this.player.getScore();
 
@@ -161,6 +161,9 @@ public class Map extends Observable {
       entities = new ArrayList<>();
 
       for (JsonElement mob : mobsJson) {
+
+        int id = mob.getAsJsonObject().get("id").getAsInt();
+
         Type type = Type.valueOf(mob.getAsJsonObject().get("type").getAsString());
 
         posx = mob.getAsJsonObject().get("posx").getAsInt();
@@ -171,7 +174,7 @@ public class Map extends Observable {
         int widthh = mob.getAsJsonObject().get("width").getAsInt();
         int heightt = mob.getAsJsonObject().get("height").getAsInt();
 
-        entities.add(new Mob(posx, posy, widthh, heightt, type, direction));
+        entities.add(new Mob(posx, posy, widthh, heightt, type, direction, id));
       }
 
     } catch (IOException e) {
@@ -205,7 +208,7 @@ public class Map extends Observable {
     Timeline timeline =
         new Timeline(
             new KeyFrame(
-                Duration.seconds(1.5),
+                Duration.seconds(3.5),
                 event -> {
                   // Call the method to update the player score after the delay
                   updatePlayerScore(player);
@@ -240,7 +243,7 @@ public class Map extends Observable {
       // If the entity is a mob, create initial position data for mob
       Mob mob = (Mob) entity;
       return new MobInitialPositionData(
-          PackageType.MOB_INITIAL_POSITION, mob.getType(), initialX, initialY);
+          PackageType.MOB_INITIAL_POSITION, mob.getType(), mob.getId(), initialX, initialY);
     } else {
       // Handle other types of entities as needed
       return null;
@@ -348,6 +351,8 @@ public class Map extends Observable {
     int newX = oldX + xStep;
     int newY = oldY + yStep;
 
+    int id = mob.getId();
+
     // Create a new hitbox for the new position
     Rectangle2D newHitBox = new Rectangle2D(newX, newY, mob.getWidth(), mob.getHeight());
 
@@ -380,6 +385,7 @@ public class Map extends Observable {
         new MobMovementData(
             PackageType.MOB_MOVEMENT,
             mob.getType(),
+            id,
             newX,
             newY,
             delta,
@@ -436,7 +442,6 @@ public class Map extends Observable {
         validDirections.add(direction);
       }
     }
-    System.out.println(validDirections);
 
     // If there are valid directions available, choose a random one
     if (!validDirections.isEmpty()) {
@@ -708,18 +713,36 @@ public class Map extends Observable {
       TileDestructionData destructionData =
           new TileDestructionData(PackageType.TILE_DESTRUCTION, tileIndex);
 
-      // Notify GameView about the destruction of this tile
       sendUpdate(destructionData);
 
-      // Replace destroyable tile with a GRASS tile
-      numTileMap.set(tileIndex, Tiles.GRASS);
-      tileHitBoxes.set(
-          tileIndex, createTile(tileIndexX, tileIndexY, Tiles.GRASS).getHitBox()); // Update hitbox
+      // Check if the tile below is a GRASS_SHADOW_DESTROYABLE tile
+      if (tileIndexY + 1 < MAP_HEIGHT
+          && numTileMap.get((tileIndexY + 1) * MAP_WIDTH + tileIndexX)
+              == Tiles.GRASS_SHADOW_DESTROYABLE) {
+        numTileMap.set((tileIndexY + 1) * MAP_WIDTH + tileIndexX, Tiles.GRASS);
+        tileHitBoxes.set(
+            (tileIndexY + 1) * MAP_WIDTH + tileIndexX,
+            createTile(tileIndexX, tileIndexY + 1, Tiles.GRASS).getHitBox());
+      }
+
+      // Check if the tile above is an IMMOVABLE or BORDER_HORIZONTAL tile
+      Tiles tileAbove =
+          tileIndexY - 1 >= 0 ? numTileMap.get((tileIndexY - 1) * MAP_WIDTH + tileIndexX) : null;
+
+      if (tileAbove == Tiles.IMMOVABLE || tileAbove == Tiles.BORDER_HORIZONTAL) {
+        numTileMap.set(tileIndex, Tiles.GRASS_SHADOW);
+        tileHitBoxes.set(
+            tileIndex, createTile(tileIndexX, tileIndexY, Tiles.GRASS_SHADOW).getHitBox());
+      } else {
+        // Replace destroyable tile with a GRASS tile
+        numTileMap.set(tileIndex, Tiles.GRASS);
+        tileHitBoxes.set(tileIndex, createTile(tileIndexX, tileIndexY, Tiles.GRASS).getHitBox());
+      }
 
       // Generate a random number between 0 and 1
       double randomValue = Math.random();
       // Check if the random value falls within the spawn chance
-      if (randomValue <= 0.05
+      if (randomValue <= 100.0 // was 0.05 before
           || isLastDestroyableTile()) { // Adjust this value as needed for the desired spawn chance
         if (!exitTileSpawned) {
           spawnExitTile(tileIndexX, tileIndexY, 1300);
@@ -828,6 +851,7 @@ public class Map extends Observable {
           new RemoveMobData(
               PackageType.REMOVE_MOB,
               mob.getType(),
+              mob.getId(),
               mob.getLives(), // Send current number of lives
               score,
               mob.getX(),
@@ -890,7 +914,15 @@ public class Map extends Observable {
       int exitTilePosY = exitTilePosition[1];
 
       // Create a new DENKYUN mob at the exit tile position
-      Mob denkyunMob = new Mob(exitTilePosX, exitTilePosY, 45, 45, Type.DENKYUN, Direction.RIGHT);
+      Mob denkyunMob =
+          new Mob(
+              exitTilePosX,
+              exitTilePosY,
+              45,
+              45,
+              Type.DENKYUN,
+              Direction.RIGHT,
+              0); // TODO: fix the id for the respawned denkyun
 
       Direction newDirection = chooseRandomValidDirection(denkyunMob);
 
@@ -904,7 +936,8 @@ public class Map extends Observable {
               PackageType.DENKYUN_RESPAWN,
               denkyunMob.getType(),
               denkyunMob.getX(),
-              denkyunMob.getY()));
+              denkyunMob.getY(),
+              denkyunMob.getId()));
     }
   }
 
@@ -991,14 +1024,9 @@ public class Map extends Observable {
       // Schedule the method call to resume key handler and set player position after a delay
       ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
       // Set player position if needed
-      //            player.setX(startingPosX);
-      //            player.setY(startingPosY);
+
       scheduler.schedule(
           this::resumeKeyHandler, 2000, TimeUnit.MILLISECONDS); // Adjust timing as needed
-
-      // Player takes damage from the explosion
-
-      // System.out.println("Player Took Damage!!!");
 
       // Notify GameView to update display with new player lives
       sendUpdate(new PlayerLivesUpdateData(PackageType.PLAYER_LIVES_UPDATE, player.getLives()));
@@ -1007,12 +1035,12 @@ public class Map extends Observable {
 
   private void pauseKeyHandler() {
     // Pause the KeyHandler
-    KeyHandler.getInstance().pauseKeyHandler();
+    KeyHandler.getInstance().stopKeyHandler();
   }
 
   private void resumeKeyHandler() {
     // Resume the KeyHandler
-    KeyHandler.getInstance().resumeKeyHandler();
+    KeyHandler.getInstance().startMovement();
   }
 
   public void detectPlayerMobCollision(double delta) {
@@ -1122,6 +1150,7 @@ public class Map extends Observable {
 
   public void updatePlayerScore(Player player) {
     // get the score of the player
+
     int score = player.getScore();
     // Create package data containing the player's updated score
     PlayerScoreUpdateData packageData =
@@ -1190,7 +1219,6 @@ public class Map extends Observable {
     level++;
     // Increment the level number
     int currentLevel = getLevel();
-    System.out.println(getLevel());
 
     // Clear existing entities and power-ups
     pauseKeyHandler();
@@ -1206,6 +1234,7 @@ public class Map extends Observable {
       KeyHandler.getInstance().stopKeyHandler();
       displayYouWinScreen();
       sendUpdate(new LevelUpdateData(PackageType.LEVEL_UPDATE, currentLevel));
+      exitTileSpawned = false;
       return;
     }
 
