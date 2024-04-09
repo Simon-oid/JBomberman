@@ -2,6 +2,7 @@ package org.jbomberman.view;
 
 import lombok.Getter;
 
+/** The audio sample enum */
 @Getter
 public enum AudioSample {
   SOUNDTRACK("src/main/resources/org/jbomberman/view/audioSamples/soundtrack.wav"),
@@ -20,8 +21,14 @@ public enum AudioSample {
   PLAYER_SELECTION("src/main/resources/org/jbomberman/view/audioSamples/playerSelection_theme.wav"),
   LEADERBOARD("src/main/resources/org/jbomberman/view/audioSamples/leaderboard_theme.wav");
 
+  /** The filename of the audio sample */
   private final String filename;
 
+  /**
+   * The audio sample constructor
+   *
+   * @param filename The filename of the audio sample
+   */
   AudioSample(String filename) {
     this.filename = filename;
   }

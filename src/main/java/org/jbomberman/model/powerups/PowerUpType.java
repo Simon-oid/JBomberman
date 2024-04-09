@@ -1,9 +1,11 @@
 package org.jbomberman.model.powerups;
 
-public enum PowerUpType
-{
+public enum PowerUpType {
 
-    BOMB_UP,
-    SKATE,
-    ICE_CREAM
+  /** The bombup power up */
+  BOMB_UP,
+  /** The skate up powerup */
+  SKATE,
+  /** The icecream powerup */
+  ICE_CREAM
 }

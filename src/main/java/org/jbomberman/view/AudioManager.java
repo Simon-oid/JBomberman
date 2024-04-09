@@ -11,19 +11,31 @@ import javax.sound.sampled.*;
 
 public class AudioManager {
 
+  /** The AudioManager instance */
   private static AudioManager instance;
+
+  /** The soundtrack clip */
   private Clip soundtrackClip; // Separate clip for the soundtrack
+
+  /** The collection of all Clip instances */
   private List<Clip> clips; // Collection of all Clip instances
 
+  /**
+   * Get the AudioManager instance
+   *
+   * @return The AudioManager instance
+   */
   public static AudioManager getInstance() {
     if (instance == null) instance = new AudioManager();
     return instance;
   }
 
+  /** The AudioManager constructor */
   private AudioManager() {
     clips = new ArrayList<>();
   }
 
+  /** Stop all audio clips */
   public void stopAll() {
     for (Clip clip : clips) {
       if (clip != null && clip.isRunning()) {
@@ -32,6 +44,11 @@ public class AudioManager {
     }
   }
 
+  /**
+   * Play the audio sample
+   *
+   * @param audioSample The audio sample to play
+   */
   public void play(AudioSample audioSample) {
     try {
       String filename = audioSample.getFilename();
@@ -71,6 +88,11 @@ public class AudioManager {
     }
   }
 
+  /**
+   * Stop the audio sample
+   *
+   * @param audioSample The audio sample to stop
+   */
   public void stop(AudioSample audioSample) {
     // Stop the specific clip corresponding to the given audio sample
     if (audioSample == AudioSample.SOUNDTRACK
@@ -82,6 +104,7 @@ public class AudioManager {
     // You can add more conditions to handle stopping other specific clips if needed
   }
 
+  /** Resets the soundtrack clip to the beginning */
   private void resetSoundtrackClip() {
     if (soundtrackClip != null) {
       soundtrackClip.flush(); // Flush any pending data to reset the clip
@@ -89,6 +112,7 @@ public class AudioManager {
     }
   }
 
+  /** Reinitialize the soundtrack clip with the audio data */
   public void reinitializeSoundtrackClip() {
     // Reinitialize the soundtrackClip with the audio data
     try {

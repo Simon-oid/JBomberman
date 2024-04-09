@@ -1,5 +1,3 @@
 
-C
-java:S1170"!Make this final field static too.(ÔúõÖþÿÿÿÿ8¾”•ŠÝ1
->
-java:S1170"!Make this final field static too.(§›„æ8¾”•ŠÝ1
+œ	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(Ø¦£Ì8‘½ÖŽì1J$3321e9dd-b13a-44d4-85f3-9782ccc1f3f3
+œ	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(á±ÿß8™éÙŽì1J$203617ea-1ccd-4bd0-a3c8-90ba40629348

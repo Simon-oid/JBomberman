@@ -5,12 +5,23 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 public class ScrollingBackground extends Pane {
+
+  /** The tile size of the pattern */
   private static final int TILE_SIZE = 48;
+
+  /** The width of the pane */
   private static final int WIDTH = 900; // replace with actual width
+
+  /** The height of the pane */
   private static final int HEIGHT = 900; // replace with actual height
+
+  /** The speed wich indicates how fast the pattern moves on the screen */
   private static final int SPEED = 1;
+
+  /** The tiles of the pattern */
   private ImageView[][] tiles;
 
+  /** The scrolling background constructor */
   public ScrollingBackground() {
     tiles = new ImageView[WIDTH / TILE_SIZE + 2][HEIGHT / TILE_SIZE + 2];
 

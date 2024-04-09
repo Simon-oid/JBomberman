@@ -13,17 +13,32 @@ import javafx.scene.layout.Pane;
 
 public class GameOver implements Initializable {
 
+  /** The FXML continue button element */
   @FXML public Button continueButton;
+
+  /** The FXML yes button element */
   @FXML public Button yes;
+
+  /** The FXML no button element */
   @FXML public Button no;
 
+  /** The FXML score HBox element */
   @FXML private HBox scoreHBox;
 
+  /** The FXML scrolling background pane element */
   @FXML private Pane scrollingBackgroundPane;
 
+  /** The FXML player name pane element */
   @FXML private Pane playerNamePane;
+
+  /** The player score */
   private int playerScore;
 
+  /**
+   * Set the player's score
+   *
+   * @param playerScore The player's score
+   */
   public void setPlayerScore(int playerScore) {
     this.playerScore = playerScore;
 
@@ -44,6 +59,12 @@ public class GameOver implements Initializable {
     }
   }
 
+  /**
+   * Get the sprite for the digit
+   *
+   * @param digit The digit
+   * @return The ImageView for the digit
+   */
   private ImageView getDigitSprite(int digit) {
     // Get the sprite for the digit
     Image image = GameOverScoreFont.valueOf("SPRITE_" + digit).getImageView().getImage();
@@ -53,6 +74,12 @@ public class GameOver implements Initializable {
     return imageView;
   }
 
+  /**
+   * Initialize the game over screen
+   *
+   * @param location The URL location
+   * @param resources The ResourceBundle resources
+   */
   @Override
   public void initialize(URL location, ResourceBundle resources) {
 

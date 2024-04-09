@@ -4,29 +4,20 @@ import org.jbomberman.model.map.Map;
 import org.jbomberman.model.powerups.IceCreamPowerUp;
 import org.jbomberman.model.powerups.PowerUp;
 
+/**
+ * The ExitTile class represents the exit tile in the game. When the exit tile is hit by a bomb
+ * explosion, an IceCreamPowerUp is spawned on an adjacent tile.
+ */
 public class ExitTile extends Tile {
 
+  /**
+   * The exit tile constructor.
+   *
+   * @param x The X-coordinate of the tile
+   * @param y The Y-coordinate of the tile
+   */
   public ExitTile(int x, int y) {
     super(TileType.EXIT, false, x, y);
-  }
-
-  /**
-   * Method to finish the level when the exit tile is reached. You can implement the logic to
-   * transition to the next level or end the game here.
-   */
-  public void finishLevel() {
-    //
-    //        // Get the player's position
-    //        Player player = Player.getInstance();
-    //        int playerX = player.getX();
-    //        int playerY = player.getY();
-    //
-    //        // Check if the player is in the center of the tile
-    //        if (playerX == getX() && playerY == getY())
-    //        {
-    //            // Implement the logic to finish the level
-    //            // For example, you can transition to the next level or end the game
-    //        }
   }
 
   /**
@@ -85,7 +76,6 @@ public class ExitTile extends Tile {
       int newY = y + direction[1];
 
       // Check if the tile is valid
-      // if (map.isValidTile(newX, newY))
       {
         return new GrassTile(newX, newY);
       }

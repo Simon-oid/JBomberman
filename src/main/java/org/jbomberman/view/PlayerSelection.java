@@ -14,13 +14,20 @@ import org.jbomberman.model.map.Map;
 
 public class PlayerSelection {
 
+  /** The FXML pane scrolling background */
   @FXML private Pane scrollingBackgroundPane;
+
+  /** The FXML exit button element */
   @FXML private Button exit;
+
+  /** The FXML insert name sign element */
   @FXML private HBox insertNameSign;
+
   @FXML private TextField playerName;
   private HBox playerNameSign;
   @FXML private Button submit;
 
+  /** Initialize the player selection */
   public void initialize() {
 
     // Create an instance of ScrollingBackground and add it to the scrollingBackgroundPane
@@ -82,15 +89,28 @@ public class PlayerSelection {
     submit.setOnAction(event -> handleSubmit());
   }
 
+  /** Draw the "INSERT NAME" sign */
   private void drawInsertNameSign() {
     String text = "INSERT NAME:";
     drawSign(insertNameSign, text, false);
   }
 
+  /**
+   * Draw the player name sign
+   *
+   * @param text The text to draw
+   */
   private void drawPlayerNameSign(String text) {
     drawSign(playerNameSign, text, true);
   }
 
+  /**
+   * Draw the sign
+   *
+   * @param sign The sign
+   * @param text The text
+   * @param recenter Whether to recenter the sign
+   */
   private void drawSign(HBox sign, String text, boolean recenter) {
     for (char c : text.toCharArray()) {
       if (c == ' ') {
@@ -122,6 +142,7 @@ public class PlayerSelection {
     }
   }
 
+  /** Handle the submit button */
   private void handleSubmit() {
     String playerNameText = playerName.getText();
     if (playerNameText.isEmpty()) {

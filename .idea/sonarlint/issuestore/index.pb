@@ -149,3 +149,7 @@ f
 6src/main/java/org/jbomberman/view/MainMenuSprites.java,e\9\e95118c12bb3c9744ed265de56bcc4738ce1a182
 ]
 -src/main/java/org/jbomberman/view/Sprite.java,0\0\00e0971ba6c1d1ff3faad49f81b8e77cb2e9a99c
+m
+=src/main/java/org/jbomberman/model/tiles/DestroyableTile.java,9\c\9cd8f5b00fcde80279b851ad4c3368666560bf8d
+g
+7src/main/java/org/jbomberman/model/tiles/GrassTile.java,7\d\7d7287cf9c9652d65a413ea0fcd4c2b5c90d90e5

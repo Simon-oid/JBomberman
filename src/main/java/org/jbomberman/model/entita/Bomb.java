@@ -12,38 +12,57 @@ import org.jbomberman.model.map.Map;
 @Getter
 public class Bomb extends Entity {
 
-  private static final double EXPLOSION_DELAY = 3.4; // 2 seconds
+  /** The delay before the bomb explodes in seconds. */
+  private static final double EXPLOSION_DELAY = 3.4;
 
+  /**
+   * Whether the bomb has exploded. This is used to prevent the bomb from exploding multiple times.
+   */
   private boolean exploded = false;
 
+  /** The range of the bomb. */
   private int range;
 
+  /**
+   * Instantiates a new Bomb.
+   *
+   * @param x the x coordinate
+   * @param y the y coordinate
+   */
   public Bomb(int x, int y) {
     super(x, y, 48, 48, null); // Direction parameter is not used for Bomb
     range = 2;
     initHitBox();
   }
 
+  /** Initializes the hitbox of the bomb. */
   @Override
   protected void initHitBox() {
     // Initialize hitbox using x, y, width, and height
     hitBox = new Rectangle2D(x, y, 48, 48);
   }
 
+  /**
+   * Updates the hitbox of the bomb.
+   *
+   * @param newX new x coordinate
+   * @param newY new y coordinate
+   */
   @Override
   public void updateHitBox(int newX, int newY) {
     // Update hitbox using new x, y coordinates
     hitBox = new Rectangle2D(newX, newY, width, height);
   }
 
+  /** Spawns the bomb and schedules the explosion. */
   @Override
   public void spawn() {
     ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
     scheduler.schedule(
         this::triggerExplosion, (long) (EXPLOSION_DELAY * 1000), TimeUnit.MILLISECONDS);
-    System.out.println("the bomb timer has been initialized");
   }
 
+  /** Triggers the explosion of the bomb. */
   private void triggerExplosion() {
     if (!exploded) {
       System.out.println("the explosion has been triggered");
@@ -54,6 +73,11 @@ public class Bomb extends Entity {
     }
   }
 
+  /**
+   * Gets the hitbox of the bomb.
+   *
+   * @return the hitbox of the bomb
+   */
   @Override
   public Rectangle2D getHitBox() {
     return hitBox;

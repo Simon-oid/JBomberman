@@ -5,6 +5,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 public class CustomFontButton extends Button {
+  /**
+   * The custom font button constructor
+   *
+   * @param text The text to display on the button
+   */
   public CustomFontButton(String text) {
     HBox hbox = new HBox();
     for (char c : text.toCharArray()) {

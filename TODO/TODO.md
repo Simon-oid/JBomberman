@@ -2418,9 +2418,16 @@ FF >>> 22/10/2023
 ### high priority:
 
 ---
-
 FINISHED VERSION 1.0
 ---
+
+- REQUISITI MANCANTI:
+- [ ] fare in modo che il tile exit sia positionato sotto ai mob
+- [ ] diagramma
+- [ ] progetto eclipse
+- [ ] java doc
+- [ ] relazione
+-
 
 ### low priority:
 
@@ -2445,6 +2452,39 @@ FINISHED VERSION 1.0
 - [x] reworkati alcuni metodi che riguardavano la gestionde della distruzione dei tile
 - [x] reworkati tutti i metodi che utilizzavano mobSprites, ora utilizza una mappa che comprende anche gli id dei mob
 - [x] vari fix che riguardavano bug sorti dal cambiamento di altri metodi fondamentali
+
+***
+
+===========================================================================
+***
+
+### 08/04/2024
+
+### TO-DO:
+
+### high priority:
+
+---
+FINISHED VERSION 1.0
+---
+
+- REQUISITI MANCANTI:
+- [ ] diagramma
+- [ ] progetto eclipse
+- [ ] java doc
+- [ ] relazione
+
+### low priority:
+
+- [ ] reworka collisioni del player (si incolla alle pareti)
+- [ ] bisogna modificare il model cosi' che quando il player
+  viene colpito, il player e' respawnato alle
+  coordinate iniziali
+- [ ] puoi usare lo sprite sheet goated per l'animazione della morte del player
+
+### DONE:
+
+- [ ] fare in modo che il tile exit sia positionato sotto ai mob
 
 ***
 

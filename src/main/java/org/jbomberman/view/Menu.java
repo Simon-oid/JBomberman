@@ -9,12 +9,22 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 
 public class Menu implements Initializable {
+
+  /** The FXML exit button element */
   @FXML public Button exit;
 
+  /** The FXML play button element */
   @FXML public Button play;
 
+  /** The FXML leaderboard button element */
   @FXML public Button leaderboard;
 
+  /**
+   * Initialize the menu
+   *
+   * @param location The location
+   * @param resources The resources
+   */
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     exit.setOnAction(event -> SceneController.getInstance().exit());

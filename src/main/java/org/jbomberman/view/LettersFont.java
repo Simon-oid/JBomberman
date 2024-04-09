@@ -44,8 +44,14 @@ public enum LettersFont {
   SPRITE_9(LettersFont.class.getResourceAsStream("font/9_bomberman_font.png")),
   SPRITE_COLON(LettersFont.class.getResourceAsStream("font/colon_bomberman_font.png"));
 
+  /** The image view of the letters font */
   @Getter private final ImageView imageView;
 
+  /**
+   * The letters font constructor
+   *
+   * @param imageStream The image stream of the letters font
+   */
   LettersFont(InputStream imageStream) {
     Image image = new Image(imageStream);
     this.imageView = new ImageView(image);

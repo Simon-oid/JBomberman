@@ -23,72 +23,115 @@ import org.jbomberman.model.powerups.PowerUpType;
 @Getter
 @Setter
 public class GameView {
+  /** The map width */
   int MAP_WIDTH = 15;
+
+  /** The map height */
   int MAP_HEIGHT = 13;
 
+  /** The adjusted y offset */
   int adjustedYOffset = 64;
 
+  /** The current level */
   private int currentLevel;
 
+  /** The player score */
   private int playerScore;
 
+  /** The TilePane */
   private TilePane tilePane;
 
+  /** The AnchorPane */
   private AnchorPane anchorPane;
 
+  /** The player imageview */
   private ImageView player;
 
+  /** The mob sprites */
   private HashMap<Type, Map<Integer, Sprite>> mobSprites;
 
-  private int spriteIdCounter = 0; // Add this line at the class level
+  /** The sprite id counter */
+  private int spriteIdCounter = 0;
 
+  /** The scoreboard */
   private ImageView scoreboard;
 
+  /** The Y offset for the player and mobs. */
   private static final int Y_OFFSET = 100;
 
+  /** The font sprites */
   private ImageView[] fontSprites;
 
+  /** The font flicker sprites */
   private ImageView[] scoreFontSprites;
 
+  /** The font flicker sprites */
   private ImageView[] scoreFontFlickerSprites;
 
+  /** The player movement animation */
   private Timeline playerMovementAnimation;
 
+  /** The player hit animation */
   private Timeline playerHitAnimation;
 
+  /** The last animation direction */
   private Direction lastAnimationDirection = Direction.NONE;
 
+  /** The mob movement animations */
   private Map<Sprite, Timeline> mobMovementAnimations;
 
+  /** The last puropen direction */
   private Direction lastPuropenDirection = Direction.NONE;
 
+  /** The destructible tile sprites */
   private Image[] destructibleTileSprites;
 
+  /** The clock animation sprites */
   private ImageView[] clockSprites;
 
+  /** The clock animation timeline */
   private Timeline clockAnimation;
 
+  /** The clock imageview */
   private ImageView clockImageView;
 
+  /** The exit tile imageview */
   private ImageView exitTileImageView;
 
+  /** The first time loading */
   private boolean firstTimeLoading = true;
 
+  /** The animation duration */
   private static final double ANIMATION_DURATION = 0.5; // Duration for animations in seconds
+
+  /** The HUD appearance delay */
   private static final double HUD_APPEARANCE_DELAY = 0; // Delay before HUD appears
 
-  private AudioManager audioManager; // AudioManager instance
+  /** The AudioManager instance */
+  private AudioManager audioManager;
 
+  /**
+   * The sound timer. This timer is used to play the walking sound effect at regular intervals when
+   * the player is moving.
+   */
   private AnimationTimer soundTimer;
+
+  /** The last play time. */
   private long lastPlayTime;
+
+  /** The sound timer running. */
   private boolean soundTimerRunning = false;
 
+  /** The soundtrack timer. */
   private AnimationTimer soundtrackTimer;
 
+  /** The last play time soundtrack. */
   private long lastPlayTimeSoundtrack;
 
+  /** The mob transitions */
   private HashMap<ImageView, TranslateTransition> mobTransitions = new HashMap<>();
 
+  /** Instantiates a new Game view. */
   public GameView() {
 
     setupSoundTimer();
@@ -125,6 +168,10 @@ public class GameView {
     initGameView();
   }
 
+  /**
+   * Sets up the soundtrack timer. This timer is used to play the soundtrack at regular intervals
+   * after the initial playback.
+   */
   private void setupSoundTrackTimer() {
     soundtrackTimer =
         new AnimationTimer() {
@@ -143,6 +190,10 @@ public class GameView {
         };
   }
 
+  /**
+   * Stops the soundtrack timer. This method is called when the game view is reset or when the game
+   * view is closed.
+   */
   private void stopSoundtrackTimer() {
     if (soundtrackTimer != null) {
       soundtrackTimer.stop();
@@ -150,10 +201,18 @@ public class GameView {
     }
   }
 
+  /**
+   * Stops the sound timer. This method is called when the game view is reset or when the game view
+   * is closed.
+   */
   private void stopSoundtrack() {
     AudioManager.getInstance().stopAll();
   }
 
+  /**
+   * Initializes the GameView. This method is called when the game view is first loaded or when the
+   * game view is reset.
+   */
   private void initGameView() {
 
     playerMovementAnimation = new Timeline();
@@ -292,7 +351,10 @@ public class GameView {
     timeline2.play();
   }
 
-  // Method to reset the game view
+  /**
+   * Resets the game view. This method is called when the player completes a level or when the game
+   * view is closed.
+   */
   public void resetGameView() {
     if (firstTimeLoading) {
 
@@ -309,6 +371,10 @@ public class GameView {
     }
   }
 
+  /**
+   * Resets the view. This method is called when the player completes a level or when the game view
+   * is closed.
+   */
   public void resetView() {
 
     anchorPane.getChildren().remove(exitTileImageView);
@@ -338,10 +404,18 @@ public class GameView {
     setupSoundTrackTimer();
   }
 
+  /**
+   * clears the HUD. This method is called when the player completes a level or when the game view
+   * is closed.
+   */
   public void clearHUD() {
     anchorPane.getChildren().removeAll(scoreboard, clockImageView);
   }
 
+  /**
+   * Removes all power ups. This method is called when the player completes a level or when the game
+   * view is closed.
+   */
   private void removeAllPowerUps() {
     List<Image> powerUpImages =
         Arrays.asList(
@@ -361,13 +435,14 @@ public class GameView {
     anchorPane.getChildren().removeAll(toRemove);
   }
 
-  // Method to initialize player and tilePane
+  /** Initializes the player. */
   private void initializePlayer() {
     player = new ImageView(Entities.VOID.getImage());
     player.setFitHeight(96);
     player.setFitWidth(48);
   }
 
+  /** Initializes the TilePane. */
   private void initializeTilePane() {
     tilePane = new TilePane();
     tilePane.setPrefRows(MAP_HEIGHT);
@@ -388,15 +463,17 @@ public class GameView {
     AnchorPane.setLeftAnchor(tilePane, 0.0); // Position tilepane at the left
   }
 
-  // Method to initialize scoreboard
+  /** Initializes the scoreboard. */
   private void initializeScoreboard() {
     scoreboard = new ImageView(HUD.HUD_SPRITE.getImage()); // Load custom scoreboard sprite
     scoreboard.setFitWidth(720);
     scoreboard.setFitHeight(100);
   }
 
-  // Method to slowly appear the HUD elements
-  // Method to slowly appear the HUD elements
+  /**
+   * Method that make the HUD slowly appear. This method is called when the game view is first
+   * loaded or when the game view is reset.
+   */
   public void slowlyAppearHUD() {
     List<Node> hudNodes = new ArrayList<>(anchorPane.getChildren());
     hudNodes.remove(tilePane); // Exclude tilePane from fading animation
@@ -409,13 +486,13 @@ public class GameView {
     fadeInClock();
   }
 
-  // Utility method to fade in the score numbers with a delay
+  /** Method that makes the score numbers slowly appear. */
   private void fadeInScoreNumbers() {
     fadeIn(Arrays.asList(scoreFontSprites), ANIMATION_DURATION, HUD_APPEARANCE_DELAY);
     fadeIn(Arrays.asList(scoreFontFlickerSprites), ANIMATION_DURATION, HUD_APPEARANCE_DELAY);
   }
 
-  // Utility method to fade in the clock with a delay
+  /** Method that makes the clock slowly appear. */
   private void fadeInClock() {
     clockImageView.setOpacity(0.0);
 
@@ -427,7 +504,7 @@ public class GameView {
     fadeTransition.play();
   }
 
-  // Method to slide in the tilemap from below
+  /** method that makes the TileMap slide in from below the screen. */
   public void slideInTilemapFromBelow() {
 
     // Schedule the slide-in animation with the specified delay
@@ -445,8 +522,16 @@ public class GameView {
     timeline.play();
   }
 
-  // Utility method to slide in a node from below
-  // Utility method to slide in a node from below
+  /**
+   * the SlideIn method that slides in a node from a specified position to another position.
+   *
+   * @param node the node
+   * @param durationSeconds the duration seconds
+   * @param fromX the position x where the animation starts
+   * @param toX the position x where the animation ends
+   * @param fromY the position y where the animation starts
+   * @param toY the position y where the animation ends
+   */
   private void slideIn(
       Node node, double durationSeconds, double fromX, double toX, double fromY, double toY) {
     node.setTranslateX(fromX);
@@ -460,7 +545,13 @@ public class GameView {
     translateTransition.play();
   }
 
-  // Utility method to fade in a list of nodes with a delay
+  /**
+   * Utility method to fade in a list of nodes with a specified duration and delay.
+   *
+   * @param nodes List of nodes to fade in
+   * @param durationSeconds Duration of the fade in animation
+   * @param delaySeconds Delay before the fade in animation starts
+   */
   private void fadeIn(List<Node> nodes, double durationSeconds, double delaySeconds) {
     for (Node node : nodes) {
       if (node != tilePane) { // Exclude tilePane from fading animation
@@ -474,6 +565,7 @@ public class GameView {
     }
   }
 
+  /** Method that initializes the mob sprites. */
   private void initializeMobSprites() {
     mobSprites = new HashMap<>();
     mobMovementAnimations = new HashMap<>(); // New HashMap to store timelines
@@ -516,6 +608,11 @@ public class GameView {
     }
   }
 
+  /**
+   * Method that loads the map tiles using a matrix from the LoadMapData data object.
+   *
+   * @param data the LoadMapData object
+   */
   public void loadMap(LoadMapData data) {
 
     int i = 0;
@@ -541,17 +638,28 @@ public class GameView {
     }
   }
 
+  /**
+   * gett the root of the game view.
+   *
+   * @return the root
+   */
   public Parent getRoot() {
 
     return anchorPane;
   }
 
+  /**
+   * Method that spawns the player at the initial position.
+   *
+   * @param playerInitialPosition the player initial position
+   */
   public void spawnPlayer(PlayerInitialPositionData playerInitialPosition) {
 
     player.setTranslateX(48);
     player.setTranslateY(-4);
   }
 
+  /** Method that starts the sound timer. */
   private void setupSoundTimer() {
     soundTimer =
         new AnimationTimer() {
@@ -567,6 +675,11 @@ public class GameView {
         };
   }
 
+  /**
+   * Method that moves the player based on the PlayerMovementData object.
+   *
+   * @param data the PlayerMovementData object
+   */
   public void movePlayer(PlayerMovementData data) {
 
     int xStep = data.xStep();
@@ -612,6 +725,12 @@ public class GameView {
     }
   }
 
+  /**
+   * Method that animates the player based on the direction.
+   *
+   * @param playerImageView The player image view
+   * @param direction The direction
+   */
   private void animatePlayer(ImageView playerImageView, Direction direction) {
     switch (direction) {
       case UP:
@@ -636,6 +755,13 @@ public class GameView {
     }
   }
 
+  /**
+   * Method that plays the player movement animation based on the direction and sprite images.
+   *
+   * @param imageView The image view
+   * @param sprites The sprite images
+   * @return the timeline
+   */
   private Timeline playPlayerMovementAnimation(ImageView imageView, Image[] sprites) {
 
     // Create keyframes for each sprite in the sequence
@@ -658,6 +784,12 @@ public class GameView {
     return playerMovementAnimation;
   }
 
+  /**
+   * Method that gets the player sprite images based on the direction.
+   *
+   * @param direction The direction
+   * @return the player sprite images
+   */
   private Image[] getPlayerSpriteImages(Direction direction) {
     // Return player sprite images based on direction
     switch (direction) {
@@ -705,6 +837,11 @@ public class GameView {
     }
   }
 
+  /**
+   * Method that spawns the bomb at the specified position.
+   *
+   * @param data the bomb spawn data
+   */
   public void spawnBomb(BombSpawnData data) {
     int bombX = data.bombX();
     int bombY = data.bombY();
@@ -730,6 +867,12 @@ public class GameView {
     audioManager.play(AudioSample.BOMB_PLACEMENT);
   }
 
+  /**
+   * method that plays the bomb explosion animation.
+   *
+   * @param bombImageView the bomb image view
+   * @param bombTimer the bomb timer
+   */
   private void playBombExplosionAnimation(ImageView bombImageView, double bombTimer) {
     Image[] bombExplosionSprites = {
       Entities.BOMB_1.getImage(), Entities.BOMB_2.getImage(), Entities.BOMB_3.getImage()
@@ -776,6 +919,11 @@ public class GameView {
     timeline.play();
   }
 
+  /**
+   * Method that handles the bomb explosion animation.
+   *
+   * @param data the bomb explosion data
+   */
   public void explodeBomb(BombExplosionData data) {
     int explosionX = data.explosionX();
     int explosionY = data.explosionY();
@@ -892,6 +1040,18 @@ public class GameView {
         TimeUnit.MILLISECONDS);
   }
 
+  /**
+   * Method that draws the explosion sprites in a specific direction.
+   *
+   * @param startX the start x
+   * @param startY the start y
+   * @param range the range
+   * @param deltaX the delta x
+   * @param deltaY the delta y
+   * @param directionEntity the direction entity
+   * @param lastDirectionEntity the last direction entity
+   * @param explosionSprites the explosion sprites
+   */
   private void drawExplosionSpritesInDirection(
       int startX,
       int startY,
@@ -913,6 +1073,14 @@ public class GameView {
     }
   }
 
+  /**
+   * Method that animates the explosion sprite in a specific direction.
+   *
+   * @param x the x
+   * @param y the y
+   * @param entity the entity
+   * @param explosionSprites the explosion sprites
+   */
   private void animateExplosionDirectionSprite(
       int x, int y, Entities entity, Entities[] explosionSprites) {
     ImageView explosionImageView = new ImageView(entity.getImage());
@@ -956,6 +1124,13 @@ public class GameView {
     timeline.play();
   }
 
+  /**
+   * Method that animates the explosion sprite at the specified position.
+   *
+   * @param x the x
+   * @param y the y
+   * @param entity the entity
+   */
   private void animateExplosionSprite(int x, int y, Entities entity) {
     // Create ImageView with initial sprite
     ImageView explosionImageView = new ImageView(entity.getImage());
@@ -1015,6 +1190,12 @@ public class GameView {
     timeline.play();
   }
 
+  /**
+   * Method that removes the bomb image at the specified position.
+   *
+   * @param explosionX the explosion x
+   * @param explosionY the explosion y
+   */
   private void removeBombImage(int explosionX, int explosionY) {
     for (Node node : anchorPane.getChildren()) {
       if (node instanceof ImageView
@@ -1027,6 +1208,11 @@ public class GameView {
     }
   }
 
+  /**
+   * Method that handles the tile destruction animation.
+   *
+   * @param data the tile destruction data
+   */
   public void handleTileDestruction(TileDestructionData data) {
     int tileIndex = data.tileIndex();
 
@@ -1073,6 +1259,11 @@ public class GameView {
     }
   }
 
+  /**
+   * Method that plays the destructible tile animation.
+   *
+   * @param imageView the image view
+   */
   private void animateTileDestruction(ImageView imageView) {
     Timeline timeline = new Timeline();
     timeline
@@ -1103,6 +1294,11 @@ public class GameView {
     timeline.play();
   }
 
+  /**
+   * Method that plays the destructible tile animation under an immovable tile.
+   *
+   * @param imageView the image view
+   */
   private void animateTileDestructionUnderImmovable(ImageView imageView) {
     Timeline timeline = new Timeline();
     timeline
@@ -1133,6 +1329,11 @@ public class GameView {
     timeline.play();
   }
 
+  /**
+   * Method that spawns the mobs at the initial positions.
+   *
+   * @param mobInitialPositions the mob initial positions
+   */
   public void spawnMob(MobInitialPositionData mobInitialPositions) {
     Type mobType = mobInitialPositions.mobType();
     int mobId = mobInitialPositions.id();
@@ -1145,18 +1346,6 @@ public class GameView {
       // Get the sprite that corresponds to the mobId from the map
       Sprite mobSprite = mobSpriteMap.get(mobId);
 
-      System.out.println(
-          "mobType: "
-              + mobType
-              + " "
-              + "mobId:"
-              + mobSprite.getId()
-              + " "
-              + "mobX:"
-              + mobInitialPositions.initialX()
-              + " "
-              + "mobY:"
-              + mobInitialPositions.initialY());
       ImageView mobImageView = mobSprite.getImageView();
       mobImageView.setFitWidth(48); // Set the initial fit width
       mobImageView.setFitHeight(80); // Set the initial fit height
@@ -1191,6 +1380,11 @@ public class GameView {
     }
   }
 
+  /**
+   * Method that moves the mob based on the MobMovementData object.
+   *
+   * @param data the MobMovementData object
+   */
   public void moveMob(MobMovementData data) {
     int xStep = data.xStep();
     int yStep = data.yStep();
@@ -1238,6 +1432,12 @@ public class GameView {
     }
   }
 
+  /**
+   * Method that animates the Puropen mob based on the direction.
+   *
+   * @param mobSprite The mob sprite
+   * @param direction The direction
+   */
   private void animatePuropen(Sprite mobSprite, Direction direction) {
 
     ImageView mobImageView = mobSprite.getImageView();
@@ -1265,6 +1465,14 @@ public class GameView {
     mobMovementAnimations.put(mobSprite, puropenMovementAnimation);
   }
 
+  /**
+   * Method that plays the mob movement animation based on the sprite images.
+   *
+   * @param mobSprite The mob sprite
+   * @param imageView The image view
+   * @param sprites The sprite images
+   * @return the timeline
+   */
   private Timeline playMobMovementAnimation(
       Sprite mobSprite, ImageView imageView, Image[] sprites) {
     Timeline mobMovementAnimation =
@@ -1296,6 +1504,12 @@ public class GameView {
     return mobMovementAnimation;
   }
 
+  /**
+   * Method that plays the Denkyun mob animation.
+   *
+   * @param mobSprite The mob sprite
+   * @param imageView The image view
+   */
   private Timeline playDenkyunAnimation(Sprite mobSprite, ImageView imageView) {
 
     Timeline mobMovementAnimation =
@@ -1336,6 +1550,11 @@ public class GameView {
     return mobMovementAnimation;
   }
 
+  /**
+   * Method that handles the removal of a mob based on the RemoveMobData object.
+   *
+   * @param data the RemoveMobData object
+   */
   public void removeMob(RemoveMobData data) {
     Type mobType = data.mobType();
     int score = data.score();
@@ -1383,6 +1602,11 @@ public class GameView {
     }
   }
 
+  /**
+   * Method that stops the movement animation of the mob sprite.
+   *
+   * @param mobSprite the mob sprite
+   */
   private void stopMobMovementAnimation(Sprite mobSprite) {
     Timeline mobMovementAnimation = mobMovementAnimations.get(mobSprite);
     if (mobMovementAnimation != null) {
@@ -1391,6 +1615,12 @@ public class GameView {
     }
   }
 
+  /**
+   * Method that plays the flickering animation for the mob sprite.
+   *
+   * @param mobType the mob type
+   * @param mobId the mob ID
+   */
   private void playFlickeringAnimation(Type mobType, int mobId) {
     Map<Integer, Sprite> mobSpriteMap = mobSprites.get(mobType);
     if (mobSpriteMap != null) {
@@ -1408,6 +1638,12 @@ public class GameView {
     }
   }
 
+  /**
+   * method that removes the old mob sprite based on the mob type and mob ID.
+   *
+   * @param mobType the mob type
+   * @param mobId the mob ID
+   */
   private void removeOldMobSprite(Type mobType, int mobId) {
     Map<Integer, Sprite> mobSpriteMap = mobSprites.get(mobType);
     if (mobSpriteMap != null) {
@@ -1426,6 +1662,11 @@ public class GameView {
     }
   }
 
+  /**
+   * Method that updates the player lives based on the PlayerLivesUpdateData object.
+   *
+   * @param data the PlayerLivesUpdateData object
+   */
   public void updatePlayerLives(PlayerLivesUpdateData data) {
     int lives = data.lives();
 
@@ -1442,6 +1683,12 @@ public class GameView {
     }
   }
 
+  /**
+   * Method that plays the player hit animation.
+   *
+   * @param imageView the image view
+   * @param sprites the sprites
+   */
   public void playPlayerHitAnimation(ImageView imageView, Image[] sprites) {
 
     // Clear existing key frames from playerMovementAnimation
@@ -1467,6 +1714,12 @@ public class GameView {
     playerHitAnimation.play();
   }
 
+  /**
+   * Method that plays the player death animation.
+   *
+   * @param imageView the image view
+   * @param sprites the sprites
+   */
   private void playPlayerDeathAnimation(ImageView imageView, Image[] sprites) {
     // Clear existing key frames from playerMovementAnimation
     playerMovementAnimation.getKeyFrames().clear();
@@ -1489,6 +1742,11 @@ public class GameView {
     playerHitAnimation.play();
   }
 
+  /**
+   * Method that plays the flicker animation for an imageview sprite.
+   *
+   * @param imageView the image view
+   */
   private void playFlickerAnimation(ImageView imageView) {
     // Create a Timeline for flickering
     Timeline flickerAnimation =
@@ -1504,6 +1762,11 @@ public class GameView {
     flickerAnimation.play();
   }
 
+  /**
+   * Gets the sprites for the player hit animation.
+   *
+   * @return the player hit sprites
+   */
   private static Image[] getPlayerHitSprites() {
     return new Image[] {
       Entities.PLAYER_HIT_0.getImage(),
@@ -1513,10 +1776,16 @@ public class GameView {
     };
   }
 
+  /** removes the player from the anchorPane. */
   private void removePlayer() {
     anchorPane.getChildren().remove(player);
   }
 
+  /**
+   * Method that spawns the power-up at the specified position.
+   *
+   * @param data the PowerUpSpawnData object
+   */
   public void spawnPowerUp(PowerUpSpawnData data) {
     PowerUpType powerUpType = data.powerUpType();
     ImageView powerUpImageView = new ImageView();
@@ -1548,6 +1817,13 @@ public class GameView {
     anchorPane.getChildren().add(powerUpImageView);
   }
 
+  /**
+   * Method that animates the power-up sprite.
+   *
+   * @param imageView the image view
+   * @param frame0 the frame 0
+   * @param frame1 the frame 1
+   */
   private void animatePowerUp(ImageView imageView, Image frame0, Image frame1) {
     Timeline timeline =
         new Timeline(
@@ -1559,6 +1835,11 @@ public class GameView {
     timeline.play();
   }
 
+  /**
+   * Method that applies the power-up at the specified position.
+   *
+   * @param data the PowerUpApplicationData object
+   */
   public void applyPowerUp(PowerUpApplicationData data) {
     int x = data.x();
     int y = data.y();
@@ -1568,6 +1849,12 @@ public class GameView {
     removePowerUp(x, y + Y_OFFSET);
   }
 
+  /**
+   * Method that removes the power-up at the specified position.
+   *
+   * @param x the x coordinate
+   * @param y the y coordinate
+   */
   private void removePowerUp(int x, int y) {
     // Iterate over the children of the anchorPane to find the ImageView representing the power-up
     anchorPane
@@ -1579,6 +1866,11 @@ public class GameView {
                     && ((ImageView) node).getY() == y);
   }
 
+  /**
+   * Method that despawns the power-up at the specified position.
+   *
+   * @param data the PowerUpDespawnData object
+   */
   public void despawnPowerUp(PowerUpDespawnData data) {
 
     int x = data.x();
@@ -1587,6 +1879,7 @@ public class GameView {
     removePowerUp(x, y + Y_OFFSET);
   }
 
+  /** Method that loads the font sprites for the score and lives. */
   private void loadFontSprites() {
     fontSprites = new ImageView[10]; // Assuming you have sprites for digits 0-9
 
@@ -1598,6 +1891,11 @@ public class GameView {
     }
   }
 
+  /**
+   * Method that updates the player score based on the PlayerScoreUpdateData object.
+   *
+   * @param data the PlayerScoreUpdateData object
+   */
   public void updateScore(PlayerScoreUpdateData data) {
 
     int score = data.score();
@@ -1640,18 +1938,28 @@ public class GameView {
     }
   }
 
-  // Utility method to get the digit at a specific position from right to left
+  /**
+   * Utility method to get the digit at a specific position in a number
+   *
+   * @param number the number
+   * @param position the position
+   */
   private int getDigitAt(int number, int position) {
     return (int) (number / Math.pow(10, position)) % 10;
   }
 
-  // Utility method to clear existing score sprites
+  /** Method that clears the existing score sprites. */
   private void clearScoreSprites() {
     anchorPane
         .getChildren()
         .removeIf(node -> node instanceof ImageView && Arrays.asList(fontSprites).contains(node));
   }
 
+  /**
+   * Method that draws the player score based on the PlayerScoreUpdateData object.
+   *
+   * @param data the PlayerScoreUpdateData object
+   */
   public void drawPlayerLives(PlayerLivesUpdateData data) {
 
     int lives = data.lives();
@@ -1682,6 +1990,11 @@ public class GameView {
         .removeIf(node -> node instanceof ImageView && Arrays.asList(fontSprites).contains(node));
   }
 
+  /**
+   * Method that handles the exit spawn at the specified position.
+   *
+   * @param data the ExitTileSpawnData object
+   */
   public void handleExitSpawn(ExitTileSpawnData data) {
 
     int x = data.exitTileX();
@@ -1696,12 +2009,22 @@ public class GameView {
     exitTileImageView.setX(x);
     exitTileImageView.setY(y + Y_OFFSET);
 
+    List<Node> mobSpritesTemp = new ArrayList<>();
+    for (Map<Integer, Sprite> mobSpriteMap : mobSprites.values()) {
+      for (Sprite mobSprite : mobSpriteMap.values()) {
+        mobSpritesTemp.add(mobSprite.getImageView());
+      }
+    }
+    anchorPane.getChildren().removeAll(mobSpritesTemp);
+
     // Add the ImageView to the anchor pane
     anchorPane.getChildren().add(exitTileImageView);
 
     // Ensure bomb is drawn under the player
     anchorPane.getChildren().remove(player);
     anchorPane.getChildren().add(player);
+
+    anchorPane.getChildren().addAll(mobSpritesTemp);
 
     // Create the animation for the exit tile
     Timeline exitTileAnimation =
@@ -1724,9 +2047,9 @@ public class GameView {
     exitTileAnimation.play();
   }
 
-  // Method to load font sprites for numbers 0-9
+  /** Method that loads the font sprites for the score on mob kill. */
   private void loadScoreFontSprites() {
-    scoreFontSprites = new ImageView[5]; // Assuming you have sprites for digits 0-9
+    scoreFontSprites = new ImageView[5];
 
     // Load font sprites for digits 0-9
     for (int i = 0; i < 5; i++) {
@@ -1736,6 +2059,7 @@ public class GameView {
     }
   }
 
+  /** Method that loads the font sprites for the score on mob kill. */
   private void loadScoreFlickerFontSprites() {
     scoreFontFlickerSprites = new ImageView[5]; // Assuming you have sprites for digits 0-9
 
@@ -1747,8 +2071,13 @@ public class GameView {
     }
   }
 
-  // Method to spawn numbers when mobs are killed
-  // Method to spawn numbers when mobs are killed
+  /**
+   * Method that spawns the score numbers at the specified position.
+   *
+   * @param score the score
+   * @param x the x coordinate
+   * @param y the y coordinate
+   */
   public void spawnScoreNumbers(int score, double x, double y) {
     String scoreString = String.valueOf(score);
     double startX = x;
@@ -1798,6 +2127,7 @@ public class GameView {
     }
   }
 
+  /** Method that loads the sprites for the destructible tiles animation. */
   private void loadDestructibleTileAnimation() {
     destructibleTileSprites =
         new Image[] {
@@ -1808,6 +2138,11 @@ public class GameView {
         };
   }
 
+  /**
+   * Method tha plays the destructible tile animation for the specified imageview.
+   *
+   * @param imageView the image view
+   */
   private void playDestructibleTileAnimation(ImageView imageView) {
     // Create a timeline to play the animation
     Timeline timeline = new Timeline();
@@ -1832,6 +2167,12 @@ public class GameView {
     timeline.play();
   }
 
+  /**
+   * Method that plays the destructible tile animation for the specified imageview if under a not
+   * destroyable tile.
+   *
+   * @param imageView the image view
+   */
   private void playDestructibleUnderNonDestructibleAnimation(ImageView imageView) {
     Image[] destructibleUnderNonDestructibleSprites =
         new Image[] {
@@ -1861,6 +2202,13 @@ public class GameView {
     timeline.play();
   }
 
+  /**
+   * Method that checks if the tile above the current tile is destructible.
+   *
+   * @param currentIndex the current index
+   * @param data the LoadMapData object
+   * @return true if the tile above is destructible, false otherwise
+   */
   private boolean isTileAboveDestructible(int currentIndex, LoadMapData data) {
     // Calculate the index of the tile above the current tile
     int aboveIndex = currentIndex - MAP_WIDTH;
@@ -1876,7 +2224,12 @@ public class GameView {
     return false;
   }
 
-  // Method to get sprite images for PUROPEN in a specific direction
+  /**
+   * Method that gets the sprites for the puropen animation based on direction
+   *
+   * @param direction the direction
+   * @return the puropen sprite images
+   */
   private static Image[] getPuropenSpriteImages(Direction direction) {
     switch (direction) {
       case UP:
@@ -1912,6 +2265,11 @@ public class GameView {
     }
   }
 
+  /**
+   * Method that gets the sprites for the denkyun animation.
+   *
+   * @return the denkyun sprite images
+   */
   private static Image[] getDenkyunSpriteImages() {
     return new Image[] {
       Entities.DENKYUN_0.getImage(),
@@ -1923,6 +2281,7 @@ public class GameView {
     };
   }
 
+  /** Method that loads the clock sprites and animation. */
   private void loadClockSprites() {
     clockSprites = new ImageView[8];
     for (int i = 0; i < 8; i++) {
@@ -1930,6 +2289,7 @@ public class GameView {
     }
   }
 
+  /** Method that initializes the clock animation. */
   private void initializeClockAnimation() {
     clockAnimation = new Timeline();
     // Add keyframes to switch between clock sprites
@@ -1944,13 +2304,14 @@ public class GameView {
     clockAnimation.setCycleCount(Timeline.INDEFINITE);
   }
 
+  /** Method that draws the clock on the HUD. */
   private void drawClockOnHUD() {
     clockImageView = new ImageView();
     clockImageView.setFitWidth(16 * 2.8); // Adjust width based on sprite size
     clockImageView.setFitHeight(25 * 2.8); // Adjust height based on sprite size
     // Set clock position to center of scoreboard
-    double x = (720 - 382); // Assuming scoreboard width is 720
-    double y = 24; // Adjust Y position as needed
+    double x = (720 - 382);
+    double y = 24;
     clockImageView.setX(x);
     clockImageView.setY(y);
     // Start clock animation
@@ -1959,13 +2320,25 @@ public class GameView {
     anchorPane.getChildren().add(clockImageView);
   }
 
+  /**
+   * Method that respawns the Denkyun mob at the specified coordinates.
+   *
+   * @param data the DenkyunRespawnData object
+   */
   public void spawnDenkyunAtCoordinates(DenkyunRespawnData data) {
     double x = data.x();
     double y = data.y();
-    System.out.println(data.id());
+
     initializeDenkyun(x, y, data.id());
   }
 
+  /**
+   * Method that initializes the Denkyun mob at the specified coordinates.
+   *
+   * @param x the x coordinate
+   * @param y the y coordinate
+   * @param denkyunId the denkyun ID
+   */
   private void initializeDenkyun(double x, double y, int denkyunId) {
     ImageView denkyunImageView = new ImageView(Entities.VOID.getImage());
     denkyunImageView.setFitWidth(48);
@@ -1997,6 +2370,11 @@ public class GameView {
     playFlickeringAnimation(Type.DENKYUN, denkyunId); // Start flickering animation after pause
   }
 
+  /**
+   * Method that handles the level clear event.
+   *
+   * @param data the LevelUpdateData object
+   */
   public void levelClear(LevelUpdateData data) {
 
     spriteIdCounter = 0;
@@ -2014,6 +2392,11 @@ public class GameView {
     audioManager.play(AudioSample.STAGE_CLEAR);
   }
 
+  /**
+   * Method that gets the sprites for the player spin animation.
+   *
+   * @return the player spin sprites
+   */
   private Image[] getSpinSprites() {
     return new Image[] {
       Entities.PLAYER_SPIN_0.getImage(),
@@ -2031,6 +2414,7 @@ public class GameView {
     };
   }
 
+  /** Method that plays the spin animation for the player. */
   private void playSpinAnimation() {
 
     ImageView playerImageView = player;

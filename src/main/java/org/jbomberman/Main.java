@@ -14,6 +14,12 @@ import org.jbomberman.view.SceneController;
 
 public class Main extends Application {
 
+  /**
+   * Start the application
+   *
+   * @param stage The first stage
+   * @throws IOException The IOException
+   */
   @Override
   public void start(Stage stage) throws IOException {
     FXMLLoader loader = new FXMLLoader(getClass().getResource("view/scenes/Menu.fxml"));
@@ -51,6 +57,11 @@ public class Main extends Application {
     stage.show();
   }
 
+  /**
+   * The main method
+   *
+   * @param args The arguments
+   */
   public static void main(String[] args) {
     launch(args);
   }

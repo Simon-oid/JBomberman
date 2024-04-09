@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import lombok.Getter;
 
+/** The game over score font enum */
 @Getter
 public enum GameOverScoreFont {
   SPRITE_0(
@@ -47,8 +48,14 @@ public enum GameOverScoreFont {
               .getResource("scenesAssets/gameOver_scoreFont_7.png")
               .toExternalForm()));
 
+  /** The image view of the game over score font */
   private final ImageView imageView;
 
+  /**
+   * The game over score font constructor
+   *
+   * @param image The image of the game over score font
+   */
   GameOverScoreFont(Image image) {
     this.imageView = new ImageView(image);
     this.imageView.setFitWidth(30); // Set the width of the ImageView

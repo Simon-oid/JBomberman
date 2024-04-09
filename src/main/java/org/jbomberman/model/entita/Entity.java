@@ -6,51 +6,77 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public abstract class Entity
-{
-    // variabili utilizzate nel player, monstri ecc.
+public abstract class Entity {
 
-    protected int x;
-    protected int y;
+  /** x coordinates of the entity */
+  protected int x;
 
-    private int deltaX;
-    private int deltaY;
+  /** y coordinates of the entity */
+  protected int y;
 
-    private int speed;
+  /** The amount of pixels the entity moves in the x direction */
+  private int deltaX;
 
-    Direction direction;
+  /** The amount of pixels the entity moves in the y direction */
+  private int deltaY;
 
-    protected int width;
-    protected int height;
+  /** The speed of the entity */
+  private int speed;
 
-    protected Rectangle2D hitBox;
+  /** The direction the entity is facing */
+  Direction direction;
 
-    protected boolean isVulnerable;
+  /** The width of the entity */
+  protected int width;
 
+  /** The height of the entity */
+  protected int height;
 
-    protected Entity(int x, int y, int width, int height, Direction direction)
-    {
+  /** The hitbox of the entity */
+  protected Rectangle2D hitBox;
 
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.direction = direction;
-        speed = 400;
-        this.isVulnerable = true;
-        initHitBox();
+  /** The state of the entity */
+  protected boolean isVulnerable;
 
-    }
+  /**
+   * Constructor for the entity
+   *
+   * @param x x coordinates of the entity
+   * @param y y coordinates of the entity
+   * @param width width of the entity
+   * @param height height of the entity
+   * @param direction direction the entity is facing
+   */
+  protected Entity(int x, int y, int width, int height, Direction direction) {
 
-    protected abstract void initHitBox();
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
+    this.direction = direction;
+    speed = 400;
+    this.isVulnerable = true;
+    initHitBox();
+  }
 
-    public abstract void updateHitBox(int newX, int newY);
+  /** abstract method to initialize the hitbox of the entity */
+  protected abstract void initHitBox();
 
-    public abstract void spawn();
+  /**
+   * Method to update the hitbox of the entity
+   *
+   * @param newX new x coordinates
+   * @param newY new y coordinates
+   */
+  public abstract void updateHitBox(int newX, int newY);
 
+  /** method to spawn the entity */
+  public abstract void spawn();
 
-    public abstract Rectangle2D getHitBox();
+  /**
+   * method to get the hitbox of the entity
+   *
+   * @return the hitbox of the entity
+   */
+  public abstract Rectangle2D getHitBox();
 }
-
-
-

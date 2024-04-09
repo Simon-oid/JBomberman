@@ -1,71 +1,42 @@
 
-œ	java:S135™"YReduce the total number of break and continue statements in this loop to use at most one.(óÁ±8ªäÕòë1J$55afc2fb-d2f3-48f9-9c10-dd64380d8f02
+œ	java:S135·"YReduce the total number of break and continue statements in this loop to use at most one.(óÁ±8äüÁ÷ë1J$9884437d-8942-45a5-90db-80af5afaf897
 x
-java:S1066ä"/Merge this if statement with the enclosing one.(’œßºüÿÿÿÿ8¬äÕòë1J$241990b1-bf55-49c6-afcd-3b983aa6b536
+java:S1066 "/Merge this if statement with the enclosing one.(’œßºüÿÿÿÿ8åüÁ÷ë1J$ebcff819-e54e-40e6-a3c1-047f67089419
 ‹
-java:S2184"BCast one of the operands of this addition operation to a "double".(å€üÿÿÿÿ8°äÕòë1J$58c38bf8-40e5-491b-9c7e-d8a71d544da4
+java:S2184Ö"BCast one of the operands of this addition operation to a "double".(å€üÿÿÿÿ8èüÁ÷ë1J$47bdebf0-cdb6-4383-8565-eaa50bfee9ec
 ‹
-java:S2184"BCast one of the operands of this addition operation to a "double".(å€üÿÿÿÿ8°äÕòë1J$329d74c8-faa8-4c3f-a6bc-851e842c670c
-—
-java:S2259"NA "NullPointerException" could be thrown; "exitTilePosition" is nullable here.(¾Ş¯Ñúÿÿÿÿ8¦åÕòë1J$111b2c78-bfa8-49cb-b69c-9aeaf1071cc4
-{
-java:S2589"7Remove this expression which always evaluates to "true"(–æ©¿8¦åÕòë1J$6a1e59a8-63ec-45a4-98d3-989e843486ee
+java:S2184Ö"BCast one of the operands of this addition operation to a "double".(å€üÿÿÿÿ8èüÁ÷ë1J$975a378c-4542-427c-93c0-2d87840d66bd
 Ü
-java:S6548!"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(ú„ŠÌ8ªåÕòë1J$c0593a7b-5e4f-4b53-88dd-4852e4515118
+java:S6548!"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(ú„ŠÌ8ÛıÁ÷ë1J$a8ae93f9-4095-4b99-bfad-60d7bc2d3c8a
 u
-java:S1874!"2Remove this use of "Observable"; it is deprecated.(ú„ŠÌ8«åÕòë1J$07920ec6-32e4-498c-afd2-0bc97d14c079
+java:S1874!"2Remove this use of "Observable"; it is deprecated.(ú„ŠÌ8ÜıÁ÷ë1J$42d70838-a2fa-4837-8d5d-1396d7046ebb
 }
-java:S1117ˆ":Rename "player" which hides the field declared at line 47.(Ì¸»!8°åÕòë1J$d00e80f9-ff0b-4070-8303-8fb1b5583531
-s	java:S106»"+Replace this use of System.out by a logger.(şô˜ÿÿÿÿÿ8²åÕòë1J$903f2136-a3bd-43d2-ad9a-0918dd452212
+java:S1117¾":Rename "player" which hides the field declared at line 58.(Ì¸»!8áıÁ÷ë1J$26cae5c1-c21b-4659-9b6c-f73b3d1a7a08
 „
-java:S6201ò"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8´åÕòë1J$ea91fffa-ad5f-4e2b-87f6-06a6baa3105a
+java:S6201²"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8æıÁ÷ë1J$48eae9d1-c77f-46cb-963d-b8b4400a060d
 {
-java:S1135ª"2Complete the task associated to this TODO comment.(²ëùşÿÿÿÿ8¶åÕòë1J$d8d89144-0bcc-4316-ab08-4899ce2a6640
-e
-java:S6201Î"BReplace this instanceof check and cast with 'instanceof Bomb bomb'(¬ĞÆ“úÿÿÿÿ8¨œ˜õë1
-e
-java:S6201"BReplace this instanceof check and cast with 'instanceof Bomb bomb'(¬ĞÆ“úÿÿÿÿ8©œ˜õë1
+java:S1135ò"2Complete the task associated to this TODO comment.(²ëùşÿÿÿÿ8èıÁ÷ë1J$6b7da4ee-4eeb-4dd2-bafc-60ae670efb6a
+‹
+java:S6201¡"BReplace this instanceof check and cast with 'instanceof Bomb bomb'(¬ĞÆ“úÿÿÿÿ8èıÁ÷ë1J$732e4de3-03d9-4714-a8ab-25c75b02a489
+‹
+java:S6201ñ"BReplace this instanceof check and cast with 'instanceof Bomb bomb'(¬ĞÆ“úÿÿÿÿ8ëıÁ÷ë1J$a594e471-fc01-40e7-b3e2-d26302d9547d
 ‰
-java:S6201¡"EReplace this instanceof check and cast with 'instanceof Mob otherMob'(˜‚„°8¹åÕòë1J$5620b304-a630-44bb-8997-fda786e44c57
+java:S6201‰"EReplace this instanceof check and cast with 'instanceof Mob otherMob'(˜‚„°8ëıÁ÷ë1J$0a6e1c99-5507-4c87-9dff-38bead61104f
 a
-java:S2119À"Save and re-use this "Random".(¼İÅf8ºåÕòë1J$9c9302f7-9d8a-446e-a13c-71090ec7c3ea
-s	java:S106÷"+Replace this use of System.out by a logger.(ƒ‚³ëıÿÿÿÿ8ÀåÕòë1J$96d4d69e-c5ac-4f78-9eb5-650e33dbdbb4
-
-java:S1854§"=Remove this useless assignment to local variable "nextTileY".(æ€âë8ÁåÕòë1J$988f8f0c-121b-4557-ba25-29974113deaa
-†
-java:S1854¦"=Remove this useless assignment to local variable "nextTileX".(ëÎÅäşÿÿÿÿ8ÁåÕòë1J$5db28f93-4c1d-4cee-b50f-b8303ea68271
-	java:S125Ÿ"<This block of commented-out lines of code should be removed.(š€Ê¤8ÁåÕòë1J$8c122eb4-2cfd-4d88-b3ee-f4507d5a44ff
-w
-java:S1481¦".Remove this unused "nextTileX" local variable.(ëÎÅäşÿÿÿÿ8ÁåÕòë1J$d3c3c21e-f10c-47e1-a1b4-00189de86a8d
-r
-java:S1481§".Remove this unused "nextTileY" local variable.(æ€âë8ÁåÕòë1J$bb06f333-4924-4c1e-9ad7-143dac5007ff
-	java:S125©"<This block of commented-out lines of code should be removed.(öì¯8ÂåÕòë1J$45d7895a-a24f-4ad3-b0cf-5ed9d6f3e692
+java:S2119®"Save and re-use this "Random".(¼İÅf8íıÁ÷ë1J$e20eadd0-4c63-4a6a-af08-7974ead04bfb
 •
-java:S3776½"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(Ë¡çY8ÂåÕòë1J$b0fd52e6-f480-4b6b-b76b-69657d8d25b0
-„	java:S125ª"<This block of commented-out lines of code should be removed.(ÍÊÃåùÿÿÿÿ8ÅåÕòë1J$69026b67-787f-43f6-8511-6e62f5fe33f9
+java:S3776Ø"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(Ë¡çY8ôıÁ÷ë1J$5cb93a4a-209c-4fa3-918c-fad6a26950a6
 „
-java:S6201®"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8ÅåÕòë1J$283c189f-fdc8-4e72-8efb-0108d84411c5
-	java:S125º"<This block of commented-out lines of code should be removed.(ßƒ¢¡8ÅåÕòë1J$277f00ba-0cdd-4b0d-b962-7ac9eadf34cb
-„	java:S125Á"<This block of commented-out lines of code should be removed.(õ…àüÿÿÿÿ8ÅåÕòë1J$0d470728-7629-41b0-bc65-98a8e2ad9436
-„	java:S125È"<This block of commented-out lines of code should be removed.(Ä´‡öùÿÿÿÿ8ÅåÕòë1J$3829997f-8a6e-4235-9b2f-3def1174e953
+java:S6201é"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8öıÁ÷ë1J$7062f2ef-f691-4f4a-b6fb-747058d464f0
 u
-java:S1602ê",Remove useless curly braces around statement(äÒ´Åúÿÿÿÿ8ÇåÕòë1J$7d10f8bc-dd67-4446-a8b6-533108eb5afc
-s	java:S106"+Replace this use of System.out by a logger.(¾Ş¯Ñúÿÿÿÿ8ÈåÕòë1J$ecc3333b-1905-422d-8377-36e86f483a01
-v
-java:S1135"2Complete the task associated to this TODO comment.(»«ş×8ÈåÕòë1J$05996e47-ff56-4117-8e0d-60292d62e2d3
+java:S1602¦",Remove useless curly braces around statement(äÒ´Åúÿÿÿÿ8øıÁ÷ë1J$467bec01-3f47-44ba-bfce-29abc0b57842
 o
-java:S1168Á"&Return an empty array instead of null.(ƒ‚íşùÿÿÿÿ8ÉåÕòë1J$f1a81c01-644c-4c0b-87d9-c3a2b4be550e
-p
-java:S1172ù",Remove this unused method parameter "delta".(ò…ŒÖ8ËåÕòë1J$da4fec03-d4b7-4ce0-af4d-e78ccfba5bb1
+java:S1168‚	"&Return an empty array instead of null.(ƒ‚íşùÿÿÿÿ8úıÁ÷ë1J$6ebfcacd-0c5e-454f-aae2-455eb5ca6698
 „
-java:S6201›"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8ÌåÕòë1J$ee583be1-884c-424a-b3c7-486823bb2b00
-s	java:S106Ë"+Replace this use of System.out by a logger.(ƒ‚³ëıÿÿÿÿ8ÍåÕòë1J$becdc7d3-aaa5-4d44-91bd-1c8b8063ee15
+java:S6201÷	"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8üıÁ÷ë1J$fd1f7bd7-6e5f-4394-8a61-4e28a9fa9713
 o
-java:S1905ß"&Remove this unnecessary cast to "int".(ÇÏ¥µøÿÿÿÿ8ÎåÕòë1J$907c9482-804d-4a67-93e3-568481001f1a
+java:S1905Ç
+"&Remove this unnecessary cast to "int".(ÇÏ¥µøÿÿÿÿ8ÿıÁ÷ë1J$ef829d85-36f7-4586-ae08-75f1e2f634e8
 j
-java:S1905à"&Remove this unnecessary cast to "int".(ÍŠ¼³8ÎåÕòë1J$33b5eacf-3d49-4430-8bab-67423166cadf
-	java:S125ã"<This block of commented-out lines of code should be removed.(³®ö 8ÎåÕòë1J$a139e2e0-c9cc-4f35-9386-d9a14735e589
-	java:S125ò"<This block of commented-out lines of code should be removed.(ä·Úµ8ÏåÕòë1J$cc07baf1-cfb8-4e98-9b8a-3cbe507e124a
-	java:S125ü"<This block of commented-out lines of code should be removed.(¹èÏ…8ÏåÕòë1J$1578667e-6809-413a-b41f-ef65d1e97a7c
-„	java:S125¬	"<This block of commented-out lines of code should be removed.(æÂ”Éúÿÿÿÿ8ĞåÕòë1J$dddcf4ec-7ec7-4b73-93e0-64331329a040
-n	java:S106³	"+Replace this use of System.out by a logger.(ºéê‘8ĞåÕòë1J$a7b9abad-495f-43c7-a505-8dfebfc48dca
+java:S1905È
+"&Remove this unnecessary cast to "int".(ÍŠ¼³8ÿıÁ÷ë1J$22d70a03-f9bb-48fd-85e3-36bb5208ca96

@@ -4,6 +4,7 @@ import java.io.InputStream;
 import javafx.scene.image.Image;
 import lombok.Getter;
 
+/** The entities enum */
 public enum Entities {
   PLAYER(Entities.class.getResourceAsStream("entities/giocatore_down_000_16x32.png")),
   PLAYER_DOWN1(Entities.class.getResourceAsStream("entities/giocatore_down_001_16x32.png")),
@@ -132,8 +133,14 @@ public enum Entities {
   PLAYER_SPIN_7(Entities.class.getResourceAsStream("entities/Bomberman_spin_7.png")),
   PLAYER_SPIN_8(Entities.class.getResourceAsStream("entities/Bomberman_spin_8.png"));
 
+  /** The image of the entity */
   @Getter private final Image image;
 
+  /**
+   * The entities constructor
+   *
+   * @param image The image of the entity
+   */
   Entities(InputStream image) {
     this.image = new Image(image);
   }

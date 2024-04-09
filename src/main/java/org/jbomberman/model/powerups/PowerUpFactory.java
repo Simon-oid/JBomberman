@@ -4,17 +4,28 @@ import java.util.Random;
 
 public class PowerUpFactory {
 
-  private static final double DEFAULT_SPAWN_CHANCE = 0.3; // Default spawn chance
-
-  // Different spawn chances for each power-up type
+  /** The spawn chance of the bomb up power-up */
   private static double bombUpSpawnChance = 0.3; // 30% chance
+
+  /** The spawn chance of the skate power-up */
   private static double skateSpawnChance = 0.7; // 70% chance
 
+  /**
+   * Set the spawn chance of the power-ups
+   *
+   * @param bombUpSpawnChance The spawn chance of the bomb up power-up
+   * @param skateSpawnChance The spawn chance of the skate power-up
+   */
   public static void setPowerUpSpawnChance(double bombUpSpawnChance, double skateSpawnChance) {
     PowerUpFactory.bombUpSpawnChance = bombUpSpawnChance;
     PowerUpFactory.skateSpawnChance = skateSpawnChance;
   }
 
+  /**
+   * Create a random power-up
+   *
+   * @return The random power-up
+   */
   public static PowerUp createRandomPowerUp() {
     Random random = new Random();
     double totalChance = bombUpSpawnChance + skateSpawnChance; // Total spawn chances

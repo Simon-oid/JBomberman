@@ -3,6 +3,19 @@ package org.jbomberman.model.listener;
 import org.jbomberman.model.entita.Direction;
 import org.jbomberman.model.entita.Type;
 
+/**
+ * The mob movement data class
+ *
+ * @param type
+ * @param mobType
+ * @param id
+ * @param xStep
+ * @param yStep
+ * @param delta
+ * @param oldX
+ * @param oldY
+ * @param puropenDirection
+ */
 public record MobMovementData(
     PackageType type,
     Type mobType,

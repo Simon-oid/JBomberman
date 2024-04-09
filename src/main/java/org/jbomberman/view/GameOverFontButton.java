@@ -8,6 +8,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
 public class GameOverFontButton extends Button {
+
+  /**
+   * The game over font button constructor
+   *
+   * @param text The text to display on the button
+   */
   public GameOverFontButton(String text) {
     HBox hbox = new HBox();
     hbox.setPadding(new Insets(10, 10, 10, 10)); // Add padding to the HBox

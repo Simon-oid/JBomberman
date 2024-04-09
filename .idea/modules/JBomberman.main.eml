@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component inheritJdk="true">
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$/../../src/main"/>
+	<contentEntry url="file://$MODULE_DIR$/../../build/generated/sources/annotationProcessor/java/main"/>
+	<lib name="Gradle: org.projectlombok:lombok:1.18.26" scope="PROVIDED"/>
+	<levels>
+		<level name="Gradle: org.openjfx:javafx-fxml:win:17.0.6" value="project"/>
+		<level name="Gradle: org.openjfx:javafx-controls:17.0.6" value="project"/>
+		<level name="Gradle: org.openjfx:javafx-controls:win:17.0.6" value="project"/>
+		<level name="Gradle: org.openjfx:javafx-graphics:17.0.6" value="project"/>
+		<level name="Gradle: org.openjfx:javafx-graphics:win:17.0.6" value="project"/>
+		<level name="Gradle: org.openjfx:javafx-base:17.0.6" value="project"/>
+		<level name="Gradle: org.openjfx:javafx-base:win:17.0.6" value="project"/>
+		<level name="Gradle: com.google.code.gson:gson:2.10.1" value="project"/>
+		<level name="Gradle: org.projectlombok:lombok:1.18.26" value="project"/>
+	</levels>
+</component>

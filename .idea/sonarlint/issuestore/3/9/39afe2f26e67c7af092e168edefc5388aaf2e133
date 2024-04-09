@@ -1,15 +1,13 @@
 
-O
-java:S1199Y"-Extract this nested code block into a method.(ÒÌâ–øÿÿÿÿ8Ğ±€èÜ1
-f
-java:S2583&"DChange this condition so that it does not always evaluate to "false"(ˆºØ¬üÿÿÿÿ8Üà¥îã1
-X	java:S125"<This block of commented-out lines of code should be removed.(×Çç™8Õ±€èÜ1
-U
-java:S3400;"9Remove this method and declare a constant for this value.(¸®Ã'8Ö±€èÜ1
-T
-java:S1854H"7Remove this useless assignment to local variable "map".(ª›¥²8Ö±€èÜ1
-E
-java:S1481H"(Remove this unused "map" local variable.(ª›¥²8Ö±€èÜ1
-X	java:S125X"<This block of commented-out lines of code should be removed.(À¿·…8Ö±€èÜ1
-X
-java:S1751Z"6Remove this "return" statement or make it conditional.(ïùÂ¼ùÿÿÿÿ8×±€èÜ1
+u
+java:S1199O"-Extract this nested code block into a method.(ÒÌâ–øÿÿÿÿ8Ğ±€èÜ1J$cff7897e-f6ee-4b45-be39-77161fa13527
+Œ
+java:S2583"DChange this condition so that it does not always evaluate to "false"(ˆºØ¬üÿÿÿÿ8Üà¥îã1J$cc389ec6-a4f6-44c6-b200-f920d43c38a8
+{
+java:S34002"9Remove this method and declare a constant for this value.(¸®Ã'8Ö±€èÜ1J$9b5b2694-2508-476e-a0d0-116c677a096d
+z
+java:S1854?"7Remove this useless assignment to local variable "map".(ª›¥²8Ö±€èÜ1J$c8fbc9c5-1f74-4f1d-a3c6-486a3c38d1d6
+k
+java:S1481?"(Remove this unused "map" local variable.(ª›¥²8Ö±€èÜ1J$3a4fae5a-483e-4257-b1a8-029eb4333a0c
+~
+java:S1751P"6Remove this "return" statement or make it conditional.(ïùÂ¼ùÿÿÿÿ8×±€èÜ1J$6abc9d69-6afc-410e-ab75-ead17b9466d7

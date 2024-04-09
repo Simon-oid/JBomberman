@@ -32,44 +32,73 @@ import org.jbomberman.view.Tiles;
 @Setter
 public class Map extends Observable {
 
+  /** The width of the map in tiles */
   private static final int MAP_WIDTH = 15; // Adjust map width to include border
+
+  /** The height of the map in tiles */
   private static final int MAP_HEIGHT = 13; // Adjust map height to include border
 
-  // Getter for the level attribute
-  @Getter private Integer level = 1;
+  /** The level of the map */
+  private Integer level = 1;
 
+  /** The list of tiles in the map */
   private ArrayList<Tiles> numTileMap;
 
+  /**
+   * Singleton pattern method to get the instance of the Map class.
+   *
+   * @return the single instance of Map
+   */
   private static Map instance;
 
+  /** The list of entities in the map */
   private List<Entity> entities;
 
+  /** The player entity */
   private Player player;
+
+  /** The starting position on the x-axis */
   private int startingPosX;
+
+  /** The starting position on the y-axis */
   private int startingPosY;
 
+  /** The flag to determine if mobs are moving */
   private boolean mobsMovement;
 
+  /** The list of hitboxes for the tiles */
   private List<Rectangle2D> tileHitBoxes;
 
+  /** The scheduled executor service for handling mob movement */
   private ScheduledExecutorService executorService;
 
+  /** The set of mobs affected by the explosion */
   private Set<Mob> mobsAffectedByExplosion = new HashSet<>();
 
+  /** The list of power-ups in the map */
   private List<PowerUp> powerUps = new ArrayList<>();
 
+  /** The scheduled executor service for handling power-up despawning */
   private ScheduledExecutorService despawnScheduler = Executors.newScheduledThreadPool(1);
 
+  /** The hitbox for the exit tile */
   private Rectangle2D exitTileHitBox;
 
+  /** The standard direction of the puropen mob */
   private Direction puropenDirection = Direction.NONE;
 
+  /** The flag to determine if the exit tile has been spawned */
   private boolean exitTileSpawned = false;
 
   private Map() {
     executorService = Executors.newSingleThreadScheduledExecutor();
   }
 
+  /**
+   * Singleton pattern method to get the instance of the Map class.
+   *
+   * @return the single instance of Map
+   */
   public static Map getInstance() {
     if (instance == null) {
       instance = new Map(); // Create a new instance
@@ -77,6 +106,12 @@ public class Map extends Observable {
     return instance;
   }
 
+  /**
+   * Loads the map from a given path.
+   *
+   * @param path the path of the map file
+   * @throws LoadMapException if an error occurs while loading the map
+   */
   public void loadMap(String path) {
     ArrayList<Tiles> matrix = new ArrayList<>();
 
@@ -111,6 +146,14 @@ public class Map extends Observable {
     sendUpdate(packageData);
   }
 
+  /**
+   * Creates a tile based on the given parameters.
+   *
+   * @param x the x-coordinate of the tile
+   * @param y the y-coordinate of the tile
+   * @param tileType the type of the tile
+   * @return the created Tile
+   */
   private Tile createTile(int x, int y, Tiles tileType) {
     switch (tileType) {
       case GRASS:
@@ -122,12 +165,23 @@ public class Map extends Observable {
     }
   }
 
+  /**
+   * Sends an update to the observers.
+   *
+   * @param packageData the data to be sent
+   */
   public void sendUpdate(PackageData packageData) {
     setChanged();
     notifyObservers(packageData);
     clearChanged();
   }
 
+  /**
+   * Loads entities from a given file path.
+   *
+   * @param filePath the path of the file
+   * @throws LoadMapException if an error occurs while loading entities
+   */
   public void loadEntities(String filePath) {
     try (InputStreamReader fileReader =
         new InputStreamReader(Map.class.getResourceAsStream(filePath))) {
@@ -182,9 +236,12 @@ public class Map extends Observable {
     }
   }
 
+  /**
+   * Loads a level from a given level string.
+   *
+   * @param level the level string
+   */
   public void loadLevel(String level) {
-
-    System.out.println("Loading level " + level + "...");
 
     Timeline timeline0 =
         new Timeline(
@@ -219,6 +276,7 @@ public class Map extends Observable {
     timeline.play();
   }
 
+  /** Sends the initial positions of the entities to the observers. */
   private void sendInitialEntityPositions() {
 
     int initialX = player.getX();
@@ -235,6 +293,12 @@ public class Map extends Observable {
     }
   }
 
+  /**
+   * Creates package data for the initial position of the entity.
+   *
+   * @param entity the entity for which to create the initial position data
+   * @return the package data for the initial position of the entity
+   */
   private PackageData createInitialPositionData(Entity entity) {
     int initialX = entity.getX(); // Get the initial X position of the entity
     int initialY = entity.getY(); // Get the initial Y position of the entity
@@ -250,6 +314,7 @@ public class Map extends Observable {
     }
   }
 
+  /** Moves entities in the map. */
   public void moveEntities() {
     mobsMovement = true;
 
@@ -260,6 +325,13 @@ public class Map extends Observable {
     MobHandler.getInstance().startMobMovement();
   }
 
+  /**
+   * Moves the player in the map.
+   *
+   * @param xStep the x-coordinate step
+   * @param yStep the y-coordinate step
+   * @param delta the delta time
+   */
   public void movePlayer(int xStep, int yStep, double delta) {
     int oldX = player.getX();
     int oldY = player.getY();
@@ -309,6 +381,11 @@ public class Map extends Observable {
             direction)); // Update direction
   }
 
+  /**
+   * calculates the direction of the player
+   *
+   * @param xStep the value of the step that the player takes
+   */
   private Direction calculateDirection(int xStep, int yStep) {
     if (xStep > 0) {
       return Direction.RIGHT;
@@ -323,12 +400,18 @@ public class Map extends Observable {
     }
   }
 
+  /** Checks if the player was inside a bomb */
   private boolean playerWasInsideBomb() {
     // Check if the player's old position was inside a bomb
     Rectangle2D oldPlayerHitBox = new Rectangle2D(player.getX(), player.getY(), 32, 32);
     return checkPlayerBombCollision(oldPlayerHitBox);
   }
 
+  /**
+   * Checks if the player collides with the Bomb
+   *
+   * @param playerHitBox the player hitbox
+   */
   public boolean checkPlayerBombCollision(Rectangle2D playerHitBox) {
     for (Entity entity : entities) {
       if (entity instanceof Bomb) {
@@ -342,6 +425,14 @@ public class Map extends Observable {
     return false; // No collision detected
   }
 
+  /**
+   * Moves a mob in the map.
+   *
+   * @param mob the mob to be moved
+   * @param xStep the x-coordinate step
+   * @param yStep the y-coordinate step
+   * @param delta the delta time
+   */
   public void moveMob(Mob mob, int xStep, int yStep, double delta) {
 
     int oldX = mob.getX();
@@ -375,7 +466,7 @@ public class Map extends Observable {
       mob.setDirection(puropenDirection);
     }
 
-    detectPlayerMobCollision(delta);
+    detectPlayerMobCollision();
 
     // Update the mob's position
     mob.move(newX, newY);
@@ -395,6 +486,12 @@ public class Map extends Observable {
     sendUpdate(mobMovementData);
   }
 
+  /**
+   * Detects collision between the bomb and mobs.
+   *
+   * @param mobHitBox the hitbox of the mob
+   * @return true if collision is detected, false otherwise
+   */
   public boolean checkMobBombCollision(Rectangle2D mobHitBox) {
     for (Entity entity : entities) {
       if (entity instanceof Bomb) {
@@ -408,6 +505,13 @@ public class Map extends Observable {
     return false; // No collision detected
   }
 
+  /**
+   * Detects collision between the mobs.
+   *
+   * @param mob the mob to be checked
+   * @param newX the new x-coordinate of the mob
+   * @param newY the new y-coordinate of the mob
+   */
   private boolean collidesWithOtherMobs(Mob mob, int newX, int newY) {
     // Create a hitbox for the new position
     Rectangle2D newHitBox = new Rectangle2D(newX, newY, mob.getWidth(), mob.getHeight());
@@ -427,6 +531,12 @@ public class Map extends Observable {
     return false;
   }
 
+  /**
+   * Chooses a random valid direction for the mob.
+   *
+   * @param mob the mob for which to choose a direction
+   * @return the chosen direction
+   */
   private Direction chooseRandomValidDirection(Mob mob) {
     // Get the current direction of the mob
     Direction currentDirection = mob.getDirection();
@@ -453,6 +563,13 @@ public class Map extends Observable {
     return currentDirection;
   }
 
+  /**
+   * calculates the valid directions for the mob
+   *
+   * @param mob the mob for which to calculate the valid directions
+   * @param direction the direction to check
+   * @return true if the direction is valid, false otherwise
+   */
   private boolean isValidDirection(Mob mob, Direction direction) {
     // Calculate the new position based on the direction
     int newX = mob.getX() + direction.getX();
@@ -465,6 +582,7 @@ public class Map extends Observable {
     return !collidesWithSolid(newHitBox);
   }
 
+  /** spawns a bomb in the map */
   public void spawnBomb() {
     int tileRow = player.getY() / 48;
     int tileColumn = player.getX() / 48;
@@ -496,6 +614,12 @@ public class Map extends Observable {
     }
   }
 
+  /**
+   * Detects collision between an entity and the solid tiles.
+   *
+   * @param newHitBox the hitbox of the entity
+   * @return true if collision is detected, false otherwise
+   */
   public boolean collidesWithSolid(Rectangle2D newHitBox) {
 
     int leftX = (int) newHitBox.getMinX();
@@ -511,6 +635,13 @@ public class Map extends Observable {
     return topLeftCollides || topRightCollides || bottomLeftCollides || bottomRightCollides;
   }
 
+  /**
+   * Checks if the tile at the given coordinates is collidable.
+   *
+   * @param leftX the left x-coordinate of the tile
+   * @param topY the top y-coordinate of the tile
+   * @return true if the tile is collidable, false otherwise
+   */
   private boolean isCollidableTile(int leftX, int topY) {
     int tileX = leftX / Tiles.GRASS.size();
     int tileY = topY / Tiles.GRASS.size();
@@ -524,6 +655,11 @@ public class Map extends Observable {
     return false;
   }
 
+  /**
+   * Explodes the bomb and handles the explosion.
+   *
+   * @param bomb the bomb to explode
+   */
   public void explodeBomb(Bomb bomb) {
     int explosionX = bomb.getX();
     int explosionY = bomb.getY();
@@ -591,6 +727,14 @@ public class Map extends Observable {
     }
   }
 
+  /**
+   * Spawns a power-up at the given tile coordinates.
+   *
+   * @param tileIndexX
+   * @param tileIndexY
+   * @param type
+   * @param delayInSeconds
+   */
   public void spawnPowerUp(int tileIndexX, int tileIndexY, PowerUpType type, int delayInSeconds) {
     Runnable spawnTask =
         () -> {
@@ -636,6 +780,12 @@ public class Map extends Observable {
     executorService.schedule(spawnTask, delayInSeconds, TimeUnit.MILLISECONDS);
   }
 
+  /**
+   * Initializes the collision detection scheduler for the mob.
+   *
+   * @param horizontalExplosionHitbox the horizontal explosion hitbox
+   * @param verticalExplosionHitbox the vertical explosion hitbox
+   */
   private void initCollisionDetectionScheduler(
       Rectangle2D horizontalExplosionHitbox, Rectangle2D verticalExplosionHitbox) {
     // Schedule the task for collision detection at a fixed rate
@@ -657,6 +807,14 @@ public class Map extends Observable {
         TimeUnit.MILLISECONDS);
   }
 
+  /**
+   * Handles the detection of collision between the bomb explosion and adjacent tiles.
+   *
+   * @param x the starting x-coordinate of the explosion
+   * @param y the starting y-coordinate of the explosion
+   * @param playerRadius the radius of the player
+   * @return an array of distances for each direction
+   */
   private int[] explodeAdjacentTiles(int x, int y, int playerRadius) {
     int[] distances = new int[] {playerRadius, playerRadius, playerRadius, playerRadius};
     int[][] directions = new int[][] {{1, 0}, {-1, 0}, {0, -1}, {0, 1}}; // Right, Left, Up, Down
@@ -668,18 +826,9 @@ public class Map extends Observable {
         int tileX = x / 48 + deltaX;
         int tileY = y / 48 + deltaY;
 
-        // System.out.println(tileX);
-        // System.out.println(tileY);
-
         if (isExplosionCollision(tileX, tileY)) {
           // Check if the tile is destroyable
           if (isDestroyableTile(tileX, tileY)) {
-            // Calculate the next tile based on the current direction
-            int nextTileX = tileX + directions[direction][0];
-            int nextTileY = tileY + directions[direction][1];
-
-            // System.out.println("Current Tile: (" + tileX + ", " + tileY + ")");
-            // System.out.println("Next Tile: (" + nextTileX + ", " + nextTileY + ")");
 
             handleTileDestruction(tileX, tileY);
             distances[direction] = range - 1;
@@ -698,6 +847,12 @@ public class Map extends Observable {
     return distances;
   }
 
+  /**
+   * Handles the destruction of a destroyable tile.
+   *
+   * @param tileIndexX the x-coordinate of the tile
+   * @param tileIndexY the y-coordinate of the tile
+   */
   private void handleTileDestruction(int tileIndexX, int tileIndexY) {
     if (tileIndexX < 0 || tileIndexX >= MAP_WIDTH || tileIndexY < 0 || tileIndexY >= MAP_HEIGHT) {
       return; // Out-of-bounds coordinates, stop the destruction
@@ -760,10 +915,22 @@ public class Map extends Observable {
     }
   }
 
+  /**
+   * calculates if the current tile is the last destroyable tile present on the map
+   *
+   * @return true if the last destroyable tile is present, false otherwise
+   */
   private boolean isLastDestroyableTile() {
     return numTileMap.stream().filter(Tiles::isDestroyable).count() == 0;
   }
 
+  /**
+   * calculates if the explosion of the bomb collides with a tile
+   *
+   * @param tileX the x-coordinate of the tile
+   * @param tileY the y-coordinate of the tile
+   * @return true if the explosion collides with a tile, false otherwise
+   */
   private boolean isExplosionCollision(int tileX, int tileY) {
     int index = tileY * MAP_WIDTH + tileX;
 
@@ -774,6 +941,13 @@ public class Map extends Observable {
     return false;
   }
 
+  /**
+   * calculates if the tile is destroyable
+   *
+   * @param tileX the x-coordinate of the tile
+   * @param tileY the y-coordinate of the tile
+   * @return true if the tile is destroyable, false otherwise
+   */
   private boolean isDestroyableTile(int tileX, int tileY) {
     int index = tileY * MAP_WIDTH + tileX;
     if (index >= 0 && index < numTileMap.size()) {
@@ -782,6 +956,14 @@ public class Map extends Observable {
     return false;
   }
 
+  /**
+   * Calculates the explosion hitboxes for the bomb explosion.
+   *
+   * @param explosionX the x-coordinate of the explosion
+   * @param explosionY the y-coordinate of the explosion
+   * @param ranges the ranges of the explosion in each direction
+   * @return an array of the horizontal and vertical hitboxes
+   */
   private Rectangle2D[] calculateExplosionHitboxes(int explosionX, int explosionY, int[] ranges) {
     // Calculate the dimensions of the horizontal hitbox
     int horizontalWidth = ((ranges[1] + ranges[0]) * 48) + 48;
@@ -805,9 +987,14 @@ public class Map extends Observable {
     return new Rectangle2D[] {horizontalHitbox, verticalHitbox};
   }
 
+  /**
+   * Detects collision between the mob and the explosion.
+   *
+   * @param horizontalExplosionHitbox the horizontal explosion hitbox
+   * @param verticalExplosionHitbox the vertical explosion hitbox
+   */
   private void detectMobExplosionCollision(
       Rectangle2D horizontalExplosionHitbox, Rectangle2D verticalExplosionHitbox) {
-    //    System.out.println("Checking collision between mobs and explosion...");
 
     // Iterate over all entities to check for collision with explosion
     for (Entity entity : entities) {
@@ -823,23 +1010,24 @@ public class Map extends Observable {
 
         // Check if mob's hitbox intersects with width explosion hitbox
         if (mobHitbox.intersects(horizontalExplosionHitbox)) {
-          // System.out.println("Collision detected between mob and width explosion!");
           handleMobExplosion(mob);
           mobsAffectedByExplosion.add(mob);
         }
 
         // Check if mob's hitbox intersects with height explosion hitbox
         if (mobHitbox.intersects(verticalExplosionHitbox)) {
-          // System.out.println("Collision detected between mob and height explosion!");
           handleMobExplosion(mob);
           mobsAffectedByExplosion.add(mob);
         }
       }
     }
-
-    // System.out.println("Collision detection complete.");
   }
 
+  /**
+   * Handles the explosion of the mob.
+   *
+   * @param mob the mob to be exploded
+   */
   private void handleMobExplosion(Mob mob) {
     int score = calculateScoreForMob(mob);
 
@@ -894,6 +1082,11 @@ public class Map extends Observable {
     }
   }
 
+  /**
+   * checks is if the TileExit is present on the map.
+   *
+   * @return true if the exit tile is present, false otherwise
+   */
   private boolean isExitTilePresent() {
     // Check if there's already an exit tile on the map
     for (Tiles tile : numTileMap) {
@@ -904,10 +1097,11 @@ public class Map extends Observable {
     return false;
   }
 
+  /** Respawns the DENKYUN mob at the exit tile. */
   private void respawnMobOnExitTile() {
     // Find the position of the exit tile
     int[] exitTilePosition = findExitTilePosition(numTileMap);
-    System.out.println(exitTilePosition[0]);
+
     if (exitTilePosition != null) {
       // Calculate the position of the exit tile
       int exitTilePosX = exitTilePosition[0];
@@ -915,14 +1109,7 @@ public class Map extends Observable {
 
       // Create a new DENKYUN mob at the exit tile position
       Mob denkyunMob =
-          new Mob(
-              exitTilePosX,
-              exitTilePosY,
-              45,
-              45,
-              Type.DENKYUN,
-              Direction.RIGHT,
-              0); // TODO: fix the id for the respawned denkyun
+          new Mob(exitTilePosX, exitTilePosY, 45, 45, Type.DENKYUN, Direction.RIGHT, 0);
 
       Direction newDirection = chooseRandomValidDirection(denkyunMob);
 
@@ -941,6 +1128,12 @@ public class Map extends Observable {
     }
   }
 
+  /**
+   * Finds the position of the exit tile on the map.
+   *
+   * @param numTileMap the list of tiles
+   * @return an array containing the x and y coordinates of the exit tile
+   */
   private int[] findExitTilePosition(ArrayList<Tiles> numTileMap) {
 
     int mapWidth = 15; // Width of the map in tile units
@@ -961,6 +1154,12 @@ public class Map extends Observable {
     return null; // Exit tile not found
   }
 
+  /**
+   * Calculates the score for the mob based on its type.
+   *
+   * @param mob the mob for which to calculate the score
+   * @return the score for the mob
+   */
   private int calculateScoreForMob(Mob mob) {
     Type mobType = mob.getType();
     int score = 0;
@@ -980,6 +1179,12 @@ public class Map extends Observable {
     return score;
   }
 
+  /**
+   * Initializes the collision detection scheduler for the player.
+   *
+   * @param horizontalExplosionHitbox the horizontal explosion hitbox
+   * @param verticalExplosionHitbox the vertical explosion hitbox
+   */
   private void initPlayerCollisionDetectionScheduler(
       Rectangle2D horizontalExplosionHitbox, Rectangle2D verticalExplosionHitbox) {
     // Schedule the task for player collision detection at a fixed rate
@@ -997,24 +1202,36 @@ public class Map extends Observable {
         () -> playerCollisionDetectionTask.cancel(false), 550, TimeUnit.MILLISECONDS);
   }
 
+  /**
+   * Detects collision between the player and the explosion.
+   *
+   * @param player the player
+   * @param horizontalExplosionHitbox the horizontal explosion hitbox
+   * @param verticalExplosionHitbox the vertical explosion hitbox
+   */
   private void detectPlayerCollisionWithExplosion(
       Player player, Rectangle2D horizontalExplosionHitbox, Rectangle2D verticalExplosionHitbox) {
     Rectangle2D playerHitbox = player.getHitBox();
 
     // Check if player's hitbox intersects with width explosion hitbox
     if (playerHitbox.intersects(horizontalExplosionHitbox)) {
-      handlePlayerHit(player, KeyHandler.getInstance().getDelta());
+      handlePlayerHit(player);
       updatePlayerLives(player);
     }
 
     // Check if player's hitbox intersects with height explosion hitbox
     if (playerHitbox.intersects(verticalExplosionHitbox)) {
-      handlePlayerHit(player, KeyHandler.getInstance().getDelta());
+      handlePlayerHit(player);
       updatePlayerLives(player);
     }
   }
 
-  private void handlePlayerHit(Player player, double delta) {
+  /**
+   * Updates the player's lives and sends the update to the GameView.
+   *
+   * @param player the player
+   */
+  private void handlePlayerHit(Player player) {
     if (player.isVulnerable()) {
 
       player.takeDamage();
@@ -1026,24 +1243,27 @@ public class Map extends Observable {
       // Set player position if needed
 
       scheduler.schedule(
-          this::resumeKeyHandler, 2000, TimeUnit.MILLISECONDS); // Adjust timing as needed
+          this::resumeKeyHandler, 2500, TimeUnit.MILLISECONDS); // Adjust timing as needed
 
       // Notify GameView to update display with new player lives
       sendUpdate(new PlayerLivesUpdateData(PackageType.PLAYER_LIVES_UPDATE, player.getLives()));
     }
   }
 
+  /** stops the key handler */
   private void pauseKeyHandler() {
     // Pause the KeyHandler
     KeyHandler.getInstance().stopKeyHandler();
   }
 
+  /** resumes the key handler */
   private void resumeKeyHandler() {
     // Resume the KeyHandler
     KeyHandler.getInstance().startMovement();
   }
 
-  public void detectPlayerMobCollision(double delta) {
+  /** Detects collision between the player and mobs. */
+  public void detectPlayerMobCollision() {
     Rectangle2D playerHitbox = player.getHitBox();
 
     // Iterate over all mobs to check for collision with player
@@ -1054,13 +1274,20 @@ public class Map extends Observable {
 
         // Check if mob's hitbox intersects with player's hitbox
         if (mobHitbox.intersects(playerHitbox)) {
-          handlePlayerHit(player, delta);
+          handlePlayerHit(player);
           updatePlayerLives(player);
         }
       }
     }
   }
 
+  /**
+   * Spawns a random power-up at the given tile coordinates after a delay.
+   *
+   * @param tileIndexX the x-coordinate of the tile
+   * @param tileIndexY the y-coordinate of the tile
+   * @param delayInSeconds the delay in seconds before spawning the power-up
+   */
   public void spawnRandomPowerUp(int tileIndexX, int tileIndexY, int delayInSeconds) {
     try {
       // Check if the tile at the given coordinates is an exit tile
@@ -1100,6 +1327,11 @@ public class Map extends Observable {
     }
   }
 
+  /**
+   * Checks collision between the player and power-ups.
+   *
+   * <p>When a collision is detected, the power-up is applied to the player.
+   */
   public void checkPlayerPowerUpCollision() {
     Rectangle2D playerHitBox = player.getHitBox();
 
@@ -1120,7 +1352,6 @@ public class Map extends Observable {
         int powerUpY = (int) powerUp.getY();
         // Remove the power-up from the list
         iterator.remove();
-        // System.out.println("powerup collision checked");
         // Send update
         sendUpdate(
             new PowerUpApplicationData(
@@ -1130,14 +1361,23 @@ public class Map extends Observable {
     }
   }
 
+  /**
+   * Handles the despawn of a power-up.
+   *
+   * @param powerUp the power-up to despawn
+   */
   private void handlePowerUpDespawn(PowerUp powerUp) {
     powerUps.remove(powerUp); // Remove the power-up from the list
     sendUpdate(
         new PowerUpDespawnData(
             PackageType.POWERUP_DESPAWN, powerUp.getType(), powerUp.getX(), powerUp.getY()));
-    // System.out.println("powerup despawned");
   }
 
+  /**
+   * Cancels the despawn task associated with the power-up.
+   *
+   * @param powerUp the power-up
+   */
   private void cancelPowerUpDespawn(PowerUp powerUp) {
     // Get the despawn task associated with the power-up
     ScheduledFuture<?> despawnTask = powerUp.getDespawnTask();
@@ -1145,9 +1385,13 @@ public class Map extends Observable {
       // Cancel the despawn task
       despawnTask.cancel(false);
     }
-    // System.out.println("powerup despawn canceled");
   }
 
+  /**
+   * Updates the player's score and sends the update to the GameView.
+   *
+   * @param player the player
+   */
   public void updatePlayerScore(Player player) {
     // get the score of the player
 
@@ -1160,6 +1404,11 @@ public class Map extends Observable {
     sendUpdate(packageData);
   }
 
+  /**
+   * Updates the player's lives and sends the update to the GameView.
+   *
+   * @param player the player
+   */
   public void updatePlayerLives(Player player) {
     int lives = player.getLives();
 
@@ -1179,6 +1428,13 @@ public class Map extends Observable {
     }
   }
 
+  /**
+   * Spawns the exit tile at the given tile coordinates after a delay.
+   *
+   * @param tileIndexX the x-coordinate of the tile
+   * @param tileIndexY the y-coordinate of the tile
+   * @param delayInSeconds the delay in seconds before spawning the exit tile
+   */
   private void spawnExitTile(int tileIndexX, int tileIndexY, int delayInSeconds) {
     Runnable spawnTask =
         () -> {
@@ -1193,14 +1449,12 @@ public class Map extends Observable {
             // Store the hitbox of the exit tile
             exitTileHitBox = new Rectangle2D(x, y, Tiles.GRASS.size(), Tiles.GRASS.size());
 
-            // System.out.println("spawnato il tile exit");
             // Notify GameView to update display with the exit tile
             sendUpdate(new ExitTileSpawnData(PackageType.SPAWN_EXIT_TILE, x, y));
 
             exitTileSpawned = true;
           } catch (Exception e) {
             // If an exception occurs during spawning, log it (optional)
-            System.out.println("Failed to spawn exit tile: " + e.getMessage());
           }
         };
 
@@ -1208,6 +1462,11 @@ public class Map extends Observable {
     executorService.schedule(spawnTask, delayInSeconds, TimeUnit.MILLISECONDS);
   }
 
+  /**
+   * Checks if the player has collided with the exit tile.
+   *
+   * <p>If the player has collided with the exit tile, the level is ended.
+   */
   public void checkPlayerExitCollision() {
     if (player.collidesWithExitTile(exitTileHitBox)) {
       // Player collided with the exit tile, end the level
@@ -1215,6 +1474,11 @@ public class Map extends Observable {
     }
   }
 
+  /**
+   * Ends the current level and loads the next level.
+   *
+   * <p>If the current level is the last level, the game is won.
+   */
   private void endLevel() {
     level++;
     // Increment the level number
@@ -1243,6 +1507,11 @@ public class Map extends Observable {
     sendUpdate(new LevelUpdateData(PackageType.LEVEL_UPDATE, currentLevel));
   }
 
+  /**
+   * Displays the "You Win" screen.
+   *
+   * <p>This method is called when the player has completed all levels.
+   */
   private void displayYouWinScreen() {
     // Create a new PackageData instance for the "You Won" event
     PackageData youWinData = new YouWinData(PackageType.YOU_WIN);
@@ -1251,10 +1520,16 @@ public class Map extends Observable {
     sendUpdate(youWinData);
   }
 
+  /** Removes the exit tile hitbox. */
   private void removeExitTileHitbox() {
     exitTileHitBox = null;
   }
 
+  /**
+   * Ends the game and displays the "Game Over" screen.
+   *
+   * <p>This method is called when the player has no lives left.
+   */
   private void gameOver() {
     int score = player.getScore();
 
@@ -1286,6 +1561,7 @@ public class Map extends Observable {
             direction)); // Update direction
   }
 
+  // gets an array of all the mobs in the game
   public Mob[] getMobs() {
     List<Mob> mobList = new ArrayList<>();
 

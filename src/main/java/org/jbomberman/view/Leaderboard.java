@@ -18,10 +18,16 @@ import javafx.scene.layout.VBox;
 
 public class Leaderboard {
 
+  /** The FXML scores box element */
   @FXML private VBox scoresBox;
+
+  /** The FXML scrolling background pane element */
   @FXML private Pane scrollingBackgroundPane;
+
+  /** The FXML exit button element */
   @FXML private Button exit;
 
+  /** Initialize the leaderboard */
   public void initialize() {
 
     // Create an instance of ScrollingBackground and add it to the scrollingBackgroundPane
@@ -49,6 +55,11 @@ public class Leaderboard {
     exit.setOnAction(event -> SceneController.getInstance().switchTo(Roots.MENU));
   }
 
+  /**
+   * Get the player data from the playerData.csv file
+   *
+   * @return The player data
+   */
   private List<String> getPlayerData() {
     List<String> playerData = new ArrayList<>();
     try (BufferedReader br =
@@ -75,6 +86,12 @@ public class Leaderboard {
     return playerData;
   }
 
+  /**
+   * Draws the player data
+   *
+   * @param playerName The player name
+   * @param playerScore The player score
+   */
   private void drawPlayerData(String playerName, String playerScore) {
     String playerData = playerName + ":" + playerScore;
     HBox playerScoreBox = new HBox();
@@ -85,6 +102,12 @@ public class Leaderboard {
     scoresBox.getChildren().add(playerScoreBox);
   }
 
+  /**
+   * Get the sprite for the character
+   *
+   * @param c The character
+   * @return The ImageView for the character
+   */
   private ImageView getSprite(char c) {
     ImageView original;
     if (c == ':') {

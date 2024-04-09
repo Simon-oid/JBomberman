@@ -1,6 +1,11 @@
 package org.jbomberman.model.listener;
 
-public interface PackageData
-{
-    PackageType type();
+/** The package data interface */
+public interface PackageData {
+  /**
+   * The type of the package
+   *
+   * @return The type of the package
+   */
+  PackageType type();
 }

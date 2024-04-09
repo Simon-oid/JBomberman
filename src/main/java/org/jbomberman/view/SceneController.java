@@ -22,14 +22,23 @@ import org.jbomberman.model.listener.*;
 @Setter
 public class SceneController implements Observer {
 
+  /** The instance of the SceneController */
   private static SceneController instance;
 
+  /** The window of the SceneController */
   private Stage window;
 
+  /** The roots of the SceneController */
   private final Parent[] roots;
 
+  /** The game root of the SceneController */
   private GameView gameRoot;
 
+  /**
+   * Initialize the SceneController
+   *
+   * @param window The window
+   */
   public void initialize() {
 
     KeyHandler keyHandler = KeyHandler.getInstance();
@@ -55,15 +64,30 @@ public class SceneController implements Observer {
         });
   }
 
+  /**
+   * Sence controller constructor
+   *
+   * <p>Initialize the roots
+   */
   private SceneController() {
     roots = new Parent[Roots.values().length];
   }
 
+  /**
+   * Get the instance of the SceneController
+   *
+   * @return The instance
+   */
   public static SceneController getInstance() {
     if (instance == null) instance = new SceneController();
     return instance;
   }
 
+  /**
+   * Switch to the root
+   *
+   * @param root The root
+   */
   public void switchTo(Roots root) {
     if (roots[root.ordinal()] == null) {
       load(root);
@@ -87,6 +111,11 @@ public class SceneController implements Observer {
     }
   }
 
+  /**
+   * Adjust the window size
+   *
+   * <p>Set the width and height of the window
+   */
   private void adjustWindowSize() {
     int tileWidth = 48;
     int tileHeight = 48;
@@ -103,6 +132,7 @@ public class SceneController implements Observer {
     window.setHeight(windowHeight);
   }
 
+  /** Closes the window */
   public void exitConfirm() {
 
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -117,11 +147,17 @@ public class SceneController implements Observer {
     }
   }
 
+  /** Exits the window */
   public void exit() {
     window.close();
     System.exit(0);
   }
 
+  /**
+   * Revert the username changes
+   *
+   * <p>Revert the changes made to the player data
+   */
   private void revertUsernameChanges() {
     try {
       RandomAccessFile file =
@@ -140,6 +176,11 @@ public class SceneController implements Observer {
     }
   }
 
+  /**
+   * Load the root
+   *
+   * @param root The root
+   */
   private void load(Roots root) {
     try {
       roots[root.ordinal()] = FXMLLoader.load(getClass().getResource(root.getResourcePath()));
@@ -148,6 +189,11 @@ public class SceneController implements Observer {
     }
   }
 
+  /**
+   * Switch to the GameOver scene
+   *
+   * @param data The GameOverUpdateData
+   */
   private void switchToGameOverScene(GameOverUpdateData data) {
     int playerScore = data.score();
 
@@ -190,6 +236,7 @@ public class SceneController implements Observer {
     delay.play();
   }
 
+  /** Switch to the YouWin scene */
   private void switchToYouWonScene() {
 
     AudioManager.getInstance().stopAll();
@@ -220,6 +267,12 @@ public class SceneController implements Observer {
     delay.play();
   }
 
+  /**
+   * Update the observer
+   *
+   * @param o the observable object.
+   * @param arg an argument passed to the {@code notifyObservers} method.
+   */
   @Override
   public void update(Observable o, Object arg) {
     if (arg instanceof PackageData data) {

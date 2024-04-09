@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import lombok.Getter;
 
+/** The game over fonts enum */
 @Getter
 public enum GameOverFonts {
   SPRITE_C_OVER(
@@ -39,8 +40,14 @@ public enum GameOverFonts {
               .getResource("scenesAssets/gameOver_font_questionMark.png")
               .toExternalForm()));
 
+  /** The image view of the game over fonts */
   private final ImageView imageView;
 
+  /**
+   * The game over fonts constructor
+   *
+   * @param image The image of the game over fonts
+   */
   GameOverFonts(Image image) {
     this.imageView = new ImageView(image);
     this.imageView.setFitWidth(10); // Set the width of the ImageView

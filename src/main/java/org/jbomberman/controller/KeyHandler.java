@@ -10,18 +10,38 @@ import org.jbomberman.model.map.Map;
 @Setter
 public class KeyHandler {
 
+  /** The following variables are used to keep track of the key presses for the player movement. */
   public boolean upPressed, downPressed, leftPressed, rightPressed;
 
-  private boolean isPlayerMoving = false; // Track player movement status
+  /**
+   * isPlayerMoving is a boolean variable that is used to keep track of the player movement status.
+   */
+  private boolean isPlayerMoving = false;
 
+  /**
+   * The instance variable is used to keep track of the KeyHandler instance. This is used to ensure
+   * that only one instance of the KeyHandler is created.
+   */
   private static KeyHandler instance;
 
+  /**
+   * The animationTimer variable is used to keep track of the AnimationTimer instance. This is used
+   * to ensure that only one instance of the AnimationTimer is created.
+   */
   private AnimationTimer animationTimer;
 
+  /** The paused variable is used to keep track of the paused status of the KeyHandler. */
   private boolean paused = false;
 
+  /** The lastFrameTime variable is used to keep track of the last frame time. */
   private long lastFrameTime = -1;
 
+  /**
+   * The onkeyPressed method is used to handle the key pressed event. This method is called when a
+   * key is pressed.
+   *
+   * @param e The KeyEvent object that contains the key pressed event.
+   */
   public void onkeyPressed(KeyEvent e) {
     switch (e.getCode()) {
       case W -> upPressed = true;
@@ -38,6 +58,12 @@ public class KeyHandler {
     updateMovementStatus();
   }
 
+  /**
+   * The onkeyReleased method is used to handle the key released event. This method is called when a
+   * key is released.
+   *
+   * @param e The KeyEvent object that contains the key released event.
+   */
   public void onkeyReleased(KeyEvent e) {
     switch (e.getCode()) {
       case W -> upPressed = false;
@@ -52,11 +78,20 @@ public class KeyHandler {
     updateMovementStatus();
   }
 
-  // Update player movement status based on key presses
+  /**
+   * The updateMovementStatus method is used to update the movement status of the player. This
+   * method is called when a key is pressed or released.
+   */
   private void updateMovementStatus() {
     isPlayerMoving = upPressed || downPressed || leftPressed || rightPressed;
   }
 
+  /**
+   * The getInstance method is used to get the KeyHandler instance. This method is used to ensure
+   * that only one instance of the KeyHandler is created.
+   *
+   * @return The KeyHandler instance.
+   */
   public static KeyHandler getInstance() {
     if (instance == null) {
       instance = new KeyHandler();
@@ -64,12 +99,19 @@ public class KeyHandler {
     return instance;
   }
 
+  /**
+   * The startMovement method is used to start the player movement. This method is called when the
+   * player starts moving.
+   */
   public void startMovement() {
     if (animationTimer == null) createTimer();
     animationTimer.start();
   }
 
-  // TODO: fixare la roba che riguarda il last frame come per il mob handler
+  /**
+   * The createTimer method is used to create the AnimationTimer instance. This method is called
+   * when the AnimationTimer instance is not created.
+   */
   private void createTimer() {
     animationTimer =
         new AnimationTimer() {
@@ -108,20 +150,12 @@ public class KeyHandler {
         };
   }
 
-  public void pauseKeyHandler() {
-    if (!paused && animationTimer != null) {
-      animationTimer.stop();
-      paused = true;
-    }
-  }
-
-  public void resumeKeyHandler() {
-    if (paused && animationTimer != null) {
-      animationTimer.start();
-      paused = false;
-    }
-  }
-
+  /**
+   * The getDelta method is used to get the delta time. This method is called to get the time
+   * difference between the current frame and the last frame.
+   *
+   * @return The delta time.
+   */
   public double getDelta() {
     if (lastFrameTime == -1) {
       lastFrameTime = System.nanoTime();
@@ -135,6 +169,7 @@ public class KeyHandler {
     return deltaSeconds;
   }
 
+  /** The stopMovement method is used to stop the player movement. */
   public void stopKeyHandler() {
     if (animationTimer != null) {
       animationTimer.stop();

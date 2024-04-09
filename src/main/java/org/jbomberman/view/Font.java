@@ -4,6 +4,7 @@ import java.io.InputStream;
 import javafx.scene.image.Image;
 import lombok.Getter;
 
+/** The font enum */
 public enum Font {
   SPRITE_0(Font.class.getResourceAsStream("font/0_font.png")),
   SPRITE_1(Font.class.getResourceAsStream("font/1_font.png")),
@@ -16,8 +17,14 @@ public enum Font {
   SPRITE_8(Font.class.getResourceAsStream("font/8_font.png")),
   SPRITE_9(Font.class.getResourceAsStream("font/9_font.png"));
 
+  /** The image of the font */
   @Getter private final Image image;
 
+  /**
+   * The font constructor
+   *
+   * @param image The image of the font
+   */
   Font(InputStream image) {
     this.image = new Image(image, 8, 14, true, false);
   }

@@ -1,8 +1,5 @@
 
 p
-java:S1604>"(Make this anonymous inner class a lambda(©‚ƒ¶úÿÿÿÿ8§ÍÚÙè1J$b1a369bc-2f54-4481-99ab-56a9b6fdd86e
-‹
-java:S1612u"HReplace this lambda with method reference 'ImageView.class::isInstance'.(ûîó8ÙÍÚÙè1J$fd5a2b33-bba3-4149-80b5-2f2cb564b599
-n	java:S106"+Replace this use of System.out by a logger.(ñŒ•±8ÚÍÚÙè1J$80923a7b-7f02-48ea-9eb0-e6d5ac38fc9b
-m	java:S106„"+Replace this use of System.out by a logger.(Ó±Íw8ÚÍÚÙè1J$df193b95-a93f-4796-a11d-cb82ed9bfc25
-m	java:S106‡"+Replace this use of System.out by a logger.(Ó±Íw8ÛôôÙè1J$177b75e4-f17e-4b2d-8770-2569160ab873
+java:S1604E"(Make this anonymous inner class a lambda(©‚ƒ¶úÿÿÿÿ8§ÍÚÙè1J$fc8fc0b6-bda9-4824-9983-0f103f3c6971
+Œ
+java:S1612‰"HReplace this lambda with method reference 'ImageView.class::isInstance'.(ûîó8ÙÍÚÙè1J$c16cfb63-2e83-4f7d-9336-ea8e4e61a074

@@ -9,10 +9,18 @@ import javafx.scene.layout.Pane;
 
 public class YouWin implements Initializable {
 
+  /** The FXML quit button element */
   @FXML public Button quit;
 
+  /** The FXML scrolling background pane element */
   @FXML private Pane scrollingBackgroundPane;
 
+  /**
+   * Initialize the you win screen
+   *
+   * @param location The location
+   * @param resources The resources
+   */
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     CustomFontButton quitButton = new CustomFontButton("QUIT");
