@@ -1,0 +1,25 @@
+
+»
+java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(–›¿Äúÿÿÿÿ8úÎœœì1
+[
+java:S1854<">Remove this useless assignment to local variable "baseFormat".(Ñ÷¨8ıÎœœì1
+a
+java:S2147S"DCombine this catch with the one at line 81, which has the same body.(ŸäÁ‚8şÎœœì1
+a
+java:S2147U"DCombine this catch with the one at line 83, which has the same body.(ûëßæ8şÎœœì1
+a
+java:S2147W"DCombine this catch with the one at line 85, which has the same body.(˜É³8şÎœœì1
+L
+java:S1481<"/Remove this unused "baseFormat" local variable.(Ñ÷¨8€Ïœœì1
+[
+java:S1854}">Remove this useless assignment to local variable "baseFormat".(Ñ÷¨8‚Ïœœì1
+c
+java:S2147‡"ECombine this catch with the one at line 133, which has the same body.(ï­£Ä8‚Ïœœì1
+c
+java:S2147‰"ECombine this catch with the one at line 135, which has the same body.(Ó•Şˆ8‚Ïœœì1
+h
+java:S2147‹"ECombine this catch with the one at line 137, which has the same body.(Ñ¾éÓüÿÿÿÿ8‚Ïœœì1
+L
+java:S1481}"/Remove this unused "baseFormat" local variable.(Ñ÷¨8ƒÏœœì1
+Z
+java:S1144m"8Remove this unused private "resetSoundtrackClip" method.(¿şëÿÿÿÿÿ8„Ïœœì1

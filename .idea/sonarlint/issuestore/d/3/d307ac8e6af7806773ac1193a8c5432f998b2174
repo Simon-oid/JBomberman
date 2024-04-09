@@ -1,15 +1,15 @@
 
 
-java:S1104"UMake upPressed a static final constant or non-public and provide accessors if needed.(Ë¿á†øÿÿÿÿ8£šõì1J$5301d94e-99a2-4f76-a27c-6496abf77582
+java:S1104"UMake upPressed a static final constant or non-public and provide accessors if needed.(Ë¿á†øÿÿÿÿ8£šõì1J$43727888-2757-48b0-83a2-a31d49ad12e8
 Ÿ
-java:S1104"WMake downPressed a static final constant or non-public and provide accessors if needed.(Ë¿á†øÿÿÿÿ8£šõì1J$b17d7f2e-02e2-4a27-90e4-e4a4912d160d
+java:S1104"WMake downPressed a static final constant or non-public and provide accessors if needed.(Ë¿á†øÿÿÿÿ8£šõì1J$fc42bf36-fa9c-4f46-9c56-4b935be1418f
 Ÿ
-java:S1104"WMake leftPressed a static final constant or non-public and provide accessors if needed.(Ë¿á†øÿÿÿÿ8£šõì1J$946b7938-154a-4d5e-9bae-6f82c7da93e7
+java:S1104"WMake leftPressed a static final constant or non-public and provide accessors if needed.(Ë¿á†øÿÿÿÿ8£šõì1J$82bfea2d-05d4-422a-a423-ff9024de0806
  
-java:S1104"XMake rightPressed a static final constant or non-public and provide accessors if needed.(Ë¿á†øÿÿÿÿ8£šõì1J$ebc26c17-cba3-47ab-ac4b-108aa5c1f053
+java:S1104"XMake rightPressed a static final constant or non-public and provide accessors if needed.(Ë¿á†øÿÿÿÿ8£šõì1J$b0736174-f65a-492e-bc63-5a2bbc5f091b
 
-java:S1659"HDeclare "downPressed" and all following declarations on a separate line.(Ë¿á†øÿÿÿÿ8³šõì1J$a4491799-6916-4c53-b9c2-97508376bf24
+java:S1659"HDeclare "downPressed" and all following declarations on a separate line.(Ë¿á†øÿÿÿÿ8³šõì1J$5ce65964-d0f7-471a-a2f2-3169dbe83aa9
 á
-java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(–ÙÇ†ÿÿÿÿÿ8³šõì1J$2d67c672-96cc-4880-b6be-674eee04703e
+java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(–ÙÇ†ÿÿÿÿÿ8³šõì1J$98bb3d24-3c27-4fcc-9c2f-9a07bf07707e
 š
-java:S3776s"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(Ê‹ëùÿÿÿÿ8·šõì1J$d08ba08d-846f-45e3-9f66-0aae6cb07342
+java:S3776s"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(Ê‹ëùÿÿÿÿ8·šõì1J$78585221-c130-479f-a7bc-b98a04b8023d

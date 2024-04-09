@@ -367,7 +367,6 @@ public class Map extends Observable {
 
     checkPlayerExitCollision();
 
-    // TODO: fixa il fatto che quando il player collide con un blocco, si appiccica al blocco
     player.move(xStep, yStep);
 
     sendUpdate(
@@ -897,7 +896,7 @@ public class Map extends Observable {
       // Generate a random number between 0 and 1
       double randomValue = Math.random();
       // Check if the random value falls within the spawn chance
-      if (randomValue <= 100.0 // was 0.05 before
+      if (randomValue <= 0.05
           || isLastDestroyableTile()) { // Adjust this value as needed for the desired spawn chance
         if (!exitTileSpawned) {
           spawnExitTile(tileIndexX, tileIndexY, 1300);

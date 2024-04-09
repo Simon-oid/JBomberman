@@ -153,3 +153,12 @@ m
 =src/main/java/org/jbomberman/model/tiles/DestroyableTile.java,9\c\9cd8f5b00fcde80279b851ad4c3368666560bf8d
 g
 7src/main/java/org/jbomberman/model/tiles/GrassTile.java,7\d\7d7287cf9c9652d65a413ea0fcd4c2b5c90d90e5
+8
+.project,f\8\f8b41ce76d7b80d2b47e91b5f92c15f00eccf187
+:
+
+.classpath,3\5\354079a72b91a4280407c16a36f47d1986fd85a5
+D
+META-INF/MANIFEST.MF,2\e\2e8cf92205ec303e7304888d382cb6a8cf5f56ba
+b
+2src/main/java/org/jbomberman/view/AudioManage.java,b\4\b4ee1fd3607a72dea9c1fe3bef83d66ac3bd7a58

@@ -34,11 +34,7 @@ public class SceneController implements Observer {
   /** The game root of the SceneController */
   private GameView gameRoot;
 
-  /**
-   * Initialize the SceneController
-   *
-   * @param window The window
-   */
+  /** Initialize the SceneController */
   public void initialize() {
 
     KeyHandler keyHandler = KeyHandler.getInstance();

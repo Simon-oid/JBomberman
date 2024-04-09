@@ -1,25 +1,25 @@
 
-Ü
-java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(£àñÁ8™…™Úå1J$f970d66c-15ff-4d32-8974-d2f38e2ec316
-
-java:S1854;">Remove this useless assignment to local variable "baseFormat".(Ñ÷¨8¡õÏÚå1J$02549014-1ad1-4b30-8368-628337c2b5a2
-‡
-java:S2147R"DCombine this catch with the one at line 80, which has the same body.(ŸäÁ‚8¢õÏÚå1J$53a6cb05-e639-4a38-970e-7929291bef63
-‡
-java:S2147T"DCombine this catch with the one at line 82, which has the same body.(ûëßæ8¢õÏÚå1J$2b23dbf8-5f16-443f-9c33-9d201f2e83da
-‡
-java:S2147V"DCombine this catch with the one at line 84, which has the same body.(˜É³8¢õÏÚå1J$9b72da4f-13c6-49ed-8216-f306e0a7467c
-r
-java:S1481;"/Remove this unused "baseFormat" local variable.(Ñ÷¨8¤õÏÚå1J$9fb3800b-904a-4381-b2f7-fa8f8e3bfd37
-
-java:S1854|">Remove this useless assignment to local variable "baseFormat".(Ñ÷¨8¦õÏÚå1J$b8fddcbb-849b-4789-9d20-20769f378aa5
-‰
-java:S2147†"ECombine this catch with the one at line 132, which has the same body.(ï­£Ä8¦õÏÚå1J$4727fd39-81b2-4ee5-b77b-0012f62a5e72
-‰
-java:S2147ˆ"ECombine this catch with the one at line 134, which has the same body.(Ó•Şˆ8¦õÏÚå1J$8967f05f-4575-4fb6-b753-60f8fa601796
-
-java:S2147Š"ECombine this catch with the one at line 136, which has the same body.(Ñ¾éÓüÿÿÿÿ8¦õÏÚå1J$98357bbf-b4ea-4908-a297-6daf9bd04872
-r
-java:S1481|"/Remove this unused "baseFormat" local variable.(Ñ÷¨8§õÏÚå1J$5c09ef3b-13f7-48cf-9708-0da1bb0305e5
-€
-java:S1144l"8Remove this unused private "resetSoundtrackClip" method.(¿şëÿÿÿÿÿ8úö¿Ùè1J$54f3cda8-5956-42b5-b66a-6a8e5c219c53
+¶
+java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(£àñÁ8Š‡«œì1
+[
+java:S1854;">Remove this useless assignment to local variable "baseFormat".(Ñ÷¨8‡«œì1
+a
+java:S2147R"DCombine this catch with the one at line 80, which has the same body.(ŸäÁ‚8‡«œì1
+a
+java:S2147T"DCombine this catch with the one at line 82, which has the same body.(ûëßæ8‡«œì1
+a
+java:S2147V"DCombine this catch with the one at line 84, which has the same body.(˜É³8‡«œì1
+L
+java:S1481;"/Remove this unused "baseFormat" local variable.(Ñ÷¨8’‡«œì1
+[
+java:S1854|">Remove this useless assignment to local variable "baseFormat".(Ñ÷¨8•‡«œì1
+c
+java:S2147†"ECombine this catch with the one at line 132, which has the same body.(ï­£Ä8•‡«œì1
+c
+java:S2147ˆ"ECombine this catch with the one at line 134, which has the same body.(Ó•Şˆ8•‡«œì1
+h
+java:S2147Š"ECombine this catch with the one at line 136, which has the same body.(Ñ¾éÓüÿÿÿÿ8•‡«œì1
+L
+java:S1481|"/Remove this unused "baseFormat" local variable.(Ñ÷¨8—‡«œì1
+Z
+java:S1144l"8Remove this unused private "resetSoundtrackClip" method.(¿şëÿÿÿÿÿ8˜‡«œì1

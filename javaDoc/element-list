@@ -1,0 +1,9 @@
+module:org.jbomberman
+org.jbomberman
+org.jbomberman.controller
+org.jbomberman.model.entita
+org.jbomberman.model.listener
+org.jbomberman.model.map
+org.jbomberman.model.powerups
+org.jbomberman.model.tiles
+org.jbomberman.view

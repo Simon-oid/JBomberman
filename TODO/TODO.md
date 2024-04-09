@@ -2471,7 +2471,6 @@ FINISHED VERSION 1.0
 - REQUISITI MANCANTI:
 - [ ] diagramma
 - [ ] progetto eclipse
-- [ ] java doc
 - [ ] relazione
 
 ### low priority:
@@ -2484,7 +2483,8 @@ FINISHED VERSION 1.0
 
 ### DONE:
 
-- [ ] fare in modo che il tile exit sia positionato sotto ai mob
+- [x] fare in modo che il tile exit sia positionato sotto ai mob
+- [x] java doc
 
 ***
 

@@ -52,7 +52,7 @@ public class AudioManager {
   public void play(AudioSample audioSample) {
     try {
       String filename = audioSample.getFilename();
-      InputStream in = new BufferedInputStream(new FileInputStream(filename));
+      InputStream in = new BufferedInputStream(getClass().getResourceAsStream(filename));
       AudioInputStream audioIn = AudioSystem.getAudioInputStream(in);
 
       // Specify a standard audio format
