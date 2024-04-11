@@ -160,5 +160,3 @@ g
 .classpath,3\5\354079a72b91a4280407c16a36f47d1986fd85a5
 D
 META-INF/MANIFEST.MF,2\e\2e8cf92205ec303e7304888d382cb6a8cf5f56ba
-b
-2src/main/java/org/jbomberman/view/AudioManage.java,b\4\b4ee1fd3607a72dea9c1fe3bef83d66ac3bd7a58

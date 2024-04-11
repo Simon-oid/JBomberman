@@ -1,40 +1,40 @@
 
-œ	java:S135¶"YReduce the total number of break and continue statements in this loop to use at most one.(óÁ±8³õìœì1J$7bc86cd6-5feb-4563-ac13-7007e6a0da2b
+œ	java:S135¶"YReduce the total number of break and continue statements in this loop to use at most one.(óÁ±8³õìœì1J$7509e536-ac9f-497d-a874-45f178eb79f8
 x
-java:S1066Ÿ"/Merge this if statement with the enclosing one.(’œßºüÿÿÿÿ8´õìœì1J$d40ec5a4-d8e0-4637-92d5-5dcf732a030a
+java:S1066Ÿ"/Merge this if statement with the enclosing one.(’œßºüÿÿÿÿ8´õìœì1J$fcc7c619-4702-4f9b-9213-eec435af27a1
 ‹
-java:S2184Ö"BCast one of the operands of this addition operation to a "double".(å€üÿÿÿÿ8ºõìœì1J$1aed3a45-5919-4423-99e3-b593231ebc69
+java:S2184Ö"BCast one of the operands of this addition operation to a "double".(å€üÿÿÿÿ8ºõìœì1J$a03165af-a712-4c8a-80f5-096883cb70c4
 ‹
-java:S2184Ö"BCast one of the operands of this addition operation to a "double".(å€üÿÿÿÿ8ºõìœì1J$fbe8806a-9d5f-4348-877e-cf5f76c32058
+java:S2184Ö"BCast one of the operands of this addition operation to a "double".(å€üÿÿÿÿ8ºõìœì1J$600ce4d7-a99b-4549-bbe0-ad0b288e958c
 Ü
-java:S6548!"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(ú„ŠÌ8ÛıÁ÷ë1J$3daed46c-b9f8-4507-a250-2d72317c9a55
+java:S6548!"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(ú„ŠÌ8ÛıÁ÷ë1J$574a95ab-00d9-4240-8c86-d3fe20460caa
 u
-java:S1874!"2Remove this use of "Observable"; it is deprecated.(ú„ŠÌ8ÜıÁ÷ë1J$157babf9-2841-4b64-91c9-5da039613f40
+java:S1874!"2Remove this use of "Observable"; it is deprecated.(ú„ŠÌ8ÜıÁ÷ë1J$3ab9175e-bd41-455a-ab6f-ca05eab18d05
 }
-java:S1117¾":Rename "player" which hides the field declared at line 58.(Ì¸»!8êöìœì1J$333a679c-c919-4126-b9b3-5857bbb3999b
+java:S1117¾":Rename "player" which hides the field declared at line 58.(Ì¸»!8êöìœì1J$586b815d-a3fd-47f3-b12a-7a41edd0e1f9
 „
-java:S6201²"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8òöìœì1J$6c94aae3-19e7-4467-b92e-b138cf6a2c8e
+java:S6201²"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8òöìœì1J$f63be96a-7285-4eae-a790-dbaf4e4334cc
 ‹
-java:S6201 "BReplace this instanceof check and cast with 'instanceof Bomb bomb'(¬ĞÆ“úÿÿÿÿ8ööìœì1J$5f5eee08-8486-48d4-84d8-e0688b22ab42
+java:S6201 "BReplace this instanceof check and cast with 'instanceof Bomb bomb'(¬ĞÆ“úÿÿÿÿ8ööìœì1J$72503615-509d-4d03-8f35-ef9505029f4e
 ‹
-java:S6201ğ"BReplace this instanceof check and cast with 'instanceof Bomb bomb'(¬ĞÆ“úÿÿÿÿ8ùöìœì1J$033d7791-3343-411c-9ff5-d4072a7d472e
+java:S6201ğ"BReplace this instanceof check and cast with 'instanceof Bomb bomb'(¬ĞÆ“úÿÿÿÿ8ùöìœì1J$4415767b-c6ec-42e7-9ecf-41cb12460db3
 ‰
-java:S6201ˆ"EReplace this instanceof check and cast with 'instanceof Mob otherMob'(˜‚„°8ùöìœì1J$b9fa100d-26a7-4fe4-a3c1-c600a117f6ed
+java:S6201ˆ"EReplace this instanceof check and cast with 'instanceof Mob otherMob'(˜‚„°8ùöìœì1J$460d1261-7a28-470c-9666-0535192693ed
 a
-java:S2119­"Save and re-use this "Random".(¼İÅf8üöìœì1J$cb95a9fe-b10f-4d73-a7fc-e57131f54773
+java:S2119­"Save and re-use this "Random".(¼İÅf8üöìœì1J$2a94bd85-41f1-4f09-9e3e-f3daaef04444
 •
-java:S3776×"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(Ë¡çY8‰÷ìœì1J$afb82a54-2222-448d-8d8d-48194aabac53
+java:S3776×"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(Ë¡çY8‰÷ìœì1J$cc8c7659-30e2-4cd4-a136-2efdffec5e42
 „
-java:S6201è"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8÷ìœì1J$c2f6802c-52dd-449d-9984-aa3e849ff925
+java:S6201è"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8÷ìœì1J$7a263f23-8b36-4ce6-bf83-8141b2df8420
 u
-java:S1602¥",Remove useless curly braces around statement(äÒ´Åúÿÿÿÿ8‘÷ìœì1J$34f2d915-bb7a-4a08-9043-4bba2a983476
+java:S1602¥",Remove useless curly braces around statement(äÒ´Åúÿÿÿÿ8‘÷ìœì1J$c2fbd9bb-141a-435c-a5e2-fa762b665162
 o
-java:S1168	"&Return an empty array instead of null.(ƒ‚íşùÿÿÿÿ8”÷ìœì1J$61d4b98a-69ad-4e68-bb41-97fb1e9f7594
+java:S1168	"&Return an empty array instead of null.(ƒ‚íşùÿÿÿÿ8”÷ìœì1J$87cd1bd7-a75b-4853-9880-9198df198a20
 „
-java:S6201ö	"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8™÷ìœì1J$b6e0d0ed-32d4-450f-91df-31f0b06ea199
+java:S6201ö	"@Replace this instanceof check and cast with 'instanceof Mob mob'(­¿Úù8™÷ìœì1J$757a3cbd-8772-48ba-8ce8-0d86fdd4ce96
 o
 java:S1905Æ
-"&Remove this unnecessary cast to "int".(ÇÏ¥µøÿÿÿÿ8÷ìœì1J$0f6b61a0-efbe-4abe-923f-28dc1c44bf5d
+"&Remove this unnecessary cast to "int".(ÇÏ¥µøÿÿÿÿ8÷ìœì1J$4729ea24-dff8-482a-8040-fd78cb336bf7
 j
 java:S1905Ç
-"&Remove this unnecessary cast to "int".(ÍŠ¼³8÷ìœì1J$c793b247-68c8-4eb5-8c0d-2b96b5976932
+"&Remove this unnecessary cast to "int".(ÍŠ¼³8÷ìœì1J$3b850027-8afd-4ec0-bc08-92497bcbd85c
